@@ -1,0 +1,13 @@
+# Modelagem de Dados
+
+O que vamos estudar?
+	Identificar os principais modelos de dados para banco de negócios;
+	Analisar a estrutura e composição de um DER;
+	Construir modelos de dados a partir do uso de ferramentas computacionais.
+
+
+# Diretrizes para a Análise das Necessidades de Informações
+de Negócios
+
+A modelagem de dados envolve a coleta e a análise dos requisitos:
+	

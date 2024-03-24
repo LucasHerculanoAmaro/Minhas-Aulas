@@ -1,0 +1,8 @@
+Questionário
+
+1. Quais são os pilares para a transição de um banco de dados?
+
+2. Qual foi o objetivo da criação do banco de dados NoSQL?
+
+3. Fale um pouco sobre o surgimento da criação da linguagem R.
+ 

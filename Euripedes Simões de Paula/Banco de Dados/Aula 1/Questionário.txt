@@ -1,0 +1,6 @@
+1. É correto afirmar que banco de dados e Sistema de Gerenciamento de Dados é a mesma coisa?
+
+2. Explique brevemente sobre o que é modelo de banco de dados e qual é o mais utilizado.
+
+3. Explique sobre o banco de dados objeto-relacional.
+

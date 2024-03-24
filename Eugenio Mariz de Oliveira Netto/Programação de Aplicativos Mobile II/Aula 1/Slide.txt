@@ -1,0 +1,380 @@
+# Programação de Aplicativos Mobile II
+
+-> Conteúdo desta matéria
+
+01. Ambientes de desenvolvimento de aplicativos móveis
+02. Fundamentos da tecnologia sem fio
+03. Tipos de redes sem fio
+04. Redes de sensores sem fio
+05. WebApps
+06. Web apps com Apache Cordova
+07. JNI, framework e APIs
+08. Sistemas operacionais de outros equipamentos
+09. Introdução à Internet das Coisas na plataforma Arduino
+10. Componentes dos aplicativos Android
+11. Design de interação para aplicações móveis
+12. Plataformas de desenvolvimento: IDE e emulador Android
+13. Linguagem Java: conceitos essenciais de desenvolvimento para dispositivos móveis
+14. Persistência com SQLite
+15. Recursos e a classe R.java
+16. Menus e views para coleções de dados
+17. Telas de cadastro
+18. Alertas e a classe Toast
+19. Node.js
+20. Angular e diretivas
+21. Componente Activit
+22. Projeto de aplicativo via mockups
+23. TypeScript
+24. Consumo de serviços Web RESTful
+25. Testes em aplicativos móveis
+26. Tipos de leiaute RelativeLayout e LinearLayout
+
+
+
+01. Ambientes de desenvolvimento de aplicativos móveis
+
+
+
+# Objetivo desta aula:
+	-> Definir os principais ambientes de desenvolvimento de aplicativos móveis.
+	-> Descrever as principais linguagens de programação utilizadas no desenvolvimento de aplicativos móveis.
+	-> Comparar os tipos de linguagens e os ambientes de desenvolvimento de aplicativos móveis.
+
+
+
+# Introdução:
+
+Todo celular tem um sistema operacional, você conhece eles?
+	-> Windows Phone - Microsoft;
+	-> Rim - Blackberry;
+	-> Symbian OS - Nokia;
+	-> Android;
+	-> Iphone Operating System.
+Vamos falar sobre os mais utilizados atualmente.
+
+
+
+# Android:
+
+O Android Alpha foi lançado em 2007, e a versão 1.0 foi lançada em 2008.
+É um sistema baseado em Linux e desenvolvido pela Google.
+A linguagem para seu desenvolvimento é C, mas também envolve:C++;PHP;Java.
+
+
+
+# IPhone Operating System:
+
+Seu lançamento foi em 2007.
+A linguagem para seu desenvolvimento é:C;C++;Objective-C;Swift;Java.
+
+
+
+# Por que conhecer qual a linguagem por trás de um sistema operacional?
+
+-> Criar software que interage de forma eficiente com o sistema operacional;
+-> Personalizar o sistema operacional com suas necessidades;
+	Por exemplo, você pode desenvolver drivers de dispositivo.
+-> Diagnosticar e corrigir problemas;
+-> Desenvolvimento de software de baixo nível: 
+	1. Programação de drivers; 
+	2. Sistemas de arquivos
+	3. Protocolos de rede.
+-> Identificar e explorar vulnerabilidades de segurança.
+
+
+
+# Ambiente de Desenvolvimento Integrado:
+
+São mais conhecidos pelo nome de IDE, em ingles integrated development environment.
+São softwares que auxiliam os desenvolvedores com diversas ferramentas:
+	-> Editor de código fonte;
+	-> Compilador;
+	-> Depurador, etc...
+Os mais utilizados são:
+	-> Android Studio;
+	-> Visual Studio Code;
+	-> IntelliJ;
+	-> Atom;
+	-> Xcode.
+Alerta: Se você for um iniciante, escolha apenas uma IDE até ter seu domínio.
+
+
+
+# Instalações:
+
+Para iniciar, você precisa atualizar o sistema operacional usando:
+	$ sudo apt-get update && apt-get upgrade
+Este comando é usado em sistemas baseados em Debian (como Ubuntu) para atualizar os pacotes do sistema.
+
+
+
+
+# Android Studio:
+Desenvolvido pela Google para facilitar o desenvolvimento móvel android.
+Para instalar, basta seguir os passos do site, na versão que deseja:
+	https://qrgo.page.link/3kPUA
+Compatível com:
+	-> Windows;
+	-> Mac;
+	-> Linux;
+	-> Chrome OS.
+Suporta o desenvolvimento de aplicativos:
+	-> Java;
+	-> Kotlin;
+	-> C ou C++.
+
+
+
+# Visual Studio Code:
+Suas vantagens são:
+	-> Autocompleta inteligente;
+	-> Depuração de código;
+	-> Integração com repositório git;
+	-> Instalação de extensões e serviços.
+Pode ser instalado em ambientes:
+	-> Windows;
+	-> Linux;
+	-> MacOs.
+Suporta diversas linguagens:
+	-> Java;
+	-> JavaScript;
+	-> Lua;
+	-> Jade;
+	-> CSS;
+	-> Objective-C;
+	-> TypeScript;
+	-> Python;
+	-> PHP;
+	-> C++;
+	-> Go;
+	-> Markdown.
+Para instalar, use o seguinte script no terminal:
+	$ sudo apt-get install code
+
+
+
+# IntelliJ IDEA:
+Esta IDE suporta desenvolvimento para linguagens:
+	-> Java;
+	-> Kotlin.
+A versão Community, permite o desenvolvimento de aplicativos em:
+	-> Java;
+	-> Scala;
+	-> Groovy;
+	-> Kotlin.
+A versão Ultimate também suporta:
+	-> JavaScript;
+	-> Typescript.
+Para instalar via linha de comando no Linux: 
+	$ sudo apt install ubuntu-make
+Ou instale o IntelliJ usando o Make: $ umake ide idea.
+
+
+
+# Atom IDE:
+Desenvolvido pelo Facebook.
+Compatível com:
+	-> Windows;
+	-> MacOs;
+	-> Linux.
+Suporta o desenvolvimento de aplicativos em: 
+	-> Java;
+	-> JavaScript;
+	-> Typescript;
+	-> C#;
+	-> Flow;
+	-> PHP.
+Para instalação no Linux, siga os passos:
+	-> Adicionar o repositório:
+		$ sudo add-apt repository ppa:webupd8team/atom 
+	-> Atualizar o repositório: 
+		$ sudo apt-get update
+	-> Instalar o Atom: 
+		$ sudo apt-get install atom
+
+
+
+# Xcode:
+É a IDE oficiol para IOS.
+Suporta o desenvolvimento de:
+	-> Objective-C;
+	-> Swift;
+	-> Apple-Script.
+Esta aplicação é específica para IOS e MacOS.
+Para instalar, basta seguir as instruções no link a seguir:
+	https://apps.apple.com/br/app/xcode/id497799835?mt=12
+
+
+
+# Linguagens de programação para o desenvolvimento de aplicativos móveis
+
+
+O que precisamos saber sobre linguagens nativas e hibridas?
+	-> As nativas são desenvolvidas para operar em um sistema operacional específico;
+	-> As hibridas são desenvolvidas para operar em mais de um sistema operacional.
+
+
+
+# Desenvolvimento Nativo:
+São pensados para apenas um sistema operacional.
+Acessam os recursos do dispositivo:
+	-> global positioning system;
+	-> Acelerômetro;
+	-> Giroscópio.
+Alguns dos aplicativos com essas abordagens são:
+	-> Facebook;
+	-> Messenger;
+	-> WhatsApp;
+	-> Skype.
+Se tratando de linguagens específicas:
+	-> Android: Java e Kotlin;
+	-> IOS: Objective-C e Swift.
+
+
+
+
+# Desenvolvimento Hibrido:
+São aplicações que funcionam em mais de um sistema operacional.
+Usam recursos conhacido como webview, executado quando o usuário inicializa uma aplicação hibrida.
+Os aplicativos se baseiam em:
+	-> HTML;
+	-> CSS;
+	-> JavaScript.
+Vantagens do desenvolvimento hibrido:
+	-> Único código para ambos os sistemas;
+	-> Redução de desenvolvimento de manutenção;
+	-> Ganho de tempo e custo;
+Desvantagens:
+	-> Perdem desempenho.
+
+
+
+
+# Principais linguagens para desenvolvimento móvel
+
+# Java:  
+Mantida pela Oracle, Java tem duas versões disponíveis:
+	-> Java Runtime Environment (JRE);
+	-> Java Development Kit (JDK).
+Java Runtime Environment é utilizado para aplicações, enquanto Java Development Kit é utilizado para o desenvolvimento.
+Alguns pontos:
+	-> É uma linguagem orientada a objetos;
+	-> É uma linguagen tipada:
+		É necessário declarar o tipo de uma variável.
+Para instalar em um sistema Linux, basta usar o comando:
+	$ sudo apt-get install default-jdk
+
+
+
+# JavaScript:
+Linguagem utilizada para:
+	-> Manipular comportamentos de uma página;
+	-> Controlar o Hypertext Markup Language e o Cascading Style Sheets.
+O Node.JS é um framework ambientado em JavaScrips, utilizado em servidores.
+
+
+
+# Kotlin:
+É uma linguagem orientada a objetos, assim como Java, e compatível com Java e JavaScript.
+
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo snap install — classic kotlin
+
+
+
+# TypeScript
+É uma linguagem que adiciona tipagem e outros recursos JavaScript.
+Sua tipagem permite a declaração de variável e seu tipo:
+	-> Numérico;
+	-> Textual;
+	-> Data.
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo npm install -g typescript
+
+
+
+
+# Objetive-C:
+É uma superset da linguagem C (inclui os recursos da linguagem C).
+É uma linguagem orientada a objetos, possibilitando a criação de classes e métodos.
+
+
+
+# Swift:
+Enquanto o Objective-C era a principal linguagem de programação para desenvolvimento de aplicativos Apple antes do lançamento do Swift, a Apple optou por criar o Swift como uma alternativa moderna ao Objective-C. 
+O objetivo era oferecer:
+	-> Uma sintaxe mais limpa;
+	-> Segurança de tipo melhorada; 
+	-> Maior performance e outras melhorias de linguagem. 
+
+
+
+# Linguagens e ambientes de desenvolvimento
+Observe a correlação entre as principais linguagens de programação e as IDEs.
+
+
+
+# Outros frameworks e aplicações úteis
+Dependendo do desenvolvimento, é necessário instalar:
+	-> Plug-ins;
+	-> Framewoorks;
+	-> Aplicações complementáres. 
+Veja como instalar algumas ferramentas.
+
+
+
+# Node.js
+É um imterppretador de código JavaScript, usado em aplicações em rede.
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo apt--get install nodejs
+
+
+
+# Node Package Manager
+É um gerenciador de pacotes do Node.
+Facilita a instalação de ferramentas para desenvolvimento de aplicações usando JavaScripts
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo apt-get install npm
+
+
+
+# Apache Cordova
+É um framework que permite usar: 
+	-> CSS3;
+	-> HTML5;
+	-> JavaScript.
+Possibilita o acesso:
+	-> GPS;
+	-> Acelerômetro;
+	-> Câmera.
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo npm install -g cordova
+
+
+
+# Ionic
+É um framework para desenvolvimento de aplicações para dispositivos móves hibridos.
+Permite que o visual da aplicação fique parecido com o visual do sistema operacional.
+Para instalar no sistema operacional Linux, basta usar:
+	$ sudo npm install -g ionic
+
+
+
+# Angular
+É um framework para desenvolvimento de interfaces de aplicaçao web e móvel baseadas em: 
+	-> JavaScript;
+	-> CSS;
+	-> HTML.
+Para instalar no sistema operacional Linux, basta usar:
+	é $ sudo npm install -g @angular/cli
+
+
+
+# O que estudamos até aqui?
+Aprendemos sobre:
+	-> Os principais ambientes de desenvolvimento
+	-> As linguagens de programação para aplicativos móvei.
+Lembre-se: Este conteúdo foi extraído da apostila; nela você encontrará outras referências.
+
+
+

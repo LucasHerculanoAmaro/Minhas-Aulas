@@ -1,0 +1,16 @@
+1. Qual é a importância de conhecer a linguagem de programação envolvida na construção de um sistema operacional?
+
+2. Para instalar as IDEs, o que é necessário fazer no sistema operacional?
+
+3. Explique um pouco sobre o que são as linguagens:
+	A - Nativas: 
+	B - Hibridas:
+
+4. Explique sobre o que são:
+	A - Java Runtime Environment (JRE):
+
+	B - Java Development Kit (JDK):
+
+5. Qual é a linguagem que a apple criou como alternativa para a linguagem Obetiva-C?
+
+6. Por que instalar e usar frameworks facilitam o desenvolvimento?
