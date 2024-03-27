@@ -1,0 +1,14 @@
+1. Quais são as vantagens das redes sem fio comparando com as redes covencionais?
+
+2. Quais são os tipos de comunicação em que um aparelho se comunica diretamento com outro?
+
+3. Devido a grande demanda e uso de tecnologia que faz o uso de redes sem fio, qual é a preocupação que surge?
+
+4. Cite duas vantagens de desvantagens do uso de rede sem fio.
+
+5. O que é matriz de risco?
+
+6. Resuma o que são:
+	Antenas:
+	Ponto de acesso:
+	Satélite de comunicação:
