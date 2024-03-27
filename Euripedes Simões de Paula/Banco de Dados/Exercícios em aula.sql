@@ -1,16 +1,28 @@
-#Está linha cria um banco novo
+################################################################# 
+# Não esqueça de alterar o nome para o nome que você deseja 	#
+# Use uma nomeclatura padrão e especifica:			#
+#	Inicie com "DB_" para nomear um banco de dados;		#
+#	Inicie com "TB_" para nomear uma tabela.		#
+#################################################################
+
+# Está linha cria um banco novo [não esqueça de alterar o nome para o nome que você deseja]
 create database db_escola;
-#selecionando o banco que eu vou usar
+
+# Selecione o banco que acabou de criar
 use db_escola;
-#Criar uma tabela
-CREATE TABLE Alunos (
-	id_aluno CHAR(20),  
-	nome CHAR(30),  	
-    login CHAR(20),  	
-    idade INTEGER,  	
-    média REAL )
-#seleciona todos os campos da tabela
-select * from alunos;
+
+# Para criar uma tabela use este exemplo
+CREATE TABLE tb_alunos (
+	id_aluno 	CHAR(20),  
+	nome 		CHAR(30),  	
+    	login 		CHAR(20),  	
+    	idade 		INTEGER,  	
+    	media 		REAL 
+);
+
+# Para selecionar a tabela criada, use o script abaixo [Não haverá dados na tabela se você não inseriu]
+select * from tb_alunos;
+
 #Inseri informações em um banco de dados
 INSERT INTO Alunos (id_aluno, nome, login, idade, média)
 	 	VALUES (50000, "Carlito", "carlito@3ta.com", 17, 3.3);
