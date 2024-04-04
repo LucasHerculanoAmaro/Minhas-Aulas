@@ -1,0 +1,7 @@
+1 - O Bluetooth é uma tecnologia LAn sem fio projetada para (...)?
+2 - Diga o que você entendeu sobre a frase: "Uma LAN Bluetooth é uma rede ad hoc, o que significa que a rede é formada espontaneamente".
+3 - Quais são açguas das aplicaçõesque o Bluetooth oferece?
+4 - Qual é o protocolo que corresponde ao Bluetooth?
+5 - Quantas estações a rede Bluetooth Piconet pode ter? quantas para primária, e quantas para secudária?
+6 - O que deve ser feito para formar o tipo de rede scattenet?
+Seria correto afirmar que o Bluetooth tem embutido um transmissor de rádio?
