@@ -1,0 +1,5 @@
+1 - O que é redundancia de dados?
+2 - Explique sobre a redundancia:
+	A - Funcional Total:
+	B - Funcional Parcial:
+	C - Funcional Transitiva:
