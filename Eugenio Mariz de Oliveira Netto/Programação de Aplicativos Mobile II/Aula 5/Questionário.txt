@@ -1,0 +1,9 @@
+1 - Segundo Justen (2018), quais são as características que o PWA deve apresentar?
+
+2 - Quais são as tecnologias envolvidas na criação de uma PWA?
+
+3 - Para trabalhar com protocolo HTTPs, qual é o tipo de arquivo que o Manifest deve ser?
+
+4 - Cite quais são os quatro passos para criar um Service Worker?
+
+5 - De acordo com a Imagem, cite 3 diferenças entre WebApp, aplicativo nativo e um site responsivo?
