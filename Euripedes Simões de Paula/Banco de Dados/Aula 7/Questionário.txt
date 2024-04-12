@@ -1,0 +1,27 @@
+1 - Atividade:
+
+Criar modelo conceitual, onde em uma escola há as seguintes entidades: Professor, Alunos e Aulas.
+
+Você deverá criar a cardinalidade (1:1, 1:N, N:N), de acordo com o relacionamento.
+
+2 - Diga quais são as vantagens de ter a gestão, administração e formação dos bancos de dados no dicionário de dados.
+
+3 - Quais são alguns dos padrões que as empresas utilizam em seus SGBD, e quais são os benefícios? (ex: pedrão para nomes)
+
+4 - Veja a tabela abaixo:
+
+	*****************************************************************************************
+	*					TB_3TA						*	
+	*****************************************************************************************
+	*   ID_ALUNO 	*  NOME_ALUNO 	* IDADE_ALUNO 	* ENDERECO__ALUNO 	* MEDIA_ALUNO 	*
+	*****************************************************************************************
+	*	1	*  Diogo	*  17		* Rua Varmengo		*  7,0		*
+	*	2	*  Guilherme	*  18		* Rua Varmeiras		*  8,5		*
+	*	3	*  Gabriel	*  16		* Rua Dois Mil e Sete	*  10,0		*
+	*****************************************************************************************
+
+
+	A - Selecione da tabela somente duas colunas.
+	B - Selecione da tabela somente quatro colunas.
+	C - Selecione da tabela todas as colunas.
+
