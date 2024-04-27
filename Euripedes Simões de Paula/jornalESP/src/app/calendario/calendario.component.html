@@ -1,0 +1,120 @@
+<div class="container">
+
+  <div class="calendar">
+
+    <div class="header">
+
+      <!-- <div class="month">mês, ano</div> -->
+      <div class="month" #month></div>
+      <div class="btns">
+
+        <!-- <div class="btn .today-btn" onclick="today_click()"> <i class="fas fa-calendar-day"></i> </div>
+        <div class="btn .prev-btn" onclick="prev_click()"> <i class="fas fa-chevron-left"></i> </div>
+        <div class="btn .next-btn" onclick="next_click()"> <i class="fas fa-chevron-right"></i> </div>       -->
+
+        <div class="btn .today-btn" (click)="today_click()"> <i class="fas fa-calendar-day"></i> </div>
+        <div class="btn .prev-btn" (click)="prev_click()"> <i class="fas fa-chevron-left"></i> </div>
+        <div class="btn .next-btn" (click)="next_click()"> <i class="fas fa-chevron-right"></i> </div>
+
+      </div>
+
+    </div>
+
+    <div class="weekdays">
+
+      <div class="day">dom</div>
+      <div class="day">seg</div>
+      <div class="day">ter</div>
+      <div class="day">qua</div>
+      <div class="day">qui</div>
+      <div class="day">sex</div>
+      <div class="day">sab</div>
+
+    </div>
+
+    <div class="days">
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+/*
+  const daysContainer = document.querySelector(".days"),
+    nextBtn = document.querySelector(".next-btn"),
+    prevBtn = document.querySelector(".prev-btn"),
+    month = document.querySelector(".month")
+
+  const months = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+
+  const days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
+
+  //Seleciona o dia corrido
+  const date = new Date();
+  let currentDay = date.getDay();
+
+  //Seleciona o mês corrido
+  let currentMonth = date.getMonth();
+
+  //Seleciona o ano corrido
+  let currentYear = dategetFullYear();
+
+  //Função para renderizar o dia
+  function renderCalendar() {
+
+    console.log("Dias renderizados:", days);
+
+    const daysContainer = this.daysContainerRef.nativeElement;
+
+    //Pega os mêses anterio, presente e o próximo 
+    date.setDate(1);
+    const firstDat = new Date(currentYear, currentMonth, 1);
+    const lastDay = new Date(currentYear, currentMonth + 1, 0);
+    const lastDayIndex = lastDay.getDate();
+    const lastDayDate = lastDay.getDate();
+    const prevLastDay = new Date(currentYear, currentMonth, 0);
+    const prevLastDayDate = prevLastDay.getDate();
+    const nextDays = 7 - lastDayIndex - 1;
+
+    //Atualiza o dia
+    let days = "";
+
+    //Pega o dia anterior
+    for (let x = firstDay.getDay(); x > 0; x--) {
+      days += `<div class="day prev">${prevLastDayDate - x + 1}</div>`;
+
+    
+    }
+
+    /*
+    //Pega o dia, mês e ano presente
+    for (let i = 1; i <= lastDayDate; i++) {
+      //Pega o dia atual e adiciona a classe
+      if (
+        i === new Date().getDate() &&
+        currentMonth === new Date().getMonth() &&
+        currentYear === new Date().getFullYear()
+      ) {
+        //Se a data, mês e ano combinarem, as datas são inseridas a classe
+        days += `<div class="day today">${i}</div>`;
+      } else {
+        //Se não a data não será adicionada
+        days += `<div class="day">${i}</div>`;
+      }
+    }
+
+    // Tentando renderizar os dias na tela. vídeo minuto ()24:47
+
+    daysContainer.innerHTML = days;
+
+    
+
+  }
+
+  renderCalendar();*/
+
+</script>
