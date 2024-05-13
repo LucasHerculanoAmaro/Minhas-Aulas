@@ -1,0 +1,9 @@
+https://www.treinaweb.com.br/blog/conhecendo-variaveis-e-constantes-no-java
+
+https://github.com/Leon4rdoalves/CookBook-Java/blob/main/03.md
+
+https://www.devmedia.com.br/java-variaveis-e-constantes/38311
+
+https://pt.stackoverflow.com/questions/354519/como-criar-constantes-em-java
+
+https://pt.stackoverflow.com/questions/354519/como-criar-constantes-em-java
