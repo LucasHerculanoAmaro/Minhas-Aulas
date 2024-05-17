@@ -1,0 +1,8 @@
+1. Qual é a linguagem utilizada no Sistema Operacional Android?
+
+2. Quais são os quatro componentes básicos do Android, e o que eles representam?
+
+3. Explique sobre a Intent Explicito e Implicito?
+
+4. Falando sobre Content Providers, quais são os dois provedores que o Android fornece?
+
