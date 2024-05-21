@@ -1,0 +1,82 @@
+1. A linguagem Java é Orientada a Objetos. Isso significa que:
+
+A - é escrita em termos de Classes, Objetos e contém os quatro pilares: Herança, Polimorfismo, Abstração e Encapsulamento.
+
+B - Não pode conter Classes, mas contém Objetos.
+
+C - Apenas mantém a presença de Herança e Polimorfismo nas Classes e Objetos.
+
+D - É uma linguagem formada apenas por linguagens estruturadas.
+
+
+2. Indique se a frase é Falsa ou Veradeira:
+
+A - "Os dados Primitivos são dados mais simples, onde encontramos, por exemplo: números inteiros, números reais, caracteres simples e lógicos"
+
+B - "Os dados Não Primitivos consiste em arrays, classes, objetos, interfaces e Strings onde armazena valores de diferentes tipos ou um grupo de valores definidos na classe"
+
+
+3. Como devemos declarar uma variável:
+
+A - nomeVariavel;
+B - nomeVariavel tipoVariavel;
+C - tipoDados nomeVariavel;
+D _ var tipoDados nomeVariavel;
+
+
+4. Indique se a frase é Falsa ou Verdadeira:
+
+A - "A linguagem estruturada não tem uma rotina"
+
+B - "A ideia da POO é simular as coisas que existem no mundo real"
+
+
+5. Diga o que é um Objeto?
+
+
+6. Indique qual é a lista que contém objetos?
+
+A - Conta, Postagem em redes sociais, etc.
+
+B - Número, Senhas, etc.
+
+
+7. Diga o que são Classes?
+
+
+8. Diga exemplos para a Classe Carro?
+
+
+9. Na aulas sobre POO, observamos sobre a criação das Classes. Você consegue se lembrar a sequência para criar a classe?
+
+A - 
+	Modificador nomeClasse class{ 
+	// código
+	}
+
+B - 
+	Modificador class nomeClasse { 
+	// código
+	}
+
+C - 
+	class nomeClasse Modificador{ 
+	// código
+	}
+
+
+10. Sabemos que, ao iniciar uma variável privada em uma classe, outras classes e pacotes não teriam acesso direto a elas. Para conseguir utilizar a variável, era necessário utilizar os metodos Getters & Setters.
+Diga qual é a sintaxe abaixo verdadeira ou falsa.
+
+A - Método Get:
+
+	public String getNome() {
+		return nome;
+	}
+
+B - Método Set:
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
