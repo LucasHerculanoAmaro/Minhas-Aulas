@@ -1,0 +1,18 @@
+1. Explique resumidamente, com suas palavras, sobre o exemplo na página 4 da apostila, sobre os sistemas de operadores de caixa de funcionários de companhias aéreas.
+
+2. Menus
+A - Qual é o obetivo da interação por menus?
+B - Com o que o designer deve se preocupar?
+
+3. Formulário
+A - Como funciona a interação por formulário?
+B - Com o que o Designer deve se preocupar?
+
+4. Paradigmas de interação
+A - Na computação ubíqua, o que os usuários não percebem, e porque?
+B - Quais são os três modos básicos fundamentais para a boa interação entre o usuário?
+
+5. Computação tangível
+A - Qual é o objetivo das interfaces tangível?
+B - Descreva a Figura 3 da Apostila.
+

@@ -1,0 +1,4 @@
+1. Para identificar se um ambiente é acessíve, o que devemos fazer?
+2. Descreva o que você entendeu da Figura 1.
+3. O que você entendeu sobre eMAG3.1?
+4. O que é o TAW, e o que ele faz?
