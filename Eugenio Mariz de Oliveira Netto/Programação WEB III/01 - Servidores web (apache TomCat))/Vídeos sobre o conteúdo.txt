@@ -1,0 +1,3 @@
+Nome: 	Implantando projeto localmente no servidor Apache Tomcat - Formação Java Web Full-Stack
+Canal: 	Alex DEV Treinamento Online
+Link: 	https://www.youtube.com/watch?v=Wz136dMnOdM
