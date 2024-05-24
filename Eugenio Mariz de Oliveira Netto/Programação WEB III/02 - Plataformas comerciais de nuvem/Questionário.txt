@@ -1,0 +1,6 @@
+1. Cite 2 empresas que utilizam serviços AWS.
+2. Quais foram a porcentagem em relação aos usuários que adotaram o s serviços da Alibaba e Oracle?
+3. Diga os pontos importantes sobre os modelos de serviço a seguir:
+	A - Infraestrutura como serviço (IaaS).
+	B - Plataforma como serviço (PaaS).
+	C - Software como serviço (SaaS).
