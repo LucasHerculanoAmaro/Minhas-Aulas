@@ -43,7 +43,7 @@ public class Unario {
 		boolean e = true;
 		boolean f = false;
 		
-		// Invertendo o sinal e subtraindo com 1
+		// Invertendo o sinal e subtrai com 1
 		System.out.println(~c);
 		// Inverte o sinal e subtrai com 1
 		System.out.println(~d);
