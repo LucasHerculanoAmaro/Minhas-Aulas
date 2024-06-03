@@ -32,7 +32,7 @@ public class natan {
 
 		leia.close( );
 		 
-		
+	
 
 
 		//Primeiro Exercício
