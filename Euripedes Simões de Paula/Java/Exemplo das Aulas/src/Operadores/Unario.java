@@ -7,7 +7,7 @@ public class Unario {
 		int a = 10;
 		int b = 10;
 		
-/*	
+/*	*/
 
 // Primeiro Exemplo
 
@@ -19,7 +19,7 @@ public class Unario {
 		System.out.println(a--);
 		///Decrementando um valor antes da impressão
 		System.out.println(--a);
-*/		
+		
 
 /*	
 // Segundo Exemplo 
@@ -36,7 +36,7 @@ public class Unario {
 		System.out.println(b++ + b++);	// Saída: 21
 */		
 		
-/*	*/
+/*	
 // Terceiro Exemplo
 		int c = 10;
 		int d = -10;
@@ -51,7 +51,8 @@ public class Unario {
 		System.out.println(!e);
 		// Verdadeiro - oposto do valor booleano
 		System.out.println(!f);
-		
+
+*/	
 	}
 	
 }
