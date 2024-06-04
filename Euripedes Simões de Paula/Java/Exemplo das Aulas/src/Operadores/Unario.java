@@ -21,7 +21,7 @@ public class Unario {
 		System.out.println(--a);
 		
 
-/*	
+/*	*/
 // Segundo Exemplo 
 		
 		//Analisando a++ + ++a
@@ -34,7 +34,7 @@ public class Unario {
         // b++ retorna 11, depois b é incrementado para 12
         // 10 + 11 = 21
 		System.out.println(b++ + b++);	// Saída: 21
-*/		
+		
 		
 /*	
 // Terceiro Exemplo
