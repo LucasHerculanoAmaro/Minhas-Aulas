@@ -21,37 +21,24 @@ public class natanael {
 			player2 = leia.nextLine( );
 
 
-			System.out.println("Qual é o poder do " + line);
-			int line = leia.nextInt();
+			System.out.println("Qual é o nível de poder do " + player1);
+			int poder1 = leia.nextInt();
 
 
-			System.out.println("Qual é o poder do " + line2);
-			int line2 = leia.nextInt();
+			System.out.println("Qual é o nível de poder do " + player2);
+			int poder2 = leia.nextInt();
 
+			System.out.println("\n\nÉ hora do Duelo!!!\n\n");
 
-// System.out.println(“HORA DO DUELO”);
-// Int duel = line > line2;
-
-
-			if (leia.nextInt()){
-				Int duel = line > line2;
-				System.out.println("Em uma disputa de poder, quem ganha o duelo é " + duel );
+			if (poder1 > poder2){
+				System.out.println("Em uma disputa de poder, quem ganha o duelo é " + player1 );
+			}else if (poder2 > poder1){
+				System.out.println("Em uma disputa de poder, quem ganha o duelo é " + player2 );
+			}else if (poder1 == poder2) {
+				System.out.println("Em uma disputa de poder, o duelo terminou empatado entre " + player1 + " e " + player2);
 			}
-			if (leia.nextInt()){
-				int duel = line < line2;
-				System.out.println("Em uma disputa de poder, quem ganha o duelo é " + duel );
-			}
+			
 
-
-/*
-If (leia.hasNextInt()){
-      Int duel = line > line2;
-      System.out.println(“Em uma disputa de poder, quem ganha o duelo é“ + duel );
-}
-Of (leia.hasNextInt()){
-       Int duel = line < line2;
-       System.out.println(“Em uma disputa de poder, quem ganha o duelo é“ + duel );
-*/
 			leia.close();
 	}
 }
