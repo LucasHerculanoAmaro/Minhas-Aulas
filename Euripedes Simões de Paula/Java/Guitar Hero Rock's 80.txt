@@ -1,0 +1,73 @@
+## Método Main
+1. O método main serve como:
+	A. ponto de saída para um programa.
+	B. ponto de entrada para um programa.
+	C. ponto de entrada e saída de um programa.
+	D. não serve como ponto de entrada.
+
+2. Escreva qual é a sintaxe do método main.
+
+3. O JRE não encontrará o método main caso o seu modificador de acesso seja diferente de:
+	A. protected
+	B. private
+	C. public
+	D. padrão
+
+4. Me explique porque devemos usar o método main().
+
+5. Porque o método main é void?
+
+## Operadores
+6. Veja a seguinte operação:
+	
+	int a = 4;
+
+	System.out.println("exemplo" + (a % 3));
+
+O que a seguinte operação realiza?
+
+7. Qual é o nome atribuído quando agregamos a String o valor de uma variável?
+	A. Agregação;
+	B. Complemento;
+	C. Concatenação;
+	D. Atribuição.
+
+8. Veja a sintaxe abaixo:
+
+	int a = 10
+
+	System.out.printin(a++);
+	System.out.printin(++a);
+	System.out.printin(a--);
+	System.out.printin(--a);
+
+	A. Ao executar o código, qual será o resultado apresentado?
+	B. Me explique o que significa as seguintas expressões:
+		a++ :
+'		++a :
+		a-- :
+		--a :
+
+9. Veja a sintaxe abaixo:
+ 
+	int a = 10
+	int b = 10
+
+	System.out.printin(a++ + ++a);
+	System.out.printin(b++ + b++);
+	
+Me explique porque o resultado dessa operação para A é 58 e para B é 47.
+
+
+10. Veja a sintaxe abaixo:
+	
+	boolean a = true;
+	boolean b = false;
+
+	System.out.printin(!a);
+	System.out.printin(!b); 
+
+	A. O que significa o uso da "!" antes da variável?
+	B. Qual é o resultado da operação acima?
+
+
