@@ -48,7 +48,7 @@ public class estruturaWhile {
 		System.out.println("\t\t O Programa foi encerrado");
 */
 		
-/*		Terceiro Exemplo */
+/*		Terceiro Exemplo 
 		
 		int i = 0;
 		
@@ -57,8 +57,18 @@ public class estruturaWhile {
 			i++;
 		
 		}while(i < 4);
-			
+*/
 		
+/*		Quarto Exemplo */
+		int contagem = 10;
+		
+		System.out.println(	  "########################"
+							+ "# Contagem regressiva! #"
+							+ "########################");
+		do {
+			System.out.println(contagem);
+			contagem++;
+		}while (contagem > 0);
 		
 	}
 	
