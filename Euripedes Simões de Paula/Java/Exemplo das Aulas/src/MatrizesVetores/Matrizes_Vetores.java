@@ -10,6 +10,7 @@ public class Matrizes_Vetores {
 		// Acessando elementos do vetor
 		System.out.println("Imprimindo o primeiro valor do vetor: " + numeros[0]);
 		System.out.println("Imprimindo o quarto valor do vetor: " + numeros[4]);
+		System.out.println("Imprimindo o segundo valor do vetor: " + numeros[2]);
 		
 		//Interando sobre o vetor
 		for (int i = 0; i < numeros.length; i++) {
