@@ -1,6 +1,8 @@
 package MatrizesVetores;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Matrizes {
@@ -105,12 +107,25 @@ public class Matrizes {
 		}
 */		
 		
-/*		Quarto Exemplo */
+/*		Quarto Exemplo 
 		int[] numeros = {1,2,3,4,5};
 		
 		for (int num : numeros) {
 			System.out.println("Imprima: " + num);
 		}
+*/		
+		
+/*		Quinto Exemplo
+		List<String> frutas = new ArrayList<>();
+		
+		frutas.add("Maça");
+		frutas.add("Banana");
+		frutas.add("Laranja");
+		
+		for (String fruta : frutas) {
+			System.out.println(fruta);
+		}
+*/
 		
 	}
 	
