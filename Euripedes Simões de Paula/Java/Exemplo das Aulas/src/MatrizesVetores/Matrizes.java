@@ -73,7 +73,7 @@ public class Matrizes {
 		}
 */		
 		
-/*		Terceiro Exemplo */
+/*		Terceiro Exemplo 
 		int soma = 0;
 		int vetor[] = new int[4];
 		int[][] matrizA = new int[5][4];
@@ -103,7 +103,14 @@ public class Matrizes {
 			System.out.println(
 					"Somando os elementos " + (coluna + 1) + " é " + vetor[coluna]);
 		}
+*/		
 		
+/*		Quarto Exemplo */
+		int[] numeros = {1,2,3,4,5};
+		
+		for (int num : numeros) {
+			System.out.println("Imprima: " + num);
+		}
 		
 	}
 	
