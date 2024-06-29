@@ -1,0 +1,19 @@
+1. 	A - Sim
+	B - O programa executará a primeira condição, indicando se o número da variável A é verdadeiro.
+Se não for verdadeiro, o porgrama executará a segunda condição e sela for verdadeira.
+Sr a segunda condição não for verdadeira, o programa executará o else e encerrará o programa.
+
+2. 	A - Erro de Importação do Scanner; Erro ao concatenar a mensagem do primeiro sysout; Erro ao utilizar a palavra "caso" em vez de case.
+	B - Essa estrutura deveria ler a opção escrita pelo usuário e fornecer ao usuário a determinada informação contida dentro de cada "case".
+Caso o usuário escolha uma opção invalida, o "default" será executado, indicando ao usuário um erro com uma mensagem.
+
+3.	A - Expressão de inicialização: int i = 0
+	Condição de teste: i < 100;
+	Contador: i++
+	B - há uma "ponto e vírgula" depois do parametro que impede o programa de executar o loop.
+
+4. 	A - while (numero != 10); if(numero == 10)
+	B -  Este código deverá criar um loop, onde uma opção é escolhida pelo usuário, e o loop funcionará até que sua condição seja falsa.
+dentro do loop while temos um if/else com uma determinada condição, onde executará a condição que se mostrar verdadeira.
+
+5. 

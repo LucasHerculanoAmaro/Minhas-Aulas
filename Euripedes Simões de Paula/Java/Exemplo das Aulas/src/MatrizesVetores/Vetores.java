@@ -29,7 +29,7 @@ public class Vetores {
 		System.out.println("Array do tamanho de " + numeros.length);
 
 		
-/*		Segundo Exemplo 	
+/*		Segundo Exemplo*/ 	
 		String petA[] = {"Gato", "Cachorro", "Jabuti"};
 		String petB[] = {"Pato", "Galinha", "Porco"};
 		
@@ -39,18 +39,18 @@ public class Vetores {
 		System.out.println("Veja se as listas são iguais:\n");
 		
 		// Comparando listas diferentes
-		if(Arrays.equals(petA, petB)) {
+		if(!Arrays.equals(petA, petB)) {
 			System.out.println("A lista de pets A é igual a lista de pets B.");
 		}else {
 		System.out.println("A lista de pets A não é igual a lista de pets B.");
 		}
 
 		// Comparando listas iguais
-		if(Arrays.equals(listaA, listaB)) {
+		if(!Arrays.equals(listaA, listaB)) {
 			System.out.println("A lista A é igual a lista B.");
 		}else {
 			System.out.println("A lista A não é igual a lista B.");
 		}
-*/
+
 	}	
 }

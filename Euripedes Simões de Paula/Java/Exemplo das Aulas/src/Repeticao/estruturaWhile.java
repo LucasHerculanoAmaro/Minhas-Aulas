@@ -7,17 +7,7 @@ public class estruturaWhile {
 	public static void main(String[] args) {
 		
 		Scanner leia = new Scanner(System.in);
-/*		Primeiro Exemplo */	
-		
-		
-		int[] numeros = {1, 2, 3, 4, 5};
-		String[] nomes = {"Alice", "Bob", "Charlie", "Diana"};
-		char[] letras = {'A', 'B', 'C', 'D'};
-		float[] valores = {1.0f, 2.5f, 3.3f, 4.7f};
-		double[] grandesValores = {1.234567, 2.345678, 3.456789, 4.567890};
-		boolean[] respostas = {true, false, true, false};
-
-
+/*		Primeiro Exemplo */
 		
 		int numero = -1;
 		
