@@ -9,8 +9,23 @@ public class Matrizes {
 	
 	public static void main(String[] args) {
 	
-/*
-		// Criando os Vetores
+
+		int Ml = 1000;
+
+		System.out.println("Você tem 1 litro de sorvete!");
+		
+
+ 			do {
+			
+			Ml -= 100;
+			System.out.println("Você tomou sorvete demais! Agora restam somente " + Ml + "MLs!");
+				
+			} while (Ml > 100 );
+
+		        System.out.println(" Você tomou sorvete demais! Seu sorvete acabou! ");
+
+		
+	/*	// Criando os Vetores
 		int[] vetorA = {1, 2, 3};
 		int[] vetorB = {4, 5, 6};
 		int[] vetorC = new int[3];

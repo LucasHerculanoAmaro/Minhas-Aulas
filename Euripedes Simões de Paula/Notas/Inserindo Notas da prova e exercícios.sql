@@ -81,10 +81,24 @@ set exercicio = exercicio + 6
 where 
 	id_aluno in (26); 
     
+#######################    
+    
+# Descrição
+update tb_interfaces
+set descricao = "Colou na prova (chat-gpt)"
+where id_aluno = 23;
+    
 # PROVA
 update tb_interfaces
-set TRABALHO = 10
+set Prova = 0
 where 
-	id_aluno in (26);
+	id_aluno in (25);
+
+# Trabalho
+update tb_interfaces
+set TRABALHO = 1
+where 
+	id_aluno in (25);
  
-select * from tb_interfaces;
+select * from tb_interfaces
+where prova >= 0;
