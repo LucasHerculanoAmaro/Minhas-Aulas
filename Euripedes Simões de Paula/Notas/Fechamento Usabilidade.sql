@@ -22,8 +22,9 @@ SELECT
     prova,
     (total / 4) AS media
 FROM 
-    soma_media
-where (total/4) < 6;    
+    soma_media;
+    
+select * from tb_usabilidade_design;    
 
 
 # Atualizando Exercícios
@@ -101,33 +102,3 @@ where
  
 select * from tb_interfaces
 where prova is null;
-
-
-# Ludmila
-update tb_usabilidade_design  set trabalho = 10 where id_aluno = 2;
-# Evellyn Angela
-update tb_usabilidade_design  set trabalho = 8 where id_aluno = 10;
-# Evellyn Ribeiro
-update tb_usabilidade_design  set trabalho = 8 where id_aluno = 11;
-update tb_usabilidade_design  set prova = 4 where id_aluno = 11;
-# Isabel
-update tb_usabilidade_design  set prova = 2 where id_aluno = 15;
-# Isaque
-update tb_usabilidade_design  set prova = 5 where id_aluno = 17;
-# João
-update tb_usabilidade_design  set prova = 3 where id_aluno = 19;
-# Kauan
-update tb_usabilidade_design  set prova = 3 where id_aluno = 23;
-# Marcos 
-update tb_usabilidade_design  set trabalho = 5 where id_aluno = 25;
-# Nikolas
-update tb_usabilidade_design  set prova = 2 where id_aluno = 30;
-# Pedro 
-update tb_usabilidade_design  set trabalho = 7 where id_aluno = 32;
-# Rafael
-update tb_usabilidade_design  set trabalho = 5 where id_aluno = 33;
-# Sara 
-update tb_usabilidade_design  set trabalho = 8 where id_aluno = 34;
-update tb_usabilidade_design  set prova = 4 where id_aluno = 34;
-
-select * from tb_usabilidade_design  ;
