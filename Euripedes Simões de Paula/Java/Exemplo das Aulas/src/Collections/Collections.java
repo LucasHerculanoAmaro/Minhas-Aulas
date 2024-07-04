@@ -73,6 +73,8 @@ public class Collections {
 		// Selecionando Queue depois das remoções
 		System.out.println("Queue depois das remoções: " + queue);
 		
+		
+// Exercício: Leia o conteúdo, Escreva os exemplos e Explique com suas palavras o código: https://www.devmedia.com.br/java-collections-como-utilizar-collections/18450  		
 	}
 	
 }
