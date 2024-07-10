@@ -47,6 +47,15 @@ public class Stream {
  	 	do tipo SQL e operações comuns de outras linguagens 
  	 	funcionais, como: filter, map, reduce, find, match e 
  	 	sorted... 
+ 	 	
+*	Quando usamos STREAMS, geralmente trabalhamos com três elementos:
+	
+	->	Fonte de dados: a fonta a ser consultada.
+	
+	->	Cadeia de operações intermediárias: onde os processos são 
+		formados.
+		
+	->	Operação terminal: executa o processo e produz um resultado.
 	
 *	Falando sobre a diferença entre a STREAM e a COLLECTIONS, 
 	encontramos certas similaridades já que ambas as interfaces 
@@ -181,8 +190,27 @@ public class Stream {
 								.collect(Collectors.toList());
 	
 	System.out.println("\nRetorno com (filter, sorted, map e collect): ");
-	exemplo5.forEach(System.out::println);
 	
+		for (String e : exemplo5) {
+			System.out.println(e);
+		}
+	
+//	Experimente usar a linha abaixo para substituir a estrutura 'for' anterior 	
+//	exemplo5.forEach(System.out::println);
+		
+/*	CURIOSIDADE 
+ 
+ *	Os operadores de ponto duplo (::), também conhecidos como 
+ 	operadores de referência de método, é usado para chamar 
+ 	um método, fazendo referência direta.
+ 
+ *	A unica diferença entre esse operador e a expressão Lambda 
+ 	é que a referença é direta utilizando o nome da classe.
+ 	A expressão Lambda utiliza um delegado para o método.
+ 	
+ *	A sua sintaxe é: <Classe> :: <Método>
+ 	
+*/
 	}
 	
 }
@@ -195,10 +223,7 @@ public class Stream {
  * 	Processamento de dados com strea do Java SE 8 - Perte 1
 	https://www.oracle.com/br/technical-resources/articles/java/processing-streams-java-se-8.html
 
- * 
+ * 	Operador de dois pontos duplos (::) em Java
+ 	https://www.geeksforgeeks.org/double-colon-operator-in-java/
 
- *  
-
- *
-  
 */
