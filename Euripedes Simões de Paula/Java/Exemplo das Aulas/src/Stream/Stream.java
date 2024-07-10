@@ -78,10 +78,8 @@ public class Stream {
 			+ "********************************");
 	
 //	Criando uma lista com 5 nomes
-	List<String> nomes = Arrays.asList("Lucas", "Juliana", "Majjin", "Leia", "Nelson");
+	List<String> nomes = Arrays.asList("Lucas", "Juliana", "Majin", "Leia", "Nelson");
 
-//	Iniciando uma List para filtrar os nomes
-	List<String> filtroNomes = nomes.stream()
 			
 	/****************************************************************
 	 *							 FILTER								*
@@ -95,10 +93,12 @@ public class Stream {
 	 *	Aqui utilizamos um 'filter()' para selecionar apenas os 	*
 	 *	nomes que iniciam com 'L'.									*
 	 ****************************************************************/
-			
-		.filter(nome -> nome.startsWith("L"))
-		.collect(Collectors.toList());
-	System.out.println(filtroNomes);
+
+	List<String> exemplo1 = nomes.stream()
+								.filter(nome -> nome.startsWith("L"))
+								.collect(Collectors.toList());
+	
+	System.out.println("\nRetorno com filter(): " + exemplo1);
 
 	/****************************************************************
 	 *							 SORTED								*
@@ -112,24 +112,77 @@ public class Stream {
 	 *	->	Com 'Comparator': Os elemetos são ordenados com um		*
 	 *		'Comparator' implementado.								*
 	 *																*
+	 *	OBS: Repare que, utilizando o 'soted()', temos o retorno 	*
+	 *	de uma lista ordenada										*
+	 *																*
 	 ****************************************************************/	
 	
+	List<String> exemplo2 = nomes.stream()
+								 .sorted()
+								 .collect(Collectors.toList());
 	
-/*
+	System.out.println("\nRetorno com sorted(): " + exemplo2);
+	System.out.println("Retorno sem sorted(): " + nomes);
 	
-	->	FILTER: é uma operação intermediária que permite selecionar 
-		elementos de uma stream que corresponda a uma função que 
-		retorna um valor booleano.
-		Ela retorna uma nova stream contendo os elementos que 
-		satisfazem os filtros.
+	/****************************************************************
+	 * 							  MAP								*
+	 * 	Esta operação intermediária aplica uma função a cada 		*
+	 * 	elemento de stream que transforma os elementos e retorna	*
+	 * 	uma nova stream com os elementos transformados.				*
+	 * 																*
+	 * 	No exemplo abaixo, utilizamos o 'map()' para retornar uma	*
+	 * 	nova stream com os elementos transformados, em caixa alta.	*
+	 * 																*
+	 ****************************************************************/
+	
+	List<String> exemplo3 = nomes.stream()
+								 .map(String::toUpperCase)
+								 .collect(Collectors.toList());
+	System.out.println("\nRetorno com map(): " + exemplo3);
 		
-	->	SORTED:
-	->	MAP:
-	->	COLLECT:
+	/****************************************************************
+	 * 							 COLLECT							*
+	 * 	Esta é uma operação terminal que transforma os elementos	*
+	 * 	da stream em uma coleção. 									*
+	 * 																*
+	 * 	Esta operação é frequentemente usada com o 'Collectors'		*
+	 * 	para coletar os elementos da lista, mapas, conjuntos, etc.	*
+	 * 																*
+	 ****************************************************************/
 
-*/
-		
-		
+	List<String> exemplo4 = nomes.stream()
+								 .collect(Collectors.toList());
+	System.out.println("\nRetorno com collect(): " + exemplo4);
+
+	/****************************************************************	
+	 * 	Para finalizar, vamos criar um exemplo, onde utilizamos 	*
+	 * 	todos os métodos em uma tarefa.								*
+	 * 																* 	
+	 * 	Vamos filtrar, ordenar, mapear e coletar os nomes que: 		*
+	 * 																* 	
+	 * 	->	Começam com a letra 'L'; 								*
+	 * 	->	Converter as letras para caixa alta;					*
+	 * 	-> 	Coletar os elementos em uma lista.						*
+	 * 																* 	
+	 ****************************************************************/
+	
+	List<String> exemplo5 = nomes.stream()
+			
+//	Filtra a stream para inluir apenas nomes que iniciam com a letra L 			
+								.filter(nome -> nome.startsWith("L"))
+								
+//	Ordena os nomes em ordem alfabética
+								.sorted()
+								
+//	Converte os elementos para maiúsculas
+								.map(String::toUpperCase)
+								
+// 	Coleta os resultados em uma lista
+								.collect(Collectors.toList());
+	
+	System.out.println("\nRetorno com (filter, sorted, map e collect): ");
+	exemplo5.forEach(System.out::println);
+	
 	}
 	
 }
