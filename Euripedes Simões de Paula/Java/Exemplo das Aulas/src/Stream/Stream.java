@@ -26,8 +26,42 @@ public class Stream {
 	
 	PROGRAMAÇÃO COM STREAM
 	
- *		
+ *	Uma boa definição para STREAM é uma sequencia de elementos de 
+ 	uma fonte de dados que suportam operações de agregação, e que 
+ 	são divididos por:
+ 	
+ 	-> 	Sequencia de elementos: A STREAM proporciona uma 
+ 	 	interface para um conjunto de valores sequenciais de um 
+ 	 	tipo de elemento particular.
+ 	 	
+ 	-> 	Fonte de dados: As STREAM trabalham com elementos
+ 	 	provenientes de uma fonte de dados, como: collections,
+ 	 	matrizes ou recursos de Entrada e Saída.
+ 	 	
+ 	-> 	Operações de agregação: As STREAM suportam operações 
+ 	 	do tipo SQL e operações comuns de outras linguagens 
+ 	 	funcionais, como: filter, map, reduce, find, match e 
+ 	 	sorted... 
 	
+*	Falando sobre a diferença entre a STREAM e a COLLECTIONS, 
+	encontramos certas similaridades já que ambas as interfaces 
+	trabalham com sequencia de dados.
+	
+*	A diferença entre elas é que, a COLLECTION referem-se a dados
+	enquanto a STREAM refere-se aos resultados encontrados em uma 
+	operação aplicada na COLLECTION.
+
+*	Há duas características que diferenciam as STREAM das 
+	COLLECTIONS:
+	
+	-> 	Estrutura de processo: Lembrando que a tradução para 
+		'stream' é 'fluxo'. Entendendo isso, podemos definir 
+		que uma STREAM retorna um fluxo, onde é possível encadear 
+		operações para formar um processo mais abrangente.
+		
+	->	Iteração interna: As COLLECTIONS trabalham com iterações 
+		explicitas, já as STREAMS realizam iteração internas,
+		nos bastidores.
 
 */
 		
