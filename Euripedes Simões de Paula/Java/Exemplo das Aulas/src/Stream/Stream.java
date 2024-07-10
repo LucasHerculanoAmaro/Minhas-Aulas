@@ -1,5 +1,10 @@
 package Stream;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 public class Stream {
 
 	public static void main(String[] args) {
@@ -62,6 +67,65 @@ public class Stream {
 	->	Iteração interna: As COLLECTIONS trabalham com iterações 
 		explicitas, já as STREAMS realizam iteração internas,
 		nos bastidores.
+		
+*	E qual é o papel dos demais métodos atribuidos a 'stream()'?
+	Vamos criar um exeplo prático utiizando os métodos associados
+	a 'stream()'.		
+*/
+	System.out.println(
+			  "********************************\n"
+			+ "* Entendendo os métodos STREAM *\n"
+			+ "********************************");
+	
+//	Criando uma lista com 5 nomes
+	List<String> nomes = Arrays.asList("Lucas", "Juliana", "Majjin", "Leia", "Nelson");
+
+//	Iniciando uma List para filtrar os nomes
+	List<String> filtroNomes = nomes.stream()
+			
+	/****************************************************************
+	 *							 FILTER								*
+	 *	Está operação uma operação intermediária que permite 		*
+	 *	selecionar elementos de uma stream que corresponda a uma 	*
+	 *	função que retorna um valor booleano.						*
+	 *																*
+	 *	Ela retorna uma nova stream contendo os elementos que 		*
+	 *	satisfazem os filtros. 										*
+	 *																*
+	 *	Aqui utilizamos um 'filter()' para selecionar apenas os 	*
+	 *	nomes que iniciam com 'L'.									*
+	 ****************************************************************/
+			
+		.filter(nome -> nome.startsWith("L"))
+		.collect(Collectors.toList());
+	System.out.println(filtroNomes);
+
+	/****************************************************************
+	 *							 SORTED								*
+	 *	Esta é uma operação intermediária que retorna uma stream	*
+	 *	com os elementos ordenados.									*
+	 *																*
+	 *	É importante conhecer as variações de 'sorted', que são:	*
+	 *																*
+	 *	->	Sem Parametro: Os elementos são ordenados de forma		* 
+	 *		natural.												*
+	 *	->	Com 'Comparator': Os elemetos são ordenados com um		*
+	 *		'Comparator' implementado.								*
+	 *																*
+	 ****************************************************************/	
+	
+	
+/*
+	
+	->	FILTER: é uma operação intermediária que permite selecionar 
+		elementos de uma stream que corresponda a uma função que 
+		retorna um valor booleano.
+		Ela retorna uma nova stream contendo os elementos que 
+		satisfazem os filtros.
+		
+	->	SORTED:
+	->	MAP:
+	->	COLLECT:
 
 */
 		
