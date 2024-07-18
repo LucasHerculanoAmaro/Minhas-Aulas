@@ -1,5 +1,9 @@
 package Factory;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DatabaseConnection {
 
 /*	INTRODUÇÃO
@@ -33,17 +37,52 @@ public class DatabaseConnection {
 //	Senha do seu Banco
 	private static final String PASSWORD = "root";
 	
+//	OBS: Para estudos, por padrão, o login e senha são os mesmos.
 	
-/*	OBS: Para estudos, por padrão, o login e senha são os mesmos. 
-  	Fica muito mais fácil testar aplicativos diferentes que tenham por 
+	
+/*	Fica muito mais fácil testar aplicativos diferentes que tenham por 
   	padrão a mesma configuração. Mas não é uma obrigação, e sim uma boa
   	prática.
 
-*	Agora vamos criar um método responsável por usar o driver, URL, Login 
+*	Agora vamos criar um método responsável por usar o Driver, URL, Login 
 	e Senha para realizar a conexão.
-
 */	
 	
+//	Criando a conexão com o método 'getConnection()'
+	public static Connection getConnection() {
+		
+//		Usaremos o 'try{}' para testar a conexão
+		try {
+			
+//			Carregando o Driver manualmente
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+//			O Driver deverá retornar os parametros do método 'getConnection()'
+			return DriverManager.getConnection(URL, USER, PASSWORD);
+		}
+
+//		O primeiro 'catch' servirá para caso a classe que contém o Driver não seja carregada
+		catch (ClassNotFoundException e) {
+			
+//			Iniciando uma Exception para erros com o Driver JDBC
+			throw new RuntimeException("Não foi possível carregar o driver JDBC", e);
+		}
+		
+//		O segundo 'catch' servirá para tratar erros de conexão com o Banco de Dados
+		catch (SQLException e) {
+			
+//			Iniciando uma Exception para erros de conexão MySQL
+			throw new RuntimeException("Não foi possível conectar ao Banco de Dados", e);
+		}
+		
+	}
 	
+/*	Dessa forma, terminamos mais um passo de nosso projeto.
+
+* 	Na próxima aula, vamos criar o objeto ao qual iremos aplicar o método 
+	CRUD. Não vamos implementar o método CRUD, mas vamos apenas criar a
+	classe de onde se originam os objetos e aplicar os métodos 
+	'getters & setters'.
+*/
 	
 }
