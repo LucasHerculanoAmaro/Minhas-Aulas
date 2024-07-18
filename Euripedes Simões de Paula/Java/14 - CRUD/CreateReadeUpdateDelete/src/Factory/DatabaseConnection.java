@@ -83,6 +83,9 @@ public class DatabaseConnection {
 	CRUD. Não vamos implementar o método CRUD, mas vamos apenas criar a
 	classe de onde se originam os objetos e aplicar os métodos 
 	'getters & setters'.
+
+*	Veja o conteúdo que está no pacote 'model'.
+	
 */
 	
 }
