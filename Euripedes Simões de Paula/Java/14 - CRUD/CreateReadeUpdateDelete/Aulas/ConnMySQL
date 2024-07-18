@@ -89,5 +89,11 @@
 		
 	Na próxima aula, vamos aprender a criar uma conexão com o banco de dados
 	MySQL utilizando a URL, Login e Senha do banco de dados.
+}
+
+6. REFERÊNCIAS {
+	
+	MySQL Community Downloads - Connector/J
+	https://dev.mysql.com/downloads/connector/j/
 	
 }
