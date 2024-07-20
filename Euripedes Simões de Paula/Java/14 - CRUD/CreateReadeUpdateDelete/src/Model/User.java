@@ -112,7 +112,8 @@ public class User {
 /*	CONCLUSÃO
 
 *	Na próxima aula implementaremos o primeiros método CRUD, o CREATE.
-	Acompanhe ela no pacote 'Dao'.
+	Acompanhe ela no pacote 'Dao'. Não se esqueça de criar o pacote 'Dao' 
+	e a classe userDAO.
 	
 *	Até a próxima!
 */
