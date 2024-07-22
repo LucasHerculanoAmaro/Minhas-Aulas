@@ -2,7 +2,10 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Factory.DatabaseConnection;
 import Model.User;
@@ -48,10 +51,8 @@ public class userDAO {
  		substituídos pelos valores reais adicionados em uma execução. 
  
 * 		Agora vamos utilizar a estrutura TRY/CATCH para estabelecer uma 
-* 		conexão com o banco de dados e preparar a instrução SQL que 
-* 		criamos acima.
-		
-*		
+ 		conexão com o banco de dados e preparar a instrução SQL que 
+ 		criamos acima.		
 */		
 		try (
 				
@@ -99,7 +100,9 @@ public class userDAO {
 /*			OBS: o método 'executeUdate()' é usado para executar 
 			instruções SQL que alteram o banco de dados. 
 			Podem ser instruções como: INSERT, UPDATE e DELETE.
-*/		}
+*/		
+		conn.close();
+		}
 		
 		
 		
@@ -115,7 +118,86 @@ public class userDAO {
 			throw new RuntimeException("Erro ao inserir usuário", e);
 			}
 		
+/*	
+* 	Na próxima aula, criaremos o método READ.
+*/	
+		
 	}
+	
+//	Criando o método READ
+	public List<User> readUsers(){
+		
+//		Passando Script SQL para selecionar os dados no banco
+		String sql = "SELECT * FROM users";
+		
+//		Passando a Lista de Usuários como uma nova lista
+		List<User> users = new ArrayList<>();
+		
+/*		Vamos novamente utilizar a estrutura TRY/CATCH, agora para passar
+		a conexão e utilizar o Script SQL para recuperar os dados no banco
+		de dados.
+*/
+		
+		try (
+	
+//				Passando a conexão com o banco de dados
+				Connection conn = DatabaseConnection.getConnection();
+				
+//				Passando Script na conexão
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				
+//				Utilizando 'ResultSet' para armazenar os resultados SQL
+				ResultSet rs = stmt.executeQuery()
+						
+/*				OBS: O 'ResultSet' é uma classe que armazena os resultados 
+				de uma query SQL executada.
+				
+*				Esta classe funciona como um conjunto 'set', e guarda uma 
+				tabela que é o resultado na consulta SQL.
+*/						
+						
+				) {
+	
+//			Enquanto a resultSet faz a leitura
+			while (rs.next()) {
+	
+//				Criando um novo método com base na classe User
+				User user = new User();
+				
+//				Lendo o ID
+				user.setId(rs.getInt("id"));
+				
+//				Lendo o Nome
+				user.setNome(rs.getString("nome"));
+				
+//				Lendo o Email
+				user.setEmail(rs.getString("email"));
+				
+//				Adicionando o resultado para futuro retorno
+				users.add(user);	
+			}
+
+		} catch (
+				
+//				Utilizaremos uma SQLException para caso não seja possivel
+//				modificar o banco de dados
+				SQLException e
+				) {
+
+//			Criamos uma RuntimeExceptions para exibir a mensagem de erro
+			throw new RuntimeException("Erro ao consultar usuários", e);
+		}
+		
+//		Retornando o ID, Nome e Email
+		return users;
+		
+/*	
+*		Na próxima aula, vamos trabalhar com o método UPDATE
+*/		
+		
+	}
+	
+	
 	
 }
 
@@ -129,4 +211,8 @@ public class userDAO {
 
 *	Qual a diferença entre o Statement e o PreparedStatement?
 	https://pt.stackoverflow.com/questions/99620/qual-a-diferen%C3%A7a-entre-o-statement-e-o-preparedstatement
-**/
+
+*	O que é o ResultSet?
+	https://cursos.alura.com.br/forum/topico-o-que-e-o-resultset-258207
+
+*/
