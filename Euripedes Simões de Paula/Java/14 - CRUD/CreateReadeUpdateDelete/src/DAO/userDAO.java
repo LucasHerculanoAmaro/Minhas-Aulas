@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import Factory.DatabaseConnection;
 import Model.User;
 
@@ -197,7 +199,48 @@ public class userDAO {
 		
 	}
 	
-	
+//	Criando o método Update
+	public void updateUser(
+			
+//			Classe 	x 	Objeto
+			User 		user
+			) {
+		
+//		Passando o Script SQL para atualizar os dados no banco
+		String sql = "UPDATE users SET nome = ?, email = ?, WHERE id = ?";
+		
+		try (
+//				Passando a conexão com o banco de dados
+				Connection conn = DatabaseConnection.getConnection();
+				
+//				Passando o Script na conexão
+				PreparedStatement stmt = conn.prepareStatement(sql)
+				) {
+			
+//			Coluna 'NOME' na tabela 'USER'
+			stmt.setString(1, user.getNome());
+			
+//			Coluna 'EMAIL' na tabela 'EMAIL'
+			stmt.setString(2, user.getEmail());
+			
+//			Coluna 'ID' na tabela 'ID'
+			stmt.setInt(3, user.getId());
+			
+//			Executa a consulta
+			stmt.executeUpdate();	
+		}
+		
+		catch (
+				
+//				Utilizando SQLException em caso de erro
+				SQLException e
+				) {
+			
+//			Exibindo o erro SQL
+			throw new RuntimeException("Erro ao atualizar usuário", e);
+		}
+		
+	}
 	
 }
 
