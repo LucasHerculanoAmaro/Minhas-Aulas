@@ -241,6 +241,58 @@ public class userDAO {
 		}
 		
 	}
+
+//	Criando o método Delete
+	public void deleteUser(
+			
+//			Passando como parâmetro o 'ID' para deletar
+			int id
+			) {
+		
+//		Passando Script SQL para deletar os dados no banco
+		String sql = "DELETE FROM users WHERE id = ?";
+		
+		try (
+				
+//				Passando a conexão com o bancode dados
+				Connection conn = DatabaseConnection.getConnection();
+				
+//				Passando o Script na conexão
+				PreparedStatement stmt = conn.prepareStatement(sql)
+				) {
+			
+//			Coluna 'ID' na tabela 'USERS'
+			stmt.setInt(1, id);
+			
+//			Executando o Script
+			stmt.executeUpdate();
+		}
+		
+		catch (
+				
+//				Criando Exeption em case de erro
+				SQLException e
+				) {
+			
+//			Exibindo o erro SQL			
+			throw new RuntimeException("Erro ao deletar usuário", e);
+		}
+		
+	}	
+
+	
+/*	CONCLUSÃO
+ 
+*	Agora que já trabalhamos com a criação de todos os métodos CRUD, 
+	precisamos testar para saber se algum erro acontecerá, e caso tenha 
+	algum erro, vamos atrás da solução para aprendermos a resolvê-lo.
+	
+*	Antes de mais nada, uma aplicação não funcionará sem o método principal
+	de nossa aplicação, então, se você ainda não priou o método 'main()', 
+	faça isso, será necessário para realizarmos as nossas interações na 
+	aplicação.
+*/	
+	
 	
 }
 
