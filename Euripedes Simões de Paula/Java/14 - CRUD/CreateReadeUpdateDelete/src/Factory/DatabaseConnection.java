@@ -29,7 +29,7 @@ public class DatabaseConnection {
 	
 	
 //	URL do seu Banco
-	private static final String URL = "jdbc:mysql://localhost:3306/localhost";
+	private static final String URL = "jdbc:mysql://localhost:3306/db_users";
 
 //	Usuário do seu Banco
 	private static final String USER = "root";

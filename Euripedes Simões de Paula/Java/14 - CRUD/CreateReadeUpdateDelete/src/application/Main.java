@@ -1,6 +1,7 @@
 package application;
 
 import DAO.UserDAO;
+import Model.User;
 
 public class Main {
 
@@ -19,6 +20,23 @@ public class Main {
 * 		Bem, vamos colocar os dedos no teclado (tá, sei que não sou bom com 
  		humor kkkk)...
 */		
+		
+		
+// CREATE
+		
+//		Criando um Obeto da Classe 'Model'
+		User newUser = new User();
+		
+//		Adicionando um Nome
+		newUser.setNome("Juliana");
+
+//		Adicionando um Email
+		newUser.setEmail("Juliana@hotmail.com");
+		
+//		Passando o novo usuário no userDAO
+		userDAO.createUser(newUser);
+		
+	
 		
 	}
 	

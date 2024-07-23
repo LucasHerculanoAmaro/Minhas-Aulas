@@ -46,7 +46,7 @@ public class UserDAO {
 			) {
 		
 //		Passando Script SQL para inserir dados no banco
-		String sql = "INSERT INTO users (nome, email) VALUES (?, ?)";
+		String sql = "INSERT INTO tb_users (nome, email) VALUES (?, ?)";
 
 		
 /*		OBS: O '(?)' são conhecidos como placeholders, e serão 
@@ -103,6 +103,10 @@ public class UserDAO {
 			instruções SQL que alteram o banco de dados. 
 			Podem ser instruções como: INSERT, UPDATE e DELETE.
 */		
+			
+//			Mensagem em caso de sucesso
+			System.out.println("Usuário criado com sucesso!");
+			
 		conn.close();
 		}
 		
@@ -130,7 +134,7 @@ public class UserDAO {
 	public List<User> readUsers(){
 		
 //		Passando Script SQL para selecionar os dados no banco
-		String sql = "SELECT * FROM users";
+		String sql = "SELECT * FROM tb_users";
 		
 //		Passando a Lista de Usuários como uma nova lista
 		List<User> users = new ArrayList<>();
@@ -207,7 +211,7 @@ public class UserDAO {
 			) {
 		
 //		Passando o Script SQL para atualizar os dados no banco
-		String sql = "UPDATE users SET nome = ?, email = ?, WHERE id = ?";
+		String sql = "UPDATE tb_users SET nome = ?, email = ?, WHERE id = ?";
 		
 		try (
 //				Passando a conexão com o banco de dados
@@ -250,7 +254,7 @@ public class UserDAO {
 			) {
 		
 //		Passando Script SQL para deletar os dados no banco
-		String sql = "DELETE FROM users WHERE id = ?";
+		String sql = "DELETE FROM tb_users WHERE id = ?";
 		
 		try (
 				

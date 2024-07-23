@@ -1,0 +1,54 @@
+1. Execução do CREATE
+
+	Ao executarmos o conjunto CREATE, é apresentado a mensagem abaixo:
+
+		Exception in thread "main" java.lang.RuntimeException: Não foi possível conectar ao Banco de Dados
+			at Factory.DatabaseConnection.getConnection(DatabaseConnection.java:75)
+			at DAO.UserDAO.createUser(UserDAO.java:62)
+			at application.Main.main(Main.java:37)
+		Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'users'
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189)
+			at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+			at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+			at Factory.DatabaseConnection.getConnection(DatabaseConnection.java:61)
+			... 2 more
+	
+	Precisamos entender o que esta mensagem nos diz, para resulver este erro.
+	
+1.1 RuntimeException: Não foi possível conectar ao Banco de Dados.
+
+	Quando tratamos os prossíveis erros, fica muito mais fácil trabalhar em prol de corrigir esses erros.
+	Este é um exemplo perfeito da importância de apresentar uma mensagem em uma tomada de decisão.
+	
+	Ao se conectar com um banco, temos apenas duas opções: conectar ou não conectar. Pensando nisso, 
+	podemos usar a linguagem Java para "traduzir" o que está acontecendo na aplicação, e facilitar a vida
+	dos desenvolvedores. Por isso que adicionamos a mensagem: Não foi possível conectar ao Banco de Dados.
+	
+	Agora que sabemos qual é o erro, precisamos entender o que ocasionou o erro.
+	Mais abaixo, na mensagem de erro, temos a seguinte descrição: Unknown database 'localhost'. Esta 
+	mensagem indica que o banco de dados não existe, ou é desconhecido. 
+	
+	Então vamos trabalhar para resolver este erro de conexão.
+	
+	Primeiro passo, consulte o seu Banco de Dados. Se nele não estiver presente o nome do banco que você
+	usou na conexão, crie o seu banco com o script similar ao que está abaixo:
+	
+		create database db_users;
+
+		create table tb_users(
+			id int not null auto_increment primary key,
+			nome varchar(40),
+			email varchar(255)
+		)
+		
+	Após criar, tente executar novamente. Se o seu teste for bem sucedido, aparecerá a mensagem que 
+	criamos ao implementar o método CREATE. Faça uma busca no banco de dados e você verá que os dados
+	foram inseridos corretamente, caso a devolutiva do programa seja positiva.
+	
+	Na próxima aula, veremos como podemos usar a linguagem Java para consultar os dados que criamos e
+	apresentá-los no console da IDE Eclipse.
