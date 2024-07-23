@@ -12,7 +12,7 @@ import javax.management.RuntimeErrorException;
 import Factory.DatabaseConnection;
 import Model.User;
 
-public class userDAO {
+public class UserDAO {
 
 /*	Na aula de hoe, iremos trabalhar com a criação do primeiro método 
 	CRUD, o CREATE.
@@ -291,6 +291,9 @@ public class userDAO {
 	de nossa aplicação, então, se você ainda não priou o método 'main()', 
 	faça isso, será necessário para realizarmos as nossas interações na 
 	aplicação.
+	
+*	Agora siga para o classe 'Main' para realizarmos os nossos testes.	
+	
 */	
 	
 	
