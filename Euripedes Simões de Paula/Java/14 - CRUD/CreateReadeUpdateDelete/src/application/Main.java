@@ -1,5 +1,7 @@
 package application;
 
+import java.util.List;
+
 import DAO.UserDAO;
 import Model.User;
 
@@ -22,7 +24,8 @@ public class Main {
 */		
 		
 		
-// CREATE
+/* CREATE
+		
 		
 //		Criando um Obeto da Classe 'Model'
 		User newUser = new User();
@@ -35,9 +38,56 @@ public class Main {
 		
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser);
+*/	
 		
 	
+//		READ
 		
+//		Criando uma Lista da classe 'User' e atribuindo o método READ
+		List<User> users = userDAO.readUsers();
+		
+		
+/*		PRIMEIRO: Lendo com o método 'forEach()' */
+		users.forEach(
+				
+//		Utilizando a expressão Lambda para apresentar os dados no console
+				user -> System.out.println(
+						
+//						Buscando 'ID'
+						"Id: " + user.getId() +
+						
+//						Buscando 'NOME'
+						"\nNome: " + user.getNome() +
+						
+//						Buscando 'EMAIL'						
+						"\nE-mail: " + user.getEmail() +
+						
+//						Limitador						
+						"\n-----------------"
+						)
+				);
+
+		
+/*		SEGUNDO: Lendo com o loop 'for/each'
+		for (
+				
+//				Classe		Lista
+				User user : users 
+				
+				) {
+			
+//			Buscando 'ID'			
+			System.out.println("Id: " + user.getId());
+			
+//			Buscando 'NOME'
+			System.out.println("Nome: " + user.getNome());
+			
+//			Buscando 'EMAIL'
+			System.out.println("E-mail: " + user.getEmail());
+			
+//			Limitador
+			System.out.println("-----------------");
+		}*/
 	}
 	
 }

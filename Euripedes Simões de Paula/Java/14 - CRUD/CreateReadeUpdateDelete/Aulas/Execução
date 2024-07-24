@@ -52,3 +52,35 @@
 	
 	Na próxima aula, veremos como podemos usar a linguagem Java para consultar os dados que criamos e
 	apresentá-los no console da IDE Eclipse.
+	
+
+2. Execução do READ
+
+	Depois de executar o CREATE, comentamos sobre a possibilidade de consultar os dados que existem 
+	no banco sem a necessidade de abrir o MySQL; e é o que faremos nessa aula.
+	
+	Acompanhe o conteúdo que será implementado referente ao método READ. Em caso de erro, retornaremos 
+	aqui para entender o que aconteceu e buscarmos a solução.
+	
+	Lembre-se, comente o conjunto CREATE, se não você adicionará mais dados desnecessários no banco; 
+	ou se preferir, você pode trocar alguns dados para ver o método CREATE em ação novamente.
+	
+	Após executar o script do conjunto READ, foi possível recuperar esses dados no banco de dados:
+	
+		Id: 1
+		Nome: Lucas
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	No meu caso, nenhum erro ocorreu, então não vamos tratar os possíveis erros que acontecem, mas no
+	decorrer da aula pode acontecer de ocorrer erros, e nós vamos resolver esses erros junto com a 
+	classe.
+	
+	Na próxima aula, vamos trabalhar com o próximo método CRUD: o UPDATE. Obviamente, vamos atualizar 
+	os dados que á estão presentes no banco de dados, sem a necessidade de atualizar diretamente no 
+	MySQL.
+	
