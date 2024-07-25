@@ -121,13 +121,13 @@
 	Perceba que o 'RuntimeException' apresentou a mensagem: Erro ao atualizar usuário. 
 	Além dessa mensagem, temos outra mensagem que diz haver um erro na sintaxe SQL.
 	
-	Para resolver este erro, foi separado (por ' " + " ') na sintaxe SQL do método 'updateUser()' o "WHERE = ?" da
-	primeira sequencia, como mostra o exemplo abaixo:
+	Para resolver este erro, foi separado (por ' " + " ') na sintaxe SQL do método 'updateUser()' o 
+	"WHERE = ?" da primeira sequencia, como mostra o exemplo abaixo:
 	
 		String sql = "UPDATE tb_users SET nome = ?, email = ?" + " WHERE id = ?";
 		
-	Ao executar novamente o método UPDATE, a mensagem de sucesso na execução foi exibida, e quando consultamos os 
-	dados novamente com o método READ, temos as seguintes informações:
+	Ao executar novamente o método UPDATE, a mensagem de sucesso na execução foi exibida, e quando 
+	consultamos os dados novamente com o método READ, temos as seguintes informações:
 	
 		Id: 1
 		Nome: Lucas Herculano Amaro
@@ -138,10 +138,69 @@
 		E-mail: Juliana@hotmail.com
 		-----------------
 		
-	O nome de um dos usuários foi modificado, ampliando o seu nome em relação ao segundo usuário que continua com
-	o mesmo id, nome e email.
+	O nome de um dos usuários foi modificado, ampliando o seu nome em relação ao segundo usuário que 
+	continua com o mesmo id, nome e email.
 	
-	É muito legal observar a atualização de um dado no banco de dados com interações feitas com a linguagem Java. 
-	Dá pra imaginar como será legal implementar outros sistemas com framework, APIs, etc...
+	É muito legal observar a atualização de um dado no banco de dados com interações feitas com a 
+	linguagem Java. Dá pra imaginar como será legal implementar outros sistemas com framework, APIs, 
+	etc...
 	
 	Na próxima aula, vamos trabalhar com o último, e takvez o mais simples, do método CRUD, o DELETE. 
+	
+	
+4. Executando o DELETE
+
+	Finalmente, vamos testar o último método CRUD que implementamos, o DELETE. 
+	Neste método, vamos excluir um dos objetos do banco de dados. Antes de trabalhar com a exclusão 
+	dos dados, devemos lembrar quais são os dados armazenados no banco de dados. Veja abaixo:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+	
+4.1	Primeiro conjunto DELETE
+
+	Agora veja na classe 'Main' o que foi implementado, e depois retonaremos aqui para conhecer o 
+	resultado ou corrigir algum possível erro.
+	
+	Quando executamos o primeiro conjunto DELETE, temos a exclusão da segunda tupla de novo banco 
+	de dados, e ao consultar o banco com o método READ, temos os seguintes resultados:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+	
+	Perceba que, as informações sobre ID, NOME e EMAIL da usuária 'Julinana' foram excluídos. Quando 
+	executamos novamente com o ID existente no banco de dados, percebemos que nenhum dado é retornado. 
+	Isso significa, que o nosso banco de dados está vazio.
+	
+	Dessa forma, concluímos os testes do método DELETE, o último método CRUD.
+	
+	
+5. CONCLUSÃO
+
+	Nos últimos dias, aprendemos a:
+	
+		-> Conectar com o banco de dados.
+		-> Criar a classe Model, responsável pelos atributos, método construtor e 'getters e setters'.
+		-> Implementar os métodos CREATE, READ, UPDATE e DELETE.
+		-> Testar Cada método na classe 'Main'.
+
+	Parece ser complexo, mas o segredo é repetir esse processo de criação do CRUD, com novos atributos, 
+	ou objetos, até que você tenha domínio do que está fazendo.
+	
+	Uma dica é você tentar memorizar a estrutura que os métodos têm, mas caso você não lembre, isso não 
+	é um problema. É normal ainda mais para um aprendiz, não lembrar de alguma coisa; isso não quer 
+	dizer que você não tem talento ou é um fracasso, você só precisa de ajuda assim como qualquer pessoa
+	em qualquer estudo, profissão ou trarefa.
+	
+	Nosso próximo objetivo será mais complexo, por isso, entenda bem como esta aplicação funciona, pois 
+	será necessário entender e lembrar boa parte deste conteúdo.
+	
+	

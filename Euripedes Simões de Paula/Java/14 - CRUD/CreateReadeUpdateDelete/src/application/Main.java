@@ -39,15 +39,45 @@ public class Main {
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser);
 */	
-		
 	
-//		READ
+		
+		
+/* UPDATE
+		
+//		Pagendo o dado da Lista
+		User existingUser = users.get(
+				
+//				Posição do dado na lista (não se trata do id)
+				0
+				);
+		
+//		Passando o novo dado a Lista
+		existingUser.setNome("Lucas Herculano Amaro");
+		
+//		Utilizando o método 'UPDATE' para inserir o novo dado
+		userDAO.updateUser(existingUser);
+*/			
+	
+		
+
+/* DELETE */	
+		
+//		Importando o método da Classe
+		userDAO.deleteUser(
+				
+//				Indique o ID do usuário
+				4
+				);	
+		
+/* READ*/
 		
 //		Criando uma Lista da classe 'User' e atribuindo o método READ
 		List<User> users = userDAO.readUsers();
 		
 		
-/*		PRIMEIRO: Lendo com o método 'forEach()' */
+/* PRIMEIRO: 
+
+//		Lendo com o método 'forEach()' 
 		users.forEach(
 				
 //		Utilizando a expressão Lambda para apresentar os dados no console
@@ -66,9 +96,11 @@ public class Main {
 						"\n-----------------"
 						)
 				);
-
+*/
 		
-/*		SEGUNDO: Lendo com o loop 'for/each'
+/* SEGUNDO: */
+
+//		Lendo com o loop 'for/each'
 		for (
 				
 //				Classe		Lista
@@ -88,23 +120,7 @@ public class Main {
 //			Limitador
 			System.out.println("-----------------");
 		}
-*/	
-		
-/*		UPDATE*/
-		
-//		Pagendo o dado da Lista
-		User existingUser = users.get(
-				
-//				Posição do dado na lista (não se trata do id)
-				0
-				);
-		
-//		Passando o novo dado a Lista
-		existingUser.setNome("Lucas Herculano Amaro");
-		
-//		Utilizando o método 'UPDATE' para inserir o novo dado
-		userDAO.updateUser(existingUser);
-		
+	
 	}
 	
 }
