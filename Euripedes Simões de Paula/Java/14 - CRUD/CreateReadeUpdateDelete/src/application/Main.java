@@ -28,7 +28,7 @@ public class Main {
 
 		
 		
-/* CREATE 	
+/* CREATE */
 		
 		
 //		Criando um Obeto da Classe 'Model'
@@ -42,7 +42,7 @@ public class Main {
 		
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser);
-*/
+
 	
 		
 		
