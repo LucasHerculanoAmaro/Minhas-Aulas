@@ -211,7 +211,7 @@ public class UserDAO {
 			) {
 		
 //		Passando o Script SQL para atualizar os dados no banco
-		String sql = "UPDATE tb_users SET nome = ?, email = ?, WHERE id = ?";
+		String sql = "UPDATE tb_users SET nome = ?, email = ?"+" WHERE id = ?";
 		
 		try (
 //				Passando a conexão com o banco de dados
@@ -221,17 +221,20 @@ public class UserDAO {
 				PreparedStatement stmt = conn.prepareStatement(sql)
 				) {
 			
-//			Coluna 'NOME' na tabela 'USER'
+//			Coluna 'NOME' 
 			stmt.setString(1, user.getNome());
 			
-//			Coluna 'EMAIL' na tabela 'EMAIL'
+//			Coluna 'EMAIL' 
 			stmt.setString(2, user.getEmail());
 			
-//			Coluna 'ID' na tabela 'ID'
+//			Coluna 'ID' 
 			stmt.setInt(3, user.getId());
 			
 //			Executa a consulta
 			stmt.executeUpdate();	
+			
+//			Mensagem de Sucesso
+			System.out.println("Usuário atualizado com sucesso!");
 		}
 		
 		catch (

@@ -87,7 +87,24 @@ public class Main {
 			
 //			Limitador
 			System.out.println("-----------------");
-		}*/
+		}
+*/	
+		
+/*		UPDATE*/
+		
+//		Pagendo o dado da Lista
+		User existingUser = users.get(
+				
+//				Posição do dado na lista (não se trata do id)
+				0
+				);
+		
+//		Passando o novo dado a Lista
+		existingUser.setNome("Lucas Herculano Amaro");
+		
+//		Utilizando o método 'UPDATE' para inserir o novo dado
+		userDAO.updateUser(existingUser);
+		
 	}
 	
 }

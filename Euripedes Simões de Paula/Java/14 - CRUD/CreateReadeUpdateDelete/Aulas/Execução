@@ -84,3 +84,64 @@
 	os dados que á estão presentes no banco de dados, sem a necessidade de atualizar diretamente no 
 	MySQL.
 	
+
+3. Execução do UPDATE
+
+	Na aula de hoje, vamos testar o método UPDATE, onde vamos atualizar algum dado do banco de dados.
+	Veja que, ao consultarmos o banco com o método READ, é apresentado as seguintes informações:
+
+		Id: 1
+		Nome: Lucas
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	Vamos atualizar o nome de um dos objetos do banco de dados. Veja o que foi implementado na classe 
+	'Main', e depois retorne aqui para caso algum erro seja encontrado.
+	
+	No meu caso, o erro abaixo foi apresentado:
+		
+		Exception in thread "main" java.lang.RuntimeException: Erro ao atualizar usuário
+			at DAO.UserDAO.updateUser(UserDAO.java:244)
+			at application.Main.main(Main.java:106)
+		Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id = 1' at line 1
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988)
+			at DAO.UserDAO.updateUser(UserDAO.java:234)
+			... 1 more
+			
+	Perceba que o 'RuntimeException' apresentou a mensagem: Erro ao atualizar usuário. 
+	Além dessa mensagem, temos outra mensagem que diz haver um erro na sintaxe SQL.
+	
+	Para resolver este erro, foi separado (por ' " + " ') na sintaxe SQL do método 'updateUser()' o "WHERE = ?" da
+	primeira sequencia, como mostra o exemplo abaixo:
+	
+		String sql = "UPDATE tb_users SET nome = ?, email = ?" + " WHERE id = ?";
+		
+	Ao executar novamente o método UPDATE, a mensagem de sucesso na execução foi exibida, e quando consultamos os 
+	dados novamente com o método READ, temos as seguintes informações:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	O nome de um dos usuários foi modificado, ampliando o seu nome em relação ao segundo usuário que continua com
+	o mesmo id, nome e email.
+	
+	É muito legal observar a atualização de um dado no banco de dados com interações feitas com a linguagem Java. 
+	Dá pra imaginar como será legal implementar outros sistemas com framework, APIs, etc...
+	
+	Na próxima aula, vamos trabalhar com o último, e takvez o mais simples, do método CRUD, o DELETE. 
