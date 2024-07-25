@@ -9,8 +9,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-//		Criando um obeto da classe 'UserDAO'		
+//		Criando um objeto da classe 'UserDAO'		
 		UserDAO userDAO = new UserDAO();
+		
+//		Criando uma Lista da classe 'User' e atribuindo o método READ
+		List<User> users = userDAO.readUsers();
 		
 /*		Agora vamos realizar os nossos testes, onde criar, consultar, editar 
 		e deletar um objeto.
@@ -22,9 +25,10 @@ public class Main {
 * 		Bem, vamos colocar os dedos no teclado (tá, sei que não sou bom com 
  		humor kkkk)...
 */		
+
 		
 		
-/* CREATE
+/* CREATE 	
 		
 		
 //		Criando um Obeto da Classe 'Model'
@@ -34,15 +38,15 @@ public class Main {
 		newUser.setNome("Juliana");
 
 //		Adicionando um Email
-		newUser.setEmail("Juliana@hotmail.com");
+		newUser.setEmail("juliana.93@hotmail.com");
 		
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser);
-*/	
+*/
 	
 		
 		
-/* UPDATE
+/* UPDATE */
 		
 //		Pagendo o dado da Lista
 		User existingUser = users.get(
@@ -51,16 +55,17 @@ public class Main {
 				0
 				);
 		
+	
+		
 //		Passando o novo dado a Lista
 		existingUser.setNome("Lucas Herculano Amaro");
 		
 //		Utilizando o método 'UPDATE' para inserir o novo dado
 		userDAO.updateUser(existingUser);
-*/			
+			
 	
-		
 
-/* DELETE */	
+/* DELETE */
 		
 //		Importando o método da Classe
 		userDAO.deleteUser(
@@ -68,15 +73,15 @@ public class Main {
 //				Indique o ID do usuário
 				4
 				);	
-		
-/* READ*/
-		
-//		Criando uma Lista da classe 'User' e atribuindo o método READ
-		List<User> users = userDAO.readUsers();
-		
-		
-/* PRIMEIRO: 
 
+		
+		
+/* READ */
+	
+		
+/* PRIMEIRO: */
+
+		
 //		Lendo com o método 'forEach()' 
 		users.forEach(
 				
@@ -96,10 +101,11 @@ public class Main {
 						"\n-----------------"
 						)
 				);
-*/
+
 		
 /* SEGUNDO: */
 
+		
 //		Lendo com o loop 'for/each'
 		for (
 				
