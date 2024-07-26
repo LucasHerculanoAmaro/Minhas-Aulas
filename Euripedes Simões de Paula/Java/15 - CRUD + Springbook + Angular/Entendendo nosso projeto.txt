@@ -1,0 +1,13 @@
+INTRODUÇÃO
+
+O objetivo deste projeto é criar uma aplicação com base nas atividades de um setor de adiministração para o Trabalho de Conclusão de Curso.
+
+O Setor conta com dois núcleos (Classes): Administração e Contabilidade.
+
+A proposta é criar um ambiente onde o setor de Adminstração fornece as informações e alimenta o banco de dados. Os dados que serão abordados, até o momento, não estão bem definidos por causa do período de férias; é bem provavel que os dados vão além de nome, cadastro, e-mail ou número de notas fiscais.
+
+Além do fornecimento de dados, a contabilidade precisa dos dados para gerar informações. Então será necessário criar um ambiente onde os dados armazenados serão apresentados aos contadores.
+
+Este projeto é um incentivo e uma iniciativa para os alunos do curso de Desenvolvimento de Sistemas, Administração e Contabilidade realizarem suas atividades e entenderem como funciona o mundo corporativo em suas respectivas atividades.
+
+Pimeiramente, vamos definir a documentação de nosso projeto, para entendermos melhor as suas necessidades e depois vamos implementar com as nossas ferramentas, framework e linguagens.
