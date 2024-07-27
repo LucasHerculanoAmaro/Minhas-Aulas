@@ -10,4 +10,22 @@ Além do fornecimento de dados, a contabilidade precisa dos dados para gerar inf
 
 Este projeto é um incentivo e uma iniciativa para os alunos do curso de Desenvolvimento de Sistemas, Administração e Contabilidade realizarem suas atividades e entenderem como funciona o mundo corporativo em suas respectivas atividades.
 
-Pimeiramente, vamos definir a documentação de nosso projeto, para entendermos melhor as suas necessidades e depois vamos implementar com as nossas ferramentas, framework e linguagens.
+Pimeiramente, vamos definir a documentação de nosso projeto, para entendermos melhor as suas necessidades e depois vamos implementar com as nossas ferramentas, framework e linguagens. 
+
+DEFININDO O ESCOPO E OBETIVOS
+
+Vamos conversar um pouco mais sobre o nosso projeto, entendendo cuidadosamente tudo o que está envolvido.
+
+O que precisamos entender nessa fase é que as definições precisam ser precisas, porque estamos falando de um projeto que, após ser definido, não pode ser alterado. 
+
+Mas, qual é o Objetivo do projeto?
+Fazer um Sistema Sistema de Gestão Integrado (ERP - Enterprise Resource Planning)
+
+
+
+
+REFERÊNCIAS
+
+-> O que é ERP?
+https://www.totvs.com/blog/erp/o-que-e-erp/#:~:text=O%20significado%20da%20sigla%20ERP,finan%C3%A7as%2C%20estoque%20e%20recursos%20humanos.
+
