@@ -1,4 +1,4 @@
-INTRODUÇÃO
+1. INTRODUÇÃO
 
 O objetivo deste projeto é criar uma aplicação com base nas atividades de um setor de adiministração para o Trabalho de Conclusão de Curso.
 
@@ -12,14 +12,34 @@ Este projeto é um incentivo e uma iniciativa para os alunos do curso de Desenvo
 
 Pimeiramente, vamos definir a documentação de nosso projeto, para entendermos melhor as suas necessidades e depois vamos implementar com as nossas ferramentas, framework e linguagens. 
 
-DEFININDO O ESCOPO E OBETIVOS
+2. DEFININDO O ESCOPO E OBETIVOS
 
 Vamos conversar um pouco mais sobre o nosso projeto, entendendo cuidadosamente tudo o que está envolvido.
 
 O que precisamos entender nessa fase é que as definições precisam ser precisas, porque estamos falando de um projeto que, após ser definido, não pode ser alterado. 
 
-Mas, qual é o Objetivo do projeto?
-Fazer um Sistema Sistema de Gestão Integrado (ERP - Enterprise Resource Planning)
+2.1 Mas, qual é o objetivo do projeto?
+
+Fazer um Sistema de Gestão Integrado (ERP - Enterprise Resource Planning). Este sistema permite gerenciar vendas, serviços, contabilidade, entre outros, e é um ótimo recurso para quem deseja trabalhar com compra e venda, por exemplo.
+
+2.2 Quais são os possíveis dados que serão trabalhados?
+
+Nome, idade, sexo, nº cadastro, e-mail, CPF (por enquanto).
+
+2.3 Será necessário criar login com senhas?
+
+Embora seria uma implementação interessante, o objetivo deste projeto é ensinar, e quanto mais funções adicionamos, mais dificil fica aprender e principalmente lembrar. 
+
+Será muito interessante aprender isso futuramente, mas vamos com calma. Melhor aprender "pouco", entendendo bem o que faz, do que implementar diversas funcionalidades com pouco tempo para explicações.
+
+2.4 Requisitos Funcionais e Não Funcionais
+
+Quais são as funcionalidades que o sistema deve ter?
+
+
+
+
+
 
 
 
@@ -27,5 +47,10 @@ Fazer um Sistema Sistema de Gestão Integrado (ERP - Enterprise Resource Plannin
 REFERÊNCIAS
 
 -> O que é ERP?
+
 https://www.totvs.com/blog/erp/o-que-e-erp/#:~:text=O%20significado%20da%20sigla%20ERP,finan%C3%A7as%2C%20estoque%20e%20recursos%20humanos.
 
+
+-> Requisitos de software funcionais e não funcionais: o que são?
+
+https://softdesign.com.br/blog/requisitos-de-software-funcionais-e-nao-funcionais/#h-requisitos-funcionais
