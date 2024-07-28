@@ -12,7 +12,7 @@ Este projeto é um incentivo e uma iniciativa para os alunos do curso de Desenvo
 
 Pimeiramente, vamos definir a documentação de nosso projeto, para entendermos melhor as suas necessidades e depois vamos implementar com as nossas ferramentas, framework e linguagens. 
 
-2. DEFININDO O ESCOPO E OBETIVOS
+2. DEFININDO O ESCOPO E OBJETIVOS
 
 Vamos conversar um pouco mais sobre o nosso projeto, entendendo cuidadosamente tudo o que está envolvido.
 
@@ -28,14 +28,33 @@ Nome, idade, sexo, nº cadastro, e-mail, CPF (por enquanto).
 
 2.3 Será necessário criar login com senhas?
 
-Embora seria uma implementação interessante, o objetivo deste projeto é ensinar, e quanto mais funções adicionamos, mais dificil fica aprender e principalmente lembrar. 
+A primeira ideia seria apenas criar um ambiente capaz de trabalhar com dados, mas será interessante trabalhar com login e senha. 
 
-Será muito interessante aprender isso futuramente, mas vamos com calma. Melhor aprender "pouco", entendendo bem o que faz, do que implementar diversas funcionalidades com pouco tempo para explicações.
+Pensando no ambiente corporativo, há diversos usuários que não tem acesso total ao dados, enquanto outros mantém acesso irrestrito às modificações dos dados. Por este motivo, vamos criar dois tipos de logins, com acessos privilegiádos e sem acesso privilegiádo.
 
 2.4 Requisitos Funcionais e Não Funcionais
 
-Quais são as funcionalidades que o sistema deve ter?
+Quais são os requisitos funcionais?
 
+Requisito de Serviço:
+
+	-> O sistema deve ter login e senha, sendo um dos tipos de login com
+	acesso privilegiádo.
+
+	-> O sistema deve ser capaz de inserir, consultar, editar e deletar os
+	dados na página web.
+
+	-> O sistema não deve permitir acesso a edição e deleção de dados para
+	pessoas não autorizadas.
+
+	-> O sistema deve ser capaz de gerar relatórios paginados com registros de
+	banco de dados.
+
+Requisito de Usuário:
+	-> Os usuários devem conseguir os dados atualizados.
+	-> 
+
+Quais são os requisitos não funcionais?
 
 
 
