@@ -24,7 +24,7 @@ Fazer um Sistema de Gestão Integrado (ERP - Enterprise Resource Planning). Este
 
 2.2 Quais são os possíveis dados que serão trabalhados?
 
-Nome, idade, sexo, nº cadastro, e-mail, CPF (por enquanto).
+Nome, nº cadastro, e-mail, CNPJ, tipo de conta, conta para crédito, conta para débito, lançamentos e diários.
 
 2.3 Será necessário criar login com senhas?
 
@@ -39,7 +39,7 @@ Quais são os requisitos funcionais?
 Requisito de Serviço:
 
 	-> O sistema deve ter login e senha, sendo um dos tipos de login com
-	acesso privilegiádo.
+	acesso "adm".
 
 	-> O sistema deve ser capaz de inserir, consultar, editar e deletar os
 	dados na página web.
@@ -51,10 +51,16 @@ Requisito de Serviço:
 	banco de dados.
 
 Requisito de Usuário:
-	-> Os usuários devem conseguir os dados atualizados.
-	-> 
+	-> Os usuários devem conseguir cadastrar:
+		-> Nome.
+		-> CNPJ.
+		-> Tipo de Conta (os administradores definirão).
+	-> Os usuários devem consultar:
+		-> Lançamentos (data, valor, conta débito, conta crédito, descrição ou histórico).
+		-> Diário (data, razão, balanço, assinatura).
+ 
 
-Quais são os requisitos não funcionais?
+Quais são os requisitos não funcionais?*
 
 
 
