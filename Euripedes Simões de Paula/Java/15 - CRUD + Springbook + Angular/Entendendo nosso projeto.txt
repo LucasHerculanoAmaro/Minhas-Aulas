@@ -50,7 +50,10 @@ Requisito de Serviço:
 	-> O sistema deve ser capaz de gerar relatórios paginados com registros de
 	banco de dados.
 
+
 Requisito de Usuário:
+
+	-> O sistema deve conter uma página para atualizar suas informações.
 	-> Os usuários devem conseguir cadastrar:
 		-> Nome.
 		-> CNPJ.
