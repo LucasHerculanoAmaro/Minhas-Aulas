@@ -1,0 +1,63 @@
+1. INTRODUÇÃO
+
+E se criassemos uma página que fosse possível cadastrar usuário e senhas, e acessar esse login?
+E se fosse possível fazer isso com Java, Springboot, MySQL e Angular?
+
+Neste conteúdo, vamos Trabalhar com essas três ferramentas para criar um página, onde podemos criar
+um login, senha e acessar a nossa página.
+
+O objetivo é introduzirmos conhecimentos para o projeto TCC, que será aplicado nos últimos meses de estudo.
+Será muito legal aprendermos a trabalhar com a linguagem Java, SQL e os frameworks Angular e Springboot, e 
+sair um pouco do básico na linguagem.
+
+
+2. SPRINGBOOT
+
+Você com certeza já estudou sobre o Springboot nas aulas, e até mesmo já realizou trabalhos e pesquisas 
+sobre este framework. Mas vale a pena lembrar o que é o Sringboot.
+
+É uma ferramenta de software livre que facilita o uso de estruturas baseado na linguagem Java para
+criar microserviços e Aplicações Web. Com esta definição entendemos que ao utilizar o Springboot, 
+estamos aproveitando algumas dependências e pacotes já definidos por outros desenvolvedores, e que nos ajuda
+a focar no que realmente importa: nosso projeto, que se difere de outros projetos que usam as mesmas 
+dependências.
+
+Para iniciar nosso projeto, vamos acessar o site "https://start.spring.io/", e selecionar as seguintes opções:
+
+	-> Project: Maven.
+	-> Language: Java.
+	-> Spring Boot: 3.3.2.
+
+Em Project Metadata, digite:
+
+	-> Group: com.euripedes
+	-> Artifact: conectando
+	-> Name: conectando
+	-> Description: Criando um projeto para cadastro e acesso,com  login e senha
+	-> Package name: com.euripedes.conectando
+
+Escolha "Jar" em "Packaging".
+
+Por último, escolha a versão Java. Para nosso projeto, escolheremos a versão 17.
+
+Agora, vamos escolher as Dependências (Dependencies) para o nosso projeto. Essas dependências auxiliam os 
+desenvolvedores com funcionalidades Web, de Banco de Dados, JPA, entre outros.
+
+Veja abaixo quais são as dependências que usaremos:
+
+	-> Spring Web.
+	-> Spring Security.
+	-> Spring Data JPA.
+	-> MySQL Driver.
+	-> Spring Boot DevTools.
+
+Após escolher as dependências, clique em "Generate" para realizar o dowload do projeto, que será baixado 
+em uma pasta compacta.
+
+
+
+REFERÊNCIAS
+
+-> O que é o Java Spring Boot?
+
+https://azure.microsoft.com/pt-br/resources/cloud-computing-dictionary/what-is-java-spring-boot#:~:text=Spring%20Boot%20%C3%A9%20uma%20estrutura,desenvolvem%20aplicativos%20Web%20e%20microsservi%C3%A7os.
