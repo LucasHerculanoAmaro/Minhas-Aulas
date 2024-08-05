@@ -55,6 +55,108 @@ Após escolher as dependências, clique em "Generate" para realizar o dowload do
 em uma pasta compacta.
 
 
+3. PASTA CONECTANDO
+
+Agora que o download foi realizado, vamos encaminhá-lo para a pasta onde vamos trabalhar e 
+descompactá-lo, depois vamos abrí-lo na IDE Eclipse, que é a que trabalharemos.
+
+Para abrir o projeto na IDE Eclipse, siga os seguintes passos:
+	
+	-> Após abrir o Eclipse, vá em "File".
+	-> Em "File", escolha a opção "Import".
+	-> Após a tela "Import" aparecer, clique na seta da pasta "Maven" e em seguida escolha 
+	"Existing Maven Projects".
+	-> Em "Browser" selecione a pasta do seu projjeto e clique em "Finishi".
+
+Dessa forma, já estamos com a pasta aberta no projeto springboot, baixado e descompactado anteriormente.
+
+
+4. ESTRUTURA BÁSICA DE DIRETÓRIOS
+
+Abaixo está a estrutura bássica padrão que é fornecida ao criar um projeto:
+
+	src/
+	├── main/				| Esta é a pasta que vamos acessar com frequência
+	│   ├── java/
+	│   │   └── com/example/conectando/	
+	│   │       ├── controller/		
+	│   │       ├── model/
+	│   │       ├── repository/
+	│   │       └── service/
+	│   └── resources/
+	│       ├── application.properties
+	└── test/
+	
+
+5. CONFIGURANDO O SPRING SECURITY
+
+Agora vamos criar uma classe para configurar a segurança, a fim de definir regras de segurança e 
+métodos de autenticação.
+
+É importante criar essas configurações para para proteger nossa aplicação de pessoas que não tenham
+acesso autorizado ou desejam invadir o sistema. Dessa forma, apenas pessoas autorizadas podem 
+ususfruir das funcionalidades do sistema.
+
+5.1 Proteção de Recursos 
+
+O que devemos levar em consideração é que, nem todas as informações devem estar disponíveis para todos
+os usuários, e nem todos os usuários podem ter acesso as informações ou áreas confidênciais. O Spring
+Security permite definir as regras de acesso e garantir que apenas os usuários que tenhamdeterminado
+acesso possam acessar os endpoints.
+
+5.2 Autenticação
+
+Este é o processo de identificação do usuário. O Spring Security fornece frameworks ideais para trabalhar com autenticação e outros recursos de integração. Entre os métodos, estão:
+
+	-> Login com nome e senha: Esta é a forma mais comum de autenticação.
+	-> OAuth2/OpenID Connect: Para login com provedores externos (Google, Facebook, entre outros).
+	-> JWT (JSON Web Tokens): Para autenticação stateless, onde o servidor não precisa manter o
+	estado da sessão.
+
+5.3 AUTORIZAÇÃO
+
+O Spring Security permite definir regras de controle de acesso com "roles" ou autoridades, que garante 
+aos usuários limites de ações à executar.
+
+5.4 PROTEÇAO CONTRA VULNERABILIDADES COMUNS
+
+Ajuda a proteger a aplicação contra vulnerabilidades comuns:
+
+	-> Cross-Site Request Forgery (CSRF): Proteção contra ataques em que um usuário autenticado é 
+	enganado a executar uma ação indesejada.
+	-> Cross-Site Scripting (XSS): Impede a injeção de scripts em páginas web.
+	-> Clickjacking: Proteção contra ataques em que o usuário é enganado ao clicar em algo que é 
+	diferente do que pretendia.
+
+5.5 GERENCIAMENTO DA SESSÃO
+
+O Spring Security fornece mecanismo para gerenciamento de sessão, como a detecção de conexões
+simultâneas e controle de tempo da sessão, minimizando risco de segurança.
+
+5.6 CUSTOMIZAÇÃO E EXTENSIBILIDADE
+
+É possível personalizar a autenticação, criar filtros de segurança e ajustar as regras de autorização
+conforme a necessidade do projeto.
+
+5.7 CONFORMIDADE COM NORMAS E REGULAMENTAÇÕES
+
+Configurar o Spring Security pode ajudar a sua aplicação a estar em conformidade comexigencias
+relacionadas a regulamentação e normas de segunrança de dados, que exigem controle adequado eproteção
+para os dados.
+
+5.8 EXPERIÊNCIAS DO USUÁRIO
+
+O Spring Security pode ajudar a integrar  processos de autenticação e autorização, proporcionando ao 
+usuário a sensação de segurança e consistência.
+
+5.9 IMPLEMENTANDO NA CLASSE "SECURITYCONFIG.JAVA"
+
+Vá ao Eclipse IDE e acompanhe a criaçao o pacote "security" e da classe "SecurityConfig.java". As 
+demais orientações e conteúdo será disponível nos comentários desta classe. 
+
+
+
+
 
 REFERÊNCIAS
 
