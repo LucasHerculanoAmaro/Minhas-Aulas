@@ -52,12 +52,53 @@ public class Usuario {
 		this.login	=	login;
 		this.senha	=	senha;
 	}
-	
 /*	A partir daqui, vamos criar os métodos "getters & setters" de forma automatica
 	com o seguinte passo a passo:
 	
-		-> 
- * */	
+		-> 	Clique com o botão direito do mouse nesta tela.
+		-> 	Escolha a opção "Source" do menu.
+		-> 	Clique em "Generate Getters and Setters...".
+		-> 	Escolha todas as opções relacionadas aos atributos na opção 
+			"Select getters and setters to create".
+		->	Clique em "Generate".
+	
+ *	Agora veja abaixo o resultado do que acabamos de fazer.		*/
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}	
+	
+/*	CONCLUSÃO
+ 
+ *	Na aula de hoje, observamos como podemos utilizar anotações para indicar a chave primária,
+ 	gerar chaves no servidor e referenciar a tabela no banco de dados.
+ 	
+ 	Além desse conteúdo, nós trabalhamos com Atributos, método Construtor e os métodos 
+ 	"Getters and Setters", já estudado em aulas anteriores.
+ 	
+ 	Na próxima aula, vamos trabalhar com o conteúdo presente no pacote
+ 
+ */
 	
 }
 
