@@ -26,6 +26,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 		
  *		OBS: Dê nomes propícios aos métodos, quando estes disponibilizarem de escolha.	*/
 		findByLogin(String login);
+
+	
 	
 }
 

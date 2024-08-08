@@ -69,7 +69,7 @@ public class UsuarioSevice {
  *	Com isso, terminamos a etapa de configuração para cadastro. 
  
  *	Na próxima aula, trabalharemos com a implementação do 'UsuarioDetailsService'.
- 	Acompanhe o conteúdo na classe 'UsuarioDetailsService'
+ 	Acompanhe o conteúdo na classe 'UsuarioDetailsService'.
  
  */
 	
