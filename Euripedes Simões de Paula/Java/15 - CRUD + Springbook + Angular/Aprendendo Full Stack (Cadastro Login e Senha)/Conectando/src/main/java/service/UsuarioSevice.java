@@ -36,7 +36,8 @@ public class UsuarioSevice {
 //				Utilizando a interface para pegar a senha do usuário.
 				passwordEncoder
 
-/*				Este método é responsável por codificar os dados, em especial senhas.
+/*				Este método 'encode()' é responsável por codificar os dados, em 
+ 				especial senhas.
 
  *				OBS: O que este método faz?
  					-> 	Transformação em Hash: pega senhas ou dados de entrada e 
@@ -49,15 +50,28 @@ public class UsuarioSevice {
  						banco de dados em vez de armazenar os textos simples.
  						
  					->	Salt e Hashing: Para o 'BCriptPassworEncoder', o método 
- 						'encode()' gera valores de 'salt', ou valores aleatórios.
-
-*/		
+ 						'encode()' gera valores de 'salt', ou valores aleatórios.	*/		
 				.encode(
-						usuario.getSenha()));
+						
+//						Aqui utilizamos o método getSenha() para buscar a senha.
+						usuario.getSenha())
+				);
 		
-		return usuarioRepository.save(usuario);
+		
+		return usuarioRepository
+				
+//				Insere o novo usuário (usuário que não tem id)
+				.save(usuario);
 	}
 	
+/*	CONCLUSÃO
+ 
+ *	Com isso, terminamos a etapa de configuração para cadastro. 
+ 
+ *	Na próxima aula, trabalharemos com a implementação do 'UsuarioDetailsService'.
+ 	Acompanhe o conteúdo na classe 'UsuarioDetailsService'
+ 
+ */
 	
 }
 
