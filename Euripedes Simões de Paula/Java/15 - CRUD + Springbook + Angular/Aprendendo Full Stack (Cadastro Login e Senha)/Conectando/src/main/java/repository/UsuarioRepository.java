@@ -28,3 +28,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 		findByLogin(String login);
 	
 }
+
+/*	CONCLUSÃO
+ 
+ *	Nesta aula, criamos uma interface capaz de interagir com o banco de dados, onde 
+ 	será retornado o login.
+ 	
+ *	Na próxima aula, vamos trabalhar com as definições de serviço, então siga para o 
+ 	pacote "service" para acompanhar o próximo conteúdo.	*/
