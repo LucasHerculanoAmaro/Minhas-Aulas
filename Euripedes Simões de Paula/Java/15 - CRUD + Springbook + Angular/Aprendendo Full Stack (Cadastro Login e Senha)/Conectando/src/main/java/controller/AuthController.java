@@ -2,9 +2,11 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.Usuario;
 import service.UsuarioSevice;
 
 
@@ -17,7 +19,7 @@ import service.UsuarioSevice;
 /*	RequestiMapping: usada para mapear solicitações HTTP para métodos de manipulação dentro do 
  	controlador Spring		
  	
- *	OBS: Especificamos a URL e o método HTTP que ser´controlado pelo controlador.	 	*/
+ *	OBS: Especificamos a URL e o método HTTP que ser controlado pelo controlador.		*/
 @RequestMapping("/api/auth")
 
 public class AuthController {
@@ -25,9 +27,16 @@ public class AuthController {
 	@Autowired
 	private UsuarioSevice usuarioService;
 	
-/*	PostMapping: Manipula solicitações HTTP POST em serviços web RESTful.			*/	
-	//@PostMapping("/cadastrar")
-	
+/*	PostMapping: Manipula solicitações HTTP POST em serviços web RESTful.
+  	Mapeia a URL específica e permite o processamento de dados enviados pelo método POST.		*/	
+	@PostMapping("/cadastrar")
+	public Usuario cadastrar(
+			
+			@RequestBody
+			Usuario usuario
+			) {
+		return usuarioService.cadastrar(usuario);
+	}
 }
 
 /*	REFERÊNCIAS
