@@ -1,6 +1,7 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import model.Usuario;
 import service.UsuarioSevice;
 
+/*	INTRODUÇÃO
+ 
+ *	Na aula de hoje aprenderemos a implementar um controlador focado em gerenciar o registro dos usuários.
+ 
+ */
+
 
 /*	RestController: Simplifica a criação de serviços web RESTful (retorna dados em forma de JSON ou XML). 
 
@@ -16,11 +23,14 @@ import service.UsuarioSevice;
 	como JSON e XML.		*/
 @RestController
 
+//Permite que qualquer requisição solicitada seja atendida.
+@CrossOrigin(origins = "*", allowedHeaders = "*") 
+
 /*	RequestiMapping: usada para mapear solicitações HTTP para métodos de manipulação dentro do 
  	controlador Spring		
  	
  *	OBS: Especificamos a URL e o método HTTP que ser controlado pelo controlador.		*/
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1")
 
 public class AuthController {
 
@@ -33,10 +43,30 @@ public class AuthController {
 	public Usuario cadastrar(
 			
 			@RequestBody
+			
+//			Passando o objeto da classe 'Usuario' como parâmetro no método 'cadastrar()'.
 			Usuario usuario
 			) {
+		
+/*		Atribuindo a classe 'UsuarioService' o método 'cadastrar()', passando como parêmetro o objeto da
+		classe 'usuario'.		*/
 		return usuarioService.cadastrar(usuario);
 	}
+	
+/*	CONCLUSÃO
+ 
+ * 	Nesta aula aprendemos a criar uma classe controladora, onde utilizará o método HTTP POST para manipular 
+ 	dados. Criamos um método 'cadastrar()' e aplicamos a este método o objeto da classe 'Usuario' como 
+ 	parâmetro, e atribuímos ao retorno o objeto da classe 'UsuarioService', que implementará o método 
+ 	'cadastrar()' o e objeto 'usuario' como parâmetro.		
+ 	
+ *	Agora que trabalhamos com os pacotes (model, repository, security, service e controller) de nossa 
+ 	aplicação, precisamos realizar alguns testes para saber se nossa aplicação está funcional. Isso envolve 
+ 	testar os métodos HTTP (GET, POST, PUT, DELETE). 
+ 	
+ 
+ */
+	
 }
 
 /*	REFERÊNCIAS
@@ -50,4 +80,4 @@ public class AuthController {
  *	Spring – Anotação @PostMapping e @GetMapping
  	https://www.geeksforgeeks.org/spring-postmapping-and-getmapping-annotation/
  
- * */
+ */

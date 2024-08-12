@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ import jakarta.persistence.Table;
 /* A anotação "@Table" é usada para especificar o nome da tabela a ser mapeada.
  
  * OBS: Não usar esta anotação faz o HIBERNATE o usar o nome da classe como nome da tabela. */
-@Table(name = "users")
+@Table(name = "usuario")
 public class Usuario {
 
 /*	A anotação "@Id" é usada para indicar qual é o atributo que está relacionado a chave 
@@ -41,7 +42,11 @@ public class Usuario {
 	
 //	Atributos	
 	private Long id;
+	
+	@Column(name = "login")
 	private String login;
+	
+	@Column(name = "senha")
 	private String senha;
 	
 //	Construtor
