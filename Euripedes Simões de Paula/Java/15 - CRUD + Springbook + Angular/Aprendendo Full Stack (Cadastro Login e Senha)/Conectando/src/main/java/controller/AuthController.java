@@ -1,6 +1,7 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,7 +41,7 @@ public class AuthController {
 /*	PostMapping: Manipula solicitações HTTP POST em serviços web RESTful.
   	Mapeia a URL específica e permite o processamento de dados enviados pelo método POST.		*/	
 	@PostMapping("/cadastrar")
-	public Usuario cadastrar(
+	public ResponseEntity<?> cadastrar(
 			
 			@RequestBody
 			
@@ -50,8 +51,13 @@ public class AuthController {
 		
 /*		Atribuindo a classe 'UsuarioService' o método 'cadastrar()', passando como parêmetro o objeto da
 		classe 'usuario'.		*/
-		return usuarioService.cadastrar(usuario);
+		usuarioService.cadastrar(usuario);
+		
+		return ResponseEntity.ok("Usuario cadastrado com Sucesso!");
 	}
+		
+		
+	
 	
 /*	CONCLUSÃO
  

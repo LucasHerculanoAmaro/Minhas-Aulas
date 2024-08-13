@@ -1,8 +1,11 @@
 package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import model.Usuario;
 import repository.UsuarioRepository;
@@ -22,6 +25,9 @@ public class UsuarioSevice {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
+/*####################################	
 	
 //	Aqui criamos o método cadastrar com base na classe 'Usuario' do pacote 'model'.	
 	public Usuario cadastrar(
@@ -50,7 +56,7 @@ public class UsuarioSevice {
  						banco de dados em vez de armazenar os textos simples.
  						
  					->	Salt e Hashing: Para o 'BCriptPassworEncoder', o método 
- 						'encode()' gera valores de 'salt', ou valores aleatórios.	*/		
+ 						'encode()' gera valores de 'salt', ou valores aleatórios.	/		
 				.encode(
 						
 //						Aqui utilizamos o método getSenha() para buscar a senha.
@@ -63,6 +69,29 @@ public class UsuarioSevice {
 //				Insere o novo usuário (usuário que não tem id)
 				.save(usuario);
 	}
+*/
+// ###########################################################################
+	
+	public void UsuarioService( 
+			UsuarioRepository usuarioRepository, 
+			PasswordEncoder passwordEncoder
+			) {
+		
+		this.passwordEncoder = passwordEncoder;
+		this.usuarioRepository = usuarioRepository;
+	}
+	
+	public void cadastrar( Usuario usuario) {
+		Usuario usuario1 = new Usuario();
+		
+		usuario1.setLogin(usuario.getLogin());
+		usuario1.setSenha(passwordEncoder.encode(usuario.getSenha()));
+		usuario1.setEmail(usuario.getEmail());
+		
+		usuarioRepository.save(usuario);
+	}
+	
+
 	
 /*	CONCLUSÃO
  

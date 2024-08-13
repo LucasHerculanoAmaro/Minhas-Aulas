@@ -49,7 +49,10 @@ public class Usuario {
 	@Column(name = "senha")
 	private String senha;
 	
-//	Construtor
+	@Column(name = "email")
+	private String email;
+
+	//	Construtor
 	public void usuario(Long id, String login, String senha){
 		
 //		atributo	x	parâmetro
@@ -92,6 +95,14 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 /*	CONCLUSÃO
  
