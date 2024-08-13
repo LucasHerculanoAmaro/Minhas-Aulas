@@ -17,7 +17,6 @@ public class SecurityConfig {
  	ele consiga expertar essa classe e fazer ineções de dependência dela em outras classes. */	
 
 	//@SuppressWarnings("removal")
-	@SuppressWarnings("removal")
 	@Bean 
 	
 /* 	Vamos utilizar a classe SecurityFilterChain para criar uma cadeia de filtros
@@ -36,7 +35,7 @@ public class SecurityConfig {
 		http
 		
 //			A documentação recomenda desabilitar o csrf() em caso de não trabalho com  clientes/navegador 
-			.csrf().disable()
+			//.csrf().disable()
 /*			O Spring Security permite que modele a sua autorização no nível de solicitação. 
 			Aqui estamos declarando as nossas regras de autorização.	*/			
 			.authorizeHttpRequests(
@@ -46,22 +45,20 @@ public class SecurityConfig {
 				(authorize) -> authorize
 				
 //				Especificando quais são as solicitações para configuração a segurança do Spring 
-				//.requestMatchers("/api/auth/**")
-				.requestMatchers("/api/test/**")
+				.requestMatchers("/api/auth/**")
 				
 //				Permite que qualquer sessão do usuário seja autorizaa a executar este método
-				
 				.permitAll().anyRequest().authenticated()
-        );
+        )
 			
 /*		Este método configura o formulário de Login padrão oferecido pelo Spring Security.
 		Ele gera uma página de login que os usuários podem acessar para se autenticar. 
 		
 		OBS: Quando um usuário não autenticado tenta acessar uma URL protegida, o Spring Security 
 		redireciona o usuário automaticamente para essa página de login.	*/
-		//.formLogin(
-				//form -> form.loginPage("/login").permitAll()
-			//	)
+		.formLogin(
+				form -> form.loginPage("/login").permitAll()
+				)
 		
 //		Este mmétodo separa as partes de uma configuração sem precisar iniciar uma nova.
 		//.and(withDefaults())
@@ -70,12 +67,12 @@ public class SecurityConfig {
 		OBS: Essas credenciais são codificadas em Base64 e enviadas no cabeçalho Authorization. Embora seja 
 		simples de implementar, o HTTP Basic não é seguro para transmissão de senhas em texto puro, a menos 
 		que seja usado sobre HTTPS.		*/
-		//.httpBasic( 
+		.httpBasic( 
 				
 /*				Passando a expressão Lambda para evitar: "The method withDefaults() is undefined for the 
 				type SecurityConfig".	*/
-				//httpBasic -> {}
-				//);
+				httpBasic -> {}
+				);
 		
 //		Cria o Security Filter Chain com as configurações definidas.
 		return http.build();	

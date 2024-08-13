@@ -26,15 +26,15 @@ Para iniciar nosso projeto, vamos acessar o site "https://start.spring.io/", e s
 
 	-> Project: Maven.
 	-> Language: Java.
-	-> Spring Boot: 3.3.2.
+	-> Spring Boot: 3.2.8.
 
 Em Project Metadata, digite:
 
 	-> Group: com.euripedes
-	-> Artifact: conectando
-	-> Name: conectando
+	-> Artifact: Conectando
+	-> Name: Conectando
 	-> Description: Criando um projeto para cadastro e acesso,com  login e senha
-	-> Package name: com.euripedes.conectando
+	-> Package name: com.euripedes.Conectando
 
 Escolha "Jar" em "Packaging".
 

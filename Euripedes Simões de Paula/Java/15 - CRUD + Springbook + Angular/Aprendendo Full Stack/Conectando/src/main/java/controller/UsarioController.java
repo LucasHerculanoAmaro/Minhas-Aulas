@@ -1,15 +1,24 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import exception.ResourceNotFoundException;
 import model.Usuario;
+import repository.UsuarioRepository;
 import service.UsuarioSevice;
 
 /*	INTRODUÇÃO
@@ -25,18 +34,24 @@ import service.UsuarioSevice;
 	como JSON e XML.		*/
 @RestController
 
+//Permite que qualquer requisição solicitada seja atendida.
+@CrossOrigin(origins = "*", allowedHeaders = "*") 
+
 /*	RequestiMapping: usada para mapear solicitações HTTP para métodos de manipulação dentro do 
  	controlador Spring		
  	
  *	OBS: Especificamos a URL e o método HTTP que ser controlado pelo controlador.		*/
 @RequestMapping("/api/v1")
 
-//Permite que qualquer requisição solicitada seja atendida.
-@CrossOrigin(origins = "*", allowedHeaders = "*") 
-public class AuthController {
+public class UsarioController {
 
 	@Autowired
 	private UsuarioSevice usuarioService;
+	
+	/*##############################################*/	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	/*##############################################*/
 	
 /*	PostMapping: Manipula solicitações HTTP POST em serviços web RESTful.
   	Mapeia a URL específica e permite o processamento de dados enviados pelo método POST.		*/	
@@ -56,6 +71,57 @@ public class AuthController {
 		return ResponseEntity.ok("Usuario cadastrado com Sucesso!");
 	}
 		
+		
+/*##############################################*/
+	
+	// GET
+	@GetMapping("/usuario")
+	public List<Usuario> getAllUsuario() {
+		return usuarioRepository.findAll();
+	}
+	
+	@GetMapping("/usuario/{id}")
+	public ResponseEntity<Usuario> getUsuarioByID(@PathVariable Long id){
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario não existe com este id: " + id));
+		return ResponseEntity.ok(usuario);	
+	}
+	
+	// POST
+	@PostMapping("/usuario")
+	public Usuario createUsuario(@RequestBody Usuario usuario) {
+		return usuarioRepository.save(usuario);
+	}
+	
+	// PUT
+	@PutMapping("/usuario/{id}")
+	public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado com este id: " + id));
+		
+		usuario.setLogin(usuarioDetails.getLogin());
+		usuario.setSenha(usuarioDetails.getSenha());
+		usuario.setEmail(usuarioDetails.getEmail());
+		
+		Usuario updateUsuario = usuarioRepository.save(usuario);
+		
+		return ResponseEntity.ok(updateUsuario);
+	}
+	
+	// DELETE
+	@DeleteMapping("/usuario/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteUsuario(@PathVariable Long id) {
+		Usuario usuario = usuarioRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuário não existe com este id: " + id));
+		
+		usuarioRepository.delete(usuario);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("Deletado", Boolean.TRUE);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+/*##############################################*/
 	
 	
 /*	CONCLUSÃO
