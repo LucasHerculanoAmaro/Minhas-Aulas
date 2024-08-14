@@ -34,93 +34,107 @@ import service.UsuarioSevice;
 	como JSON e XML.		*/
 @RestController
 
-//Permite que qualquer requisição solicitada seja atendida.
-@CrossOrigin(origins = "*", allowedHeaders = "*") 
-
 /*	RequestiMapping: usada para mapear solicitações HTTP para métodos de manipulação dentro do 
  	controlador Spring		
  	
  *	OBS: Especificamos a URL e o método HTTP que ser controlado pelo controlador.		*/
-@RequestMapping("/api/v1")
+@RequestMapping("/api/usuario")
 
-public class UsarioController {
+//Permite que qualquer requisição solicitada seja atendida.
+@CrossOrigin(origins = "*", allowedHeaders = "*") 
+public class UsuarioController {
 
 	@Autowired
 	private UsuarioSevice usuarioService;
 	
 	/*##############################################*/	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioRepository repository;
 	/*##############################################*/
+	
+//	POST: /api/usuario	
 	
 /*	PostMapping: Manipula solicitações HTTP POST em serviços web RESTful.
   	Mapeia a URL específica e permite o processamento de dados enviados pelo método POST.		*/	
-	@PostMapping("/cadastrar")
-	public ResponseEntity<?> cadastrar(
-			
-			@RequestBody
-			
-//			Passando o objeto da classe 'Usuario' como parâmetro no método 'cadastrar()'.
-			Usuario usuario
-			) {
-		
-/*		Atribuindo a classe 'UsuarioService' o método 'cadastrar()', passando como parêmetro o objeto da
-		classe 'usuario'.		*/
-		usuarioService.cadastrar(usuario);
-		
-		return ResponseEntity.ok("Usuario cadastrado com Sucesso!");
-	}
-		
-		
-/*##############################################*/
 	
-	// GET
-	@GetMapping("/usuario")
-	public List<Usuario> getAllUsuario() {
-		return usuarioRepository.findAll();
-	}
+////##############################################	
+//	@PostMapping("/cadastrar")
+//	public ResponseEntity<?> cadastrar(
+//			
+//			@RequestBody
+//			
+////			Passando o objeto da classe 'Usuario' como parâmetro no método 'cadastrar()'.
+//			Usuario usuario
+//			) {
+//		
+///*		Atribuindo a classe 'UsuarioService' o método 'cadastrar()', passando como parêmetro o objeto da
+//		classe 'usuario'.		*/
+//		usuarioService.cadastrar(usuario);
+//		
+//		return ResponseEntity.ok("Usuario cadastrado com Sucesso!");
+//	}
+///*##############################################*/
 	
-	@GetMapping("/usuario/{id}")
-	public ResponseEntity<Usuario> getUsuarioByID(@PathVariable Long id){
-		Usuario usuario = usuarioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuario não existe com este id: " + id));
-		return ResponseEntity.ok(usuario);	
+	@GetMapping("/all")
+	public ResponseEntity<List<Usuario>> getAll() {
+	    return ResponseEntity.ok(repository.findAll());
 	}
 	
-	// POST
-	@PostMapping("/usuario")
-	public Usuario createUsuario(@RequestBody Usuario usuario) {
-		return usuarioRepository.save(usuario);
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> getById(@PathVariable long id) {
+		return repository.findById(id)
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
 	}
-	
-	// PUT
-	@PutMapping("/usuario/{id}")
-	public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
-		Usuario usuario = usuarioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado com este id: " + id));
-		
-		usuario.setLogin(usuarioDetails.getLogin());
-		usuario.setSenha(usuarioDetails.getSenha());
-		usuario.setEmail(usuarioDetails.getEmail());
-		
-		Usuario updateUsuario = usuarioRepository.save(usuario);
-		
-		return ResponseEntity.ok(updateUsuario);
-	}
-	
-	// DELETE
-	@DeleteMapping("/usuario/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteUsuario(@PathVariable Long id) {
-		Usuario usuario = usuarioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Usuário não existe com este id: " + id));
-		
-		usuarioRepository.delete(usuario);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("Deletado", Boolean.TRUE);
-		
-		return ResponseEntity.ok(response);
-	}
-	
+//
+//	
+//	// GET
+//	@GetMapping
+//	public List<Usuario> getAllUsuario() {
+//		return usuarioRepository.findAll();
+//	}
+//	
+//	@GetMapping("/{id}")
+//	public ResponseEntity<Usuario> getUsuarioByID(@PathVariable Long id){
+//		Usuario usuario = usuarioRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Usuario não existe com este id: " + id));
+//		return ResponseEntity.ok(usuario);	
+//	}
+//	
+//	// POST
+//	@PostMapping
+//	public Usuario createUsuario(@RequestBody Usuario usuario) {
+//		return usuarioRepository.save(usuario);
+//	}
+//	
+//	// PUT
+//	@PutMapping("/{id}")
+//	public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
+//		Usuario usuario = usuarioRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado com este id: " + id));
+//		
+//		usuario.setLogin(usuarioDetails.getLogin());
+//		usuario.setSenha(usuarioDetails.getSenha());
+//		usuario.setEmail(usuarioDetails.getEmail());
+//		
+//		Usuario updateUsuario = usuarioRepository.save(usuario);
+//		
+//		return ResponseEntity.ok(updateUsuario);
+//	}
+//	
+//	// DELETE
+//	@DeleteMapping("/{id}")
+//	public ResponseEntity<Map<String, Boolean>> deleteUsuario(@PathVariable Long id) {
+//		Usuario usuario = usuarioRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Usuário não existe com este id: " + id));
+//		
+//		usuarioRepository.delete(usuario);
+//		Map<String, Boolean> response = new HashMap<>();
+//		response.put("Deletado", Boolean.TRUE);
+//		
+//		return ResponseEntity.ok(response);
+//	}
+//	
 /*##############################################*/
 	
 	

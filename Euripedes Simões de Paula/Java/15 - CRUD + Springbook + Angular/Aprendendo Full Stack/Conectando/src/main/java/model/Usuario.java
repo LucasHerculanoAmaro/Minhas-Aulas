@@ -43,22 +43,22 @@ public class Usuario {
 //	Atributos	
 	private Long id;
 	
-	@Column(name = "login")
-	private String login;
+	@Column(name = "usuario")
+	private String username;
 	
-	@Column(name = "senha")
-	private String senha;
+	@Column(name = "password")
+	private String password;
 	
 	@Column(name = "email")
 	private String email;
 
 	//	Construtor
-	public void usuario(Long id, String login, String senha){
+	public void usuario(Long id, String username, String password){
 		
 //		atributo	x	parâmetro
 		this.id 	= 	id;
-		this.login	=	login;
-		this.senha	=	senha;
+		this.username	=	username;
+		this.password	=	password;
 	}
 /*	A partir daqui, vamos criar os métodos "getters & setters" de forma automatica
 	com o seguinte passo a passo:
@@ -80,20 +80,20 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}	
 	
 	public String getEmail() {

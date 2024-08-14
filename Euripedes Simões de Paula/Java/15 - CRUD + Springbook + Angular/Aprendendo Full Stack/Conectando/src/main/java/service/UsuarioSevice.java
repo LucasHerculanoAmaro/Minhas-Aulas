@@ -1,12 +1,13 @@
 
 package service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import model.Usuario;
 import repository.UsuarioRepository;
@@ -24,66 +25,25 @@ public class UsuarioSevice {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	
-/*####################################	*/
-	
-//	Aqui criamos o método cadastrar com base na classe 'Usuario' do pacote 'model'.	
-	public Usuario cadastrar(
-			
-//			Iniciando um parâmetro baseado na classe 'Usuario'.
-			Usuario usuario
-			) {
-					
-//		Utilizando o método 'setSenha()', implementado na classe 'Usuário'.
-		usuario.setSenha(
-				
-//				Utilizando a interface para pegar a senha do usuário.
-				passwordEncoder
-
-/*				Este método 'encode()' é responsável por codificar os dados, em 
- 				especial senhas.
-
- *				OBS: O que este método faz?
- 					-> 	Transformação em Hash: pega senhas ou dados de entrada e 
- 						converte em um Hash seguro.
- 						
- 						(Hash): é uma representação de senhas que não pode ser 
- 						convertida de volta para a senha original.
- 					
- 					->	Proteção contra ataques: A senha codificada é armazenada no
- 						banco de dados em vez de armazenar os textos simples.
- 						
- 					->	Salt e Hashing: Para o 'BCriptPassworEncoder', o método 
- 						'encode()' gera valores de 'salt', ou valores aleatórios.	*/		
-				.encode(
-						
-//						Aqui utilizamos o método getSenha() para buscar a senha.
-						usuario.getSenha())
-				);
-		
-		
-		return usuarioRepository
-				
-//				Insere o novo usuário (usuário que não tem id)
-				.save(usuario);
+	private String criptPassword(String password) {
+		BCryptPasswordEncoder encoder = new  BCryptPasswordEncoder();
+		String passwordEncoder = encoder.encode(password);
+		return passwordEncoder;
 	}
+	
+	@Autowired
+	private Optional<Usuario> cadastrarUsuario(Usuario usuario) {
+		if (usuarioRepository.findByUsuario(
+				usuario.getUsername()).isPresent()) {
+			throw new ResponseStatusException(
+					HttpStatus.BAD_REQUEST, "Usuário á existe!", null);
+		} 
+		usuario.setPassword(criptPassword(usuario.getPassword()));
+		return Optional.of(usuarioRepository.save(usuario));
+	}
+	
+	
 
-	
-	
-	
-
-	
-/*	CONCLUSÃO
- 
- *	Com isso, terminamos a etapa de configuração para cadastro. 
- 
- *	Na próxima aula, trabalharemos com a implementação do 'UsuarioDetailsService'.
- 	Acompanhe o conteúdo na classe 'UsuarioDetailsService'.
- 
- */
 	
 }
 
