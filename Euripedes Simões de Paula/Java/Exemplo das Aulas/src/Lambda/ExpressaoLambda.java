@@ -28,7 +28,7 @@ public class ExpressaoLambda {
   		CURIOSIDADE
    	
 *   	RUNNABLE = é uma interface que pode ser implementada por
-   		qualquer classe capaz de definir e executar por uma THREAD.
+   		qualquer classe capaz de definir e executar por uma THREAD. 
    		A classe pode definir um método sem argumento, chamado 
    		'run()'.
    	
