@@ -11,19 +11,21 @@ import com.euripedes.Conectando.repository.UsuarioRepository;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-
-	static {
-		System.out.println("Controlador carregado");
-	}
 	
-    @Autowired
+	@Autowired
     private UsuarioRepository usuarioRepository;
+	
+//	Unidade de Teste
+	static {
+		System.out.println("Controlador Usuário carregado");
+	}
 
     @GetMapping("/test")
     public String testEndpoint() {
         return "Hello, Spring!";
     }
     
+//  Método GET
     @GetMapping
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
@@ -35,7 +37,8 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    @PostMapping
+//  Método POST
+    @PostMapping("/cadastrar")
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }

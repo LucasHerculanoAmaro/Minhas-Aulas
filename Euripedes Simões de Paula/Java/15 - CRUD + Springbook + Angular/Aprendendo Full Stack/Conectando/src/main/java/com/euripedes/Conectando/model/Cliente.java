@@ -19,15 +19,15 @@ public class Cliente {
 	private String nomeCliente;
 	
 	@Column(name = "cnpj")
-	private int cnpj;
+	private String cnpj;
 	
 	@Column(name = "codConta")
-	private int codConta;
+	private String codConta;
 	
 	@Column(name = "nomeConta")
 	private String nomeConta;
 	
-	public void cliente(Long id, String nomeCliente, int cnpj, int codConta, String nomeConta) {
+	public void cliente(Long id, String nomeCliente, String cnpj, String codConta, String nomeConta) {
 		this.id = id;
 		this.nomeCliente = nomeCliente;
 		this.cnpj = cnpj;
@@ -51,19 +51,19 @@ public class Cliente {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-	public int getCodConta() {
+	public String getCodConta() {
 		return codConta;
 	}
 
-	public void setCodConta(int codConta) {
+	public void setCodConta(String codConta) {
 		this.codConta = codConta;
 	}
 
