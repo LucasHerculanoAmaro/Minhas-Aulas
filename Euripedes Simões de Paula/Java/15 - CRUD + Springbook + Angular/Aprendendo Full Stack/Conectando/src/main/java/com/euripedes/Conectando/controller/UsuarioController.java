@@ -1,20 +1,29 @@
-package com.euripedes.controller;
+package com.euripedes.Conectando.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.euripedes.model.Usuario;
-import com.euripedes.repository.UsuarioRepository;
+import com.euripedes.Conectando.model.Usuario;
+import com.euripedes.Conectando.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
+	static {
+		System.out.println("Controlador carregado");
+	}
+	
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @GetMapping("/test")
+    public String testEndpoint() {
+        return "Hello, Spring!";
+    }
+    
     @GetMapping
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
@@ -36,7 +45,9 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         usuario.setNome(usuarioDetails.getNome());
-        usuario.setEmail(usuarioDetails.getEmail());
+        usuario.setIdade(usuarioDetails.getIdade());
+        usuario.setTurma(usuarioDetails.getTurma());
+        usuario.setProfissao(usuarioDetails.getProfissao());
 
         Usuario updatedUsuario = usuarioRepository.save(usuario);
         return ResponseEntity.ok(updatedUsuario);
