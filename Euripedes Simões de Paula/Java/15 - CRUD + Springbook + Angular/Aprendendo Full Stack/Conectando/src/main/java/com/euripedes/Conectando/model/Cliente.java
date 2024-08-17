@@ -27,7 +27,7 @@ public class Cliente {
 	@Column(name = "nomeConta")
 	private String nomeConta;
 	
-	public void conta(Long id, String nomeCliente, int cnpj, int codConta, String nomeConta) {
+	public void cliente(Long id, String nomeCliente, int cnpj, int codConta, String nomeConta) {
 		this.id = id;
 		this.nomeCliente = nomeCliente;
 		this.cnpj = cnpj;
