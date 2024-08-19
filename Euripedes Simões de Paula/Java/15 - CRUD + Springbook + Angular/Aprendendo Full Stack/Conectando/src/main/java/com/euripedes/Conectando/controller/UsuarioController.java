@@ -43,6 +43,7 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
+//  Método PUT
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
