@@ -57,6 +57,7 @@ public class UsuarioController {
         return ResponseEntity.ok(updatedUsuario);
     }
 
+//  Método DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
