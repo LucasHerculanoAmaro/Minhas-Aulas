@@ -32,11 +32,18 @@ verificação e transformação dos valores contidos dentro do 'Optional'.
 			.orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 		
 //		Ao exibir o nome do usuario, não esqueça de usar métodos.
-		System.out.println("\nNome do Usuário: " + usuarioOptional
+		System.out.println("\nNome: " + usuarioOptional
 
 //				O método 'get()' acessa o objeto para conseguir 
 //				executar o método 'getNome()' na Classe Usuario
 				.get().getNome());
+		
+//		Para retornar a idade
+		System.out.println("Idade: " + usuarioOptional.get().getIdade());
+		
+//		Para retornar o id
+		System.out.println("Id: " + usuarioOptional.get().getId());
+		
 	}
 	
 }
