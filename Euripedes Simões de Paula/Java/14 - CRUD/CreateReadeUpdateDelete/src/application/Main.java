@@ -55,8 +55,6 @@ public class Main {
 				0
 				);
 		
-	
-		
 //		Passando o novo dado a Lista
 		existingUser.setNome("Lucas Herculano Amaro");
 		

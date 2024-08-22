@@ -110,8 +110,6 @@ public class UserDAO {
 		conn.close();
 		}
 		
-		
-		
 //		CATCH com uma excessão		
 		catch(
 
@@ -124,9 +122,7 @@ public class UserDAO {
 			throw new RuntimeException("Erro ao inserir usuário", e);
 			}
 		
-/*	
-* 	Na próxima aula, criaremos o método READ.
-*/	
+/*	Na próxima aula, criaremos o método READ.	*/
 		
 	}
 	
@@ -160,8 +156,7 @@ public class UserDAO {
 				
 *				Esta classe funciona como um conjunto 'set', e guarda uma 
 				tabela que é o resultado na consulta SQL.
-*/						
-						
+*/										
 				) {
 	
 //			Enquanto a resultSet faz a leitura
@@ -197,9 +192,7 @@ public class UserDAO {
 //		Retornando o ID, Nome e Email
 		return users;
 		
-/*	
-*		Na próxima aula, vamos trabalhar com o método UPDATE
-*/		
+/*		Na próxima aula, vamos trabalhar com o método UPDATE	*/
 		
 	}
 	
