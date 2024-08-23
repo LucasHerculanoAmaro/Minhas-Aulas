@@ -62,8 +62,6 @@ public class ClienteController {
 		
 		cliente.setNomeCliente(clienteDetails.getNomeCliente());
 		cliente.setCnpj(clienteDetails.getCnpj());
-		cliente.setCodConta(clienteDetails.getCodConta());
-		cliente.setNomeConta(clienteDetails.getNomeConta());
 		
 		Cliente updateCliente = clienteRepository.save(cliente);
 		return ResponseEntity.ok(updateCliente);

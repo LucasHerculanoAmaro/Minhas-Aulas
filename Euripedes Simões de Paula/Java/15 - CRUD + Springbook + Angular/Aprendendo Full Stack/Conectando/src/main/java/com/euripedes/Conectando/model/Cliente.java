@@ -21,18 +21,10 @@ public class Cliente {
 	@Column(name = "cnpj")
 	private String cnpj;
 	
-	@Column(name = "codConta")
-	private String codConta;
-	
-	@Column(name = "nomeConta")
-	private String nomeConta;
-	
-	public void cliente(Long id, String nomeCliente, String cnpj, String codConta, String nomeConta) {
+	public void cliente(Long id, String nomeCliente, String cnpj) {
 		this.id = id;
 		this.nomeCliente = nomeCliente;
 		this.cnpj = cnpj;
-		this.codConta = codConta;
-		this.nomeConta = nomeConta;
 	}
 
 	public Long getId() {
@@ -58,23 +50,5 @@ public class Cliente {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
-	public String getCodConta() {
-		return codConta;
-	}
-
-	public void setCodConta(String codConta) {
-		this.codConta = codConta;
-	}
-
-	public String getNomeConta() {
-		return nomeConta;
-	}
-
-	public void setNomeConta(String nomeConta) {
-		this.nomeConta = nomeConta;
-	}
-	
-	
 	
 }

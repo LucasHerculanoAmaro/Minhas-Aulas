@@ -1,10 +1,10 @@
-package repository;
+package com.euripedes.Conectando.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Usuario;
+import com.euripedes.Conectando.model.Usuario;
 
 /*	Primeiramente criamos uma interface que recebe herança da extensão JPA do Spring.
  

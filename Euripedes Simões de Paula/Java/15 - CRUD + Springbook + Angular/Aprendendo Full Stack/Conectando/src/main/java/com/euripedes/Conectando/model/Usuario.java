@@ -1,5 +1,7 @@
 package com.euripedes.Conectando.model;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,13 +29,25 @@ public class Usuario {
     @Column(name = "profissao")
     private String profissao;
     
-    public void usuario(Long id, String nome, int idade, String turma, String profissao) {
+    @NotNull(message = "O atributo Usuário é Obrigatório!")
+	private String usuario;
+    
+    public void usuario(Long id, String nome, int idade, String turma, String profissao, String usuario) {
     	this.id = id;
     	this.nome = nome;
     	this.idade = idade;
     	this.turma = turma;
     	this.profissao = profissao;
+    	this.usuario = usuario;
     }
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 
 	public int getIdade() {
 		return idade;

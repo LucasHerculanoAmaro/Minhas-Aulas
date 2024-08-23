@@ -1,14 +1,12 @@
-package service;
+package com.euripedes.Conectando.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import model.Usuario;
-import repository.UsuarioRepository;
+import com.euripedes.Conectando.model.Usuario;
+import com.euripedes.Conectando.repository.UsuarioRepository;
+
 
 //	Na aula de hoje, criaremos um serviço que gerencia operações com o usuário.
 
@@ -25,9 +23,6 @@ public class UsuarioSevice {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	
-/*####################################	
 	
 //	Aqui criamos o método cadastrar com base na classe 'Usuario' do pacote 'model'.	
 	public Usuario cadastrar(
@@ -56,7 +51,7 @@ public class UsuarioSevice {
  						banco de dados em vez de armazenar os textos simples.
  						
  					->	Salt e Hashing: Para o 'BCriptPassworEncoder', o método 
- 						'encode()' gera valores de 'salt', ou valores aleatórios.	/		
+ 						'encode()' gera valores de 'salt', ou valores aleatórios.	*/		
 				.encode(
 						
 //						Aqui utilizamos o método getSenha() para buscar a senha.
@@ -69,8 +64,8 @@ public class UsuarioSevice {
 //				Insere o novo usuário (usuário que não tem id)
 				.save(usuario);
 	}
-*/
-// ###########################################################################
+
+/* ###########################################################################
 	
 	public void UsuarioService( 
 			UsuarioRepository usuarioRepository, 
@@ -90,6 +85,8 @@ public class UsuarioSevice {
 		
 		usuarioRepository.save(usuario);
 	}
+
+*/
 	
 
 	

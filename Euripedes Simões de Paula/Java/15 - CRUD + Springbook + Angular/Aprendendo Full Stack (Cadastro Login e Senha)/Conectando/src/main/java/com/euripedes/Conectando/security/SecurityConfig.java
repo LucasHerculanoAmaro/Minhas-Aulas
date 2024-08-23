@@ -1,13 +1,19 @@
-package security;
+package com.euripedes.Conectando.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 /* Aqui vamos criar as nossas configurações de segurança */
+
+@Configuration
 
 // Esta anotação indica que estamos habilitando os recursos de segurança de nossa aplicação
 @EnableWebSecurity
@@ -16,8 +22,21 @@ public class SecurityConfig {
 /*	A anotação "@Bean" é uma anotação que permite exportar uma classe para o Spring para que 
  	ele consiga expertar essa classe e fazer ineções de dependência dela em outras classes. */	
 
-	//@SuppressWarnings("removal")
-	@SuppressWarnings("removal")
+	
+//	######################################################
+	@Bean
+    public UserDetailsService userDetailsService() {
+        // Cria um usuário em memória com a senha "password"
+        var user = User.withUsername("user")
+            .password("{noop}password") // {noop} evita a necessidade de codificar a senha
+            .roles("USER")
+            .build();
+
+        return new InMemoryUserDetailsManager(user);
+    }
+//	######################################################
+	
+	
 	@Bean 
 	
 /* 	Vamos utilizar a classe SecurityFilterChain para criar uma cadeia de filtros
@@ -46,22 +65,24 @@ public class SecurityConfig {
 				(authorize) -> authorize
 				
 //				Especificando quais são as solicitações para configuração a segurança do Spring 
-				//.requestMatchers("/api/auth/**")
-				.requestMatchers("/api/test/**")
+				.requestMatchers(
+						"/api/auth/**"
+						//"/api/**"
+						).permitAll()
 				
 //				Permite que qualquer sessão do usuário seja autorizaa a executar este método
 				
-				.permitAll().anyRequest().authenticated()
-        );
+				.anyRequest().authenticated()
+        )
 			
 /*		Este método configura o formulário de Login padrão oferecido pelo Spring Security.
 		Ele gera uma página de login que os usuários podem acessar para se autenticar. 
 		
 		OBS: Quando um usuário não autenticado tenta acessar uma URL protegida, o Spring Security 
 		redireciona o usuário automaticamente para essa página de login.	*/
-		//.formLogin(
-				//form -> form.loginPage("/login").permitAll()
-			//	)
+		.formLogin(
+				form -> form.loginPage("/login").permitAll()
+				)
 		
 //		Este mmétodo separa as partes de uma configuração sem precisar iniciar uma nova.
 		//.and(withDefaults())
@@ -70,12 +91,14 @@ public class SecurityConfig {
 		OBS: Essas credenciais são codificadas em Base64 e enviadas no cabeçalho Authorization. Embora seja 
 		simples de implementar, o HTTP Basic não é seguro para transmissão de senhas em texto puro, a menos 
 		que seja usado sobre HTTPS.		*/
-		//.httpBasic( 
+		.httpBasic( 
 				
 /*				Passando a expressão Lambda para evitar: "The method withDefaults() is undefined for the 
 				type SecurityConfig".	*/
-				//httpBasic -> {}
-				//);
+				httpBasic -> {}
+				);
+	
+
 		
 //		Cria o Security Filter Chain com as configurações definidas.
 		return http.build();	

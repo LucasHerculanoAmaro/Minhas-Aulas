@@ -1,4 +1,4 @@
-package service;
+package com.euripedes.Conectando.service;
 
 import java.util.ArrayList;
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import model.Usuario;
-import repository.UsuarioRepository;
+import com.euripedes.Conectando.model.Usuario;
+import com.euripedes.Conectando.repository.UsuarioRepository;
 
 /*	Nesta aula, Implementaremos nesta classe configurações para carregar os 
 	detalhes dos usuários.

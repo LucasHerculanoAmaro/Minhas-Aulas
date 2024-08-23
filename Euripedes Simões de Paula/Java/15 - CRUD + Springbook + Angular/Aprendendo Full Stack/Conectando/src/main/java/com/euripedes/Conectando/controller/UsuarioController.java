@@ -19,11 +19,6 @@ public class UsuarioController {
 	static {
 		System.out.println("Controlador Usuário carregado");
 	}
-
-    @GetMapping("/test")
-    public String testEndpoint() {
-        return "Hello, Spring!";
-    }
     
 //  Método GET
     @GetMapping

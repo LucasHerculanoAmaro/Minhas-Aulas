@@ -118,10 +118,10 @@ public class Stream {
 	 *																*
 	 *	->	Sem Parametro: Os elementos são ordenados de forma		* 
 	 *		natural.												*
-	 *	->	Com 'Comparator': Os elemetos são ordenados com um		*
+	 *	->	Com 'Comparator': Os elementos são ordenados com um		*
 	 *		'Comparator' implementado.								*
 	 *																*
-	 *	OBS: Repare que, utilizando o 'soted()', temos o retorno 	*
+	 *	OBS: Repare que, utilizando o 'sorted()', temos o retorno 	*
 	 *	de uma lista ordenada										*
 	 *																*
 	 ****************************************************************/	
