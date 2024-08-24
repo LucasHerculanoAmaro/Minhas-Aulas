@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
-import org.springframework.web.service.annotation.PutExchange;
 
 import com.euripedes.Conectando.model.Cliente;
-import com.euripedes.Conectando.model.Usuario;
 import com.euripedes.Conectando.repository.ClienteRepository;
-import com.euripedes.Conectando.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/clientes")
@@ -38,7 +34,7 @@ public class ClienteController {
 	}	
 	
 //	Método GET
-	@GetMapping
+	@GetMapping("all")
 	public List<Cliente> getAllClientes() {
 		return clienteRepository.findAll();
 	}

@@ -1,7 +1,5 @@
 package com.euripedes.Conectando.model;
 
-import org.antlr.v4.runtime.misc.NotNull;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,17 +27,44 @@ public class Usuario {
     @Column(name = "profissao")
     private String profissao;
     
-    @NotNull(message = "O atributo Usuário é Obrigatório!")
+	//@NotNull(message = "O atributo Usuário é Obrigatório!")
 	private String usuario;
+	
+	@Column(name = "senha")
+	private String senha;
+	
+	@Column(name = "foto")
+	private String foto;
+	
+	private String tipo;
     
-    public void usuario(Long id, String nome, int idade, String turma, String profissao, String usuario) {
+    public void usuario(Long id, String nome, int idade, String turma, String profissao, String usuario, String senha, String tipo, String foto) {
     	this.id = id;
     	this.nome = nome;
     	this.idade = idade;
     	this.turma = turma;
     	this.profissao = profissao;
     	this.usuario = usuario;
+    	this.senha = senha;
+    	this.foto = foto;
+    	this.tipo = tipo;
     }
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public String getUsuario() {
 		return usuario;
@@ -88,5 +113,15 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	
     
 }
