@@ -41,11 +41,13 @@ public class UsuarioController {
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 		return ResponseEntity.ok(usuario);
 	}
-
-	// Método POST para cadastrar um novo usuário
+	
+	// Método POST para cadastrar um Usuário
 	@PostMapping("/cadastrar")
-	public Usuario createUsuario( @RequestBody Usuario usuario) {
-		return usuarioRepository.save(usuario);
+	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
+		return ResponseEntity.ok(usuarioService.createUsuario(usuario).orElseThrow(
+			() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao criar usuário")
+		));
 	}
 	
 	// Método POST para autenticar um usuário

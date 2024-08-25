@@ -5,10 +5,12 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,33 +24,15 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-//	Método para criptografar senha
-	private String criptografarSenha(String senha) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String senhaEncoder = encoder.encode(senha);
-		return senhaEncoder;
-	}
-	
-//	Método para comparar senha
-	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder.matches(senhaDigitada, senhaBanco);
-	}
-	
-//	Método para gerar Token
-	private String generatorBasicToken(String email, String senha) {
-		String structure = email + ":" + senha;
-		String structureBase64 = Base64.getEncoder().encodeToString(structure.getBytes(Charset.forName("US-ASCII")
-																					 //StandardCharsets.US_ASCII
-																				));
-		return "Basic " + new String(structureBase64);
-	}
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 //	CREATE - cadastrar
 	public Optional<Usuario> createUsuario(Usuario usuario) {
 		if (usuarioRepository.findByUsuario(usuario.getNome()).isPresent()) 
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!", null);
-		usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!");
+		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+		//usuario.setSenha(criptografarSenha(usuario.getSenha()));
 		return Optional.of(usuarioRepository.save(usuario));
 	}
 	
@@ -77,12 +61,28 @@ public class UsuarioService {
 				if(buscandoUsuario.get().getId() != usuario.getId())
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!", null);
 			}
-			usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			//usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 			return ResponseEntity.status(200).body(usuarioRepository.save(usuario));
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não cadastrado!", null);
 	}
 	
+//	Método para comparar senha
+	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
+		//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return passwordEncoder.matches(senhaDigitada, senhaBanco);
+				//encoder.matches(senhaDigitada, senhaBanco);
+	}
+	
+//	Método para gerar Token
+	private String generatorBasicToken(String email, String senha) {
+		String structure = email + ":" + senha;
+		String structureBase64 = Base64.getEncoder().encodeToString(structure.getBytes(Charset.forName("US-ASCII")
+																					 //StandardCharsets.US_ASCII
+																				));
+		return "Basic " + new String(structureBase64);
+	}
 	
 	
 }

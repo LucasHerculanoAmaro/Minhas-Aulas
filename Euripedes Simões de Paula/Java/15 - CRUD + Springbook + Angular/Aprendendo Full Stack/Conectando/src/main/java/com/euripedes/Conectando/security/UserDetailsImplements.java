@@ -63,8 +63,4 @@ public class UserDetailsImplements implements UserDetails  {
 		return false;
 	}
 	
-	
-	
-	
-	
 }
