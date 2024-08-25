@@ -28,6 +28,7 @@ public class Usuario {
     private String profissao;
     
 	//@NotNull(message = "O atributo Usuário é Obrigatório!")
+    @Column(name = "usuario")
 	private String usuario;
 	
 	@Column(name = "senha")
@@ -36,6 +37,7 @@ public class Usuario {
 	@Column(name = "foto")
 	private String foto;
 	
+	@Column(name = "tipo")
 	private String tipo;
     
     public void usuario(Long id, String nome, int idade, String turma, String profissao, String usuario, String senha, String tipo, String foto) {

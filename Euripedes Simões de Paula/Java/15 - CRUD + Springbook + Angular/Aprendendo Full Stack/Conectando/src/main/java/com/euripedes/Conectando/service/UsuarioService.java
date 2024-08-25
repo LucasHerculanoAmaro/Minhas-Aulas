@@ -1,6 +1,7 @@
 package com.euripedes.Conectando.service;
 
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
+//import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import java.util.Base64;
@@ -37,8 +38,9 @@ public class UsuarioService {
 //	Método para gerar Token
 	private String generatorBasicToken(String email, String senha) {
 		String structure = email + ":" + senha;
-		//byte[] structureBase64 = Base64.encodeBase64(structure.getBytes(Charset.forName("US-ASCII")));
-		String structureBase64 = Base64.getEncoder().encodeToString(structure.getBytes(StandardCharsets.US_ASCII));
+		String structureBase64 = Base64.getEncoder().encodeToString(structure.getBytes(Charset.forName("US-ASCII")
+																					 //StandardCharsets.US_ASCII
+																				));
 		return "Basic " + new String(structureBase64);
 	}
 	

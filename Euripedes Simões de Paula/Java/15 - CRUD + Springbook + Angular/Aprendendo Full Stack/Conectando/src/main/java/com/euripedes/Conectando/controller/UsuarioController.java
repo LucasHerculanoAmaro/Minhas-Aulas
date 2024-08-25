@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,6 +16,7 @@ import com.euripedes.Conectando.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class UsuarioController {
 
 	// Método POST para cadastrar um novo usuário
 	@PostMapping("/cadastrar")
-	public Usuario createUsuario(@RequestBody Usuario usuario) {
+	public Usuario createUsuario( @RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
 	
@@ -57,7 +57,7 @@ public class UsuarioController {
 	}
 
 	// Método PUT para atualizar um usuário pelo ID
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
@@ -65,6 +65,10 @@ public class UsuarioController {
 		usuario.setIdade(usuarioDetails.getIdade());
 		usuario.setTurma(usuarioDetails.getTurma());
 		usuario.setProfissao(usuarioDetails.getProfissao());
+		usuario.setUsuario(usuarioDetails.getUsuario());
+		usuario.setSenha(usuarioDetails.getSenha());
+		usuario.setTurma(usuarioDetails.getTurma());
+		usuario.setTipo(usuarioDetails.getTipo());
 
 		Usuario updatedUsuario = usuarioRepository.save(usuario);
 		return ResponseEntity.ok(updatedUsuario);

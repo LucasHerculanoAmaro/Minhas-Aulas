@@ -9,8 +9,8 @@ import com.euripedes.Conectando.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
-	public Optional<Usuario> findByUsuario(String usuario);
+	Optional<Usuario> findByUsuario(String usuario);
 	
-	public List<Usuario> findAllByNomeContainingIgnoreCase(String usuario);
+	List<Usuario> findAllByNomeContainingIgnoreCase(String usuario);
 	
 }
