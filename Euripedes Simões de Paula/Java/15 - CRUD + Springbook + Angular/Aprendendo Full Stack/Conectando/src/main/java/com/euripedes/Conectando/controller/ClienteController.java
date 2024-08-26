@@ -55,7 +55,9 @@ public class ClienteController {
 	
 //	Método PUT
 	@PutMapping("/{id}")
-	public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteDetails) {
+	public ResponseEntity<Cliente> updateCliente(
+			@PathVariable Long id, 
+			@RequestBody Cliente clienteDetails) {
 		Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 		
 		cliente.setNomeCliente(clienteDetails.getNomeCliente());

@@ -14,7 +14,7 @@ import Model.User;
 
 public class UserDAO {
 
-/*	Na aula de hoe, iremos trabalhar com a criação do primeiro método 
+/*	Na aula de hoje, iremos trabalhar com a criação do primeiro método 
 	CRUD, o CREATE.
 
 *	Criamos o pacote 'DAO' para trabalhar com todos os métodos CRUD. 
