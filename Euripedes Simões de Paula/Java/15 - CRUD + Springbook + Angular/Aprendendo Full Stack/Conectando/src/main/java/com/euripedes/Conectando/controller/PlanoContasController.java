@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.euripedes.Conectando.model.PlanoContas;
 import com.euripedes.Conectando.repository.PlanoContasRepository;
@@ -23,8 +25,8 @@ public class PlanoContasController {
 	@Autowired
 	private PlanoContasRepository planoContasRepository;
 	
-	@Autowired
-	private PlanoContas planoContas;
+	//@Autowired
+	//private PlanoContas planoContas;
 	
 	static {
 		System.out.println("Controlador Plano Contas carregado");
@@ -43,13 +45,18 @@ public class PlanoContasController {
 		return ResponseEntity.ok(planoContas);
 	}
 	
+	// Método POST para regristrar um novo plano de contas
 	@PostMapping("/registrar")
-	public ResponseEntity<PlanoContas> createPlanoConta(@RequestBody PlanoContas planoContas){
-		return ResponseEntity.status(HttpStatus.CREATED)
-							 .body(planoContasRepository
-							 .save(planoContas));
+	public PlanoContas createPlanoContas(@RequestBody PlanoContas planoContas) {
+		return planoContasRepository.save(planoContas);
 	}
+//	public ResponseEntity<PlanoContas> createPlanoConta(@RequestBody PlanoContas planoContas){
+//		return ResponseEntity.status(HttpStatus.CREATED)
+//							 .body(planoContasRepository
+//							 .save(planoContas));
+//	}
 	
+	// Método PUT para atualizar um plano de contas
 	@PutMapping("/{id}")
 	public ResponseEntity<PlanoContas> updatePlanoConta(
 		@PathVariable Long id, 
@@ -67,6 +74,16 @@ public class PlanoContasController {
 			
 			return ResponseEntity.ok(updatePlanoContas);
 	}
+	
+	// Método DELETE para deletar um plano de contas
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deletePlanoContas(@PathVariable Long id) {
+		PlanoContas planoContas = planoContasRepository.findById(id).orElseThrow(
+				() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+		planoContasRepository.delete(planoContas);
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 
 	

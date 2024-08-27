@@ -2,6 +2,8 @@ package com.euripedes.Conectando.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,16 +30,10 @@ public class PlanoContas {
 	@Column(name = "descricao")
 	private String descricao;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm:ss.SSSZ")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Data")
+	@Column(name = "data")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
-
-	public PlanoContas(Long id, String codigo, String nome, String descricao) {
-		this.id = id;
-		this.codigo = codigo;
-		this.nome = nome;
-		this.descricao = descricao;
-	}
 
 	public Long getId() {
 		return id;

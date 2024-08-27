@@ -23,6 +23,17 @@ public class SwitchCase {
 		mes = leia.nextInt();
 		leia.close();
 		
+/*
+ 		switch ( variável ) {
+ 		
+ 			case 1: {
+ 				// Bloco de código
+ 			}
+ 		
+ 		}
+ 
+  */		
+		
 		switch (mes) {
 			case 1: {
 				nomeMes = "Janeiro";
