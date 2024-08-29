@@ -25,7 +25,7 @@ public class Matrizes {
 		        System.out.println(" Você tomou sorvete demais! Seu sorvete acabou! ");
 
 		
-	/*	// Criando os Vetores
+	/*	// Criando os Vetores*/
 		int[] vetorA = {1, 2, 3};
 		int[] vetorB = {4, 5, 6};
 		int[] vetorC = new int[3];
@@ -67,17 +67,17 @@ public class Matrizes {
 				System.out.println("Posição ["+ linha + "]["+  coluna + "] = " + matrizC[linha][coluna]);
 			}
 		}
-*/
+
 		
-/*		Segundo Exemplo
-		int[][] matrizA = new int[3][3];
+/*		Segundo Exemplo*/	
+		int[][] matrizD = new int[3][3];
 		Scanner leia = new Scanner(System.in);
 		
 		for (int linha = 0; linha < 3; linha++) {
 			for (int coluna = 0; coluna < 3; coluna++ ) {
 				System.out.println(
 						"Insira o valor para a posição [" + linha + "][" + coluna + "]: ");
-				matrizA[linha][coluna] = leia.nextInt();
+				matrizD[linha][coluna] = leia.nextInt();
 			}
 		}
 		
@@ -85,30 +85,31 @@ public class Matrizes {
 			for (int coluna = 0; coluna < 3; coluna++) {
 				System.out.println(
 						"O valor na posição [" + linha + "][" + coluna + "] é: "
-						+ matrizA[linha][coluna] );
+						+ matrizD[linha][coluna] );
 			}
 		}
-*/		
+	
 		
 /*		Terceiro Exemplo 
+*/
 		int soma = 0;
 		int vetor[] = new int[4];
-		int[][] matrizA = new int[5][4];
+		int[][] matrizE = new int[5][4];
 		
-		Scanner leia = new Scanner(System.in);
+		//Scanner leia = new Scanner(System.in);
 		
 		// Adicionando os dados na matriz
 		for (int linha = 0; linha < 5; linha++) {
 			for (int coluna = 0; coluna < 4; coluna++) {
 				System.out.println("Insira um valor para a posição ["
 						+ linha + "][" + coluna + "]");
-				matrizA[linha][coluna] = leia.nextInt();
+				matrizE[linha][coluna] = leia.nextInt();
 			}
 		}
 		
 		for (int coluna = 0; coluna < 4; coluna++) {
 			for (int linha = 0; linha < 5; linha++) {
-				soma += matrizA[linha][coluna];
+				soma += matrizE[linha][coluna];
 			}
 			
 			vetor[coluna] = soma;
@@ -119,18 +120,17 @@ public class Matrizes {
 		for (int coluna = 0; coluna < 4; coluna++) {
 			System.out.println(
 					"Somando os elementos " + (coluna + 1) + " é " + vetor[coluna]);
-		}
-*/		
+		}		
 		
-/*		Quarto Exemplo 
+/*		Quarto Exemplo */
 		int[] numeros = {1,2,3,4,5};
 		
 		for (int num : numeros) {
 			System.out.println("Imprima: " + num);
 		}
-*/		
 		
-/*		Quinto Exemplo
+		
+/*		Quinto Exemplo*/
 		List<String> frutas = new ArrayList<>();
 		
 		frutas.add("Maça");
@@ -140,7 +140,7 @@ public class Matrizes {
 		for (String fruta : frutas) {
 			System.out.println(fruta);
 		}
-*/
+
 		
 	}
 	
