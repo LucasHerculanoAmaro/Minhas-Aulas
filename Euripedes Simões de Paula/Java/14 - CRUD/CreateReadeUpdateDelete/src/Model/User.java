@@ -36,7 +36,7 @@ public class User {
 	obeto sem um parametro.
 	
 *	Mesmo não sendo iguais, precisamos dizer que os dados dos atributos e 
- 	dos parametros são os mesmos, e para isso, veja vaixo como configuramos.
+ 	dos parametros são os mesmos, e para isso, veja abaixo como configuramos.
 */			
 		
 //		Atributos	X	Parametros
@@ -79,7 +79,7 @@ public class User {
 		
 *	Esta é uma maneira mais simples de criar os métodos 'getters & setters' 
 	sem a necessidade de escrever palavra por palavra. Fazer assim deixa o 
-	serviço mais simples, principalmente quando traalhamos com obetos que 
+	serviço mais simples, principalmente quando trabalhamos com objetos que 
 	contém muitos atributos.
 	
 *	Veja abaixo como os métodos 'Getters & Setters' estão configurados.

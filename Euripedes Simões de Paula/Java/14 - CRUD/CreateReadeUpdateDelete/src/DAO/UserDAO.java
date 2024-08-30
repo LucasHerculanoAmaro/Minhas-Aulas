@@ -67,14 +67,14 @@ public class UserDAO {
 /*				OBS: 'PreparedStatement' interpreta e compila a Consulta
  				SQL, otimiza e planeja o caminho de busca dos dados.
  				
-* 				Também é utilizado para segunrança, prevenindo contra 
-				ataques de ineção SQL.
+* 				Também é utilizado para segurança, prevenindo contra 
+				ataques de injeção SQL.
  				
 * 				É muito utilizando quando um Script será executado 
 				diversas vezes, onde as execuções são mais rápidas e têm
 				menos sobrecarga no banco de dados.
 				
-*				Quando utilizamos isntruções SQL que aceitam parâmetros, 
+*				Quando utilizamos instruções SQL que aceitam parâmetros, 
 				podemos usar a mesma instrução para fornecer valores 
 				diferentes a cada execução.
 */
