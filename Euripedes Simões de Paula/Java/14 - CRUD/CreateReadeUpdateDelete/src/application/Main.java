@@ -28,7 +28,7 @@ public class Main {
 
 		
 		
-/* CREATE 
+/* CREATE */
 		
 		
 //		Criando um Obeto da Classe 'Model'
@@ -42,11 +42,11 @@ public class Main {
 		
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser); 
-*/
+
 	
 		
 		
-/* UPDATE 
+/* UPDATE */	
 		
 //		Pagendo o dado da Lista
 		User existingUser = users.get(
@@ -60,10 +60,10 @@ public class Main {
 		
 //		Utilizando o método 'UPDATE' para inserir o novo dado
 		userDAO.updateUser(existingUser);
-*/			
+		
 	
 
-/* DELETE 
+/* DELETE */
 		
 //		Importando o método da Classe
 		userDAO.deleteUser(
@@ -71,7 +71,7 @@ public class Main {
 //				Indique o ID do usuário
 				8
 				);	
-*/
+
 		
 		
 /* READ */
@@ -101,7 +101,7 @@ public class Main {
 				);
 
 		
-/* SEGUNDO: 
+/* SEGUNDO: */
 
 		
 //		Lendo com o loop 'for/each'
@@ -123,7 +123,7 @@ public class Main {
 			
 //			Limitador
 			System.out.println("-----------------");
-		}*/
+		}
 	
 	}
 	

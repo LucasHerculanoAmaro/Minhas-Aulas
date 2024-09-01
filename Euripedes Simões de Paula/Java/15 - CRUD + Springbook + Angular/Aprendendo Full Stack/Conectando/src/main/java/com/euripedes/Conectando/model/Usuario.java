@@ -27,7 +27,6 @@ public class Usuario {
     @Column(name = "profissao")
     private String profissao;
     
-	//@NotNull(message = "O atributo Usuário é Obrigatório!")
     @Column(name = "usuario")
 	private String usuario;
 	
