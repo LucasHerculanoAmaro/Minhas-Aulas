@@ -32,7 +32,6 @@ public class UsuarioService {
 		if (usuarioRepository.findByUsuario(usuario.getNome()).isPresent()) 
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!");
 		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-		//usuario.setSenha(criptografarSenha(usuario.getSenha()));
 		return Optional.of(usuarioRepository.save(usuario));
 	}
 	
@@ -70,9 +69,7 @@ public class UsuarioService {
 	
 //	Método para comparar senha
 	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
-		//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		return passwordEncoder.matches(senhaDigitada, senhaBanco);
-				//encoder.matches(senhaDigitada, senhaBanco);
 	}
 	
 //	Método para gerar Token

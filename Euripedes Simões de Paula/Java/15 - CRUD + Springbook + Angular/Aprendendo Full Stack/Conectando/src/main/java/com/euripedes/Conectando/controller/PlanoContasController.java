@@ -25,9 +25,6 @@ public class PlanoContasController {
 	@Autowired
 	private PlanoContasRepository planoContasRepository;
 	
-	//@Autowired
-	//private PlanoContas planoContas;
-	
 	static {
 		System.out.println("Controlador Plano Contas carregado");
 	}
@@ -50,11 +47,6 @@ public class PlanoContasController {
 	public PlanoContas createPlanoContas(@RequestBody PlanoContas planoContas) {
 		return planoContasRepository.save(planoContas);
 	}
-//	public ResponseEntity<PlanoContas> createPlanoConta(@RequestBody PlanoContas planoContas){
-//		return ResponseEntity.status(HttpStatus.CREATED)
-//							 .body(planoContasRepository
-//							 .save(planoContas));
-//	}
 	
 	// Método PUT para atualizar um plano de contas
 	@PutMapping("/{id}")

@@ -9,7 +9,7 @@ import com.euripedes.Conectando.model.PlanoContas;
 
 public interface PlanoContasRepository extends JpaRepository<PlanoContas, Long>{
 
-	Optional<PlanoContas> findByNome(String planoContas);//findByPlanoContas(String planoContas);
+	Optional<PlanoContas> findByNome(String planoContas);
 	
 	List<PlanoContas> findAllByNomeContainingIgnoreCase(String planoContas);
 	

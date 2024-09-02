@@ -22,7 +22,7 @@ public class User {
 	private String email;
 	
 //	Criando o método Construtor	
-	public void User(
+	public User(
 			
 //			Criando os parametros
 			int id, 
