@@ -163,7 +163,7 @@ public class UserDAO {
 			while (rs.next()) {
 	
 //				Criando um novo método com base na classe User
-				User user = new User();
+				User user = new User(0, sql, sql);
 				
 //				Lendo o ID
 				user.setId(rs.getInt("id"));
