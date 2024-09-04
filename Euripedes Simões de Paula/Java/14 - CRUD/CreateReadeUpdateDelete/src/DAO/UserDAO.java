@@ -163,7 +163,7 @@ public class UserDAO {
 			while (rs.next()) {
 	
 //				Criando um novo método com base na classe User
-				User user = new User(0, sql, sql);
+				User user = new User(0, null, null);
 				
 //				Lendo o ID
 				user.setId(rs.getInt("id"));
@@ -181,7 +181,7 @@ public class UserDAO {
 		} catch (
 				
 //				Utilizaremos uma SQLException para caso não seja possivel
-//				modificar o banco de dados
+//				consultar o banco de dados
 				SQLException e
 				) {
 
