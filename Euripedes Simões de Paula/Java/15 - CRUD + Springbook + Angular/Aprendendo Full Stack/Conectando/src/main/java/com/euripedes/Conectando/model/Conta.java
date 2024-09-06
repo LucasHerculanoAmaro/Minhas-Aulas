@@ -14,6 +14,7 @@ public class Conta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String codigo;
 	private String tipo;
 	private BigDecimal saldo;
 	
@@ -41,7 +42,12 @@ public class Conta {
 	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
-	
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	
 	
 }
