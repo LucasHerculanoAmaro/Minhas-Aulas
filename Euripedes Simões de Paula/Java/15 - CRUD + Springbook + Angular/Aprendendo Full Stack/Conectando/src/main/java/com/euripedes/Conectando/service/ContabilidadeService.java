@@ -132,9 +132,7 @@ public class ContabilidadeService {
 			balanceteRepository.save(balancete);
 		}
 		
-		BigDecimal totalGeral = totalDevedor.subtract(totalCredor);
-		
-		
 	}
 	
+
 }
