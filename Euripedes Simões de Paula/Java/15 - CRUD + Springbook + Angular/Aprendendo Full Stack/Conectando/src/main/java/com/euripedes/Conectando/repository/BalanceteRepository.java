@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.euripedes.Conectando.model.Balancete;
+import com.euripedes.Conectando.model.Conta;
 
 @Repository
-public interface BalanceteRepository extends JpaRepository<Balancete, Long>{
+public interface BalanceteRepository extends JpaRepository<Conta, Long>{
 		
 	Optional<Balancete> findById(Balancete id);
 	
