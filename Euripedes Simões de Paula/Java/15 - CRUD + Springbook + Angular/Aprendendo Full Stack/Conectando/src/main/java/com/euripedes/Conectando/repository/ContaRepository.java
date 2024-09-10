@@ -10,4 +10,6 @@ public interface ContaRepository extends JpaRepository<Conta, Long>{
 	
 	Optional<Conta> findById(Long id);
 	
+	Conta findByNome(String nome);
+	
 }

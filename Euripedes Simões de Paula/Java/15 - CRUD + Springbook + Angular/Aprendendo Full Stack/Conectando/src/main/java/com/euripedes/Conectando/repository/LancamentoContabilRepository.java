@@ -13,12 +13,12 @@ public interface LancamentoContabilRepository extends JpaRepository<LancamentoCo
 
 	Optional<LancamentoContabil> findById(Long id);
 
-	List<LancamentoContabil> findByContaId(Long id);
+	List<LancamentoContabil> findByContaId(Long contaId);
 	
-	@Query(value = "SELECT SUM(lancamento_devedor) FROM lancamento", nativeQuery = true)
+	@Query(value = "SELECT SUM(lancamento_devedor) FROM lancamento_contabil WHERE conta_id = ?1", nativeQuery = true)
 	BigDecimal sumDebitoById(Long Id);
 
-	@Query(value = "SELECT SUM(lancamento_credor) FROM lancamento", nativeQuery = true)
+	@Query(value = "SELECT SUM(lancamento_credor) FROM lancamento_contabil WHERE conta_id = ?1", nativeQuery = true)
 	BigDecimal sumCreditoById(Long Id);
 	
 

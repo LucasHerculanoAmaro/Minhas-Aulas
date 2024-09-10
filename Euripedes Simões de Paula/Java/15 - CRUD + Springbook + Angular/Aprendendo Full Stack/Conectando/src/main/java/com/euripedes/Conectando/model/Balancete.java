@@ -15,7 +15,7 @@ public class Balancete {
 	private Long id;
 	
 	private String codigoConta;
-	private BigDecimal nomeConta;
+	private String nomeConta;
 	private BigDecimal saldoDevedor;
 	private BigDecimal saldoCredor;
 	private BigDecimal totalGeral;
@@ -32,10 +32,10 @@ public class Balancete {
 	public void setCodigoConta(String codigoConta) {
 		this.codigoConta = codigoConta;
 	}
-	public BigDecimal getNomeConta() {
+	public String getNomeConta() {
 		return nomeConta;
 	}
-	public void setNomeConta(BigDecimal nomeConta) {
+	public void setNomeConta(String nomeConta) {
 		this.nomeConta = nomeConta;
 	}
 	public BigDecimal getSaldoDevedor() {

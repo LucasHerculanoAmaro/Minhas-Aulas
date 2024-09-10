@@ -4,11 +4,16 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.euripedes.Conectando.model.Balancete;
 import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.repository.BalanceteRepository;
 import com.euripedes.Conectando.repository.ContaRepository;
 
+import jakarta.transaction.Transactional;
+
+@Service
 public class BalanceteService {
 
 	@Autowired
@@ -16,6 +21,30 @@ public class BalanceteService {
 	
 	@Autowired
 	private ContaRepository contaRepository;
+	
+	public void gerarBalancete() {
+		
+		List<Conta> contas = contaRepository.findAll();
+		BigDecimal totalDevedor = BigDecimal.ZERO;
+		BigDecimal totalCredor = BigDecimal.ZERO;
+		
+		for (Conta conta : contas) {
+			Balancete balancete = new Balancete();
+			balancete.setCodigoConta(conta.getCodigo());
+			balancete.setNomeConta(conta.getNome());
+			
+			if (conta.getSaldo().compareTo(BigDecimal.ZERO) >= 0) {
+				balancete.setSaldoDevedor(conta.getSaldo());
+				totalDevedor = totalDevedor.add(conta.getSaldo());
+			} else {
+				balancete.setSaldoCredor(conta.getSaldo().negate());
+				totalCredor = totalCredor.add(conta.getSaldo().negate());
+			}
+			
+			balanceteRepository.save(balancete);
+		}
+		
+	}
 	
 	public BigDecimal calcularTotalGeral() { 
 		BigDecimal totalDevedor = balanceteRepository.sumSaldoDevedor();

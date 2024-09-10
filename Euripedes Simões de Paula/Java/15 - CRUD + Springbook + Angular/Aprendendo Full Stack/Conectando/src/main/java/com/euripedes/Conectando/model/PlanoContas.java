@@ -23,25 +23,28 @@ public class PlanoContas {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	    
 	@Column(name = "codigo")
 	private String codigo;
-	
+	    
 	@Column(name = "nome")
 	private String nome;
 
+	@Column(name = "nomeCliente")
+	private String nomeCliente; // Alterado para @Column, não @ManyToOne
+	    
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "nomeCliente")
-	private String nomeCliente;
-	
+	@JoinColumn(name = "cliente_id", nullable = false)
+	private Cliente cliente;
+	    
 	@Column(name = "descricao")
 	private String descricao;
-	
+	  
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm:ss.SSSZ")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
-
+	
 	public Long getId() {
 		return id;
 	}

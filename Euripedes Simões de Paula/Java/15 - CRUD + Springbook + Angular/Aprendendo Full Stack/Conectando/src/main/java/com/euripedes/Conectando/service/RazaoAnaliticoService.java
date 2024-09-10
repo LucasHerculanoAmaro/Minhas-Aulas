@@ -2,12 +2,12 @@ package com.euripedes.Conectando.service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.euripedes.Conectando.model.LancamentoContabil;
+import com.euripedes.Conectando.model.RazaoAnalitico;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 import com.euripedes.Conectando.repository.RazaoAnaliticoRepository;
 
@@ -20,17 +20,18 @@ public class RazaoAnaliticoService {
 	@Autowired
 	private LancamentoContabilRepository lancamentoContabilRepository;
 	
-	public List<RazaoAnaliticoRepository> obterMovimentacoesporConta(String conta) {
-		return razaoRepository.findByConta(conta);
-	}
+	
+	public List<RazaoAnalitico> obterMovimentacoesPorConta(String nomeConta) {
+        return razaoRepository.findByContaNome(nomeConta);
+    }
 	
 	public List<LancamentoContabil> listarTransacoesPorConta(Long id) {
 		return lancamentoContabilRepository.findByContaId(id);
 	}
 	
-	public BigDecimal calcularSaldoPorConta(Long contaId) {
-        BigDecimal totalDebito = lancamentoContabilRepository.sumDebitoByContaId(contaId);
-        BigDecimal totalCredito = lancamentoContabilRepository.sumCreditoByContaId(contaId);
+	public BigDecimal calcularSaldoPorConta(Long id) {
+        BigDecimal totalDebito = lancamentoContabilRepository.sumDebitoById(id);
+        BigDecimal totalCredito = lancamentoContabilRepository.sumCreditoById(id);
         return totalDebito.subtract(totalCredito);
     }
 	

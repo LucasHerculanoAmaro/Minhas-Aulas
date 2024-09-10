@@ -14,6 +14,7 @@ public class LancamentoContabil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private Long contaId;
 	private LocalDate data;
 	private String  descricao;
 	
@@ -29,6 +30,14 @@ public class LancamentoContabil {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public Long getContaId() {
+		return contaId;
+	}
+
+	public void setContaId(Long contaId) {
+		this.contaId = contaId;
 	}
 
 	public LocalDate getData() {

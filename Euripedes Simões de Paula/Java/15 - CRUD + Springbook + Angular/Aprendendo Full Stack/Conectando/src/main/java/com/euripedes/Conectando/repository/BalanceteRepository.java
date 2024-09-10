@@ -11,14 +11,16 @@ import com.euripedes.Conectando.model.Balancete;
 import com.euripedes.Conectando.model.Conta;
 
 @Repository
-public interface BalanceteRepository extends JpaRepository<Conta, Long>{
+public interface BalanceteRepository extends JpaRepository<Balancete, Long>{
 		
-	Optional<Balancete> findById(Balancete id);
+	Optional<Balancete> findById(Long id);
 	
 	@Query(value = "SELECT SUM(saldo_devedor) FROM Balancete", nativeQuery = true)
 	BigDecimal sumSaldoDevedor();
 	
 	@Query(value = "SELECT SUM(saldo_credor) FROM Balancete", nativeQuery = true)
 	BigDecimal sumSaldoCredor();
+	
+	
 	
 }

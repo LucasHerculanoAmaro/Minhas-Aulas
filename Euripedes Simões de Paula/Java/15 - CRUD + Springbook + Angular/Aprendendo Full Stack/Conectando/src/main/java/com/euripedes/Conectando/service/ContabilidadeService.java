@@ -2,18 +2,15 @@ package com.euripedes.Conectando.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.euripedes.Conectando.model.Balancete;
 import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.DiarioGeral;
 import com.euripedes.Conectando.model.LancamentoContabil;
 import com.euripedes.Conectando.model.RazaoAnalitico;
 import com.euripedes.Conectando.model.Transacao;
-import com.euripedes.Conectando.repository.BalanceteRepository;
 import com.euripedes.Conectando.repository.ContaRepository;
 import com.euripedes.Conectando.repository.DiarioGeralRepository;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
@@ -39,10 +36,7 @@ public class ContabilidadeService {
 	
 	@Autowired
 	private RazaoAnaliticoRepository razaoAnaliticoRepository;
-	
-	@Autowired
-	private BalanceteRepository balanceteRepository;
-	
+		
 	@Transactional
 	public void realizarLancamento(Long contaDebitoId, Long contaCreditoId, BigDecimal valor, String descricao) {
 		
@@ -109,30 +103,7 @@ public class ContabilidadeService {
 		razaoAnaliticoRepository.save(lancamento);
 	}
 	
-	@Transactional
-	public void gerarBalancete() {
-		
-		List<Conta> contas = contaRepository.findAll();
-		BigDecimal totalDevedor = BigDecimal.ZERO;
-		BigDecimal totalCredor = BigDecimal.ZERO;
-		
-		for (Conta conta : contas) {
-			Balancete balancete = new Balancete();
-			balancete.setCodigoConta(conta.getCodigo());
-			balancete.setCodigoConta(conta.getNome());
-			
-			if (conta.getSaldo().compareTo(BigDecimal.ZERO) >= 0) {
-				balancete.setSaldoDevedor(conta.getSaldo());
-				totalDevedor = totalDevedor.add(conta.getSaldo());
-			} else {
-				balancete.setSaldoCredor(conta.getSaldo().negate());
-				totalCredor = totalCredor.add(conta.getSaldo().negate());
-			}
-			
-			balanceteRepository.save(balancete);
-		}
-		
-	}
+	
 	
 
 }

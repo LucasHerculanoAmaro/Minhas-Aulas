@@ -36,7 +36,7 @@ public class PlanoContasController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PlanoContas> getPlanoConta(@RequestBody Long id) {
+	public ResponseEntity<PlanoContas> getPlanoConta(@PathVariable Long id) {
 		PlanoContas planoContas = planoContasRepository.findById(id).orElseThrow(
 				() -> new RuntimeException("Plano de Conta não encontrado."));
 		return ResponseEntity.ok(planoContas);
