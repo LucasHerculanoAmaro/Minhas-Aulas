@@ -60,7 +60,7 @@ public class PlanoContasController {
 				
 			planoContas.setCodigo(planoContasDetails.getCodigo());
 			planoContas.setNome(planoContasDetails.getNome());
-			planoContas.setNomeCliente(planoContas.getNomeCliente());
+			planoContas.setNomeCliente(planoContasDetails.getNomeCliente());
 			planoContas.setDescricao(planoContasDetails.getDescricao());
 				
 			PlanoContas updatePlanoContas = planoContasRepository.save(planoContas);

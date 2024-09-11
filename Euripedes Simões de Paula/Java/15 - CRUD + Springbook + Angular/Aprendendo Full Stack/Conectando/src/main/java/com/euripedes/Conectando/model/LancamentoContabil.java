@@ -1,11 +1,13 @@
 package com.euripedes.Conectando.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -17,6 +19,13 @@ public class LancamentoContabil {
 	private Long contaId;
 	private LocalDate data;
 	private String  descricao;
+	private BigDecimal valor;
+	
+	@ManyToOne
+    private Conta contaDebito;
+	
+	@ManyToOne
+    private Conta contaCredito;
 	
 	@OneToOne
 	private Transacao transacaoDebito;
@@ -31,7 +40,7 @@ public class LancamentoContabil {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Long getContaId() {
 		return contaId;
 	}
@@ -56,6 +65,30 @@ public class LancamentoContabil {
 		this.descricao = descricao;
 	}
 
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public Conta getContaDebito() {
+		return contaDebito;
+	}
+
+	public void setContaDebito(Conta contaDebito) {
+		this.contaDebito = contaDebito;
+	}
+
+	public Conta getContaCredito() {
+		return contaCredito;
+	}
+
+	public void setContaCredito(Conta contaCredito) {
+		this.contaCredito = contaCredito;
+	}
+
 	public Transacao getTransacaoDebito() {
 		return transacaoDebito;
 	}
@@ -71,6 +104,8 @@ public class LancamentoContabil {
 	public void setTransacaoCredito(Transacao transacaoCredito) {
 		this.transacaoCredito = transacaoCredito;
 	}
+
+	
 	
 	
 	

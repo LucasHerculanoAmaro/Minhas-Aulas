@@ -10,7 +10,7 @@ import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.repository.ContaRepository;
 
 @RestController
-@RequestMapping("/api/contas")
+@RequestMapping("/contas")
 public class ContaController {
 
 	@Autowired

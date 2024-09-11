@@ -15,9 +15,22 @@ public class Conta {
 	private Long id;
 	private String nome;
 	private String codigo;
-	private String tipo;
+	private String contaDebido;
+	private String contaCredito;
 	private BigDecimal saldo;
 	
+	public String getContaDebido() {
+		return contaDebido;
+	}
+	public void setContaDebido(String contaDebido) {
+		this.contaDebido = contaDebido;
+	}
+	public String getContaCredito() {
+		return contaCredito;
+	}
+	public void setContaCredito(String contaCredito) {
+		this.contaCredito = contaCredito;
+	}
 	public Long getId() {
 		return id;
 	}

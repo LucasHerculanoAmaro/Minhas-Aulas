@@ -15,14 +15,14 @@ import com.euripedes.Conectando.repository.RazaoAnaliticoRepository;
 public class RazaoAnaliticoService {
 
 	@Autowired
-	private RazaoAnaliticoRepository razaoRepository;
+	private RazaoAnaliticoRepository razaoAnaliticoRepository;
 	
 	@Autowired
 	private LancamentoContabilRepository lancamentoContabilRepository;
 	
 	
 	public List<RazaoAnalitico> obterMovimentacoesPorConta(String nomeConta) {
-        return razaoRepository.findByContaNome(nomeConta);
+        return razaoAnaliticoRepository.findByContaNome(nomeConta);
     }
 	
 	public List<LancamentoContabil> listarTransacoesPorConta(Long id) {
@@ -33,6 +33,26 @@ public class RazaoAnaliticoService {
         BigDecimal totalDebito = lancamentoContabilRepository.sumDebitoById(id);
         BigDecimal totalCredito = lancamentoContabilRepository.sumCreditoById(id);
         return totalDebito.subtract(totalCredito);
+    }
+	
+	public RazaoAnalitico atualizarRazao(LancamentoContabil lancamento) {
+        // Encontrar ou criar Razão para a conta de débito
+        RazaoAnalitico razaoDebito = razaoAnaliticoRepository.findByConta(lancamento.getContaDebito())
+                .orElse(new RazaoAnalitico(lancamento.getContaDebito()));
+
+        // Atualizar saldo da conta de débito
+        razaoDebito.setSaldo(razaoDebito.getSaldo().subtract(lancamento.getValor()));
+        razaoAnaliticoRepository.save(razaoDebito);
+
+        // Encontrar ou criar Razão para a conta de crédito
+        RazaoAnalitico razaoCredito = razaoAnaliticoRepository.findByConta(lancamento.getContaCredito())
+                .orElse(new RazaoAnalitico(lancamento.getContaCredito()));
+
+        // Atualizar saldo da conta de crédito
+        razaoCredito.setSaldo(razaoCredito.getSaldo().add(lancamento.getValor()));
+        razaoAnaliticoRepository.save(razaoCredito);
+
+        return razaoDebito; // ou retorno necessário
     }
 	
 }

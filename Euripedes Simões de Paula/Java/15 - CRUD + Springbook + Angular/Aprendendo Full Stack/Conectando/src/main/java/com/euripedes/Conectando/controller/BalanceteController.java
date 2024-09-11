@@ -8,15 +8,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.euripedes.Conectando.model.Balancete;
 import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.service.BalanceteService;
 
 @RestController
-@RequestMapping("/api/balancete")
+@RequestMapping("/balancete")
 public class BalanceteController {
 
 	@Autowired
 	private BalanceteService balanceteService;
+	
+//	Unidade de Teste
+	static {
+		System.out.println("Controlador Balancete carregado");
+	}
 	
 	@GetMapping("/total-geral")
 	public BigDecimal calcularTotalGeral() {
@@ -27,5 +33,10 @@ public class BalanceteController {
 	public List<Conta> listarContas() {
 		return balanceteService.listarContas();
 	}
+	
+    @GetMapping("/gerar")
+    public Balancete gerarBalancete() {
+        return balanceteService.gerarBalancete();
+    }
 	
 }

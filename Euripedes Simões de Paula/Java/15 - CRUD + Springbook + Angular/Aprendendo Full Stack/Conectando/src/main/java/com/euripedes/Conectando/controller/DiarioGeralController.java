@@ -3,6 +3,7 @@ package com.euripedes.Conectando.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,19 +14,25 @@ import com.euripedes.Conectando.model.LancamentoContabil;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 
 @RestController
-@RequestMapping("/api/diario")
+@RequestMapping("/diario")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DiarioGeralController {
 
 	@Autowired
 	private LancamentoContabilRepository lancamentoContabilRepository;
 	
-	@GetMapping
+//	Unidade de Teste
+	static {
+		System.out.println("Controlador Diário carregado");
+	}
+	
+	@GetMapping("/all")
 	public List<LancamentoContabil> listarTransacoes() {
 		return lancamentoContabilRepository.findAll();
 	}
 	
-	@PostMapping
-	public LancamentoContabil criarTransacoes(@RequestBody LancamentoContabil lancamento) {
+	@PostMapping("/registrar")
+	public LancamentoContabil registrarTransacoes(@RequestBody LancamentoContabil lancamento) {
 		return lancamentoContabilRepository.save(lancamento);
 	}
 	
