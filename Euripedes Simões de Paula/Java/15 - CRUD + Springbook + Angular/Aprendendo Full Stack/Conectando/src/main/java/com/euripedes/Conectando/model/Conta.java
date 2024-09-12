@@ -1,7 +1,5 @@
 package com.euripedes.Conectando.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,29 +11,30 @@ public class Conta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String codigo;
-	private String contaDebido;
-	private String contaCredito;
-	private BigDecimal saldo;
+
+	private String codigo;  // Código da conta, ex: "1111" para Caixa, "2222" para Fornecedores
+	private String nome;    // Nome da conta, ex: "Caixa", "Fornecedores"
+	private String tipo;    // Tipo da conta, ex: "Débito" ou "Crédito" (ou patrimonial e resultado, dependendo do caso)
+	 
+	public Conta(Long id, String codigo, String nome, String tipo) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.nome = nome;
+		this.tipo = tipo;
+	}
 	
-	public String getContaDebido() {
-		return contaDebido;
-	}
-	public void setContaDebido(String contaDebido) {
-		this.contaDebido = contaDebido;
-	}
-	public String getContaCredito() {
-		return contaCredito;
-	}
-	public void setContaCredito(String contaCredito) {
-		this.contaCredito = contaCredito;
-	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	public String getNome() {
 		return nome;
@@ -49,18 +48,10 @@ public class Conta {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public BigDecimal getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(BigDecimal saldo) {
-		this.saldo = saldo;
-	}
-	public String getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+
+	
+	
+
 	
 	
 }
