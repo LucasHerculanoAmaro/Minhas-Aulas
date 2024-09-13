@@ -13,8 +13,8 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cliente_id")
-	private Long id;
+//	@Column(name = "cliente_id")
+	private Long clienteId;
 	
 	@Column(name = "nomeCliente")
 	private String nomeCliente;
@@ -22,18 +22,18 @@ public class Cliente {
 	@Column(name = "cnpj")
 	private String cnpj;
 	
-	public void cliente(Long id, String nomeCliente, String cnpj) {
-		this.id = id;
+	public void cliente(Long clienteId, String nomeCliente, String cnpj) {
+		this.clienteId = clienteId;
 		this.nomeCliente = nomeCliente;
 		this.cnpj = cnpj;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getClienteId() {
+		return clienteId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
 	}
 
 	public String getNomeCliente() {

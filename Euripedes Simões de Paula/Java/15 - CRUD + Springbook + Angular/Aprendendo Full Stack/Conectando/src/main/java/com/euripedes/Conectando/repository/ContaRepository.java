@@ -8,10 +8,15 @@ import com.euripedes.Conectando.model.Conta;
 
 public interface ContaRepository extends JpaRepository<Conta, Long>{
 	
+	//List<Conta> findByConta(String conta);
+	
 	Optional<Conta> findById(Long id);
 	
-	Optional<Conta> findByNumero(String numero);
+	//Optional<Conta> findByCodigo(Conta codigoDebito);
+	
+	Optional<Conta> findByCodigo(String codigo);
 	
 	Conta findByNome(String nome);
+
 	
 }

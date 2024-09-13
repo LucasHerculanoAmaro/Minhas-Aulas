@@ -1,10 +1,11 @@
 package com.euripedes.Conectando.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,21 +17,53 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.LancamentoContabil;
+import com.euripedes.Conectando.model.LancamentoContabilDto;
+import com.euripedes.Conectando.repository.ContaRepository;
+import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 import com.euripedes.Conectando.service.LancamentoContabilService;
 
 @RestController
 @RequestMapping("/lancamentos")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LancamentoContabilController {
 
+	@Autowired
+	private LancamentoContabilRepository lancamentoContabilRepository;
+	
+	@Autowired
+	private ContaRepository contaRepository;
+	
     @Autowired
     private LancamentoContabilService lancamentoContabilService;
 
-    // Método para criar um novo lançamento
-    @PostMapping
-    public ResponseEntity<LancamentoContabil> criarLancamento(@RequestBody LancamentoContabil novoLancamento) {
-        LancamentoContabil lancamento = lancamentoContabilService.criarLancamento(novoLancamento);
-        return ResponseEntity.status(HttpStatus.CREATED).body(lancamento);
+    
+    @GetMapping("/test")
+    public List<Conta> listarContas() {
+        return contaRepository.findAll();
     }
+    
+    // Método para criar um novo lançamento
+    @PostMapping("/registrar")
+    public ResponseEntity<?> cadastrarTransacao(@RequestBody LancamentoContabilDto lancamentoDto) {
+        LancamentoContabil lancamento = new LancamentoContabil();
+        lancamento.setValor(lancamentoDto.getValor());
+        lancamento.setData(lancamentoDto.getData());
+        lancamento.setHistorico(lancamentoDto.getHistorico());
+
+        // Buscar contas no banco de dados
+        Conta contaDebito = contaRepository.findById(lancamentoDto.getContaDebitoId())
+                .orElseThrow(() -> new RuntimeException("Conta de débito não encontrada"));
+        Conta contaCredito = contaRepository.findById(lancamentoDto.getContaCreditoId())
+                .orElseThrow(() -> new RuntimeException("Conta de crédito não encontrada"));
+
+        lancamento.setCodigoDebito(contaDebito);
+        lancamento.setCodigoCredito(contaCredito);
+
+        lancamentoContabilRepository.save(lancamento);
+        return ResponseEntity.ok("Lançamento cadastrado com sucesso.");
+    }
+
+
 
     // Método para listar todos os lançamentos
     @GetMapping("/todos")

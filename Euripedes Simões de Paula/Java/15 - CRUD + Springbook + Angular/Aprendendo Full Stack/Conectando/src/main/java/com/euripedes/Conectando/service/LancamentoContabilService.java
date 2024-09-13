@@ -35,8 +35,8 @@ public class LancamentoContabilService {
     public LancamentoContabil atualizarLancamento(Long id, LancamentoContabil lancamentoAtualizado) {
         return lancamentoContabilRepository.findById(id)
             .map(lancamento -> {
-                lancamento.setContaDebito(lancamentoAtualizado.getContaDebito());
-                lancamento.setContaCredito(lancamentoAtualizado.getContaCredito());
+                lancamento.setCodigoDebito(lancamentoAtualizado.getCodigoDebito());
+                lancamento.setCodigoCredito(lancamentoAtualizado.getCodigoCredito());
                 lancamento.setData(lancamentoAtualizado.getData());
                 lancamento.setHistorico(lancamentoAtualizado.getHistorico());
                 lancamento.setValor(lancamentoAtualizado.getValor());
