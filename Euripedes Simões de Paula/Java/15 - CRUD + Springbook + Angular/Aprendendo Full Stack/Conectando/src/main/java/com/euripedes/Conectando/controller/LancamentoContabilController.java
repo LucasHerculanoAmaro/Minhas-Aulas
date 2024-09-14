@@ -20,7 +20,10 @@ import com.euripedes.Conectando.model.LancamentoContabil;
 import com.euripedes.Conectando.model.LancamentoContabilDto;
 import com.euripedes.Conectando.repository.ContaRepository;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
+import com.euripedes.Conectando.service.BalanceteService;
 import com.euripedes.Conectando.service.LancamentoContabilService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/lancamentos")
@@ -35,6 +38,9 @@ public class LancamentoContabilController {
 	
     @Autowired
     private LancamentoContabilService lancamentoContabilService;
+    
+    @Autowired
+    private BalanceteService balanceteService;
 
     
     @GetMapping("/test")
@@ -50,20 +56,24 @@ public class LancamentoContabilController {
         lancamento.setData(lancamentoDto.getData());
         lancamento.setHistorico(lancamentoDto.getHistorico());
 
-        // Buscar contas no banco de dados
-        Conta contaDebito = contaRepository.findById(lancamentoDto.getContaDebitoId())
-                .orElseThrow(() -> new RuntimeException("Conta de débito não encontrada"));
-        Conta contaCredito = contaRepository.findById(lancamentoDto.getContaCreditoId())
-                .orElseThrow(() -> new RuntimeException("Conta de crédito não encontrada"));
-
+        // Definir contas crédito e débito
+        Conta contaDebito = contaRepository.findById(lancamentoDto.getContaDebitoId()).orElseThrow();
+        Conta contaCredito = contaRepository.findById(lancamentoDto.getContaCreditoId()).orElseThrow();
         lancamento.setCodigoDebito(contaDebito);
         lancamento.setCodigoCredito(contaCredito);
 
-        lancamentoContabilRepository.save(lancamento);
+        lancamentoContabilRepository.save(lancamento);  
+        // Atualiza o balancete
+        balanceteService.atualizarBalancete(lancamento);
+
         return ResponseEntity.ok("Lançamento cadastrado com sucesso.");
     }
-
-
+    
+//    @PostMapping("/cadastrar")
+//    public ResponseEntity<LancamentoContabil> cadastrarTransacao(@RequestBody LancamentoContabil lancamento) {
+//        LancamentoContabil novoLancamento = lancamentoContabilService.criarLancamento(lancamento);
+//        return ResponseEntity.ok(novoLancamento);
+//    }
 
     // Método para listar todos os lançamentos
     @GetMapping("/todos")
@@ -82,14 +92,39 @@ public class LancamentoContabilController {
     // Método para atualizar um lançamento
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<LancamentoContabil> atualizarLancamento(@PathVariable Long id, @RequestBody LancamentoContabil lancamentoAtualizado) {
-        LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
-        return ResponseEntity.ok(lancamento);
+//        LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
+//        return ResponseEntity.ok(lancamento);
+    	try {
+    		LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
+    		return ResponseEntity.ok(lancamento);
+    	} catch (EntityNotFoundException e) {
+    		return ResponseEntity.notFound().build();
+    	}
     }
 
     // Método para deletar um lançamento
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
-        lancamentoContabilService.deletarLancamento(id);
-        return ResponseEntity.noContent().build();
+    	LancamentoContabil lancamento = lancamentoContabilService.buscarLancamentoPorId(id);
+
+        if (lancamento != null) {
+            // Atualiza o balancete antes de deletar o lançamento
+            balanceteService.atualizarBalanceteRemocao(lancamento);
+            
+            // Deleta o lançamento
+            lancamentoContabilService.deletarLancamento(id);
+            
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+    
+//    @DeleteMapping("/lancamentos/{id}")
+//    public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
+//        lancamentoContabilService.deletarLancamento(id);
+//        balanceteService.excluirBalancetesPorLancamentoId(id);
+//        return ResponseEntity.noContent().build();
+//    }
+
 }

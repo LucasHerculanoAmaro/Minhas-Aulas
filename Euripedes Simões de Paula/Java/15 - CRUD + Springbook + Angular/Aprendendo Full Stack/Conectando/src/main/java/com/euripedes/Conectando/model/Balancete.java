@@ -2,6 +2,7 @@ package com.euripedes.Conectando.model;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,11 @@ public class Balancete {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    private String codigoConta;
+	@Column(name = "lancamento_id")
+	private Long lancamentoId;
+	
+    private Conta codigoConta;
+   // private String codigoConta;
     private BigDecimal saldoDevedor = BigDecimal.ZERO;
     private BigDecimal saldoCredor = BigDecimal.ZERO;
     
@@ -24,10 +29,16 @@ public class Balancete {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCodigoConta() {
+	public Long getLancamentoId() {
+		return lancamentoId;
+	}
+	public void setLancamentoId(Long lancamentoId) {
+		this.lancamentoId = lancamentoId;
+	}
+	public Conta getCodigoConta() {
 		return codigoConta;
 	}
-	public void setCodigoConta(String codigoConta) {
+	public void setCodigoConta(Conta codigoConta) {
 		this.codigoConta = codigoConta;
 	}
 	public BigDecimal getSaldoDevedor() {
@@ -42,7 +53,7 @@ public class Balancete {
 	public void setSaldoCredor(BigDecimal saldoCredor) {
 		this.saldoCredor = saldoCredor;
 	}
-    
-	
+
+
 	
 }

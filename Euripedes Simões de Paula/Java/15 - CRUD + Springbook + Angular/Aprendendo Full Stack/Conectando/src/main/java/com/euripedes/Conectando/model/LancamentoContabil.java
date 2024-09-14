@@ -123,5 +123,4 @@ public class LancamentoContabil {
 		this.contaId = contaId;
 	}
     
-    
 }
