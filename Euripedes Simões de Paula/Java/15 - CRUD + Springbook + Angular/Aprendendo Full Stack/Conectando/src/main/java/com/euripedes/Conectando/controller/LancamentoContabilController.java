@@ -103,28 +103,28 @@ public class LancamentoContabilController {
     }
 
     // Método para deletar um lançamento
+//    @DeleteMapping("/deletar/{id}")
+//    public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
+//    	LancamentoContabil lancamento = lancamentoContabilService.buscarLancamentoPorId(id);
+//
+//        if (lancamento != null) {
+//            // Atualiza o balancete antes de deletar o lançamento
+//            balanceteService.atualizarBalanceteRemocao(lancamento);
+//            
+//            // Deleta o lançamento
+//            lancamentoContabilService.deletarLancamento(id);
+//            
+//            return ResponseEntity.noContent().build();
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+    
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
-    	LancamentoContabil lancamento = lancamentoContabilService.buscarLancamentoPorId(id);
-
-        if (lancamento != null) {
-            // Atualiza o balancete antes de deletar o lançamento
-            balanceteService.atualizarBalanceteRemocao(lancamento);
-            
-            // Deleta o lançamento
-            lancamentoContabilService.deletarLancamento(id);
-            
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        lancamentoContabilService.deletarLancamento(id);
+        balanceteService.excluirBalancetesPorLancamentoId(id);
+        return ResponseEntity.noContent().build();
     }
-    
-//    @DeleteMapping("/lancamentos/{id}")
-//    public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
-//        lancamentoContabilService.deletarLancamento(id);
-//        balanceteService.excluirBalancetesPorLancamentoId(id);
-//        return ResponseEntity.noContent().build();
-//    }
 
 }

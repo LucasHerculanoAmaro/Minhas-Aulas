@@ -1,5 +1,6 @@
 package com.euripedes.Conectando.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class Conta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long contaId;
 
+	@Column(name = "codigo")
 	private String codigo;  // Código da conta, ex: "1111" para Caixa, "2222" para Fornecedores
 	private String nome;    // Nome da conta, ex: "Caixa", "Fornecedores"
 	private String tipo;    // Tipo da conta, ex: "Débito" ou "Crédito" (ou patrimonial e resultado, dependendo do caso)

@@ -122,5 +122,6 @@ public class LancamentoContabil {
 	public void setContaId(Conta contaId) {
 		this.contaId = contaId;
 	}
+
     
 }

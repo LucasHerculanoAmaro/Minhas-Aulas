@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.euripedes.Conectando.model.Balancete;
@@ -28,6 +29,14 @@ public class BalanceteController {
 		List<Balancete> balancete = balanceteService.listarBalancete();
 		return ResponseEntity.ok(balancete);
 	}
+	
+	@PostMapping
+    public ResponseEntity<Balancete> criarBalancete(
+            @RequestParam Long lancamentoId, 
+            @RequestBody Balancete balancete) {
+        Balancete novoBalancete = balanceteService.criarBalancete(lancamentoId, balancete);
+        return ResponseEntity.ok(novoBalancete);
+    }
 	
 	@PostMapping("/atualizar")
 	public ResponseEntity<Void> atualizarBalancete(@RequestBody LancamentoContabil lancamento) {

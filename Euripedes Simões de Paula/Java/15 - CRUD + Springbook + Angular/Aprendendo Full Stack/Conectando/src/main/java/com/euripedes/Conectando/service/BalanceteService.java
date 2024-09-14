@@ -12,6 +12,7 @@ import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.LancamentoContabil;
 import com.euripedes.Conectando.repository.BalanceteRepository;
 import com.euripedes.Conectando.repository.ContaRepository;
+import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -20,18 +21,69 @@ public class BalanceteService {
 
     @Autowired
     private BalanceteRepository balanceteRepository;
+    
+    @Autowired
+    private ContaRepository contaRepository;
+    
+    @Autowired
+    private LancamentoContabilRepository lancamentoRepository;
  
-    public void atualizarBalancete(LancamentoContabil lancamento) {
-        // Atualizar saldo da conta débito
-        atualizarSaldo(lancamento.getCodigoDebito().getCodigo(), lancamento.getValor(), true);
+    
+    public Balancete criarBalancete(Long lancamentoId, Balancete balancete) {
+        // Encontrar o lançamento pelo ID
+        LancamentoContabil lancamento = lancamentoRepository.findById(lancamentoId)
+                .orElseThrow(() -> new RuntimeException("Lançamento não encontrado"));
 
-        // Atualizar saldo da conta crédito
-        atualizarSaldo(lancamento.getCodigoCredito().getCodigo(), lancamento.getValor(), false);
+        // Criar um novo Balancete
+        Balancete novoBalancete = new Balancete();
+        novoBalancete.setLancamento(lancamento);
+        // Definir outros atributos do Balancete a partir do DTO
+        // ...
+
+        // Salvar o Balancete
+        return balanceteRepository.save(balancete);
+    }
+    
+    public void atualizarBalancete(LancamentoContabil lancamento) {
+//    	// Buscar a conta débito pelo código
+//        Conta contaDebito = contaRepository.findByCodigo(lancamento.getCodigoDebito().getCodigo())
+//                .orElseThrow(() -> new EntityNotFoundException("Conta débito não encontrada"));
+//
+//        // Atualizar saldo da conta débito
+//        atualizarSaldo(contaDebito, lancamento.getValor(), true);
+//
+//        // Buscar a conta crédito pelo código
+//        Conta contaCredito = contaRepository.findByCodigo(lancamento.getCodigoCredito().getCodigo())
+//                .orElseThrow(() -> new EntityNotFoundException("Conta crédito não encontrada"));
+//
+//        // Atualizar saldo da conta crédito
+//        atualizarSaldo(contaCredito, lancamento.getValor(), false);
+    	Optional<Balancete> balanceteCreditoOpt = balanceteRepository.findByConta(lancamento.getCodigoCredito());
+        if (balanceteCreditoOpt.isPresent()) {
+            Balancete balanceteCredito = balanceteCreditoOpt.get();
+            
+            // Ajusta o valor do balancete
+            balanceteCredito.setValor(balanceteCredito.getValor().subtract(lancamento.getValor()));
+            
+            balanceteRepository.save(balanceteCredito);
+        }
+
+        // Repita o processo para outros tipos de contas ou atributos, conforme necessário
+        // Exemplo para débito
+        Optional<Balancete> balanceteDebitoOpt = balanceteRepository.findByConta(lancamento.getCodigoDebito());
+        if (balanceteDebitoOpt.isPresent()) {
+            Balancete balanceteDebito = balanceteDebitoOpt.get();
+            
+            // Ajusta o valor do balancete
+            balanceteDebito.setValor(balanceteDebito.getValor().add(lancamento.getValor()));
+            
+            balanceteRepository.save(balanceteDebito);
+        }
     }
 
     private void atualizarSaldo(Conta conta, BigDecimal valor, boolean isDebito) {
         // Busca o balancete pela conta
-        Optional<Balancete> balanceteOpt = balanceteRepository.findByCodigoConta(conta);
+        Optional<Balancete> balanceteOpt = balanceteRepository.findByConta(conta);
         
         Balancete balancete;
         
@@ -40,7 +92,7 @@ public class BalanceteService {
         } else {
             // Se não existir, cria um novo
             balancete = new Balancete();
-            balancete.setCodigoConta(conta);
+            balancete.setConta(conta);  // Atualize aqui
         }
         
         if (isDebito) {
@@ -54,25 +106,47 @@ public class BalanceteService {
         // Salvar ou atualizar o balancete
         balanceteRepository.save(balancete);
     }
+
     
     public void atualizarBalanceteRemocao(LancamentoContabil lancamento) {
-    	// Ajusta o saldo da conta de débito no balancete
-        Balancete balanceteDebito = balanceteRepository.findById(lancamento.getId())
-            .orElseThrow(() -> new EntityNotFoundException("Conta de débito não encontrada no balancete"));
-        balanceteDebito.setSaldoDevedor(balanceteDebito.getSaldoDevedor().add(lancamento.getValor())); // Reverte o valor
-        balanceteRepository.save(balanceteDebito);
+    	// Obter o balancete para a conta de débito
+        Optional<Balancete> balanceteDebitoOpt = balanceteRepository.findByConta(lancamento.getCodigoDebito());
+        if (balanceteDebitoOpt.isPresent()) {
+            Balancete balanceteDebito = balanceteDebitoOpt.get();
+            
+         // Se o valor for nulo, inicializa com BigDecimal.ZERO
+            if (balanceteDebito.getValor() == null) {
+            	balanceteDebito.setValor(BigDecimal.ZERO);
+            }
+            
+            balanceteDebito.setValor(balanceteDebito.getValor().add(lancamento.getValor()));
+        }
 
-        // Ajusta o saldo da conta de crédito no balancete
-        Balancete balanceteCredito = balanceteRepository.findById(lancamento.getId())
-            .orElseThrow(() -> new EntityNotFoundException("Conta de crédito não encontrada no balancete"));
-        balanceteCredito.setSaldoCredor(balanceteCredito.getSaldoCredor().add(lancamento.getValor())); // Reverte o valor
-        balanceteRepository.save(balanceteCredito);
+        // Obter o balancete para a conta de crédito
+        Optional<Balancete> balanceteCreditoOpt = balanceteRepository.findByConta(lancamento.getCodigoCredito());
+        if (balanceteCreditoOpt.isPresent()) {
+            Balancete balanceteCredito = balanceteCreditoOpt.get();
+
+            // Se o valor for nulo, inicializa com BigDecimal.ZERO
+            if (balanceteCredito.getValor() == null) {
+                balanceteCredito.setValor(BigDecimal.ZERO);
+            }
+
+            // Adiciona o valor do lançamento ao valor do balancete
+            balanceteCredito.setValor(balanceteCredito.getValor().add(lancamento.getValor()));
+
+            balanceteRepository.save(balanceteCredito);
+        }
     }
     
     public void excluirBalancetesPorLancamentoId(Long lancamentoId) {
-        List<Balancete> balancetes = balanceteRepository.findByLancamentoId(lancamentoId);
+    	List<Balancete> balancetes = balanceteRepository.findByLancamentoId(lancamentoId);
+        System.out.println("Balancetes encontrados: " + balancetes);
         if (!balancetes.isEmpty()) {
             balanceteRepository.deleteAll(balancetes);
+            System.out.println("Balancetes excluídos com sucesso.");
+        } else {
+            System.out.println("Nenhum balancete encontrado para o ID do lançamento: " + lancamentoId);
         }
     }
 
