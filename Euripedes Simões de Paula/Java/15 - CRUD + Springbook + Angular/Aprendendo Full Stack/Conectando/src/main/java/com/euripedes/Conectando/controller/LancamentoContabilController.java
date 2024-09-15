@@ -1,8 +1,6 @@
 package com.euripedes.Conectando.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -65,15 +63,11 @@ public class LancamentoContabilController {
         lancamentoContabilRepository.save(lancamento);  
         // Atualiza o balancete
         balanceteService.atualizarBalancete(lancamento);
+        lancamentoContabilService.criarLancamento(lancamento); // código descomentado
+        
 
         return ResponseEntity.ok("Lançamento cadastrado com sucesso.");
     }
-    
-//    @PostMapping("/cadastrar")
-//    public ResponseEntity<LancamentoContabil> cadastrarTransacao(@RequestBody LancamentoContabil lancamento) {
-//        LancamentoContabil novoLancamento = lancamentoContabilService.criarLancamento(lancamento);
-//        return ResponseEntity.ok(novoLancamento);
-//    }
 
     // Método para listar todos os lançamentos
     @GetMapping("/todos")
@@ -92,8 +86,6 @@ public class LancamentoContabilController {
     // Método para atualizar um lançamento
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<LancamentoContabil> atualizarLancamento(@PathVariable Long id, @RequestBody LancamentoContabil lancamentoAtualizado) {
-//        LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
-//        return ResponseEntity.ok(lancamento);
     	try {
     		LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
     		return ResponseEntity.ok(lancamento);
@@ -103,23 +95,6 @@ public class LancamentoContabilController {
     }
 
     // Método para deletar um lançamento
-//    @DeleteMapping("/deletar/{id}")
-//    public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
-//    	LancamentoContabil lancamento = lancamentoContabilService.buscarLancamentoPorId(id);
-//
-//        if (lancamento != null) {
-//            // Atualiza o balancete antes de deletar o lançamento
-//            balanceteService.atualizarBalanceteRemocao(lancamento);
-//            
-//            // Deleta o lançamento
-//            lancamentoContabilService.deletarLancamento(id);
-//            
-//            return ResponseEntity.noContent().build();
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-    
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
         lancamentoContabilService.deletarLancamento(id);

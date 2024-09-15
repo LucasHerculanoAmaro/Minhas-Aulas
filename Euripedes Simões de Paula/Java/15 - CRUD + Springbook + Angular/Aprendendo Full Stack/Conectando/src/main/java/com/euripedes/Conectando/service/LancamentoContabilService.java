@@ -12,6 +12,8 @@ import com.euripedes.Conectando.repository.BalanceteRepository;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundException;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class LancamentoContabilService {
 
@@ -69,7 +71,7 @@ public class LancamentoContabilService {
 
     public LancamentoContabil cadastrarTransacao(LancamentoContabil lancamentoContabil) {
         LancamentoContabil novoLancamento = lancamentoContabilRepository.save(lancamentoContabil);
-
+        
         // Atualizar balancete com o id do novo lançamento
         Balancete balanceteDebito = new Balancete();
         balanceteDebito.setConta(lancamentoContabil.getCodigoDebito());
@@ -101,6 +103,7 @@ public class LancamentoContabilService {
     }
 
     // Deletar um lançamento
+    @Transactional
     public void deletarLancamento(Long id) {
 
     	// Encontrar o lançamento a ser deletado pelo ID
@@ -129,13 +132,14 @@ public class LancamentoContabilService {
                 balanceteCredito.setValor(balanceteCredito.getValor().subtract(lancamento.getValor()));
                 balanceteRepository.save(balanceteCredito);
             }
+          
 
-            balanceteService.atualizarBalancete(lancamento);
-            
+            balanceteService.atualizarBalancete(lancamento);    
+            balanceteService.excluirBalancetesPorLancamentoId(id);
             // Finalmente, deletar o lançamento
             lancamentoContabilRepository.deleteById(id);
+            
         }
-        
     	
         
     }
