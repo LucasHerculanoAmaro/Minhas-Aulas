@@ -21,7 +21,7 @@ public class Balancete {
     private Long lancamentoId;
     
     @ManyToOne
-    @JoinColumn(name = "lancamento") // Nome da coluna na tabela balancete
+    @JoinColumn(name = "lancamento", referencedColumnName = "id") // Nome da coluna na tabela balancete
     private LancamentoContabil lancamento;
     
     @ManyToOne

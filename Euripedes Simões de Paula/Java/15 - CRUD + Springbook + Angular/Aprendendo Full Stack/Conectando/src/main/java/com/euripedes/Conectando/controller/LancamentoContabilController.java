@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.LancamentoContabil;
 import com.euripedes.Conectando.model.LancamentoContabilDto;
+import com.euripedes.Conectando.repository.BalanceteRepository;
 import com.euripedes.Conectando.repository.ContaRepository;
 import com.euripedes.Conectando.repository.LancamentoContabilRepository;
 import com.euripedes.Conectando.service.BalanceteService;
@@ -39,6 +40,9 @@ public class LancamentoContabilController {
     
     @Autowired
     private BalanceteService balanceteService;
+    
+    @Autowired
+    private BalanceteRepository balanceteRepository;;
 
     
     @GetMapping("/test")
@@ -49,22 +53,23 @@ public class LancamentoContabilController {
     // Método para criar um novo lançamento
     @PostMapping("/registrar")
     public ResponseEntity<?> cadastrarTransacao(@RequestBody LancamentoContabilDto lancamentoDto) {
+        // Cria o novo lançamento a partir dos dados do DTO
         LancamentoContabil lancamento = new LancamentoContabil();
         lancamento.setValor(lancamentoDto.getValor());
         lancamento.setData(lancamentoDto.getData());
         lancamento.setHistorico(lancamentoDto.getHistorico());
 
-        // Definir contas crédito e débito
+        // Define as contas crédito e débito
         Conta contaDebito = contaRepository.findById(lancamentoDto.getContaDebitoId()).orElseThrow();
         Conta contaCredito = contaRepository.findById(lancamentoDto.getContaCreditoId()).orElseThrow();
         lancamento.setCodigoDebito(contaDebito);
         lancamento.setCodigoCredito(contaCredito);
 
-        lancamentoContabilRepository.save(lancamento);  
+        // Salva o lançamento
+        LancamentoContabil lancamentoSalvo = lancamentoContabilService.criarLancamento(lancamento);
+
         // Atualiza o balancete
-        balanceteService.atualizarBalancete(lancamento);
-        lancamentoContabilService.criarLancamento(lancamento); // código descomentado
-        
+        balanceteService.atualizarBalancete(lancamentoSalvo);
 
         return ResponseEntity.ok("Lançamento cadastrado com sucesso.");
     }

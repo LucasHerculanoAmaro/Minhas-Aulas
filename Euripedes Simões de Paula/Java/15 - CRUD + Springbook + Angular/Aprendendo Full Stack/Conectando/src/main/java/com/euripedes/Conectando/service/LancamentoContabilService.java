@@ -1,5 +1,6 @@
 package com.euripedes.Conectando.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,23 +41,27 @@ public class LancamentoContabilService {
     	// Salva o lançamento
         LancamentoContabil novoLancamento = lancamentoContabilRepository.save(lancamento);
 
-        // Cria o balancete para a conta débito
+        // Atualiza o balancete para a conta débito
         Balancete balanceteDebito = new Balancete();
-        balanceteDebito.setConta(lancamento.getCodigoDebito());
-        balanceteDebito.setValor(lancamento.getValor());
-        balanceteDebito.setLancamento(novoLancamento);  // Associa o lancamento ao balancete
+        balanceteDebito.setConta(novoLancamento.getCodigoDebito());
+        balanceteDebito.setLancamento(novoLancamento);  // Associa o lançamento ao balancete
+        balanceteDebito.setSaldoDevedor(novoLancamento.getValor());  // Define o saldo devedor
+        balanceteDebito.setSaldoCredor(BigDecimal.ZERO);  // Sem saldo credor
         balanceteRepository.save(balanceteDebito);
 
-        // Cria o balancete para a conta crédito
+        // Atualiza o balancete para a conta crédito
         Balancete balanceteCredito = new Balancete();
-        balanceteCredito.setConta(lancamento.getCodigoCredito());
-        balanceteCredito.setValor(lancamento.getValor().negate());  // Valor negativo
-        balanceteCredito.setLancamento(novoLancamento);  // Associa o lancamento ao balancete
+        balanceteCredito.setConta(novoLancamento.getCodigoCredito());
+        balanceteCredito.setLancamento(novoLancamento);  // Associa o lançamento ao balancete
+        balanceteCredito.setSaldoCredor(novoLancamento.getValor());  // Define o saldo credor
+        balanceteCredito.setSaldoDevedor(BigDecimal.ZERO);  // Sem saldo devedor
         balanceteRepository.save(balanceteCredito);
 
         return novoLancamento;
     	
     }
+    
+    
 
     // Listar todos os lançamentos
     public List<LancamentoContabil> listarLancamentos() {
@@ -134,11 +139,13 @@ public class LancamentoContabilService {
             }
           
 
-            balanceteService.atualizarBalancete(lancamento);    
-            balanceteService.excluirBalancetesPorLancamentoId(id);
+            //balanceteService.atualizarBalancete(lancamento);    
+            //balanceteService.excluirBalancetesPorLancamentoId(id);
             // Finalmente, deletar o lançamento
             lancamentoContabilRepository.deleteById(id);
             
+        } else {
+        	throw new RuntimeException("Não há Lançamentos com o ID informado.");
         }
     	
         
