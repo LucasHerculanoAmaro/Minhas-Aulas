@@ -17,36 +17,26 @@ public class Balancete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "lancamento_id")
-    private Long lancamentoId;
-    
     @ManyToOne
-    @JoinColumn(name = "lancamento", referencedColumnName = "id") // Nome da coluna na tabela balancete
+    @JoinColumn(name = "lancamento") // Nome da coluna na tabela balancete
     private LancamentoContabil lancamento;
     
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta conta;
     
-   // @Column(name = "codigo")
-    private String codigo;
-    
     private BigDecimal valor = BigDecimal.ZERO;
     
-    private BigDecimal saldoDevedor = BigDecimal.ZERO;
-    private BigDecimal saldoCredor = BigDecimal.ZERO;
+    private BigDecimal valorDebito = BigDecimal.ZERO;
+    private BigDecimal valorCredito = BigDecimal.ZERO;
     
-    public Long getId() {
+
+
+	public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
-    }
-    public Long getLancamentoId() {
-        return lancamentoId;
-    }
-    public void setLancamentoId(Long lancamentoId) {
-        this.lancamentoId = lancamentoId;
     }
     public Conta getConta() {
         return conta;
@@ -54,12 +44,6 @@ public class Balancete {
     public void setConta(Conta conta) {
         this.conta = conta;
     }
-    public String getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 	public LancamentoContabil getLancamento() {
 		return lancamento;
 	}
@@ -72,17 +56,18 @@ public class Balancete {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-	public BigDecimal getSaldoDevedor() {
-        return saldoDevedor;
-    }
-    public void setSaldoDevedor(BigDecimal saldoDevedor) {
-        this.saldoDevedor = saldoDevedor;
-    }
-    public BigDecimal getSaldoCredor() {
-        return saldoCredor;
-    }
-    public void setSaldoCredor(BigDecimal saldoCredor) {
-        this.saldoCredor = saldoCredor;
-    }
+	public BigDecimal getValorDebito() {
+		return valorDebito;
+	}
+	public void setValorDebito(BigDecimal valorDebito) {
+		this.valorDebito = valorDebito;
+	}
+	public BigDecimal getValorCredito() {
+		return valorCredito;
+	}
+	public void setValorCredito(BigDecimal valorCredito) {
+		this.valorCredito = valorCredito;
+	}
+	
 	
 }

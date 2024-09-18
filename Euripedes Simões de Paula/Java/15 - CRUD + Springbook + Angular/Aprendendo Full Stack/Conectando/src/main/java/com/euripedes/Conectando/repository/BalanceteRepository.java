@@ -15,13 +15,9 @@ public interface BalanceteRepository extends JpaRepository<Balancete, Long>{
     //List<Balancete> findByConta(Conta conta);
     Optional<Balancete> findByConta(Conta conta);
     
-    //List<Balancete> findByConta(String conta);
+    //List<Balancete> findAllByConta(Long contaId);
+    Balancete findByContaId(Conta conta);
 
-    List<Balancete> findByLancamentoId(Long lancamentoId);
-    
-    List<Balancete> findByLancamento_Id(Long lancamentoId);
-    
-    List<Balancete> deleteByLancamentoId(Long lancamentoId);
     // Caso você tenha uma relação entre Balancete e Conta, este método pode ser útil
     //Optional<Balancete> findByConta_Codigo(String codigoConta);
     

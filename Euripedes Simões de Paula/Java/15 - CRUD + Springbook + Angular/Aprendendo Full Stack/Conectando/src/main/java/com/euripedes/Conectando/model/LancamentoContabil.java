@@ -2,15 +2,18 @@ package com.euripedes.Conectando.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,41 +23,32 @@ public class LancamentoContabil {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "contaId")
-	private Conta contaId;
 
     @ManyToOne
-    @JoinColumn(name = "conta_debito_id")
-    private Conta codigoDebito;
+    @JoinColumn(name = "debito_id")
+    private Conta debitoId;
 
     @ManyToOne
-    @JoinColumn(name = "conta_credito_id")
-    private Conta codigoCredito;
+    @JoinColumn(name = "credito_id")
+    private Conta creditoId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate data;
     
     private String historico;
+    
     private BigDecimal valor;
-
-    @ManyToOne
-    @JoinColumn(name = "clienteId")
-    private Cliente cliente;
-
-	public LancamentoContabil(Long id, Conta codigoDebito, Conta codigoCredito, LocalDate data, String historico,
-			BigDecimal valor, Cliente cliente) {
+	
+	public LancamentoContabil(Long id, Conta debitoId, Conta creditoId, LocalDate data, String historico, BigDecimal valor) {
 		super();
 		this.id = id;
-		this.codigoDebito = codigoDebito;
-		this.codigoCredito = codigoCredito;
+		this.debitoId = debitoId;
+		this.creditoId = creditoId;
 		this.data = data;
 		this.historico = historico;
 		this.valor = valor;
-		this.cliente = cliente;
 	}
-	
+
 	public LancamentoContabil() {
 		
 	}
@@ -67,20 +61,20 @@ public class LancamentoContabil {
 		this.id = id;
 	}
 
-	public Conta getCodigoDebito() {
-		return codigoDebito;
+	public Conta getDebitoId() {
+		return debitoId;
 	}
 
-	public void setCodigoDebito(Conta codigoDebito) {
-		this.codigoDebito = codigoDebito;
+	public void setDebitoId(Conta debitoId) {
+		this.debitoId = debitoId;
 	}
 
-	public Conta getCodigoCredito() {
-		return codigoCredito;
+	public Conta getCreditoId() {
+		return creditoId;
 	}
 
-	public void setCodigoCredito(Conta codigoCredito) {
-		this.codigoCredito = codigoCredito;
+	public void setCreditoId(Conta creditoId) {
+		this.creditoId = creditoId;
 	}
 
 	public LocalDate getData() {
@@ -107,21 +101,7 @@ public class LancamentoContabil {
 		this.valor = valor;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Conta getContaId() {
-		return contaId;
-	}
-
-	public void setContaId(Conta contaId) {
-		this.contaId = contaId;
-	}
+	
 
     
 }

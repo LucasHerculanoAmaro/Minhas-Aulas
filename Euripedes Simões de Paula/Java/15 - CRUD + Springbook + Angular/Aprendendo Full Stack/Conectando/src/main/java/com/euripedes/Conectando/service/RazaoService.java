@@ -20,19 +20,19 @@ public class RazaoService {
 	public Map<Conta, List<LancamentoContabil>> listarLancamentoPorConta() {
 		List<LancamentoContabil> lancamentos = lancamentoContabilRepository.findAll();
 		return lancamentos.stream()
-						  .collect(Collectors.groupingBy(LancamentoContabil::getCodigoDebito));
+						  .collect(Collectors.groupingBy(LancamentoContabil::getDebitoId));
 	}
 	
 	public Double calcularSaldoPorConta(Conta conta) {
-		List<LancamentoContabil> lancamentos = lancamentoContabilRepository.findByCodigoDebitoOrCodigoCredito(conta, conta);
+		List<LancamentoContabil> lancamentos = lancamentoContabilRepository.findByDebitoIdOrCreditoId(conta, conta);
 		
 		Double debitos = lancamentos.stream()
-									.filter(l -> l.getCodigoDebito().equals(conta))
+									.filter(l -> l.getDebitoId().equals(conta))
 									.mapToDouble(lancamento -> lancamento.getValor().doubleValue())
 									.sum();
 		
 		Double creditos = lancamentos.stream()
-									 .filter(l -> l.getCodigoCredito().equals(conta))
+									 .filter(l -> l.getCreditoId().equals(conta))
 									 .mapToDouble(lancamento -> lancamento.getValor().doubleValue())
 									 .sum();
 		return debitos - creditos;

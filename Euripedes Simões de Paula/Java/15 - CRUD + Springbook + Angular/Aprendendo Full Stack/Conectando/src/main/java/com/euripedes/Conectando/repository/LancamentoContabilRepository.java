@@ -13,11 +13,12 @@ import com.euripedes.Conectando.model.LancamentoContabil;
 public interface LancamentoContabilRepository extends JpaRepository<LancamentoContabil, Long> {
 
 	Optional<LancamentoContabil> findById(Long id);
-
-	List<LancamentoContabil> findByContaId(Conta contaId);
-	//List<LancamentoContabil> findByConta_Id(Long id);
 	
-	 List<LancamentoContabil> findByCodigoDebitoOrCodigoCredito(Conta contaDebito, Conta contaCredito);
+	List<LancamentoContabil> findByDebitoId(Conta conta);
+	List<LancamentoContabil> findByCreditoId(Conta conta);
+	
+	List<LancamentoContabil> findByDebitoIdOrCreditoId(Conta contaDebito, Conta contaCredito);
+
 	
 	@Query(value = "SELECT SUM(lancamento_devedor) FROM lancamento_contabil WHERE conta_id = ?1", nativeQuery = true)
 	BigDecimal sumDebitoById(Long Id);

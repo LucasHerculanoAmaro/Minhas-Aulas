@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,24 +25,24 @@ public class BalanceteController {
 	@Autowired
 	private BalanceteService balanceteService;
 	
-	@GetMapping
-	public ResponseEntity<List<Balancete>> listarBalancete() {
-		List<Balancete> balancete = balanceteService.listarBalancete();
-		return ResponseEntity.ok(balancete);
-	}
+//	@GetMapping
+//	public ResponseEntity<List<Balancete>> listarBalancete() {
+//		List<Balancete> balancete = balanceteService.listarBalancete();
+//		return ResponseEntity.ok(balancete);
+//	}
 	
-	@PostMapping
-    public ResponseEntity<Balancete> criarBalancete(
-            @RequestParam Long lancamentoId, 
-            @RequestBody Balancete balancete) {
-        Balancete novoBalancete = balanceteService.criarBalancete(lancamentoId, balancete);
-        return ResponseEntity.ok(novoBalancete);
-    }
-	
-	@PostMapping("/atualizar")
-	public ResponseEntity<Void> atualizarBalancete(@RequestBody LancamentoContabil lancamento) {
-		balanceteService.atualizarBalancete(lancamento);
-		return ResponseEntity.ok().build();
-	}
+//	@PostMapping
+//    public ResponseEntity<Balancete> criarBalancete(
+//            @RequestParam Long lancamentoId, 
+//            @RequestBody Balancete balancete) {
+//        Balancete novoBalancete = balanceteService.criarBalancete(lancamentoId, balancete);
+//        return ResponseEntity.ok(novoBalancete);
+//    }
+//	
+//	@PutMapping("/atualizar")
+//	public ResponseEntity<Void> atualizarBalancete(@RequestBody LancamentoContabil lancamento) {
+//		balanceteService.atualizarBalancete(lancamento);
+//		return ResponseEntity.ok().build();
+//	}
 	
 }

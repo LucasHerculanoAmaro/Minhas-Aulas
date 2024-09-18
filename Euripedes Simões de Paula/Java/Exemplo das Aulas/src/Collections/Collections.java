@@ -19,9 +19,9 @@ public class Collections {
 		// Criando uma lista
 		List<String> list = new ArrayList<>();
 		// Adicionando valores a lista
-		list.add("A");
-		list.add("B");
-		list.add("C");
+		list.add("A"); // 0
+		list.add("B"); // 1
+		list.add("C"); // 2
 		// Selecionando valores da lista
 		System.out.println(list.get(1));
 		
@@ -30,9 +30,9 @@ public class Collections {
 		// Criando uma LinkedList
 		List<String> linkedList = new LinkedList<>();
 		// Adicionando valores a LinkedList
-		linkedList.add("A");
-		linkedList.add("B");
-		linkedList.add("C");
+		linkedList.add("A"); // 0
+		linkedList.add("B"); // 1
+		linkedList.add("C"); // 2
 		// Selecionando valores da lista
 		System.out.println(linkedList.get(2));
 		

@@ -2,6 +2,7 @@ package com.euripedes.Conectando.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,16 +44,26 @@ public class LancamentoContabilController {
     
     @Autowired
     private BalanceteRepository balanceteRepository;;
-
     
-    @GetMapping("/test")
-    public List<Conta> listarContas() {
-        return contaRepository.findAll();
+
+
+    // Método GET
+    @GetMapping("/all")
+    public ResponseEntity<List<LancamentoContabil>> getLancamentos() {
+        List<LancamentoContabil> lancamentos = lancamentoContabilService.getAll();//.listarLancamentos();
+        return ResponseEntity.ok(lancamentos);
+    }
+
+    // Método GET por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<LancamentoContabil> getLancamentoById(@PathVariable Long id) {
+        LancamentoContabil lancamento = lancamentoContabilService.getById(id);//.buscarLancamentoPorId(id);
+        return ResponseEntity.ok(lancamento);
     }
     
-    // Método para criar um novo lançamento
+    // Método POST
     @PostMapping("/registrar")
-    public ResponseEntity<?> cadastrarTransacao(@RequestBody LancamentoContabilDto lancamentoDto) {
+    public ResponseEntity<?> createTransacao(@RequestBody LancamentoContabilDto lancamentoDto) {
         // Cria o novo lançamento a partir dos dados do DTO
         LancamentoContabil lancamento = new LancamentoContabil();
         lancamento.setValor(lancamentoDto.getValor());
@@ -62,49 +73,57 @@ public class LancamentoContabilController {
         // Define as contas crédito e débito
         Conta contaDebito = contaRepository.findById(lancamentoDto.getContaDebitoId()).orElseThrow();
         Conta contaCredito = contaRepository.findById(lancamentoDto.getContaCreditoId()).orElseThrow();
-        lancamento.setCodigoDebito(contaDebito);
-        lancamento.setCodigoCredito(contaCredito);
+        lancamento.setDebitoId(contaDebito);
+        lancamento.setCreditoId(contaCredito);
 
         // Salva o lançamento
-        LancamentoContabil lancamentoSalvo = lancamentoContabilService.criarLancamento(lancamento);
+        lancamentoContabilService.createLancamento(lancamento);
 
         // Atualiza o balancete
-        balanceteService.atualizarBalancete(lancamentoSalvo);
+        //balanceteService.atualizarBalancete(lancamentoSalvo);
 
         return ResponseEntity.ok("Lançamento cadastrado com sucesso.");
     }
 
-    // Método para listar todos os lançamentos
-    @GetMapping("/todos")
-    public ResponseEntity<List<LancamentoContabil>> listarLancamentos() {
-        List<LancamentoContabil> lancamentos = lancamentoContabilService.listarLancamentos();
-        return ResponseEntity.ok(lancamentos);
-    }
-
-    // Método para buscar um lançamento por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<LancamentoContabil> buscarLancamentoPorId(@PathVariable Long id) {
-        LancamentoContabil lancamento = lancamentoContabilService.buscarLancamentoPorId(id);
-        return ResponseEntity.ok(lancamento);
-    }
-
-    // Método para atualizar um lançamento
+    // Método UPDATE
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<LancamentoContabil> atualizarLancamento(@PathVariable Long id, @RequestBody LancamentoContabil lancamentoAtualizado) {
-    	try {
-    		LancamentoContabil lancamento = lancamentoContabilService.atualizarLancamento(id, lancamentoAtualizado);
-    		return ResponseEntity.ok(lancamento);
-    	} catch (EntityNotFoundException e) {
-    		return ResponseEntity.notFound().build();
-    	}
-    }
+    public ResponseEntity<LancamentoContabil> updateLancamento(
+    	    @PathVariable Long id, 
+    	    @RequestBody LancamentoContabil lancamentoAtualizado) {
 
-    // Método para deletar um lançamento
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> deletarLancamento(@PathVariable Long id) {
-        lancamentoContabilService.deletarLancamento(id);
-        balanceteService.excluirBalancetesPorLancamentoId(id);
-        return ResponseEntity.noContent().build();
-    }
+    	    try {
+    	        // Buscar o lançamento existente
+    	        LancamentoContabil lancamentoExistente = lancamentoContabilRepository.findById(id)
+    	            .orElseThrow(() -> new EntityNotFoundException("Lançamento não encontrado"));
+
+    	        // Atualiza os dados relevantes do lançamento
+    	        lancamentoExistente.setCreditoId(lancamentoAtualizado.getCreditoId());
+    	        lancamentoExistente.setDebitoId(lancamentoAtualizado.getDebitoId());
+    	        lancamentoExistente.setValor(lancamentoAtualizado.getValor());
+    	        lancamentoExistente.setData(lancamentoAtualizado.getData());
+    	        lancamentoExistente.setHistorico(lancamentoAtualizado.getHistorico());
+
+    	        // Salvar a atualização no banco
+    	        LancamentoContabil lancamentoAtualizadoFinal = lancamentoContabilRepository.save(lancamentoExistente);
+
+    	        return ResponseEntity.ok(lancamentoAtualizadoFinal);
+    	    } catch (EntityNotFoundException e) {
+    	        return ResponseEntity.notFound().build();
+    	    } catch (Exception e) {
+    	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    	    }
+        }
+
+
+//
+//    // Método DELETE
+//    @DeleteMapping("/deletar/{id}")
+//    public ResponseEntity<Void> deleteLancamento(@PathVariable Long id) {
+//        lancamentoContabilService.deletarLancamento(id);
+//        balanceteService.excluirBalancetesPorLancamentoId(id);
+//        return ResponseEntity.noContent().build();
+//    }
+
+
 
 }
