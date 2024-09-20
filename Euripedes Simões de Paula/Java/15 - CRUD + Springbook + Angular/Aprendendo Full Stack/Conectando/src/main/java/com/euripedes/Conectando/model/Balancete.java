@@ -19,6 +19,14 @@ public class Balancete {
     private Conta conta;
 
     private Double saldo;
+    
+    public Balancete(Conta conta) {
+        this.conta = conta;
+    }
+    
+    public Balancete () {
+    	
+    }
 
     // Getters e Setters
     public Long getId() {
@@ -44,5 +52,7 @@ public class Balancete {
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
+
+
 }
 
