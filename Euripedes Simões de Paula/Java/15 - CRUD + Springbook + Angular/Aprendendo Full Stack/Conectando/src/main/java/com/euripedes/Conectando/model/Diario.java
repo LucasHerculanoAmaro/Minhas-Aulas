@@ -15,6 +15,10 @@ public class Diario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "razao_id") // nome da coluna que faz referência ao Razao
+    private Razao razao;
 
     @ManyToOne
     @JoinColumn(name = "credito_id", nullable = false)
@@ -37,7 +41,15 @@ public class Diario {
         this.id = id;
     }
 
-    public Conta getCredito() {
+    public Razao getRazao() {
+		return razao;
+	}
+
+	public void setRazao(Razao razao) {
+		this.razao = razao;
+	}
+
+	public Conta getCredito() {
 		return credito;
 	}
 

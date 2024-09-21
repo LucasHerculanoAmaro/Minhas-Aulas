@@ -1,6 +1,5 @@
 package com.euripedes.Conectando.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,10 @@ public class DiarioService {
 
     @Autowired
     private DiarioRepository diarioRepository;
-
     @Autowired
     private BalanceteService balanceteService;
+    @Autowired
+    private RazaoService razaoService;
 
     public Diario createDiario(Diario diario) {
 
@@ -27,6 +27,7 @@ public class DiarioService {
 
         // Atualizar o balancete
         balanceteService.atualizarBalancete(novodiario);
+        razaoService.atualizarRazao(novodiario);
 
         return novodiario;
     }
@@ -45,6 +46,7 @@ public class DiarioService {
 
         // Atualizar o balancete
         balanceteService.atualizarBalancete(diarioAtualizadoFinal);
+        razaoService.atualizarRazao(diarioAtualizadoFinal);
 
         return diarioAtualizadoFinal;
     }
@@ -57,11 +59,14 @@ public class DiarioService {
             // Atualizar o balancete com base no lançamento antes de deletá-lo
             balanceteService.atualizarBalanceteAoDeletarDiario(diario);
             
+            // Atualizar o razão com base no lançamento antes de deletá-lo
+            razaoService.atualizarRazao(diario);
+            
             // Excluir o Diário
             diarioRepository.deleteById(id);
             return true;
         } else {
-            return false;
+            throw new EntityNotFoundException("Diário não encontrado com o ID: " + id);
         }
     }
 }

@@ -65,42 +65,6 @@ public class BalanceteService {
             balanceteRepository.save(b);
         });
     }
-//    public void atualizarBalancete(Diario diario) {
-//        // Encontrar os registros de balancete associados às contas de débito e crédito
-//        Balancete balanceteCredito = balanceteRepository.findByContaId(diario.getCredito());
-//        Balancete balanceteDebito = balanceteRepository.findByContaId(diario.getDebito());
-//
-//        // Atualizar os saldos
-//        balanceteCredito.setSaldo(balanceteCredito.getSaldo() + diario.getValor());
-//        balanceteDebito.setSaldo(balanceteDebito.getSaldo() - diario.getValor());
-//
-//        // Salvar as atualizações
-//        balanceteRepository.save(balanceteCredito);
-//        balanceteRepository.save(balanceteDebito);
-//    }
-
-    
-//    public void atualizarBalanceteAoDeletar(Diario diario) {
-//        // Localiza o balancete relacionado à conta de débito
-//        Balancete balanceteDebito = balanceteRepository.findByConta(diario.getDebito().getId())
-//                .orElseThrow(() -> new ResourceNotFoundException("Conta de débito não encontrada"));
-//
-//        // Subtrai o valor da conta de débito
-//        balanceteDebito.setSaldo(balanceteDebito.getSaldo() - diario.getValor());
-//
-//        // Salva a atualização do balancete de débito
-//        balanceteRepository.save(balanceteDebito);
-//
-//        // Localiza o balancete relacionado à conta de crédito
-//        Balancete balanceteCredito = balanceteRepository.findByConta(diario.getCredito().getId())
-//                .orElseThrow(() -> new ResourceNotFoundException("Conta de crédito não encontrada"));
-//
-//        // Adiciona o valor à conta de crédito
-//        balanceteCredito.setSaldo(balanceteCredito.getSaldo() + diario.getValor());
-//
-//        // Salva a atualização do balancete de crédito
-//        balanceteRepository.save(balanceteCredito);
-//    }
 
 }
 
