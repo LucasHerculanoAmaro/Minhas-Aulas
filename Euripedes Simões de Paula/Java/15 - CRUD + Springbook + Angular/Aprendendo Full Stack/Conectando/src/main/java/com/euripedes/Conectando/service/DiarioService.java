@@ -23,13 +23,13 @@ public class DiarioService {
     public Diario createDiario(Diario diario) {
 
         // Salvar o lançamento contábil
-        Diario novodiario = diarioRepository.save(diario);
+        Diario novoDiario = diarioRepository.save(diario);
 
         // Atualizar o balancete
-        balanceteService.atualizarBalancete(novodiario);
-        razaoService.atualizarRazao(novodiario);
+        balanceteService.atualizarBalancete(novoDiario);
+        razaoService.atualizarRazao(novoDiario);
 
-        return novodiario;
+        return novoDiario;
     }
 
     public Diario updateDiario(Long id, Diario diarioAtualizado) {

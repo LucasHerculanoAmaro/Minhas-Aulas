@@ -26,10 +26,14 @@ public class Razao {
 	@OneToMany(mappedBy = "razao")
 	private List<Diario> diarios;
 	
-	private BigDecimal saldoAnterior;
-	private BigDecimal saldoAtual;
+	private BigDecimal debito;
+	private BigDecimal credito;
 	private LocalDate data;
 	private String historico;
+	
+	public Razao() {
+		
+	}
 	
 	public Long getId() {
 		return id;
@@ -49,17 +53,17 @@ public class Razao {
 	public void setDiarios(List<Diario> diarios) {
 		this.diarios = diarios;
 	}
-	public BigDecimal getSaldoAnterior() {
-		return saldoAnterior;
+	public BigDecimal getDebito() {
+		return debito;
 	}
-	public void setSaldoAnterior(BigDecimal saldoAnterior) {
-		this.saldoAnterior = saldoAnterior;
+	public void setDebito(BigDecimal debito) {
+		this.debito = debito;
 	}
-	public BigDecimal getSaldoAtual() {
-		return saldoAtual;
+	public BigDecimal getCredito() {
+		return credito;
 	}
-	public void setSaldoAtual(BigDecimal saldoAtual) {
-		this.saldoAtual = saldoAtual;
+	public void setCredito(BigDecimal credito) {
+		this.credito = credito;
 	}
 	public LocalDate getData() {
 		return data;

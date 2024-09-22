@@ -17,8 +17,10 @@ import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.repository.ContaRepository;
 import com.euripedes.Conectando.repository.DiarioRepository;
+import com.euripedes.Conectando.repository.RazaoRepository;
 import com.euripedes.Conectando.service.BalanceteService;
 import com.euripedes.Conectando.service.DiarioService;
+import com.euripedes.Conectando.service.RazaoService;
 import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -35,6 +37,8 @@ public class DiarioController {
     private BalanceteService balanceteService;
     @Autowired
     private DiarioService diarioService;
+    @Autowired
+    private RazaoService razaoService;
     
     
     
@@ -63,6 +67,9 @@ public class DiarioController {
 
         // Atualiza o Balancete para as contas de crédito e débito
         balanceteService.atualizarBalancete(novoDiario);
+        
+        // Atualiza o Razao
+        razaoService.atualizarRazao(novoDiario);
 
         // Salva o lançamento
         return novoDiario;

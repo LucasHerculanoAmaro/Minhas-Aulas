@@ -9,5 +9,6 @@ import com.euripedes.Conectando.model.Razao;
 public interface RazaoRepository extends JpaRepository<Razao, Long>{
 
 	Optional<Razao> findByContaId(Long contaId);
+//	Razao findByContaId(Long contaId);
 	
 }
