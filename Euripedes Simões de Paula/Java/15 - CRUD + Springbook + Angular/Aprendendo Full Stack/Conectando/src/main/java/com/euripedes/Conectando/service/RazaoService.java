@@ -1,6 +1,8 @@
 package com.euripedes.Conectando.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +19,7 @@ public class RazaoService {
 	private RazaoRepository razaoRepository;
 	
 	public void atualizarRazao(Diario diario) {
-		
-//		Optional<Razao> razaoOptional = razaoRepository.findByContaId(diario.getDebito().getId());
-//		
-//		if (razaoOptional.isPresent()) {
-//			
-//			Razao razao = razaoOptional.get();
-//			BigDecimal valor = BigDecimal.valueOf(diario.getValor());
-//			
-//			razao.setSaldoAtual(razao.getSaldoAtual().add(valor));
-//			razao.setData(diario.getData());
-//			razao.setHistorico(diario.getHistorico());
-//			
-//			return razaoRepository.save(razao);
-//			
-//		} else {
-//		
-//			throw new NullPointerException("Razão sem registros!");
-//		}
-		
+
 		BigDecimal valor = BigDecimal.valueOf(diario.getValor());
 
 		// Atualizar conta de débito
@@ -71,11 +55,59 @@ public class RazaoService {
 		// Salvar alterações no Razão
 		razaoRepository.save(razaoDebito);
 		razaoRepository.save(razaoCredito);
-
-
-
-	    ///return null;
 	
 	}
 	
+	// Serviço para busca por ID
+    public List<Razao> buscarPorDiarioId(Long diarioId) {
+        return razaoRepository.findByDiarioId(diarioId);
+    }
+    
+//  Serviço para busca por Data
+    public List<Razao> buscarData(LocalDate data) {
+    	return razaoRepository.findByData(data);
+    }
+    
+//	Serviço para busca entre datas
+    public List<Razao> buscarPorIntervaloDeDatas(LocalDate startDate, LocalDate endDate) {
+    	return razaoRepository.findByDataBetween(startDate, endDate);
+    }
+    
+//	Serviço para busca por Conta
+    public List<Razao> buscarPorContaId(Long contaId) {
+    	return razaoRepository.findByConta_Id(contaId);
+    }
+    
+//  Serviço para busca por Histórico
+    public List<Razao> buscarPorHistorico(String palavra) {
+    	return razaoRepository.findByHistoricoContaining(palavra);
+    }
+    
+//  Serviço para busca por Débito
+    public List<Razao> buscarPorDebitoMaiorQue(BigDecimal valorMinimo) {
+    	return razaoRepository.findByDebitoGreaterThan(valorMinimo);
+    }
+    
+//  Serviço para busca por Crédito
+    public List<Razao> buscarPorCreditoMaiorQue(BigDecimal valorMinimo) {
+    	return razaoRepository.findByCreditoGreaterThan(valorMinimo);
+    }
+	
+//  Serviço para busca por Intervalo de Valores
+    public List<Razao> buscarPorValorIntervalo(BigDecimal valorMinimo, BigDecimal valorMaximo) {
+    	
+//    	List<Razao> creditos = razaoRepository.findByCreditoBetween(valorMinimo, valorMaximo);
+//    	List<Razao> debitos = razaoRepository.findByDebitoBetween(valorMinimo, valorMaximo);
+//    	
+//        // Combina as duas listas
+//        List<Razao> resultado = new ArrayList<>();
+//        resultado.addAll(creditos);
+//        resultado.addAll(debitos);
+//
+//        return resultado;
+    	
+    	return razaoRepository.findByCreditoOrDebitoBetween(valorMinimo, valorMaximo);
+    	
+    }
+    
 }

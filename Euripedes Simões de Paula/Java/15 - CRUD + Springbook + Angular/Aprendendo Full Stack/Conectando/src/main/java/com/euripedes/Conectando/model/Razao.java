@@ -31,6 +31,8 @@ public class Razao {
 	private LocalDate data;
 	private String historico;
 	
+	private Long diarioId;
+	
 	public Razao() {
 		
 	}
@@ -76,6 +78,12 @@ public class Razao {
 	}
 	public void setHistorico(String historico) {
 		this.historico = historico;
+	}
+	public Long getDiarioId() {
+		return diarioId;
+	}
+	public void setDiarioId(Long diarioId) {
+		this.diarioId = diarioId;
 	}
 	
 	
