@@ -3,6 +3,7 @@ package com.euripedes.Conectando.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,9 @@ public class Razao {
 	private LocalDate data;
 	private String historico;
 	
-	private Long diarioId;
+    @ManyToOne
+    @JoinColumn(name = "diario_id")  // Especifica a chave estrangeira que se refere ao ID do Diário
+    private Diario diario;  // Relacionamento com a entidade Diário
 	
 	public Razao() {
 		
@@ -79,12 +82,14 @@ public class Razao {
 	public void setHistorico(String historico) {
 		this.historico = historico;
 	}
-	public Long getDiarioId() {
-		return diarioId;
+	public Diario getDiario() {
+		return diario;
 	}
-	public void setDiarioId(Long diarioId) {
-		this.diarioId = diarioId;
+	public void setDiario(Diario diario) {
+		this.diario = diario;
 	}
+
+
 	
 	
 	

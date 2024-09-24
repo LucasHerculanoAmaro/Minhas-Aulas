@@ -1,0 +1,40 @@
+Testando no Postman
+Assim como fizemos com o Razão, podemos testar os filtros no Postman. Aqui estão os exemplos de como fazer isso:
+
+1. Busca por ID do Diário
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/{diarioId}
+
+2. Busca por Intervalo de Datas
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/datas?startDate={startDate}&endDate={endDate}
+
+3. Busca por Conta de Crédito
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/credito/{creditoId}
+
+4. Busca por Conta de Débito
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/debito/{debitoId}
+
+5. Busca por Intervalo de Valores
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/valores?valorMinimo={valorMinimo}&valorMaximo={valorMaximo}
+
+6. Busca por Histórico
+
+Método HTTP: GET
+URL: http://localhost:8080/diario/historico?palavra={palavra}
+
+
+
+
+
+
+
+

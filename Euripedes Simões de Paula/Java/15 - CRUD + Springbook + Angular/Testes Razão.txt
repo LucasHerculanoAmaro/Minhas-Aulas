@@ -1,0 +1,60 @@
+Testando no Postman
+Agora que os endpoints estão configurados, você pode testar no Postman. Vou te passar exemplos de como fazer cada requisição:
+
+1. Busca por ID do Diário
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/diario/{diarioId}
+Exemplo: http://localhost:8080/razao/diario/1
+
+2. Busca por Data
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/data/{data}
+Exemplo: http://localhost:8080/razao/data/2024-09-22
+Formato de Data: YYYY-MM-DD
+
+3. Busca por Intervalo de Datas
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/datas?startDate={startDate}&endDate={endDate}
+Exemplo: http://localhost:8080/razao/datas?startDate=2024-01-01&endDate=2024-09-22
+
+4. Busca por Conta ID
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/conta/{contaId}
+Exemplo: http://localhost:8080/razao/conta/1
+
+5. Busca por Histórico
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/historico?palavra={palavra}
+Exemplo: http://localhost:8080/razao/historico?palavra=transação
+
+6. Busca por Débito maior que um valor
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/debito?valorMinimo={valor}
+Exemplo: http://localhost:8080/razao/debito?valorMinimo=100
+
+7. Busca por Crédito maior que um valor
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/credito?valorMinimo={valor}
+Exemplo: http://localhost:8080/razao/credito?valorMinimo=200
+
+8. Busca por Intervalo de Valores (Crédito/Débito)
+
+Método HTTP: GET
+URL: http://localhost:8080/razao/valores?valorMinimo={valorMinimo}&valorMaximo={valorMaximo}
+Exemplo: http://localhost:8080/razao/valores?valorMinimo=100&valorMaximo=500
+
+Testando no Postman
+Abra o Postman.
+C
+rie uma nova requisição selecionando o método GET.
+Insira a URL correspondente ao filtro que você deseja testar.
+Se necessário, adicione parâmetros na URL (como valorMinimo, startDate, endDate).
+Pressione o botão Send.
+Cada requisição deverá retornar uma lista de objetos Razao no formato JSON, com base no filtro utilizado.

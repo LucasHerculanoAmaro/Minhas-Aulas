@@ -1,8 +1,11 @@
 package com.euripedes.Conectando.controller;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.euripedes.Conectando.model.Conta;
@@ -93,6 +97,53 @@ public class DiarioController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    
+ // Filtro por ID do Diário
+    @GetMapping("/{diarioId}")
+    public ResponseEntity<Diario> buscarPorId(@PathVariable Long diarioId) {
+        return diarioService.buscarPorId(diarioId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Filtro por Intervalo de Datas
+    @GetMapping("/datas")
+    public ResponseEntity<List<Diario>> buscarPorIntervaloDeDatas(
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        List<Diario> resultado = diarioService.buscarPorIntervaloDeDatas(startDate, endDate);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Filtro por Conta de Crédito
+    @GetMapping("/credito/{creditoId}")
+    public ResponseEntity<List<Diario>> buscarPorContaCredito(@PathVariable Long creditoId) {
+        List<Diario> resultado = diarioService.buscarPorContaCredito(creditoId);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Filtro por Conta de Débito
+    @GetMapping("/debito/{debitoId}")
+    public ResponseEntity<List<Diario>> buscarPorContaDebito(@PathVariable Long debitoId) {
+        List<Diario> resultado = diarioService.buscarPorContaDebito(debitoId);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Filtro por Intervalo de Valores
+    @GetMapping("/valores")
+    public ResponseEntity<List<Diario>> buscarPorValorIntervalo(
+        @RequestParam BigDecimal valorMinimo,
+        @RequestParam BigDecimal valorMaximo) {
+        List<Diario> resultado = diarioService.buscarPorValorIntervalo(valorMinimo, valorMaximo);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Filtro por Histórico
+    @GetMapping("/historico")
+    public ResponseEntity<List<Diario>> buscarPorHistorico(@RequestParam String palavra) {
+        List<Diario> resultado = diarioService.buscarPorHistorico(palavra);
+        return ResponseEntity.ok(resultado);
     }
 
 }

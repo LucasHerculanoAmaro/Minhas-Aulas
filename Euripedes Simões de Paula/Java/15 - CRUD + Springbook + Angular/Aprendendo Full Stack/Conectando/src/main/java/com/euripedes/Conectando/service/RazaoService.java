@@ -44,6 +44,7 @@ public class RazaoService {
 		razaoDebito.setCredito(BigDecimal.ZERO);  // Zera o crédito, já que é uma operação de débito
 		razaoDebito.setData(diario.getData());
 		razaoDebito.setHistorico(diario.getHistorico());
+		razaoDebito.setDiarioId(diario.getId());
 
 		// Operação de Crédito
 		BigDecimal creditoAtual = razaoCredito.getCredito() != null ? razaoCredito.getCredito() : BigDecimal.ZERO;
@@ -51,6 +52,7 @@ public class RazaoService {
 		razaoCredito.setDebito(BigDecimal.ZERO);  // Zera o débito, já que é uma operação de crédito
 		razaoCredito.setData(diario.getData());
 		razaoCredito.setHistorico(diario.getHistorico());
+		razaoCredito.setDiarioId(diario.getId());
 
 		// Salvar alterações no Razão
 		razaoRepository.save(razaoDebito);
