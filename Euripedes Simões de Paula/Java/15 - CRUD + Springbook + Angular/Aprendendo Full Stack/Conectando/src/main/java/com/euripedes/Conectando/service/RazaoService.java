@@ -2,7 +2,6 @@ package com.euripedes.Conectando.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.model.Razao;
+import com.euripedes.Conectando.repository.DiarioRepository;
 import com.euripedes.Conectando.repository.RazaoRepository;
 
 @Service
@@ -18,9 +18,16 @@ public class RazaoService {
 	@Autowired
 	private RazaoRepository razaoRepository;
 	
+	@Autowired DiarioRepository diarioRepository;
+	
 	public void atualizarRazao(Diario diario) {
 
 		BigDecimal valor = BigDecimal.valueOf(diario.getValor());
+		Long diarioId = diario.getId();
+
+		// Buscar o objeto Diario pelo ID
+		Diario diarioObj = diarioRepository.findById(diarioId)
+		    .orElseThrow(() -> new RuntimeException("Diário não encontrado"));
 
 		// Atualizar conta de débito
 		Optional<Razao> razaoDebitoOptional = razaoRepository.findByContaId(diario.getDebito().getId());
@@ -44,7 +51,7 @@ public class RazaoService {
 		razaoDebito.setCredito(BigDecimal.ZERO);  // Zera o crédito, já que é uma operação de débito
 		razaoDebito.setData(diario.getData());
 		razaoDebito.setHistorico(diario.getHistorico());
-		razaoDebito.setDiarioId(diario.getId());
+		razaoDebito.setDiario(diarioObj); // Atribui o objeto Diario
 
 		// Operação de Crédito
 		BigDecimal creditoAtual = razaoCredito.getCredito() != null ? razaoCredito.getCredito() : BigDecimal.ZERO;
@@ -52,11 +59,12 @@ public class RazaoService {
 		razaoCredito.setDebito(BigDecimal.ZERO);  // Zera o débito, já que é uma operação de crédito
 		razaoCredito.setData(diario.getData());
 		razaoCredito.setHistorico(diario.getHistorico());
-		razaoCredito.setDiarioId(diario.getId());
+		razaoCredito.setDiario(diarioObj); // Atribui o objeto Diario
 
 		// Salvar alterações no Razão
 		razaoRepository.save(razaoDebito);
 		razaoRepository.save(razaoCredito);
+
 	
 	}
 	

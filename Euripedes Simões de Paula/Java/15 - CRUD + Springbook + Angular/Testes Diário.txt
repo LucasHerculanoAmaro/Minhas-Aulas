@@ -10,6 +10,7 @@ URL: http://localhost:8080/diario/{diarioId}
 
 Método HTTP: GET
 URL: http://localhost:8080/diario/datas?startDate={startDate}&endDate={endDate}
+Exemplo: http://localhost:8080/api/diario/datas?startDate=2024-01-01&endDate=2024-09-24
 
 3. Busca por Conta de Crédito
 
@@ -20,11 +21,14 @@ URL: http://localhost:8080/diario/credito/{creditoId}
 
 Método HTTP: GET
 URL: http://localhost:8080/diario/debito/{debitoId}
+http://localhost:8080/api/diario/credito/2
 
 5. Busca por Intervalo de Valores
 
 Método HTTP: GET
-URL: http://localhost:8080/diario/valores?valorMinimo={valorMinimo}&valorMaximo={valorMaximo}
+URL: http://localhost:8080/api/diario/valores?valorMinimo={valorMinimo}&valorMaximo={valorMaximo}
+Exemplo: http://localhost:8080/api/diario/valores?valorMinimo=0&valorMaximo=100
+
 
 6. Busca por Histórico
 

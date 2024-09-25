@@ -26,7 +26,7 @@ public class RazaoController {
         return razaoService.buscarPorDiarioId(diarioId);
     }
     
-    @GetMapping("/data")
+    @GetMapping("/data/{data}")
     public List<Razao> buscarPorData(@RequestParam LocalDate data) {
         return razaoService.buscarData(data);
     }
