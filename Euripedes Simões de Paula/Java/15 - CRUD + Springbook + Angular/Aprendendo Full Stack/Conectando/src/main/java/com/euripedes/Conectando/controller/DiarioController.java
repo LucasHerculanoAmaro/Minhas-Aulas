@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +53,12 @@ public class DiarioController {
     }
     
     @PostMapping("/registrar")
-    public Diario createTransacao(@RequestBody Diario diarioRequest) {
+    public Diario createTransacao(@RequestBody Diario diarioRequest, @RequestHeader(value = "Usuario", required = false) String usuario) {
 
+    	if (usuario == null) {
+    		usuario = "admin";
+    	}
+    	
         // Busca a Conta de crédito usando o creditoId
         Conta contaCredito = contaRepository.findById(diarioRequest.getCredito().getId())
             .orElseThrow(() -> new ResourceNotFoundException("Conta crédito não encontrada"));
@@ -68,6 +73,9 @@ public class DiarioController {
         
         // Salva o lançamento no Diário
         Diario novoDiario = diarioRepository.save(diarioRequest);
+        
+        
+        diarioService.createDiario(diarioRequest, usuario);
 
         // Atualiza o Balancete para as contas de crédito e débito
         balanceteService.atualizarBalancete(novoDiario);
@@ -82,7 +90,7 @@ public class DiarioController {
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<Diario> atualizarTransacao(@PathVariable Long id, @RequestBody Diario transacaoAtualizada) {
         try {
-            Diario diarioAtualizado = diarioService.updateDiario(id, transacaoAtualizada);
+            Diario diarioAtualizado = diarioService.updateDiario(id, transacaoAtualizada, "Atualizando Transação.");
             return ResponseEntity.ok(diarioAtualizado);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();

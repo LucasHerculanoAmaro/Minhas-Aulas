@@ -21,9 +21,11 @@ public class DiarioService {
     @Autowired
     private BalanceteService balanceteService;
     @Autowired
+    private HistoricoService historicoService;
+    @Autowired
     private RazaoService razaoService;
 
-    public Diario createDiario(Diario diario) {
+    public Diario createDiario(Diario diario, String usuario) {
 
         // Salvar o lançamento contábil
         Diario novoDiario = diarioRepository.save(diario);
@@ -31,14 +33,17 @@ public class DiarioService {
         // Atualizar o balancete
         balanceteService.atualizarBalancete(novoDiario);
         razaoService.atualizarRazao(novoDiario);
+        historicoService.registrarHistorico(novoDiario, usuario, "Criando um novo registro!");
 
         return novoDiario;
     }
 
-    public Diario updateDiario(Long id, Diario diarioAtualizado) {
+    public Diario updateDiario(Long id, Diario diarioAtualizado, String usuario) {
         Diario diarioExistente = diarioRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Lançamento não encontrado"));
 
+        String alteracoes = detectarAlteracoes(diarioExistente, diarioAtualizado);
+        
         diarioExistente.setCredito(diarioAtualizado.getCredito());
         diarioExistente.setDebito(diarioAtualizado.getDebito());
         diarioExistente.setValor(diarioAtualizado.getValor());
@@ -50,8 +55,32 @@ public class DiarioService {
         // Atualizar o balancete
         balanceteService.atualizarBalancete(diarioAtualizadoFinal);
         razaoService.atualizarRazao(diarioAtualizadoFinal);
+        historicoService.registrarHistorico(diarioAtualizadoFinal, usuario, alteracoes);
 
         return diarioAtualizadoFinal;
+    }
+    
+ // Método para detectar as alterações realizadas no lançamento
+    private String detectarAlteracoes(Diario lancamentoAntigo, Diario lancamentoNovo) {
+        StringBuilder alteracoes = new StringBuilder();
+
+        if (!lancamentoAntigo.getDebito().equals(lancamentoNovo.getDebito())) {
+            alteracoes.append("Conta Débito alterada. ");
+        }
+        if (!lancamentoAntigo.getCredito().equals(lancamentoNovo.getCredito())) {
+            alteracoes.append("Conta Crédito alterada. ");
+        }
+        if (!lancamentoAntigo.getValor().equals(lancamentoNovo.getValor())) {
+            alteracoes.append("Valor alterado. ");
+        }
+        if (!lancamentoAntigo.getData().equals(lancamentoNovo.getData())) {
+            alteracoes.append("Data alterada. ");
+        }
+        if (!lancamentoAntigo.getHistorico().equals(lancamentoNovo.getHistorico())) {
+            alteracoes.append("Histórico alterado. ");
+        }
+
+        return alteracoes.toString();
     }
     
     public boolean deletarTransacao(Long id) {

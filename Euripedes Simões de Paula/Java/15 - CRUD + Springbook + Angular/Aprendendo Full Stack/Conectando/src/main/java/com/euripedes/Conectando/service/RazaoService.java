@@ -60,10 +60,10 @@ public class RazaoService {
 		razaoCredito.setData(diario.getData());
 		razaoCredito.setHistorico(diario.getHistorico());
 		razaoCredito.setDiario(diarioObj); // Atribui o objeto Diario
-
+	    
 		// Salvar alterações no Razão
 		razaoRepository.save(razaoDebito);
-		razaoRepository.save(razaoCredito);
+		//razaoRepository.save(razaoCredito);
 
 	
 	}
