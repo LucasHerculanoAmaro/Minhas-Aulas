@@ -32,7 +32,7 @@ public class DiarioService {
 
         // Atualizar o balancete
         balanceteService.atualizarBalancete(novoDiario);
-        razaoService.atualizarRazao(novoDiario);
+        razaoService.criarRazao(novoDiario);
         historicoService.registrarHistorico(novoDiario, usuario, "Criando um novo registro!");
 
         return novoDiario;
@@ -51,7 +51,7 @@ public class DiarioService {
         diarioExistente.setHistorico(diarioAtualizado.getHistorico());
 
         Diario diarioAtualizadoFinal = diarioRepository.save(diarioExistente);
-
+        
         // Atualizar o balancete
         balanceteService.atualizarBalancete(diarioAtualizadoFinal);
         razaoService.atualizarRazao(diarioAtualizadoFinal);
@@ -92,7 +92,7 @@ public class DiarioService {
             balanceteService.atualizarBalanceteAoDeletarDiario(diario);
             
             // Atualizar o razão com base no lançamento antes de deletá-lo
-            razaoService.atualizarRazao(diario);
+            razaoService.criarRazao(diario);
             
             // Excluir o Diário
             diarioRepository.deleteById(id);

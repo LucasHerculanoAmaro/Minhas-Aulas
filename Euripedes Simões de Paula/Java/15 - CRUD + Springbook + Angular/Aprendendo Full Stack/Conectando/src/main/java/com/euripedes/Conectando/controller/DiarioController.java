@@ -81,7 +81,7 @@ public class DiarioController {
         balanceteService.atualizarBalancete(novoDiario);
         
         // Atualiza o Razao
-        razaoService.atualizarRazao(novoDiario);
+        razaoService.criarRazao(novoDiario);
 
         // Salva o lançamento
         return novoDiario;

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.model.Razao;
 
 public interface RazaoRepository extends JpaRepository<Razao, Long>{
@@ -41,5 +42,10 @@ public interface RazaoRepository extends JpaRepository<Razao, Long>{
     List<Razao> findByCreditoOrDebitoBetween(
     		@Param("valorMinimo") BigDecimal valorMinimo,
     		@Param("valorMaximo") BigDecimal valorMaximo);
+    
+//
+	//Optional<Diario> findByContaIdAndDiarioId(Long id, Long diarioId);
+	Optional<Razao> findByContaIdAndDiarioId(Long contaId, Long diarioId);
+
     
 }

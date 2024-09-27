@@ -7,10 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.model.Razao;
 import com.euripedes.Conectando.repository.DiarioRepository;
 import com.euripedes.Conectando.repository.RazaoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class RazaoService {
@@ -20,53 +23,73 @@ public class RazaoService {
 	
 	@Autowired DiarioRepository diarioRepository;
 	
-	public void atualizarRazao(Diario diario) {
+	public void criarRazao(Diario diario) {
 
-		BigDecimal valor = BigDecimal.valueOf(diario.getValor());
-		Long diarioId = diario.getId();
+		// Obtendo o valor do Diário e seu ID
+	    BigDecimal valor = BigDecimal.valueOf(diario.getValor());
+	    Long diarioId = diario.getId();
 
-		// Buscar o objeto Diario pelo ID
-		Diario diarioObj = diarioRepository.findById(diarioId)
-		    .orElseThrow(() -> new RuntimeException("Diário não encontrado"));
+	    // Buscar o objeto Diário pelo ID para garantir que ele existe
+	    Diario diarioObj = diarioRepository.findById(diarioId)
+	        .orElseThrow(() -> new RuntimeException("Diário não encontrado"));
 
-		// Atualizar conta de débito
-		Optional<Razao> razaoDebitoOptional = razaoRepository.findByContaId(diario.getDebito().getId());
-		Razao razaoDebito = razaoDebitoOptional.orElseGet(() -> {
-		    Razao novaRazao = new Razao();
-		    novaRazao.setDebito(BigDecimal.ZERO); // Inicializa o débito como zero
-		    return novaRazao;
-		});
+	    // Verificar se já existe um registro de Razão para a conta de débito
+	    Optional<Razao> razaoDebitoOptional = razaoRepository.findByContaIdAndDiarioId(diario.getDebito().getId(), diarioId);
+	    Razao razaoDebito;
 
-		// Atualizar conta de crédito
-		Optional<Razao> razaoCreditoOptional = razaoRepository.findByContaId(diario.getCredito().getId());
-		Razao razaoCredito = razaoCreditoOptional.orElseGet(() -> {
-		    Razao novaRazao = new Razao();
-		    novaRazao.setCredito(BigDecimal.ZERO); // Inicializa o crédito como zero
-		    return novaRazao;
-		});
+	    // Se existir, atualiza o registro, senão, cria um novo
+	    if (razaoDebitoOptional.isPresent()) {
+	        razaoDebito = razaoDebitoOptional.get();
+	        // Atualiza o débito somando o valor atual
+	        razaoDebito.setDebito(razaoDebito.getDebito().add(valor));
+	    } else {
+	        razaoDebito = new Razao();
+	        // Se for novo, inicializa com as informações de débito
+	        razaoDebito.setConta(diario.getDebito());
+	        razaoDebito.setDebito(valor); // Inicia com o valor do débito
+	        razaoDebito.setCredito(BigDecimal.ZERO); // Crédito é zero porque é débito
+	    }
+	    // Configurações gerais para ambos os casos (novo ou existente)
+	    razaoDebito.setData(diario.getData());
+	    razaoDebito.setHistorico(diario.getHistorico());
+	    razaoDebito.setDiario(diarioObj);
 
-		// Operação de Débito
-		BigDecimal debitoAtual = razaoDebito.getDebito() != null ? razaoDebito.getDebito() : BigDecimal.ZERO;
-		razaoDebito.setDebito(debitoAtual.add(valor));  // Adiciona o valor ao saldo de débito
-		razaoDebito.setCredito(BigDecimal.ZERO);  // Zera o crédito, já que é uma operação de débito
-		razaoDebito.setData(diario.getData());
-		razaoDebito.setHistorico(diario.getHistorico());
-		razaoDebito.setDiario(diarioObj); // Atribui o objeto Diario
+	    // Verificar se já existe um registro de Razão para a conta de crédito
+	    Optional<Razao> razaoCreditoOptional = razaoRepository.findByContaIdAndDiarioId(diario.getCredito().getId(), diarioId);
+	    Razao razaoCredito;
 
-		// Operação de Crédito
-		BigDecimal creditoAtual = razaoCredito.getCredito() != null ? razaoCredito.getCredito() : BigDecimal.ZERO;
-		razaoCredito.setCredito(creditoAtual.add(valor));  // Adiciona o valor ao saldo de crédito
-		razaoCredito.setDebito(BigDecimal.ZERO);  // Zera o débito, já que é uma operação de crédito
-		razaoCredito.setData(diario.getData());
-		razaoCredito.setHistorico(diario.getHistorico());
-		razaoCredito.setDiario(diarioObj); // Atribui o objeto Diario
-	    
-		// Salvar alterações no Razão
-		razaoRepository.save(razaoDebito);
-		//razaoRepository.save(razaoCredito);
+	    // Se existir, atualiza o registro, senão, cria um novo
+	    if (razaoCreditoOptional.isPresent()) {
+	        razaoCredito = razaoCreditoOptional.get();
+	        // Atualiza o crédito somando o valor atual
+	        razaoCredito.setCredito(razaoCredito.getCredito().add(valor));
+	    } else {
+	        razaoCredito = new Razao();
+	        // Se for novo, inicializa com as informações de crédito
+	        razaoCredito.setConta(diario.getCredito());
+	        razaoCredito.setCredito(valor); // Inicia com o valor do crédito
+	        razaoCredito.setDebito(BigDecimal.ZERO); // Débito é zero porque é crédito
+	    }
+	    // Configurações gerais para ambos os casos (novo ou existente)
+	    razaoCredito.setData(diario.getData());
+	    razaoCredito.setHistorico(diario.getHistorico());
+	    razaoCredito.setDiario(diarioObj);
 
+	    // Salvar ou atualizar ambos os registros no Razão
+	    razaoRepository.save(razaoDebito);
+	    razaoRepository.save(razaoCredito);
 	
 	}
+	
+	@Transactional
+	public void atualizarRazao(Diario diario) {
+		
+	    
+	}
+
+
+
+
 	
 	// Serviço para busca por ID
     public List<Razao> buscarPorDiarioId(Long diarioId) {
