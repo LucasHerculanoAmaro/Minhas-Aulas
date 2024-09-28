@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.repository.DiarioRepository;
+import com.euripedes.Conectando.repository.HistoricoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -18,6 +19,8 @@ public class DiarioService {
 
     @Autowired
     private DiarioRepository diarioRepository;
+    @Autowired
+    private HistoricoRepository historicoRepository;
     @Autowired
     private BalanceteService balanceteService;
     @Autowired
@@ -103,9 +106,14 @@ public class DiarioService {
             // Atualizar o razão com base no lançamento antes de deletá-lo
             razaoService.criarRazao(diario);
             
+            // Excluir o histórico
+            historicoRepository.deleteByDiarioId(id);
+            
             // Excluir o Diário
             diarioRepository.deleteById(id);
+            
             return true;
+            
         } else {
             throw new EntityNotFoundException("Diário não encontrado com o ID: " + id);
         }

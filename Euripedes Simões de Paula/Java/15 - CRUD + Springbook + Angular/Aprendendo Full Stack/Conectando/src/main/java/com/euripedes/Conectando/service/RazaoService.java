@@ -110,34 +110,71 @@ public class RazaoService {
 	@Transactional
 	public void atualizarRazao(Diario diarioAtualizado, Diario diarioAnterior) {
 		
-		BigDecimal valor = BigDecimal.valueOf(diarioAtualizado.getValor());
-	    Long diarioId = diarioAtualizado.getId();
-
-	    // Atualizar Razão para a conta de débito
-	    Razao razaoDebito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getDebito().getId(), diarioId)
-	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de débito"));
-	    
-	    // Atualizar Razão para a conta de crédito
-	    Razao razaoCredito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getCredito().getId(), diarioId)
-	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de crédito"));
-	    
-	    if (razaoDebito != null && razaoCredito != null) {
-	        // Atualiza os valores diretamente sem zerá-los
-	        razaoDebito.setDebito(valor); // Atualiza o valor do débito com o novo valor
-	        razaoCredito.setCredito(valor); // Atualiza o valor do crédito com o novo valor
-	        
-	        // Atualiza data e histórico
-	        razaoDebito.setData(diarioAtualizado.getData());
-	        razaoDebito.setHistorico(diarioAtualizado.getHistorico());
-
-	        razaoCredito.setData(diarioAtualizado.getData());
-	        razaoCredito.setHistorico(diarioAtualizado.getHistorico());
-
-	        // Salvar as atualizações
-	        razaoRepository.save(razaoDebito);
-	        razaoRepository.save(razaoCredito);
-	    }
+//		BigDecimal valor = BigDecimal.valueOf(diarioAtualizado.getValor());
+//	    Long diarioId = diarioAtualizado.getId();
+//
+//	    // Atualizar Razão para a conta de débito
+//	    Razao razaoDebito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getDebito().getId(), diarioId)
+//	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de débito"));
+//	    
+//	    // Atualizar Razão para a conta de crédito
+//	    Razao razaoCredito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getCredito().getId(), diarioId)
+//	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de crédito"));
+//	    
+//	    if (razaoDebito != null && razaoCredito != null) {
+//	        // Atualiza os valores diretamente sem zerá-los
+//	        razaoDebito.setDebito(valor); // Atualiza o valor do débito com o novo valor
+//	        razaoCredito.setCredito(valor); // Atualiza o valor do crédito com o novo valor
+//	        
+//	        // Atualiza data e histórico
+//	        razaoDebito.setData(diarioAtualizado.getData());
+//	        razaoDebito.setHistorico(diarioAtualizado.getHistorico());
+//
+//	        razaoCredito.setData(diarioAtualizado.getData());
+//	        razaoCredito.setHistorico(diarioAtualizado.getHistorico());
+//
+//	        // Salvar as atualizações
+//	        razaoRepository.save(razaoDebito);
+//	        razaoRepository.save(razaoCredito);
+//	    }
 		
+		BigDecimal valorAtualizado = BigDecimal.valueOf(diarioAtualizado.getValor());
+		Long diarioId = diarioAtualizado.getId();
+
+		// Atualizar Razão para a conta de débito
+		Razao razaoDebito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getDebito().getId(), diarioId)
+		        .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de débito"));
+
+		// Atualizar Razão para a conta de crédito
+		Razao razaoCredito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getCredito().getId(), diarioId)
+		        .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de crédito"));
+
+		// Verificar e atualizar os valores de débito e crédito corretamente
+		if (razaoDebito != null && razaoCredito != null) {
+		    
+		    // Atualiza o valor do débito
+		    if (diarioAtualizado.getDebito() != null) {
+		        razaoDebito.setDebito(valorAtualizado);  // Aplica o novo valor de débito
+		        razaoDebito.setCredito(BigDecimal.ZERO); // Garante que o crédito esteja zerado
+		    }
+		    
+		    // Atualiza o valor do crédito
+		    if (diarioAtualizado.getCredito() != null) {
+		        razaoCredito.setCredito(valorAtualizado);  // Aplica o novo valor de crédito
+		        razaoCredito.setDebito(BigDecimal.ZERO);   // Garante que o débito esteja zerado
+		    }
+		    
+		    // Atualiza data e histórico para ambos os registros
+		    razaoDebito.setData(diarioAtualizado.getData());
+		    razaoDebito.setHistorico(diarioAtualizado.getHistorico());
+
+		    razaoCredito.setData(diarioAtualizado.getData());
+		    razaoCredito.setHistorico(diarioAtualizado.getHistorico());
+
+		    // Salvar as atualizações
+		    razaoRepository.save(razaoDebito);
+		    razaoRepository.save(razaoCredito);
+		}
 		
 	}
 

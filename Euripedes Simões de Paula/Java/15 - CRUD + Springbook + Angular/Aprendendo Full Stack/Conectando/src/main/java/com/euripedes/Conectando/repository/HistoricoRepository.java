@@ -8,4 +8,7 @@ import com.euripedes.Conectando.model.Historico;
 
 public interface HistoricoRepository extends JpaRepository<Historico, Long> {
     List<Historico> findByDiarioId(Long diarioId);
+
+	void deleteByDiarioId(Long id);
+    
 }

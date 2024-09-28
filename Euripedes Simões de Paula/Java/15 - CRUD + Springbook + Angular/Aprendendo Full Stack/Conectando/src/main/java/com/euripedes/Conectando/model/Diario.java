@@ -1,13 +1,16 @@
 package com.euripedes.Conectando.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Diario {
@@ -15,11 +18,17 @@ public class Diario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+       
+    @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Historico> hstoricos;
+    
+    @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Razao> razoes; 
     
     @ManyToOne
     @JoinColumn(name = "razao_id") // nome da coluna que faz referência ao Razao
     private Razao razao;
-
+    
     @ManyToOne
     @JoinColumn(name = "credito_id", nullable = false)
     private Conta credito;
@@ -31,6 +40,7 @@ public class Diario {
     private Double valor;
     private LocalDate data;
     private String historico;
+
 
     // Getters e Setters
     public Long getId() {
