@@ -23,6 +23,7 @@ public class RazaoService {
 	
 	@Autowired DiarioRepository diarioRepository;
 	
+	@Transactional
 	public void criarRazao(Diario diario) {
 
 		// Obtendo o valor do Diário e seu ID
@@ -79,12 +80,65 @@ public class RazaoService {
 	    razaoRepository.save(razaoDebito);
 	    razaoRepository.save(razaoCredito);
 	
+//		BigDecimal valor = BigDecimal.valueOf(diario.getValor());
+//	    //Long diarioId = diario.getId();
+//
+//	    // Criar Razão para a conta de débito
+//	    Razao razaoDebito = new Razao();
+//	    razaoDebito.setConta(diario.getDebito());
+//	    razaoDebito.setDebito(valor); // Define o valor do débito
+//	    razaoDebito.setCredito(BigDecimal.ZERO); // Crédito é zero porque é débito
+//	    razaoDebito.setData(diario.getData());
+//	    razaoDebito.setHistorico(diario.getHistorico());
+//	    razaoDebito.setDiario(diario);
+//
+//	    // Criar Razão para a conta de crédito
+//	    Razao razaoCredito = new Razao();
+//	    razaoCredito.setConta(diario.getCredito());
+//	    razaoCredito.setCredito(valor); // Define o valor do crédito
+//	    razaoCredito.setDebito(BigDecimal.ZERO); // Débito é zero porque é crédito
+//	    razaoCredito.setData(diario.getData());
+//	    razaoCredito.setHistorico(diario.getHistorico());
+//	    razaoCredito.setDiario(diario);
+//
+//	    // Salvar os registros no Razão
+//	    razaoRepository.save(razaoDebito);
+//	    razaoRepository.save(razaoCredito);
+		
 	}
 	
 	@Transactional
-	public void atualizarRazao(Diario diario) {
+	public void atualizarRazao(Diario diarioAtualizado, Diario diarioAnterior) {
 		
+		BigDecimal valor = BigDecimal.valueOf(diarioAtualizado.getValor());
+	    Long diarioId = diarioAtualizado.getId();
+
+	    // Atualizar Razão para a conta de débito
+	    Razao razaoDebito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getDebito().getId(), diarioId)
+	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de débito"));
 	    
+	    // Atualizar Razão para a conta de crédito
+	    Razao razaoCredito = razaoRepository.findByContaIdAndDiarioId(diarioAtualizado.getCredito().getId(), diarioId)
+	            .orElseThrow(() -> new RuntimeException("Registro de Razão não encontrado para a conta de crédito"));
+	    
+	    if (razaoDebito != null && razaoCredito != null) {
+	        // Atualiza os valores diretamente sem zerá-los
+	        razaoDebito.setDebito(valor); // Atualiza o valor do débito com o novo valor
+	        razaoCredito.setCredito(valor); // Atualiza o valor do crédito com o novo valor
+	        
+	        // Atualiza data e histórico
+	        razaoDebito.setData(diarioAtualizado.getData());
+	        razaoDebito.setHistorico(diarioAtualizado.getHistorico());
+
+	        razaoCredito.setData(diarioAtualizado.getData());
+	        razaoCredito.setHistorico(diarioAtualizado.getHistorico());
+
+	        // Salvar as atualizações
+	        razaoRepository.save(razaoDebito);
+	        razaoRepository.save(razaoCredito);
+	    }
+		
+		
 	}
 
 

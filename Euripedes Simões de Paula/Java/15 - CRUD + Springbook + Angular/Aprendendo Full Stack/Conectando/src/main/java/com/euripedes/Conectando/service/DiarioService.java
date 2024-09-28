@@ -39,26 +39,35 @@ public class DiarioService {
     }
 
     public Diario updateDiario(Long id, Diario diarioAtualizado, String usuario) {
+        // Recupera o estado anterior do lançamento
         Diario diarioExistente = diarioRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Lançamento não encontrado"));
 
+        // Detecta alterações (opcional, pode ser útil para histórico)
         String alteracoes = detectarAlteracoes(diarioExistente, diarioAtualizado);
-        
+
+        // Atualiza os campos do lançamento com os novos valores
         diarioExistente.setCredito(diarioAtualizado.getCredito());
         diarioExistente.setDebito(diarioAtualizado.getDebito());
         diarioExistente.setValor(diarioAtualizado.getValor());
         diarioExistente.setData(diarioAtualizado.getData());
         diarioExistente.setHistorico(diarioAtualizado.getHistorico());
 
+        // Salva o lançamento atualizado no banco de dados
         Diario diarioAtualizadoFinal = diarioRepository.save(diarioExistente);
         
         // Atualizar o balancete
         balanceteService.atualizarBalancete(diarioAtualizadoFinal);
-        razaoService.atualizarRazao(diarioAtualizadoFinal);
+
+        // Passar tanto o Diario anterior quanto o Diario atualizado
+        razaoService.atualizarRazao(diarioAtualizadoFinal, diarioExistente);
+        
+        // Registrar o histórico de alterações
         historicoService.registrarHistorico(diarioAtualizadoFinal, usuario, alteracoes);
 
         return diarioAtualizadoFinal;
     }
+
     
  // Método para detectar as alterações realizadas no lançamento
     private String detectarAlteracoes(Diario lancamentoAntigo, Diario lancamentoNovo) {
