@@ -19,10 +19,15 @@ public class HistoricoController {
     @Autowired
     private HistoricoRepository historicoRepository;
 
-    // Endpoint para listar o histórico de um lançamento
+//	Método GET
     @GetMapping("/{id}")
     public ResponseEntity<List<Historico>> getHistoricoLancamento(@PathVariable Long id) {
         List<Historico> historico = historicoRepository.findByDiarioId(id);
         return ResponseEntity.ok(historico);
+    }
+    
+    @GetMapping("/transacoes")
+    public List<Historico> listarHistorico() {
+        return historicoRepository.findAll();
     }
 }

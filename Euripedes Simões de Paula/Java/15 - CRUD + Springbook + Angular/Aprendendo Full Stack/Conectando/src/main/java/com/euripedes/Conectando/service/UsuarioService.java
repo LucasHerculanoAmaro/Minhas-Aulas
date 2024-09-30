@@ -72,20 +72,10 @@ public class UsuarioService {
 		return passwordEncoder.matches(senhaDigitada, senhaBanco);
 	}
 	
-//	Método para gerar Token
-//	private String generatorBasicToken(String email, String senha) {
-//		String structure = email + ":" + senha;
-//		String structureBase64 = Base64.getEncoder().encodeToString(structure.getBytes(Charset.forName("US-ASCII")
-//																					 //StandardCharsets.US_ASCII
-//																				));
-//		return "Basic " + new String(structureBase64);
-//	}
 	public String generatorBasicToken(String usuario, String senha) {
 	    String auth = usuario + ":" + senha;
 	    byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 	    return "Basic " + new String(encodedAuth);
 	}
-
-	
 	
 }

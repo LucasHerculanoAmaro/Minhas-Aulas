@@ -70,7 +70,6 @@ public class DiarioService {
 
         return diarioAtualizadoFinal;
     }
-
     
  // Método para detectar as alterações realizadas no lançamento
     private String detectarAlteracoes(Diario lancamentoAntigo, Diario lancamentoNovo) {
@@ -119,7 +118,7 @@ public class DiarioService {
         }
     }
     
- // Filtro por ID do Diário
+    // Filtro por ID do Diário
     public Optional<Diario> buscarPorId(Long diarioId) {
         return diarioRepository.findById(diarioId);
     }

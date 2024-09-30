@@ -23,17 +23,7 @@ import com.euripedes.Conectando.repository.ClienteRepository;
 public class ClienteController {
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
-	
-//	Unidade de Teste
-	static {
-		System.out.println("Controlador Cliente carregado");
-	}
-
-	@GetMapping("/test")
-	public String testEndpoint() {
-		return "API Cliente funcionando!";
-	}	
+	private ClienteRepository clienteRepository;	
 	
 //	Método GET
 	@GetMapping("all")
@@ -74,7 +64,5 @@ public class ClienteController {
 		clienteRepository.delete(cliente);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
 	
 }

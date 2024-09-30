@@ -45,8 +45,7 @@ public class BalanceteService {
         // Lógica para ajustar os valores no balancete com base nas contas débito e crédito
         Long contaDebitoId = diario.getDebito().getId();
         Long contaCreditoId = diario.getCredito().getId();
-        Double valor = diario.getValor();
-        
+        Double valor = diario.getValor(); 
         
 	    // Ajustar valor no balancete para conta débito
         Balancete balanceteDbt = balanceteRepository.findByContaId(contaDebitoId);
@@ -55,7 +54,6 @@ public class BalanceteService {
         	b.setSaldo(b.getSaldo() + valor); // Subtrai o valor do saldo
         	balanceteRepository.save(b);
         });
-        
         
         // Ajustar valor no balancete para conta crédito
         Balancete balanceteCdt = balanceteRepository.findByContaId(contaCreditoId);

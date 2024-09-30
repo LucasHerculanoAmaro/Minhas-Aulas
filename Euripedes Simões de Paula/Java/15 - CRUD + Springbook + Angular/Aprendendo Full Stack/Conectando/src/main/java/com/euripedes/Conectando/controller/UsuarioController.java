@@ -24,33 +24,27 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
-	
-	static {
-		System.out.println("Controlador Usuário carregado");
-	}
     
-	// Método GET para obter todos os usuários
+// 	Método GET
 	@GetMapping("/all")
 	public List<Usuario> getAllUsuarios() {
 		return usuarioRepository.findAll();
 	}
 
-	// Método GET para obter um usuário pelo ID
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 		return ResponseEntity.ok(usuario);
 	}
 	
-	// Método POST para cadastrar um Usuário
+// 	Método POST
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.ok(usuarioService.createUsuario(usuario).orElseThrow(
 			() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao criar usuário")
 		));
 	}
-	
-	// Método POST para autenticar um usuário
+
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> auth(@RequestBody Optional<UsuarioLogin> usuarioLogin) {
 		return usuarioService.loginUsuario(usuarioLogin)
@@ -58,7 +52,7 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
-	// Método PUT para atualizar um usuário pelo ID
+//	Método PUT
 	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
@@ -76,7 +70,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(updatedUsuario);
 	}
 
-	// Método DELETE para deletar um usuário pelo ID
+// 	Método DELETE
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));

@@ -21,6 +21,7 @@ public class RazaoController {
     @Autowired
     private RazaoService razaoService;
     
+//	Método GET
     @GetMapping("/diario/{diarioId}")
     public List<Razao> buscarPorDiarioId(@PathVariable Long diarioId) {
         return razaoService.buscarPorDiarioId(diarioId);
@@ -31,7 +32,7 @@ public class RazaoController {
         return razaoService.buscarData(data);
     }
 
-    @GetMapping("/data-range")
+    @GetMapping("/entre-datas")
     public List<Razao> buscarPorIntervaloDeDatas(
         @RequestParam LocalDate startDate, 
         @RequestParam LocalDate endDate) {
@@ -58,7 +59,7 @@ public class RazaoController {
         return razaoService.buscarPorCreditoMaiorQue(valorMinimo);
     }
     
-    @GetMapping("/valor-range")
+    @GetMapping("/entre-valores")
     public List<Razao> buscarPorValorIntervalo(
         @RequestParam BigDecimal valorMinimo, 
         @RequestParam BigDecimal valorMaximo) {

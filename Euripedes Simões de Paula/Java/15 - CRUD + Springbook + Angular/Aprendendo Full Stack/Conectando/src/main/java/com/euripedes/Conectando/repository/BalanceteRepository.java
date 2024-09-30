@@ -12,11 +12,8 @@ public interface BalanceteRepository extends JpaRepository<Balancete, Long> {
 	Balancete findByContaId(Conta conta);
 	
 	Optional<Balancete> findByConta(Conta conta);
+	
 	Balancete findByContaId(Long contaId);
 	
-	//Optional<Balancete> findByContaId(Long contaId);
-
-
-
 }
 

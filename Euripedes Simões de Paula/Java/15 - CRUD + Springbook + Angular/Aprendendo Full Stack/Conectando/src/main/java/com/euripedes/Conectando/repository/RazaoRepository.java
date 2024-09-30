@@ -9,43 +9,35 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.model.Razao;
 
 public interface RazaoRepository extends JpaRepository<Razao, Long>{
 
 	Optional<Razao> findByContaId(Long contaId);
 	
-//	Filtro para ID
 	List<Razao> findByDiarioId(Long diarioId);
 	
-//	Filtro para Data
     List<Razao> findByData(LocalDate data); 
 
-//  Filtro para um intervalo de Datas 
     List<Razao> findByDataBetween(LocalDate startDate, LocalDate endDate);
     
     List<Razao> findByConta_Id(Long contaId);
     
-//  Filtro para Histórico
     List<Razao> findByHistoricoContaining(String palavra);
     
-    List<Razao> findByDebitoGreaterThan(BigDecimal valor); // Filtro de débitos
+    List<Razao> findByDebitoGreaterThan(BigDecimal valor); 
 
-    List<Razao> findByCreditoGreaterThan(BigDecimal valor); // Filtro de créditos
+    List<Razao> findByCreditoGreaterThan(BigDecimal valor); 
     
-    List<Razao> findByDebitoBetween(BigDecimal valorMinimo, BigDecimal valorMaximo); // Intervalo de débito
+    List<Razao> findByDebitoBetween(BigDecimal valorMinimo, BigDecimal valorMaximo); 
 
-    List<Razao> findByCreditoBetween(BigDecimal valorMinimo, BigDecimal valorMaximo); // Intervalo de crédito
+    List<Razao> findByCreditoBetween(BigDecimal valorMinimo, BigDecimal valorMaximo); 
     
     @Query("SELECT r FROM Razao r WHERE r.credito BETWEEN :valorMinimo AND :valorMaximo OR r.debito BETWEEN :valorMinimo AND :valorMaximo")
     List<Razao> findByCreditoOrDebitoBetween(
     		@Param("valorMinimo") BigDecimal valorMinimo,
     		@Param("valorMaximo") BigDecimal valorMaximo);
     
-//
-	//Optional<Diario> findByContaIdAndDiarioId(Long id, Long diarioId);
 	Optional<Razao> findByContaIdAndDiarioId(Long contaId, Long diarioId);
 
-    
 }

@@ -22,7 +22,6 @@ import com.euripedes.Conectando.model.Conta;
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.repository.ContaRepository;
 import com.euripedes.Conectando.repository.DiarioRepository;
-import com.euripedes.Conectando.repository.RazaoRepository;
 import com.euripedes.Conectando.service.BalanceteService;
 import com.euripedes.Conectando.service.DiarioService;
 import com.euripedes.Conectando.service.RazaoService;
@@ -45,19 +44,18 @@ public class DiarioController {
     @Autowired
     private RazaoService razaoService;
     
-    
-    
+//  Método GET
     @GetMapping("/transacoes")
     public List<Diario> listarTransacoes() {
         return diarioRepository.findAll();
     }
     
+//  Método POST
     @PostMapping("/registrar")
     public Diario createTransacao(@RequestBody Diario diarioRequest, @RequestHeader(value = "Usuario", required = false) String usuario) {
 
-    	if (usuario == null) {
-    		usuario = "admin";
-    	}
+//		Para caso de teste não identificado
+    	if (usuario == null) {	usuario = "admin";	}
     	
         // Busca a Conta de crédito usando o creditoId
         Conta contaCredito = contaRepository.findById(diarioRequest.getCredito().getId())
@@ -74,7 +72,7 @@ public class DiarioController {
         // Salva o lançamento no Diário
         Diario novoDiario = diarioRepository.save(diarioRequest);
         
-        
+        // Atualiza o Diário
         diarioService.createDiario(diarioRequest, usuario);
 
         // Atualiza o Balancete para as contas de crédito e débito
@@ -87,6 +85,7 @@ public class DiarioController {
         return novoDiario;
     }
     
+//  Método PUT
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<Diario> atualizarTransacao(@PathVariable Long id, @RequestBody Diario transacaoAtualizada) {
         try {
@@ -96,7 +95,7 @@ public class DiarioController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+//  Método DELETE
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTransacao(@PathVariable Long id) {
         boolean isDeleted = diarioService.deletarTransacao(id);
@@ -107,7 +106,9 @@ public class DiarioController {
         }
     }
     
- // Filtro por ID do Diário
+/*	Início da implementação para filtros	*/
+    
+//	Filtro por ID do Diário
     @GetMapping("/{diarioId}")
     public ResponseEntity<Diario> buscarPorId(@PathVariable Long diarioId) {
         return diarioService.buscarPorId(diarioId)
@@ -115,7 +116,7 @@ public class DiarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Filtro por Intervalo de Datas
+//	Filtro por Intervalo de Datas
     @GetMapping("/datas")
     public ResponseEntity<List<Diario>> buscarPorIntervaloDeDatas(
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
@@ -124,21 +125,21 @@ public class DiarioController {
         return ResponseEntity.ok(resultado);
     }
 
-    // Filtro por Conta de Crédito
+//	Filtro por Conta de Crédito
     @GetMapping("/credito/{creditoId}")
     public ResponseEntity<List<Diario>> buscarPorContaCredito(@PathVariable Long creditoId) {
         List<Diario> resultado = diarioService.buscarPorContaCredito(creditoId);
         return ResponseEntity.ok(resultado);
     }
 
-    // Filtro por Conta de Débito
+//	Filtro por Conta de Débito
     @GetMapping("/debito/{debitoId}")
     public ResponseEntity<List<Diario>> buscarPorContaDebito(@PathVariable Long debitoId) {
         List<Diario> resultado = diarioService.buscarPorContaDebito(debitoId);
         return ResponseEntity.ok(resultado);
     }
 
-    // Filtro por Intervalo de Valores
+//	Filtro por Intervalo de Valores
     @GetMapping("/valores")
     public ResponseEntity<List<Diario>> buscarPorValorIntervalo(
         @RequestParam BigDecimal valorMinimo,
@@ -147,7 +148,7 @@ public class DiarioController {
         return ResponseEntity.ok(resultado);
     }
 
-    // Filtro por Histórico
+//	Filtro por Histórico
     @GetMapping("/historico")
     public ResponseEntity<List<Diario>> buscarPorHistorico(@RequestParam String palavra) {
         List<Diario> resultado = diarioService.buscarPorHistorico(palavra);
