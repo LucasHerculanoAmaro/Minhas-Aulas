@@ -1,0 +1,91 @@
+Na aula de hoje iniciaremos o projeto Alunos, com o objetivo de auxiliar os
+estudantes a conhecer o desenvolvimento Full Stack e prepará-los para o
+desenvolvimento do Trabalho de Conclusão de Curso.
+
+A finalidade deste projeto é desenvolver uma página Web que cadastre, leia, atualize
+e delete os estudantes da classe, utilizando os métodos (CRUD) similares ao que
+estudamos anteriormente em outros projetos. 
+
+Os atributos que os alunos terão na aplicação são:
+	- Id;
+	- Nome;
+	- Sobrenome;
+	- E-mail.
+
+Dessa vez, utilizaremos o SpringBoot, um modulo Spring, como base para a aplicação
+back-end e futuras interações com o MySQL e com o front-end baseado no Angular, que 
+também foi abordade durante nossos estudos.
+
+Durante o desenvolvimento, é esperado dos alunos habilidades como: atenção aos 
+detahes, disposição, foco, trabalho em equipe e outras habilidades que ajudarão no 
+futuro desenvolvimento do Trabalho de Conclusão de Curso.
+
+1. Preparando o Ambiente
+
+Trabalharemos com diversas tecnologias, como: IDEs, frameworks e outras ferramentas 
+de desenvolvimento. Para isso, precisamos manter nosso ambiente de trabalho 
+organizado e certificar que as instalações estejam de acordo.
+
+Para isso, certifique-se que em sua máquina, tenha:
+
+	- Node.Js;
+	- Angular;
+	- Visual Studio Code;
+	- Eclipse IDE;
+	- Postman;
+	- MySQL.
+
+2. SpringBoot
+
+Nosso dessenvolvimento se iniciará no site "https://start.spring.io/", onde criaremos
+a Aplicação Java, com a sua versão e dependências necessárias para o bom
+funcionamento da aplicação.
+
+No Spring Initializr veremos um ca,po onde escolheremos o tipo do Proeto, Linguagem,
+versão do Spring Boot, adicionaremos alguns detalhes e descrições, a versão do Java e
+as Dependências.
+
+Siga as informações abaixo para criar o projeto:
+
+	- Project: Maven;
+	- Language: Java;
+	- Spring Boot: 3.3.4;
+	- Project Metadata:
+		- Group: com.euripedes;
+		- Artifact: alunos
+		- Name: alunos;
+		- Description: Cadastro e controle de alunos;
+		- Package name: com.euripedes.alunos.
+	- Packaging: Jar;
+	- Java: 17;
+
+Em "Dependencies" escolheremos as dependências que nossa Aplicação precisará. Escolha
+as sequintes dependências:
+
+	- Spring Data JPA;
+	- Spring Web;
+	- Spring Boot Devtools;
+	- MySQL Driver.
+
+Após escolher as Dependências, clique na opção "Generate" e espere o fim do download
+do documento e siga para a pasta onde o documento foi armazenado. Passe o projeto 
+para o seu "espaço de trabalho" e extraia da pasta compactada.
+
+3. Eclipse IDE
+
+O Eclipse dispensa apresentações por ser uma ferramenta familiar, onde passamos meses
+desenvolvendo atividades e projetos. 
+
+Abra o Eclipse e siga os passos:
+	- File > Import > Maven > Existing Maven Projects.
+A tela "Import Maven Projects" será aberta, e nela você deverá adicionar o caminho
+do seu projeto em "Root Directory". Feito estes passes, clique em "Finish" e o
+projeto será adicionado ao "Project Explorer".
+
+Agora é só esperar o proeto terminar de ser importado e já poderemos começar a
+trabalhar em nossa Aplicação.
+
+
+
+
+
