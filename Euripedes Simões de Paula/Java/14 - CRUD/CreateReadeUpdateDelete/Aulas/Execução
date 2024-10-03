@@ -1,0 +1,206 @@
+1. Execução do CREATE
+
+	Ao executarmos o conjunto CREATE, é apresentado a mensagem abaixo:
+
+		Exception in thread "main" java.lang.RuntimeException: Não foi possível conectar ao Banco de Dados
+			at Factory.DatabaseConnection.getConnection(DatabaseConnection.java:75)
+			at DAO.UserDAO.createUser(UserDAO.java:62)
+			at application.Main.main(Main.java:37)
+		Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'users'
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189)
+			at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+			at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+			at Factory.DatabaseConnection.getConnection(DatabaseConnection.java:61)
+			... 2 more
+	
+	Precisamos entender o que esta mensagem nos diz, para resulver este erro.
+	
+1.1 RuntimeException: Não foi possível conectar ao Banco de Dados.
+
+	Quando tratamos os prossíveis erros, fica muito mais fácil trabalhar em prol de corrigir esses erros.
+	Este é um exemplo perfeito da importância de apresentar uma mensagem em uma tomada de decisão.
+	
+	Ao se conectar com um banco, temos apenas duas opções: conectar ou não conectar. Pensando nisso, 
+	podemos usar a linguagem Java para "traduzir" o que está acontecendo na aplicação, e facilitar a vida
+	dos desenvolvedores. Por isso que adicionamos a mensagem: Não foi possível conectar ao Banco de Dados.
+	
+	Agora que sabemos qual é o erro, precisamos entender o que ocasionou o erro.
+	Mais abaixo, na mensagem de erro, temos a seguinte descrição: Unknown database 'localhost'. Esta 
+	mensagem indica que o banco de dados não existe, ou é desconhecido. 
+	
+	Então vamos trabalhar para resolver este erro de conexão.
+	
+	Primeiro passo, consulte o seu Banco de Dados. Se nele não estiver presente o nome do banco que você
+	usou na conexão, crie o seu banco com o script similar ao que está abaixo:
+	
+		create database db_users;
+
+		create table tb_users(
+			id int not null auto_increment primary key,
+			nome varchar(40),
+			email varchar(255)
+		)
+		
+	Após criar, tente executar novamente. Se o seu teste for bem sucedido, aparecerá a mensagem que 
+	criamos ao implementar o método CREATE. Faça uma busca no banco de dados e você verá que os dados
+	foram inseridos corretamente, caso a devolutiva do programa seja positiva.
+	
+	Na próxima aula, veremos como podemos usar a linguagem Java para consultar os dados que criamos e
+	apresentá-los no console da IDE Eclipse.
+	
+
+2. Execução do READ
+
+	Depois de executar o CREATE, comentamos sobre a possibilidade de consultar os dados que existem 
+	no banco sem a necessidade de abrir o MySQL; e é o que faremos nessa aula.
+	
+	Acompanhe o conteúdo que será implementado referente ao método READ. Em caso de erro, retornaremos 
+	aqui para entender o que aconteceu e buscarmos a solução.
+	
+	Lembre-se, comente o conjunto CREATE, se não você adicionará mais dados desnecessários no banco; 
+	ou se preferir, você pode trocar alguns dados para ver o método CREATE em ação novamente.
+	
+	Após executar o script do conjunto READ, foi possível recuperar esses dados no banco de dados:
+	
+		Id: 1
+		Nome: Lucas
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	No meu caso, nenhum erro ocorreu, então não vamos tratar os possíveis erros que acontecem, mas no
+	decorrer da aula pode acontecer de ocorrer erros, e nós vamos resolver esses erros junto com a 
+	classe.
+	
+	Na próxima aula, vamos trabalhar com o próximo método CRUD: o UPDATE. Obviamente, vamos atualizar 
+	os dados que á estão presentes no banco de dados, sem a necessidade de atualizar diretamente no 
+	MySQL.
+	
+
+3. Execução do UPDATE
+
+	Na aula de hoje, vamos testar o método UPDATE, onde vamos atualizar algum dado do banco de dados.
+	Veja que, ao consultarmos o banco com o método READ, é apresentado as seguintes informações:
+
+		Id: 1
+		Nome: Lucas
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	Vamos atualizar o nome de um dos objetos do banco de dados. Veja o que foi implementado na classe 
+	'Main', e depois retorne aqui para caso algum erro seja encontrado.
+	
+	No meu caso, o erro abaixo foi apresentado:
+		
+		Exception in thread "main" java.lang.RuntimeException: Erro ao atualizar usuário
+			at DAO.UserDAO.updateUser(UserDAO.java:244)
+			at application.Main.main(Main.java:106)
+		Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id = 1' at line 1
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312)
+			at mysql.connector.j@8.3.0/com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988)
+			at DAO.UserDAO.updateUser(UserDAO.java:234)
+			... 1 more
+			
+	Perceba que o 'RuntimeException' apresentou a mensagem: Erro ao atualizar usuário. 
+	Além dessa mensagem, temos outra mensagem que diz haver um erro na sintaxe SQL.
+	
+	Para resolver este erro, foi separado (por ' " + " ') na sintaxe SQL do método 'updateUser()' o 
+	"WHERE = ?" da primeira sequencia, como mostra o exemplo abaixo:
+	
+		String sql = "UPDATE tb_users SET nome = ?, email = ?" + " WHERE id = ?";
+		
+	Ao executar novamente o método UPDATE, a mensagem de sucesso na execução foi exibida, e quando 
+	consultamos os dados novamente com o método READ, temos as seguintes informações:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+		
+	O nome de um dos usuários foi modificado, ampliando o seu nome em relação ao segundo usuário que 
+	continua com o mesmo id, nome e email.
+	
+	É muito legal observar a atualização de um dado no banco de dados com interações feitas com a 
+	linguagem Java. Dá pra imaginar como será legal implementar outros sistemas com framework, APIs, 
+	etc...
+	
+	Na próxima aula, vamos trabalhar com o último, e takvez o mais simples, do método CRUD, o DELETE. 
+	
+	
+4. Executando o DELETE
+
+	Finalmente, vamos testar o último método CRUD que implementamos, o DELETE. 
+	Neste método, vamos excluir um dos objetos do banco de dados. Antes de trabalhar com a exclusão 
+	dos dados, devemos lembrar quais são os dados armazenados no banco de dados. Veja abaixo:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+		Id: 2
+		Nome: Juliana
+		E-mail: Juliana@hotmail.com
+		-----------------
+	
+4.1	Primeiro conjunto DELETE
+
+	Agora veja na classe 'Main' o que foi implementado, e depois retonaremos aqui para conhecer o 
+	resultado ou corrigir algum possível erro.
+	
+	Quando executamos o primeiro conjunto DELETE, temos a exclusão da segunda tupla de novo banco 
+	de dados, e ao consultar o banco com o método READ, temos os seguintes resultados:
+	
+		Id: 1
+		Nome: Lucas Herculano Amaro
+		E-mail: lucash.96@hotmail.com
+		-----------------
+	
+	Perceba que, as informações sobre ID, NOME e EMAIL da usuária 'Julinana' foram excluídos. Quando 
+	executamos novamente com o ID existente no banco de dados, percebemos que nenhum dado é retornado. 
+	Isso significa, que o nosso banco de dados está vazio.
+	
+	Dessa forma, concluímos os testes do método DELETE, o último método CRUD.
+	
+	
+5. CONCLUSÃO
+
+	Nos últimos dias, aprendemos a:
+	
+		-> Conectar com o banco de dados.
+		-> Criar a classe Model, responsável pelos atributos, método construtor e 'getters e setters'.
+		-> Implementar os métodos CREATE, READ, UPDATE e DELETE.
+		-> Testar Cada método na classe 'Main'.
+
+	Parece ser complexo, mas o segredo é repetir esse processo de criação do CRUD, com novos atributos, 
+	ou objetos, até que você tenha domínio do que está fazendo.
+	
+	Uma dica é você tentar memorizar a estrutura que os métodos têm, mas caso você não lembre, isso não 
+	é um problema. É normal ainda mais para um aprendiz, não lembrar de alguma coisa; isso não quer 
+	dizer que você não tem talento ou é um fracasso, você só precisa de ajuda assim como qualquer pessoa
+	em qualquer estudo, profissão ou trarefa.
+	
+	Nosso próximo objetivo será mais complexo, por isso, entenda bem como esta aplicação funciona, pois 
+	será necessário entender e lembrar boa parte deste conteúdo.
+	
+	
