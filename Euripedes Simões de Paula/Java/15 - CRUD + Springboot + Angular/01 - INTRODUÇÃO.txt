@@ -82,9 +82,115 @@ A tela "Import Maven Projects" será aberta, e nela você deverá adicionar o ca
 do seu projeto em "Root Directory". Feito estes passes, clique em "Finish" e o
 projeto será adicionado ao "Project Explorer".
 
-Agora é só esperar o proeto terminar de ser importado e já poderemos começar a
+Agora é só esperar o projeto terminar de ser importado e já poderemos começar a
 trabalhar em nossa Aplicação.
 
+4. Conhecendo Aplicação Spring Boot
+
+Agora que nosso projeto já está importado, precisamos entender a estrutura de um
+projeto Spring Boot.
+
+Dentro de nossa aplicação, encontramos as seguintes pastas:
+
+	alunos
+	     |__src/main/java
+	     |__src/main/resources
+	     |__src/test/ava
+	     |__JRE System Library [JavaSE-17]
+	     |__Maven Dependencies
+	     |__src
+	     |__target
+	     |__HELP.md
+	     |__mvnw
+	     |__mvnw.cmd
+	     |__pom.xml
+
+Vamos entender o que significa esses diretórios.
+
+4.1. src/main/java
+
+É aqui onde vamos escrever e armazenar todo o código fonte Java da aplicação. Neste
+diretório vamos criar e organizar os pacotes das camadas de controle, serviços,
+repositórios, entidades e outras classes de suporte.
+
+Em nosso projeto, vamos criar alguns pacotes como, por exemplo:
+	com.exemplo.alunos.controller: Controladores REST.
+	com.exemplo.alunos.model: Entidades do banco de dados.
+
+4.2. src/main/resources
+
+Vamos armazenar arquivos de recursos, como arquivos de configuração e estáticos.
+
+Neste diretório temos arquivos importantes, sendo eles: application.properties
+e application.yml, que são arquivos de configuração da aplicação (Por exemplo:
+configurações do banco de dados, portas, etc.).
+
+Também pode conter arquivos estáticos, como templates HTML (em uma aplicação web), arquivos de configuração do Hibernate, etc.
+
+4.3. src/test/java
+
+O código fonte para testes automatizados são armazenados aqui, onde é possível escrever testes unitários (JUnit) e testes de integração.
+
+A estrutura de pacotes geralmente se assemelha a estrutura do diretório
+"src/main/java" para manter o ambiente de testes semelhante às classes principais.
+
+4.4. JRE System Library [JavaSE-17]
+
+Indica a versão do Java utilizada no projeto, neste caso, o Java 17.
+Necessário para executar a aplicação e compilar o código.
+
+4.5. Maven Dependencies
+
+Este é o diretório onde o Maven gerencia as dependências do projeto, listadas no
+arquivo "pom.xml".
+
+Nele há bibliotecas externas, como:  
+	- Dependências Spring (Spring Boot Starter Web, Data JPA, etc.), 
+	- Drivers de banco de dados (ex: MySQL, PostgreSQL), 
+	- Bibliotecas de logging, entre outras.
+
+4.6. src
+
+É um diretório genérico, mas não tão comum em projetos Spring Boot. Ele pode conter
+outros arquivos ou recursos não incluídos nos padrões de estrutura Maven.
+
+4.7. target
+
+Este é um diretório gerado pelo Maven durante o processo de build e contém o arquivo
+".jar", que foi escolhido no "Spring Initializr", e compilado da aplicação e outros
+arquivos temporários gerados durante a compilação e testes.
+
+Este diretório é importante para distribuir ou implantar a aplicação.
+
+4.8. HELP.md
+
+Arquivo que geralmente contém instruções e informações sobre o projeto, como comandos
+de build, execução, e links úteis para desenvolvedores.
+
+4.9. mvnw e mvnw.cmd
+
+"mvnw" (para Linux/macOS) e "mvnw.cmd" (para Windows) são wrappers do Maven, que
+permitem que a aplicação seja construída e executada sem a necessidade de o Maven
+estar instalado na máquina, já que eles puxam uma versão local do Maven para o
+projeto.
+
+4.10. pom.xml
+
+O "pom;xml" é o arquivo de configuração principal do projeto Maven. Que define as
+dependências do projeto, plugins, versões do Java, configurações de build, entre
+outras.
+
+Exemplo de dependências comuns:
+	- spring-boot-starter-web: Para criar uma aplicação web.
+	- spring-boot-starter-data-jpa: Para interagir com banco de dados.
+
+Agora que já criamos nosso projeto e entendemos a estrutura dele, vamos trabalhar
+dar início as configurações, e por fim, começar a criar nossos Pacotes e Classes.
+
+A nossa próxima aula será direcionada ao documento "application.properties", no
+diretório "src/main/resources".
+
+5. Application Properties
 
 
 
