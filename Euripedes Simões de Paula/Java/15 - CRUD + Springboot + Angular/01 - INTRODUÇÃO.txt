@@ -192,6 +192,61 @@ diretório "src/main/resources".
 
 5. Application Properties
 
+Na aula de hoje vamos conhecer sobre algumas configurações para banco de dados,
+portas de servidores, entre outras configurações.
 
+Primeiramente, iremos configurar o banco de dados. Para este projeto, precisamos
+criar uma tabela que atenda as expectativas do nosso projeto. Mas não iremos
+trabalhar com aqueles scripts que trabalhamos no projeto anterior, vamos
+configurar diretamente no "application.properties".
+
+Adicione as seguintes linhas ao seu "application.properties":
+	
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database=mysql
+spring.datasource.url=jdbc:mysql://localhost/DB_SISTEMA_GERENCIAMENTO_ALUNOS?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSl=false
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+O que significa cada uma dessas linhas?
+
+	- Utilizamos "spring.jpa.hibernate.ddl-auto=update" para atualizar o banco
+	de dados a cada requisição.
+
+	- Utilizamos "spring.jpa.database=mysql" para indicar qual é o banco que
+	utiizamos.
+
+	- Utilizamos "spring.datasource.url= {{endereço do banco}}" para indicar
+	qual é o endereço de conexão para o banco de dados. Observe que, junto
+	a ele temos "createDatabaseIfNotExist" que cria de maneira automática o 
+	Banco e a Tabela sem a necessidade de criar tudo manualmente.
+
+	- No "spring.datasource.username=root" e "spring.datasource.password=root"
+	indicamos o login e senha do banco de dados. Lembre-se que "root" é o 
+	nome padrão que os desenvolvedores utilizam para criar logins e senhas.
+
+	- Utilizamos o "spring.jpa.properties.hibernate.dialect" para que nossa
+	aplicação consiga conversar com o banco de dados. Dessa forma, podemos
+	otimizar consultas ao Banco de Dados.
+
+Provavelmente, ao longo de nosso projeto, mais configurações podem ser feitas. Mas
+vamos com calma, não faz bem à "saúde" de nossa aplicação criar diversas
+configurações que não serão utilizadas.
+
+Por hora, nossa configuração inicial está feita aqui. Na próxima aula, vamos 
+trabalhar com o Pacote "model" e "repository", onde vamos implementar o objeto de
+nossa aplicação e criar uma configuração para o repositório desse objeto.
+
+
+REFERÊNCIAS
+
+5. Application Properties
+**********************************************************************************************************
+* Referência: 
+* Nome: Angular 10 + Spring Boot CRUD Full Stack App - 3 - Create Spring Boot Project and Configure MySQL 
+* Autor: Java Guides
+* Link: https://www.youtube.com/watch?v=kpM5xV17S9U&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=4
+**********************************************************************************************************
 
 
