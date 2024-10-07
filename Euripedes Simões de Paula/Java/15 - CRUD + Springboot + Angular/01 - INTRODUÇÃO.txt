@@ -238,6 +238,17 @@ Por hora, nossa configuração inicial está feita aqui. Na próxima aula, vamos
 trabalhar com o Pacote "model" e "repository", onde vamos implementar o objeto de
 nossa aplicação e criar uma configuração para o repositório desse objeto.
 
+6. Model e Repository
+
+Na aula de hoje, iremos trabalhar com os pacotes "model" e "repository", também 
+vamos criar a classe "Alunos" para definir os atributos e os métodos para nosso
+objeto, e a interface "AlunosRepository" para definir configurações para interações 
+com o banco de dados.
+
+Vá ao eclipse e, no diretório "scr/main/java", crie um pacote com o nome "model" e 
+a classe "Aluno" dentro deste pacote. A continuação de nossa aula será feito por
+esta classe.
+
 
 REFERÊNCIAS
 
