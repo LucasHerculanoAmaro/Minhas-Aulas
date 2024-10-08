@@ -37,7 +37,7 @@ Para isso, certifique-se que em sua máquina, tenha:
 
 2. SpringBoot
 
-Nosso dessenvolvimento se iniciará no site "https://start.spring.io/", onde criaremos
+Nosso desenvolvimento se iniciará no site "https://start.spring.io/", onde criaremos
 a Aplicação Java, com a sua versão e dependências necessárias para o bom
 funcionamento da aplicação.
 
