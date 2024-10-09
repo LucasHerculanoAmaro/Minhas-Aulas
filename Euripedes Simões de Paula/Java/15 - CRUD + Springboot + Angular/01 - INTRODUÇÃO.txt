@@ -41,7 +41,7 @@ Nosso desenvolvimento se iniciará no site "https://start.spring.io/", onde cria
 a Aplicação Java, com a sua versão e dependências necessárias para o bom
 funcionamento da aplicação.
 
-No Spring Initializr veremos um ca,po onde escolheremos o tipo do Proeto, Linguagem,
+No Spring Initializr veremos um campo onde escolheremos o tipo do Projeto, Linguagem,
 versão do Spring Boot, adicionaremos alguns detalhes e descrições, a versão do Java e
 as Dependências.
 
