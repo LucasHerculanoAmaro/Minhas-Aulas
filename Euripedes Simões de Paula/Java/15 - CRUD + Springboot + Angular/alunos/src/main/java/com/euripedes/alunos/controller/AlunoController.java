@@ -75,8 +75,14 @@ public class AlunoController {
  	*	READ 	-> GetMapping
  	*	UPDATE	-> PutMapping
  	*	DELETE	-> DeleteMapping
+ 
+ *	Primeiramente, vamos implementar o método READ, onde vamos utilizar o método GET.
+ 	Veja que, antes de criar o método GET, utilizamos a anotação "@GetMapping" com
+ 	o endereço do endpoint utilizado para acessar este método via HTTP.
  	
- */
+ *	O objetivo deste método é observar os registros que existem dentro do banco de dados.
+ 	Mas vamos entender melhor como implementar este método, então veja abaixo como será a 
+ 	sua implemenção:		*/
 	@GetMapping("/todos")
 	public List<Aluno> getAllAlunos() {
 		return alunoRepository.findAll();
