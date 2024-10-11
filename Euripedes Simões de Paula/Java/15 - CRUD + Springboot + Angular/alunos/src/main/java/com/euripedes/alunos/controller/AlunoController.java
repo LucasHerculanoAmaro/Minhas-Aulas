@@ -71,10 +71,10 @@ public class AlunoController {
  	dois endpoints: /api/alunos/{id}
  	
  *	Abaixo vamos implementar o CRUD, onde vamos assimilar os métodos HTTP ao CRUD:
- 	*	CREATE 	-> PostMapping
- 	*	READ 	-> GetMapping
- 	*	UPDATE	-> PutMapping
- 	*	DELETE	-> DeleteMapping
+ 	*	CREATE 	-> PostMapping;
+ 	*	READ 	-> GetMapping;
+ 	*	UPDATE	-> PutMapping;
+ 	*	DELETE	-> DeleteMapping;
  
  *	Primeiramente, vamos implementar o método READ, onde vamos utilizar o método GET.
  	Veja que, antes de criar o método GET, utilizamos a anotação "@GetMapping" com
@@ -84,9 +84,90 @@ public class AlunoController {
  	Mas vamos entender melhor como implementar este método, então veja abaixo como será a 
  	sua implemenção:		*/
 	@GetMapping("/todos")
+	
+/*	Precisamos buscar os dados no banco de dados, e para isso podemos criar um método que
+ 	retorna uma lista. Então, vamos importar uma "List<>" que será direcionada a buscar
+ 	algum Objeto da entidade "Aluno".		*/
 	public List<Aluno> getAllAlunos() {
+		
+/*		Este método tem a seguinte função: acessar a interface "alunoRepository" 
+ 		utilizando o método "findAll()".	*/
 		return alunoRepository.findAll();
+		
+/*		Agora vamos testar este método para saber se ele está funcionando corretamente.
+ 		Para isso, vamos precisar abrir o MySQL para inserir alguns dados, e o Postman
+ 		para testar o endpoint que definimos para este método.
+ 		
+ *		Também será necessário executarmos a nossa aplicação para que o banco de dados, 
+ 		que definimos no "application.properties", seja criado e que as requisições HTTP 
+ 		possam ser respondidas.
+ 		
+ * 		Para executar, vá no pacote "com.euripedes.alunos" e abra a classe 
+ 		"AlunosApplication". Nesta classe, você pode clicar com o botão e escolher a 
+ 		opção "Run As" e depois clique em "1 Java Application".
+ 		
+ *		Ao executar a Aplicação, uma série de códigos aparecerá no Console, quando 
+ 		aparecer uma mensagem similar a "Started AlunosApplication in 15.048 seconds 
+ 		(process running for 16.499)", você pode fazer uso de sua aplicação.
+
+ *		Agora vá até o banco de dados e procure pelo banco com o nome 
+ 		"DB_SISTEMA_GERENCIAMENTO_ALUNOS". Neste banco você verá uma tabela com o nome 
+ 		"alunos". O nome deste banco foi configurado no "application.properties", e a 
+ 		tabela foi configurada na entidade "Aluno" no pacote model.
+
+ *		Atenção: Lembre-se que configuramos no "application.properties" para o banco 
+ 		criar esse banco e a tabela de maneira automática caso não tenha uma tabela já 
+ 		criada. Se você não configurou para isso, talvez precisará criar de maneira manual, 
+ 		ou adicionar as devidas configurações no endereço do banco.
+
+ * 		Procure a tabela com o script "SELECT * FROM db_sistema_gerenciamento_alunos.alunos;" 
+ 		e você verá que ela está vazia. Vamos inserir alguns dados para buscá-los 
+		posteriormente no Postman. Execute o segunte script:
+
+		*	INSERT INTO `db_sistema_gerenciamento_alunos`.`alunos` (`nome`, `sobrenome`, `email`) 
+			VALUES ([nome], [sobrenome], [e-mail]);
+
+ *		OBS: Em "VALUES" substitua os elementos "[nome]", "[sobrenome]" e "[e-mail]" pelo 
+ 		nome que deseja.
+
+ *		Após inserir os dados no banco de dados no MySQL, vamos consultar esses dados 
+ 		utilizando o Postman. Nesta ferramenta encontraremos um campo para inserir uma URL, 
+ 		um campo para escolhermos o Método HTTP, um console, etc.
+
+ *		Agora, para testar o método, siga os seguintes passos:
+		*	Escolha o método GET;
+	 	*	Insira o endpoint "http://localhost:8080/api/alunos/todos";
+	 	*	Clique em "Send".
+
+ * 		No console encontramos as seguintes informações:
+	 	*	Status: informa qual é a resposta HTTP para requisição;
+	 	*	E a resposta que virá no formato JSON.
+
+ * 		A resposta para a requisição deve ser no formato JSON, parecida assim:
+
+			[
+			    {
+		        	"id": 1,
+		        	"email": "lucash.@hotmail.com",
+		        	"nome": "lucas",
+		        	"sobrenome": "amaro"
+			    }
+			]
+
+*		OBS: Quando definimos a resposta para o formato XML, ela será apresentada da seguinte 
+		forma:
+
+			[{"id":1,"email":"lucash.@hotmail.com","nome":"lucas","sobrenome":"amaro"}]
+
+ *		Agora que executamos nosso projeto, inserimos os dados no banco de dados, e conseguimos 
+ 		testar as requisições via Postman, podemos concluir que, se tratando do método GET para 
+ 		retornar todos os registros no banco de dados, nossa aplicação mostrou-se ser funcional.
+
+ * 		Na próxima aula vamos continuar trabalhando no método GET, mas dessa vez vamos trabalhar
+ 		implementar a busca por ID.
+ */
 	}
+	
 	
 	@GetMapping("/{id}")
 	private ResponseEntity<Aluno> getAlunoById(@PathVariable Long id) {
@@ -144,5 +225,8 @@ public class AlunoController {
 
  *	Autowired e a injeção de dependência do Spring
  	https://medium.com/@leonardogiuliani/autowired-e-a-inje%C3%A7%C3%A3o-de-depend%C3%AAncia-do-spring-d8864cc9af50
+ 	
+ *	Spring @GetMapping, @PostMapping, @PutMapping, @DeleteMapping and @PatchMapping
+ 	https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html
 
  */
