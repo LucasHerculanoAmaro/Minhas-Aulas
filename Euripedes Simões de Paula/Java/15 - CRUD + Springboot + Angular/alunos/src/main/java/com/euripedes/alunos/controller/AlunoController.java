@@ -168,8 +168,20 @@ public class AlunoController {
  */
 	}
 	
-	
+/*	Nesta aula vamos trabalhar na implementação do método GET. Este método têm algumas 
+ 	similaridades com o método anterior, mas este método terá uma particularidade que o método 
+ 	GET anterior não tem: ele fará buscas pelo ID.
+ 	
+ * 	Nosso objetivo é retornar um objeto que contém o "ID" específico, então não será necessário 
+ 	criar uma lista e nem importar uma "List". Dessa vez vaos utiilizar o "ResponseEntity", que 
+ 	já utilizamos em aulas anteriores.
+ 	
+ *	O primeiro passo é definir o endpoint que será utilizado no Postman futuramente. Para isso, 
+ 	vamos definir a anotação "@GetMapping" com o endpoint "/{id}", assim vamos conseguir difinir
+ 	o objeto que será retornado pelo ID. Veha abaixo:		 */
 	@GetMapping("/{id}")
+	
+	
 	private ResponseEntity<Aluno> getAlunoById(@PathVariable Long id) {
 		Aluno aluno = alunoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado."));
