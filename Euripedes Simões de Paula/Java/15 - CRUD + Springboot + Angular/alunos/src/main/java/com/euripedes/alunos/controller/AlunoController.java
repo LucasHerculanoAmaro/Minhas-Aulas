@@ -181,11 +181,54 @@ public class AlunoController {
  	o objeto que será retornado pelo ID. Veha abaixo:		 */
 	@GetMapping("/{id}")
 	
+/*	Agora vamos iniciar a implementação  do método para buscar os Alunos pelo ID. 
+ 
+ * 	Primeiramente vamos utilizar a classe "Response Entity", uma extenção do "Http Entity" que 
+ 	adiciona o Status Http ao código, e vamos indicar que esse status será baseado na entidade 
+ 	"Aluno".		*/	
+	private ResponseEntity<Aluno>
 	
-	private ResponseEntity<Aluno> getAlunoById(@PathVariable Long id) {
+//	Vamos nomear o método com um nome que o defina bem: getAlunoById. 
+	 							  getAlunoById(
+/*	Agora vamos adicionar ao parâmetro uma representação do "id" do tipo "Long". Mas antes dele
+  	será adicionado a anotação "@PathVariable" neste método e URL, que tem a função de manipular 
+  	variáveis do objeto. 		*/
+	 									  @PathVariable Long id) {
+		
+/*		Vamos criar um objeto da classe "Aluno" que acessará o repositório com o método 
+		"find By Id" e buscará o "id" solicitado via URL.		*/	
 		Aluno aluno = alunoRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado."));
+				
+/*				Aqui vamos implementar uma condição para caso o "id" não sea encontrado no
+				banco de dados		*/
+				.orElseThrow(
+						
+/*						Vamos utilizar a Expressão Lambda para chamar o método 
+ 						"Resource Not Found Exception", que lançará uma mensagem caso a 
+ 						condição não seja atendida.		*/
+						() -> new ResourceNotFoundException("Aluno não encontrado."));
+		
+/*		Se a exception não for executada, isso quer dizer que ele conseguiu achar algum "id" no
+		repositório, então ele deverá dar algum retorno, já que este método mantém a ausência 
+		do "void".
+		
+ *		Como retorno, vamos indicar o método "ok()", com o objeto "aluno" no parâmetro, ao 
+ 		"Response Entity".		*/	
 		return ResponseEntity.ok(aluno);
+		
+/*		Agora vamos executar a nossa aplicação e testar este método. Vamos fazer o mesmo 
+ 		processo que no método anterior, abrir o Postman, adicionar a nova URL que representa
+ 		este método, e substituir o "/{id}", por um número de id existente no banco de dados.
+ 		
+ *		Se desejar, poderá adicionar um "id" não existente, para observar a "Exception" em 
+ 		funcionamento no console do Eclipse e no Postman.
+ 		
+ *		Estamos finalizando a implementação do método READ, e com esses métodos podemos buscar 
+ 		dois registros: uma lista com todos os registros e outra que busca um registro por id.
+ 		o próximo método CRUD que será implementado é o CREATE, onde vamos conseguir cadastrar
+ 		um aluno utilizando URL e o postman, também veremos um antes e depois da entidade no
+ 		MySQL.
+ */
 	}
 	
 	@PostMapping("/cadastrar")
@@ -241,4 +284,9 @@ public class AlunoController {
  *	Spring @GetMapping, @PostMapping, @PutMapping, @DeleteMapping and @PatchMapping
  	https://www.javaguides.net/2018/11/spring-getmapping-postmapping-putmapping-deletemapping-patchmapping.html
 
+ *	Class ResponseEntity<T>
+	https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html
+
+ *	Spring @PathVariable Annotation
+	https://www.baeldung.com/spring-pathvariable
  */
