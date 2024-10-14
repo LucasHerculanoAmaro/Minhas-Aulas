@@ -247,12 +247,74 @@ public class AlunoController {
  */
 	}
 	
-/*
- * 	
- */
+/*	Na aula de hoje, vamos implementar o próximo método CRUD, o Create. Nosso objetivo ao final
+ 	da implementação deste método é conseguir enviar uma requisição por meio da URL no Postman
+ 	a fim de conseguir criar no banco de dados um objeto.
+ 	
+ * 	Para começar, vamos definir o endpoint que identificará este método. Utilizaremos a anotação 
+ 	"@PostMapping" para indicar que este método utiliza um mapeamento de requisição do tipo 
+ 	"POST", o mesmo método que será aplicado no Postman.
+ 	
+ *	Na anotação vamos identificar este método como "/cadastrar", esse URL complementa o endereço
+ 	adicioando na anotação "@RequestMapping".		*/
 	@PostMapping("/cadastrar")
-	public Aluno createAluno(@RequestBody Aluno aluno) {
+	
+/*	Agora vamos implementar uma classe do tipo "Aluno", com o nome baseado no método que será 
+ 	implementado. 	 */
+	public Aluno createAluno(
+			/*	Será adicionado, como parâmetro, uma anotação "@RequestBody" que indicará que os 
+			próximos parâmetros (Aluno aluno) são adicionados ao corpo da solicitação.		*/
+			@RequestBody Aluno aluno) {
+		
+	/*	Agora que definimos o nome do método e os seus parâmetros, incluindo o parâmetros 
+	 	baseados no objeto "Aluno", vamos adicionar um retorno, já que nosso método não é do 
+	 	tipo "void".
+	 	
+	 *	No retorno vamos aplicar o método "save()" no repositório. O método "save()" tem como 
+	 	parâmetro a representação do objeto "Aluno", que carrega as informações inseridas via
+	 	Http.
+	 	
+	 *	Para resumir, inserimos os dados pelo JSON no Postman e esses dados passarão pelo 
+	 	end-point da API e armazenados no parâmetro do método "createAluno()". O dados armazenado 
+	 	no parâmetro serão direcionado para o parâmetro do método "save()", que será inserido 
+	 	no repositório do banco de dados.		*/	
 		return alunoRepository.save(aluno);
+		
+	/*	Agora, vamos testar a nossa aplicação para saber se o método está sendo funcional. Você
+	 	precisará abrir o Postman para testar o end-point, e o MySQL para observar as mudanças 
+	 	na Tabela.
+	 	
+	 *	No Postman você precisará seguir alguns passos antes de enviar uma requisição:
+	 	*	Mude o método para "POST";
+	 	*	Adiciona o endereço "http://localhost:8080/api/alunos/cadastrar";
+	 	*	Nas opções abaixo, clique em "Body";
+	 	*	Entre as opções do "Body", escolha "raw" e mude "Text" para "JSON";
+
+	*	Agora você deverá adicionar as informações no formatro JSON:
+			{
+	    			"email": "insira o e-mail",
+	    			"sobrenome": "insira o sobrenome",
+	    			"nome": "insira o nome"
+			}
+	
+	*	OBS: Não é necessário adicionar o ID, ele será criado de forma automática.
+	
+	*	Feito estes passos, basta clicar em "Send" e esperar que o Status seja "200 OK".
+	
+	*	Agora vamos no Banco de Dados e abrir a tabela "alunos". Se você observou a tabela antes 
+		de enviar a requisição, perceba que não há registros com as informações acima; mas após 
+		clicar em "Send" no Postman, a nossa tabela é alterada e uma nova linha é criada no MySQL.
+		
+	*	Se desejar, poderá utilizar os outros métodos "GET" implementados anteriormente para observar
+		os dados no Postman.
+		
+	*	Sendo assim, terminamos a implementação do método CREATE, onde conseguimos inserir um novo 
+		registro no banco de dados por meio de URL no Postman, utilizando o método Http POST, e 
+		observamos a tabela sendo atualizada no Banco de Dados.
+		
+	*	Na próxima aula, implementaremos o outro método CRUD, o UPDATE.
+	
+	*/
 	}
 	
 	@PutMapping("/atualizar")
