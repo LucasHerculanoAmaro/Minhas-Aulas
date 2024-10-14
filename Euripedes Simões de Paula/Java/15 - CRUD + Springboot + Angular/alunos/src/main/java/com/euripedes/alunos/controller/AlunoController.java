@@ -223,6 +223,22 @@ public class AlunoController {
  *		Se desejar, poderá adicionar um "id" não existente, para observar a "Exception" em 
  		funcionamento no console do Eclipse e no Postman.
  		
+ *		Quando solicitamos a requisição no Postman, com o método "GET" e com a URL 
+ 		"http://localhost:8080/api/alunos/1", é retornado uma pequena estrutura com em formato 
+ 		JSON que retorna os dados do banco de dados, similar ao código abaixo:
+ 		
+			{
+			    "id": 1,
+			    "email": "lucash.@hotmail.com",
+			    "nome": "lucas",
+			    "sobrenome": "amaro"
+			}
+
+ *		Quando utilizamos um id inexistente, a mensagem apresentada no console do Eclipse é 
+ 		"Resolved [com.euripedes.alunos.exception.ResourceNotFoundException: Aluno não encontrado.]", 
+		enquanto no Postman tivemos o status Http "404 Not Found". Ambos indicam que o objeto não 
+		existe no MySQL.
+ 		
  *		Estamos finalizando a implementação do método READ, e com esses métodos podemos buscar 
  		dois registros: uma lista com todos os registros e outra que busca um registro por id.
  		o próximo método CRUD que será implementado é o CREATE, onde vamos conseguir cadastrar
@@ -231,6 +247,9 @@ public class AlunoController {
  */
 	}
 	
+/*
+ * 	
+ */
 	@PostMapping("/cadastrar")
 	public Aluno createAluno(@RequestBody Aluno aluno) {
 		return alunoRepository.save(aluno);
