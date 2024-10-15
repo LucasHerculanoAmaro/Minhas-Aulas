@@ -317,18 +317,102 @@ public class AlunoController {
 	*/
 	}
 	
-	@PutMapping("/atualizar")
-	public ResponseEntity<Aluno> updateAluno(@PathVariable Long id, @RequestBody Aluno alunoDts){
+	
+/*	Nesta aula implementaremos o penúltimo método CRUD: o UPDATE.
+ 
+ *	Para começar, vamos utilizar a anotação "@putMapping" para indicar que a URL aplicada pertence ao
+ 	método Http "PUT". O end-point utilizado para identificar o método é o "/atualizar", conforme 
+ 	observamos abaixo:		*/
+	@PutMapping("/atualizar/{id}")
+	
+/*	Vamos agora criar um método responsável por atualizar o objeto. Este método iniciará igual ao 
+ 	método  GET, onde vamos utilizar um "Response Entity" para adionar um Status Http ao método	
+ 	(Explicação na linha 186).		*/	
+	public ResponseEntity<Aluno> updateAluno(
+		
+		//	Como parâmetro vamos adicionar:
+			
+			@PathVariable Long id, // Para manipular as variáveis do objeto (Explicação na Linha 193). 
+			@RequestBody Aluno alunoDts // Para adicionar os parâmetros ao corpo da solicitação(Explicação na Linha 265)
+			){
+		
+	/*	Agora vamos criar um objeto do tipo "Aluno" que receberá o mesmo ID do parâmetro do método 
+ 		"findById()", aplicado no "alunoRepository".  		*/		
 		Aluno aluno = alunoRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Aluno não enontrado."));
+				
+	/*			Caso o ID não seja encontrado, será criado uma Exception por meio do método 
+				"orElseThrow()".	*/				
+				.orElseThrow(
+						
+	/*					Vamos utilizar o método "Resource Not Found Exception" para indicar uma 
+						mensagem caso o ID não seja encontrado.		*/
+						() -> new ResourceNotFoundException("Aluno não enontrado."));
 		
-		aluno.setNome(alunoDts.getNome());
-		aluno.setSobrenome(alunoDts.getSobrenome());
-		aluno.setEmail(alunoDts.getEmail());
+	/*	Para caso o ID seja encontrado, a aplicação utilizará o método "Setter", implementado na 
+		"Model", para pegar os dados atuais pertencentes ao ID passado do Repositório para o 
+		objeto.
 		
+	 *	Como parâmetro do método "set", será aplicado os dados passados no parâmetro enviado
+ 		no corpo da requisição do método "updateAluno()", identificado com a anotação "@RequestBody",
+ 		com o nome "alunoDts" (aluno detalhes).
+ 		
+	 *	Esta é uma forma de pegar os Dados atuais no repositório e substituir por novos Dados do
+  		inseridos via Web pelo método Http PUT.		*/
+		
+	//	Pegando o Nome atual
+		aluno.setNome(
+		//		Inserindo o novo Nome
+				alunoDts.getNome());
+		
+	//	Pegando o Sobrenome atual
+		aluno.setSobrenome(
+		//		Inserindo o novo Sobrenome
+				alunoDts.getSobrenome());
+		
+	//	Pegando o Email atual
+		aluno.setEmail(
+		//		Inserindo o novo Email
+				alunoDts.getEmail());
+		
+	/*	Agora que inserimos os novos dados, vamos criar um objeto que armazenará as novas mudanças.
+ 		Este objeto, com o nome "updateAluno" contém os mesmos dados inseridos no Repositório pelo 
+ 		método "save()". 
+ 		
+	*	Perceba que o método "save()" tem como parâmentro o mesmo objeto que recebeu o ID no início 
+ 		deste método: aluno. 	*/		
 		Aluno updateAluno = alunoRepository.save(aluno);
 		
+	//	Como retorno, indicaremos o método "ok()" ao "Response Entity".
 		return ResponseEntity.ok(updateAluno);
+		
+	/*	Agora vamos testar este método com o MySQL e o Postman.
+ 		
+	 *	Com o MySQL aberto, observe os dados que existem em sua tabela.
+ 
+	 *	No Postman você precisará seguir alguns passos antes de enviar uma requisição:
+		 *	Mude o método para "PUT";
+		 *	Adiciona o endereço "http://localhost:8080/api/alunos/atualizar";
+		 *	Nas opções abaixo, clique em "Body";
+		 *	Entre as opções do "Body", escolha "raw" e mude "Text" para "JSON";
+	
+	*	Agora você deverá adicionar as novas informações no formatro JSON:
+			{
+		   			"email": "insira o novo e-mail",
+		   			"sobrenome": "insira o novo sobrenome",
+		   			"nome": "insira o novo nome"
+			}
+			
+	*	Feito estes passos, basta clicar em "Send" e esperar que o Status seja "200 OK".
+		Depois, vá ao MySQL e atualize a consulta da tabela e confirme se os dados foram 
+		atualizados.
+		
+	*	Dessa forma, conseguimos concluir a implementação de mais um método CRUD, e agora 
+		nossa aplicação é capaz de fornecer métodos para atualizar os registros dos objetos
+		no banco de dados.
+		
+	*	Na próxima aula, trabalharemos com a implementação do último método CRUD, o DELETE.
+		Também realizaremos testes utilizando o Postman e o MySQL.
+	*/
 	}
 	
 	@DeleteMapping("/{id}")
@@ -370,4 +454,10 @@ public class AlunoController {
 
  *	Spring @PathVariable Annotation
 	https://www.baeldung.com/spring-pathvariable
+	
+ *	Angular + Spring Boot CRUD Full Stack App - 13 - Creating REST API to Save Employee Object
+	https://www.youtube.com/watch?v=qH7_1W8MKfs&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=16
+	
+ *	Angular + Spring Boot CRUD Full Stack App - 18 - Creating Update Employee REST API
+	https://www.youtube.com/watch?v=XG3cgNvVx9M&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=18
  */
