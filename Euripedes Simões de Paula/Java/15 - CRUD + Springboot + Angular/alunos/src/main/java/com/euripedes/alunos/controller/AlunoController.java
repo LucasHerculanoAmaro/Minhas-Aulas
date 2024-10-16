@@ -415,16 +415,50 @@ public class AlunoController {
 	*/
 	}
 	
-	@DeleteMapping("/{id}")
+/*	Nesta aula, implementaremos o último métoo CRUD: o DELETE.
+ 
+ *	Para começar, vamos utilizar a anotação "@DeleteMapping" para indicar qual é o endpoint
+  	que identificará o este método. Como parâmetro da anotação, vamos utilizar o nome 
+  	"/deletar{id}".		*/	
+	@DeleteMapping("/deletar{id}")
+	
+/*	Agora vamos implementar um "Response Entity" com uma implementação conhecida como 
+ 	"mapa de chaves e valores booleanos".
+ 	
+ * 	Quando utilizamos a implementação "Response Entity" com "Map<String, Boolean>", estamos
+	criando um mapa que associa chaves do Tipo "String" aos valores do tipo "Booleano".
+	Esta implementação pode ser útil ao indicar sucesso ou falha de uma operação, onde uma 
+	chave "deleted" é identificada com "Boolean.TRUE".		*/
 	public ResponseEntity<Map<String, Boolean>> deleteAluno(@PathVariable Long id){
+		
+	/*	Vamos criar uma implementação com o objeto "Aluno", similar a implementação que 
+	 	realizamos no método "getAlunoById()" e "updateAluno()".
+	 	
+	 * 	Vamos evitar explicar o que já explicamos, mas se surgir alguma dúvida, consulte
+	 	a linha 198 em diante para relembrar alguns detalhes.	*/
 		Aluno aluno = alunoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado."));
 		
+	/*	Vamos chamar o método "delete()" que será aplicado ao Repositório; este método 
+ 		recebe o objeto "aluno" que carrega um ID da requisição para dentro do Repositório,
+ 		a fim de deletar o objeto que tenha o ID solicitado.	*/
 		alunoRepository.delete(aluno);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("Deletado", Boolean.TRUE);
 		
+	/*	Agora vamos implementar um objeto de mapa, com o nome "response", que utilizará o
+	 	"HashMap". O HashMap é uma estrutura de dados que armazena pares de chave-valor
+	 	(String-Boolean).		*/
+		Map<String, Boolean> response = new HashMap<>();
+		
+//		Vamos utilizar o método "put()" para adicionar um par chave-valor no "HashMap".
+		response.put(
+				
+//				Indicando a chave, que é "Deletado" (uma String), e o valor que é Boolean.TRUE.
+				"Deletado", Boolean.TRUE);
+		
+//		Como retorno, vamos indicar o método "ok()", com o objeto "response", ao "Response Entity".
 		return ResponseEntity.ok(response);
+		
+	/*	Dessa forma, estamos finalizando o último método CRUD: o DELETE.		*/	
 	}
 	
 }
