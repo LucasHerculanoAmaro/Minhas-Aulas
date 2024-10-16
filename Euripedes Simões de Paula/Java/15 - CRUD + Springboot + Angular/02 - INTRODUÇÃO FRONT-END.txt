@@ -1,0 +1,55 @@
+Nesta aula, começaremos a implementar o projeto utilizando o angular, para isso
+precisamos abrir o Visual Studio Code. 
+
+No espaço de trabalho (pasta do projeto) você verá um campo com os diretórios, 
+então clique no espaço e espere que o caminho esteja selecionado. Agora escreva
+"cmd" e aperte "Enter". A tela do CMD aparecerá, então escreva "code ." + "enter", 
+e será aberta no Visual Studio a nossa pasta de trabalho.
+
+No Menu, escolha a opção "Terminal". Na tela do terminal, vamos adicionar algumas
+instruções para criar o nosso projeto:
+	
+	* Primeiro escreva: ng new Alunos-front-end
+	* Depois escolha a opção: CSS
+	* Escolha "y" para a seguinte pergunta: Do you want to enable Server-Side 
+	  Rendering (SSR) and Static Site Generation (SSG/Prerendering)?
+
+Após esses passos, espere até que o projeto e seus pacotes criados. Como já tivemos
+aulas e já criamos projetos com Angular, não vamos fazer uma apresentação.
+
+Em nosso projeto, vamos utilizar o BootStrap, então vamos executar no terminal a 
+seguinte instrução: 
+
+    npm install bootstrap --save .
+
+Agora, precisaremos adicionar ao "angular.json" os seguintes códigos (próximos a linah 29):
+
+    "styles": [
+        "src/styles.css",
+        "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    ],
+    "scripts": [
+        "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/popper.js/dist/umd/popper.min.js",
+        "./node_modules/bootstrap/dist/js/bootstrap.js"
+    ],
+
+Em nosso projeto precisaremos utilizar alguns componentes BootStrap, por isso precisamos seguir
+os seguintes passos:
+
+    * Abrir o site do BootStrap pelo link: https://getbootstrap.com/ .
+    * Escolher a versão: V4.6 .
+    * Em "Introdução", logo abaixo, você verá o tema "CSS", copie o link que há na caixa abaixo.
+    * Vá ao documento "index.html" e cole este código dentro do "<head></head>".
+
+Realizando os passos acima, podemos utilizar os componentes fornecidos pelo BootStrap sem a 
+necessidade de criar tudo do zero. Ficará mais fácil entender alguns conceitos básicos do nosso
+projeto se formos no que realmente importa: entender como Aplicações que envolvem Banco de Dados,
+Back-end e Front-end conversam. Então, tente focar na implementação, e futuramente você poderá
+melhorar à sua maneira.
+
+	
+REFERÊNCIAS
+
+Angular + Spring Boot CRUD Full Stack App - 6 - Creating Angular App using Angular CLI
+https://www.youtube.com/watch?v=ItRmRKaIwlo&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=6

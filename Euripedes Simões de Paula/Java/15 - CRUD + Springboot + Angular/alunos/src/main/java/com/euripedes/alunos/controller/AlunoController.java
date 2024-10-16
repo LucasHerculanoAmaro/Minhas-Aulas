@@ -458,7 +458,29 @@ public class AlunoController {
 //		Como retorno, vamos indicar o método "ok()", com o objeto "response", ao "Response Entity".
 		return ResponseEntity.ok(response);
 		
-	/*	Dessa forma, estamos finalizando o último método CRUD: o DELETE.		*/	
+	/*	Agora vamos testar o método de forma similar aos testes anteriores. Abra o Postman e o 
+	 	MySQL, e execute a Aplicação.
+	 
+	 *	No MySQL faça a consulta da Tabela, e escolha um ID que você desea deletar.
+	 
+	 *	No Postman, vamos fazer alguns passos parecidos anteriormente:
+	 	*	Adicionar o método Http "DELETE".
+	 	*	Inserir a URL "http://localhost:8080/api/alunos/deletar/{id}".
+	 	*	Substitua "/{id}" por um ID de sua preferência, que exista na Tabela.
+	 	*	Clique em "Send".
+	 	
+	 *	Feito esses passos, siga até o MySQL e confira se a Tabela foi atualizada como esperado.
+	 	Você também pode colocar um ID que não existe, para observar no console do Postman e do 
+	 	Eclipse a "Exception" que implementados no método "orElseThrow()".
+	 
+	 *	Dessa forma, estamos finalizando o último método CRUD: o DELETE. Na próxima aula, vamos 
+	 	criar um projeto Angular, relembrar as aulas que realizamos há alguns meses, e iniciar o
+	 	desenvolvimento de nossa aplicação com o Front-End.
+	 	
+	 *	Agora, vamos criar uma pasta no nosso espaço de trabalho que armazenará a outra parte do 
+	 	nosso projeto: o Angular. Nesta pasta vamos continuar o nosso desenvolvimento no documento
+	 	"02 - INTRODUÇÃO FRONT-END".
+	 */	
 	}
 	
 }
@@ -494,4 +516,7 @@ public class AlunoController {
 	
  *	Angular + Spring Boot CRUD Full Stack App - 18 - Creating Update Employee REST API
 	https://www.youtube.com/watch?v=XG3cgNvVx9M&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=18
+	
+ *	Angular + Spring Boot CRUD Full Stack App - 22 - Creating DELETE REST API to Delete an Employee
+ 	https://www.youtube.com/watch?v=B8CF7IaevYk&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=22
  */
