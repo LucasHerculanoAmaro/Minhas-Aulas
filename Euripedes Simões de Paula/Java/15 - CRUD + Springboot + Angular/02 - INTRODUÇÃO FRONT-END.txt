@@ -39,14 +39,15 @@ os seguintes passos:
 
     * Abrir o site do BootStrap pelo link: https://getbootstrap.com/ .
     * Escolher a versão: V4.6 .
-    * Em "Introdução", logo abaixo, você verá o tema "CSS", copie o link que há na caixa abaixo.
+    * Em "Introdução", logo abaixo, você verá o tema "CSS", copie o link que há na 
+	caixa abaixo.
     * Vá ao documento "index.html" e cole este código dentro do "<head></head>".
 
-Realizando os passos acima, podemos utilizar os componentes fornecidos pelo BootStrap sem a 
-necessidade de criar tudo do zero. Ficará mais fácil entender alguns conceitos básicos do nosso
-projeto se formos no que realmente importa: entender como Aplicações que envolvem Banco de Dados,
-Back-end e Front-end conversam. Então, tente focar na implementação, e futuramente você poderá
-melhorar à sua maneira.
+Realizando os passos acima, podemos utilizar os componentes fornecidos pelo BootStrap
+sem a necessidade de criar tudo do zero. Ficará mais fácil entender alguns conceitos
+básicos do nosso projeto se formos no que realmente importa: entender como Aplicações
+que envolvem Banco de Dados, Back-end e Front-end conversam. Então, tente focar na
+implementação, e futuramente você poderá melhorar à sua maneira.
 
 	
 REFERÊNCIAS
