@@ -9,4 +9,6 @@ export class Alunos {
     email!: String;
 }
 
-/*  Terminando esta implementação, vamos ao terminal e utilizar o comando "ng g c alunos-lista". */
+/*  Terminando esta implementação, vamos ao terminal e utilizar o comando "ng g c alunos-lista". 
+    Agora caminhe até o documento "alunos-lista.component.html", e neste documento vamos 
+    continuar a implementação de nosso proeto.      */
