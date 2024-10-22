@@ -29,8 +29,22 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
     <!-- A tag "<tbody>" é usada para agrupar o conteúdo em uma tabela.  -->
     <tbody>
 
-        <!-- Vamos utilzar o "NgFor" para trabalhar com o conjunto de dados, a fim de renderizálos de forma dinâmica. -->
-        <tr *ngFor = "let Aluno of Alunos" ></tr>
+        <!-- Vamos utilzar o "NgFor" para trabalhar com o conjunto de dados, a fim de renderizá-los de forma dinâmica. "NgFor" é utilizado para fazer loop em uma coleção de listas.    -->
+
+        <!-- Agora vamos criar uma variável chamada "Aluno", que se encontra no script "let Aluno", onde manterá um array com elementos. -->
+
+        <!-- Vamos utilizar o script "of Alunos" que se refere ao array "Alunos", e que contém a lista de elementos onde a iteração foi realizada. -->
+
+        <!-- Agora precisamos criar referências do objeto que criamos, e para isso, vamos até o documento "alunos-lista.component.ts", e lá faremos a importação dos atributos do "aluno.ts". -->
+        <tr *ngFor = "let Aluno of Alunos" >
+
+            <td> {{ Aluno.id }} </td>
+            <td> {{ Aluno.nome }} </td>
+            <td> {{ Aluno.sobrenome }} </td>
+            <td> {{ Aluno.email }} </td>
+            
+
+        </tr>
 
     </tbody>
 

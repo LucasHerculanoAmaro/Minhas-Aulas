@@ -28,21 +28,21 @@ public class Main {
 
 		
 		
-/* CREATE	*/
+/* CREATE	
 		
 		
 //		Criando um Objeto da Classe 'User'
 		User newUser = new User(0, null, null);
 		
 //		Adicionando um Nome
-		newUser.setNome("Juliana");
+		newUser.setNome("Bia Podre");
 
 //		Adicionando um Email
-		newUser.setEmail("juliana.93@Amaro.com");
+		newUser.setEmail("Bia@podre.com");
 		
 //		Passando o novo usuário no userDAO
 		userDAO.createUser(newUser); 
- 
+*/ 
 	
 		
 		
@@ -56,7 +56,7 @@ public class Main {
 				);
 		
 //		Passando o novo dado a Lista
-		existingUser.setNome("Juliana Amaro");
+		existingUser.setNome("Juliana");
 		
 //		Utilizando o método 'UPDATE' para inserir o novo dado
 		userDAO.updateUser(existingUser);
@@ -69,7 +69,7 @@ public class Main {
 		userDAO.deleteUser(
 				
 //				Indique o ID do usuário
-				11
+				13
 				);	
 
 		
@@ -77,7 +77,7 @@ public class Main {
 /* READ */
 	
 		
-/* PRIMEIRO: */
+/* PRIMEIRO: 
 
 		
 //		Lendo com o método 'forEach()' 
@@ -99,7 +99,7 @@ public class Main {
 						"\n-----------------"
 						)
 				);
-
+*/
 		
 /* SEGUNDO: 
 

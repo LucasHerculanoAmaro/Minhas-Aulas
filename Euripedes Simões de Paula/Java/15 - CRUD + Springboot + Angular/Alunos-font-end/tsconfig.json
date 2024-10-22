@@ -15,7 +15,11 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
+    "baseUrl": "./",
+    "paths": {
+      "@angular/*": ["node_modules/@angular/*"]
+    },
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
