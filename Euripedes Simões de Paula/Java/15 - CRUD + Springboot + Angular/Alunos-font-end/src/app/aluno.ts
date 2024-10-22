@@ -1,6 +1,6 @@
 /*  Criamos uma classe de domínio Typescript, e vamos definir algumas propriedades que serão 
     chamadas futuramente.     */
-export class Alunos {
+export class Aluno {
 
     // Abaixo vamos criar os mesmos atributos existente em nossa aplicação banck-end.
     id!: number;

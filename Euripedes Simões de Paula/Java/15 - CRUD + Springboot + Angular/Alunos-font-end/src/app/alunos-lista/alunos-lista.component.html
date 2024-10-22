@@ -1,1 +1,61 @@
-<p>alunos-lista works!</p>
+<!-- Neste documento vamos implementar uma página que tem a funcionalidade de buscar os registros do banco de dados e apresentar para o usuário.    -->    
+
+<!-- Vamos começar criando um tema para a nossa página.  -->
+<h2> Lista dos Alunos </h2>
+
+<!-- 
+    
+->  Vamos apresentar a lista em forma de tabela, então vamos utilizar a 
+tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
+    
+<!--  Dentro desta classe vamos utilizar a classe "table", do Bootstrap, que permite utilizar tabelas estilizadas. -->
+<table class="table table-striped">
+
+    <!-- Vamos utilizar a tag "<thead>" para agrupar agrupar o conteúdo do cabeçalho -->
+    <thead>
+
+        <!-- Aqui vamos utiizar a tag "<tr>" que define uma linha em uma tabela HTML -->
+        <tr>
+
+            <!-- A tag "<th>" define um elemento cabeçalho em uma tabel HTML. Nela vamos adicionar os nomes das colunas de nossa tabela. -->
+            <th> Nome </th>
+            <th> Sobrenome </th>
+            <th> Email </th>
+            <th> Ações </th>
+
+        </tr>
+    </thead>
+
+    <!-- A tag "<tbody>" é usada para agrupar o conteúdo em uma tabela.  -->
+    <tbody>
+
+        <!-- Vamos utilzar o "NgFor" para trabalhar com o conjunto de dados, a fim de renderizálos de forma dinâmica. -->
+        <tr *ngFor = "let Aluno of Alunos" ></tr>
+
+    </tbody>
+
+
+
+</table>
+
+<!--    REFERÊNCIAS    
+
+->  HTML Tables 
+    https://www.w3schools.com/html/html_tables.asp
+
+->  Tables
+    https://getbootstrap.com/docs/4.0/content/tables/
+
+->  HTML <thead> tag
+    https://www.w3schools.com/tags/tag_thead.asp
+
+->  HTML <tr> tag
+    https://www.w3schools.com/tags/tag_tr.asp
+
+->  HTML <tbody> tag
+    https://www.w3schools.com/tags/tag_tbody.asp
+
+->  NgFor Angular: Um guia completo
+    https://medium.com/@pe.marcos30/ngfor-angular-um-guia-completo-19a59d036f04
+
+-->

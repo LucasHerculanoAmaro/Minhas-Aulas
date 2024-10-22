@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /*	Na aula de hoje, vamos configurar a classe "ResourceNotFoundException".
  	esta classe indica que os recursos de uma solicitação não foi encontrado,
- 	então vamos criar algumas deifinições para nos ajudar a lidar com essa 
+ 	então vamos criar algumas definições para nos ajudar a lidar com essa 
  	classe em nossa aplicação.
  	
  *	Primeiramente precisamos entender que o Spring fornece respostas HTTP. 
  	Por exemplo, temos a resposta 200 do HTTP, que significa "OK".
  	
  *	Se quisermos definir o método de um controlador, podemos utilizar a 
- 	anotação "@ResponseStatus" e ao valor da resposta HTTP podemos difinir 
+ 	anotação "@ResponseStatus" e ao valor da resposta HTTP podemos definir 
  	um dos métodos (que em nossa classe é o "Not Found").	 
  */
 
