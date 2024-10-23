@@ -36,17 +36,17 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
         <!-- Vamos utilizar o script "of Alunos" que se refere ao array "Alunos", e que contém a lista de elementos onde a iteração foi realizada. -->
 
         <!-- Agora precisamos criar referências do objeto que criamos, e para isso, vamos até o documento "alunos-lista.component.ts", e lá faremos a importação dos atributos do "aluno.ts". -->
-        <tr *ngFor = "let Aluno of Alunos" >
+        <tr *ngFor = "let Aluno of alunos" >
 
-            <td> {{ Aluno.id }} </td>
+            <!-- Quando chamamos a classe e o atributo seguido do ponto, direcionamos os dados do JSON para serem apresentados na coluna. -->
             <td> {{ Aluno.nome }} </td>
             <td> {{ Aluno.sobrenome }} </td>
             <td> {{ Aluno.email }} </td>
 
         </tr>
-
     </tbody>
 
+    <!-- Agora vamos executar a aplicação com o comando "ng serve" no terminal e seguir, no navegador, o link "http://localhost:4200/". Veja um modelo de como as informações armazenadas no banco de dados serão apresentadas na página Web.       -->
 
 
 </table>
@@ -70,5 +70,8 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
 
 ->  NgFor Angular: Um guia completo
     https://medium.com/@pe.marcos30/ngfor-angular-um-guia-completo-19a59d036f04
+
+->  Angular + Spring Boot CRUD Full Stack App - 10 - Creating Angular Employee List Component
+    https://www.youtube.com/watch?v=wrb0_b4A0Xo&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=13
 
 -->

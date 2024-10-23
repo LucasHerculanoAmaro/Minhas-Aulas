@@ -20,7 +20,9 @@ aulas e já criamos projetos com Angular, não vamos fazer uma apresentação.
 Em nosso projeto, vamos utilizar o BootStrap, então vamos executar no terminal a 
 seguinte instrução: 
 
-    npm install bootstrap --save .
+    npm install bootstrap@latest --save
+    npm install jquery@latest --save
+    npm install popper.js --save
 
 Agora, precisaremos adicionar ao "angular.json" os seguintes códigos (próximos a linah 29):
 
@@ -45,10 +47,11 @@ os seguintes passos:
 
 Realizando os passos acima, podemos utilizar os componentes fornecidos pelo BootStrap
 sem a necessidade de criar tudo do zero. Ficará mais fácil entender alguns conceitos
-básicos do nosso projeto se formos no que realmente importa: entender como Aplicações
+básicos do nosso projeto se focar-mos no que realmente importa: entender como Aplicações
 que envolvem Banco de Dados, Back-end e Front-end conversam. Então, tente focar na
 implementação, e futuramente você poderá melhorar à sua maneira.
 
+Agora vá até o documento "app.component.html" do nosso projeto, e lá faremos outras configurações.
 	
 REFERÊNCIAS
 

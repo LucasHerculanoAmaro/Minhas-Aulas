@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Alunos-font-end": {
+    "Euripedes": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/alunos-font-end",
+            "outputPath": "dist/euripedes",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,13 +39,12 @@
             "styles": [
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ],
-            
+          ],
+          "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+          ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -70,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Alunos-font-end:build:production"
+              "buildTarget": "Euripedes:build:production"
             },
             "development": {
-              "buildTarget": "Alunos-font-end:build:development"
+              "buildTarget": "Euripedes:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,6 +114,6 @@
     }
   },
   "cli": {
-    "analytics": "6cbb214d-ffef-447c-b2bc-5d942a9c4f96"
+    "analytics": "577be9b0-57ff-4ca2-8128-dbe5a51bb5b0"
   }
 }
