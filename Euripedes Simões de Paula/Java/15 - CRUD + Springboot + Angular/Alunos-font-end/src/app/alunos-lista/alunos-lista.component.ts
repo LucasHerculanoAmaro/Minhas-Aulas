@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
 import { Aluno } from '../aluno';
 
 @Component({
   selector: 'app-alunos-lista',
-  standalone: true,
-  imports: [],
+  // standalone: true,
+  // imports: [],
   templateUrl: './alunos-lista.component.html',
   styleUrl: './alunos-lista.component.css'
 })
+
+
 
 /* 
 
@@ -35,11 +38,11 @@ export class AlunosListaComponent {
 
   ngOnInit(): void {
 
-    this.alunos = [
+    // this.alunos = [
       
-      {  "id": 1,  "nome": "Lucas",  "sobrenome": "Herculano", "email": "lucash.96@hotmail.com"  },
-      {  "id": 2,  "nome": "Juliana",  "sobrenome": "Araújo",  "email": "ju.s.araujo@hotmail.com"}
-    ];
+    //   {  "id": 1,  "nome": "Lucas",  "sobrenome": "Herculano", "email": "lucash.96@hotmail.com"  },
+    //   {  "id": 2,  "nome": "Juliana",  "sobrenome": "Araújo",  "email": "ju.s.araujo@hotmail.com"}
+    // ];
 
   }
 }
