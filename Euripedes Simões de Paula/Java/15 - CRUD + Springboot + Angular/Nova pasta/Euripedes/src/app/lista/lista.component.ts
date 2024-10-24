@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Aluno } from '../aluno';
+import { AlunoService } from '../aluno.service';
 
 @Component({
   selector: 'app-lista',
@@ -11,9 +12,18 @@ export class ListaComponent implements OnInit {
   // Aqui adicionamos as informações da classe "Aluno", que está em um array, na variável "alunos".
   alunos: Aluno[] = [];
 
-  constructor() {}
+  constructor(
+    // Vamos criar um parâmetro atribuindo a classe "AlunoService" que implementamos.
+    private alunoService : AlunoService
+  ) {}
 
   ngOnInit(): void {
+
+    /*  NOTA PARA O PROFESSOR: Esta implementação deve ser feita apenas na
+        segunda parte, ao buscar o dados do MySQL via API.  */
+    this.getAlunos();
+  
+  // Primeira definição para listas
 
     /* Vamos simular dados em formato JSON a fim de passá-os na tabela. Dessa forma, podemos observar
     como os dados serão apresentados na lista.    */
@@ -22,6 +32,18 @@ export class ListaComponent implements OnInit {
       {  "id": 2,  "nome": "Juliana",  "sobrenome": "Araújo",  "email": "ju.s.araujo@hotmail.com"}
     ];
 
+    // Agora vamos retornar ao documento "app.component.html" para continuarmos nossa aula.
+
+  // Fim da primeira definição para listas
+  
+    
+  } 
+
+  // Método GET para lista
+  private getAlunos() {
+    this.alunoService.getLista().subscribe( data => {
+      this.alunos = data;
+    })
   }
 
 }
