@@ -10,11 +10,11 @@ import { Aluno } from './aluno';
 // Neste documento vamos implementar os serviços que serão aplicados com base na API, desenvolvida anteriormente no Eclipse IDE.
 export class AlunoService {
 
-  //Vamos adicionar a base URL, a API que criamos no back-end
+  // Vamos adicionar a base URL, a API que criamos no back-end
   private baseURL = "http://localhost:8080/api/alunos";
 
   constructor(
-    // Vamos declarar um parâmetro que receberá um método Http.
+    // Agora declararemos um parâmetro que receberá um método Http.
     private httpClient : HttpClient ) { }
 
 /* Método GET */
@@ -47,7 +47,7 @@ export class AlunoService {
           `
         );
 
-      // Agora siga ao documento "lista.component.ts", e no "constructor()" faremos mais algumas modificações.
+      // Vamos ao documento "lista.component.ts", e no "constructor()" faremos mais algumas modificações.
     }
 }
 /* REFERÊNCIAS 

@@ -19,14 +19,12 @@ export class ListaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*  NOTA PARA O PROFESSOR: Esta implementação deve ser feita apenas na
-        segunda parte, ao buscar o dados do MySQL via API.  */
+    /*  NOTA PARA O PROFESSOR: Esta implementação deve ser feita apenas na segunda parte, ao buscar o dados do MySQL via API.  */
     this.getAlunos();
   
   // Primeira definição para listas
 
-    /* Vamos simular dados em formato JSON a fim de passá-os na tabela. Dessa forma, podemos observar
-    como os dados serão apresentados na lista.    */
+    /* Antes de puxar os dados via API, vamos simular como os dados, em formato JSON, serão passados para a tabela; e assim, podemos observar como os dados serão apresentados na lista.    */
     this.alunos = [
       {  "id": 1,  "nome": "Lucas",  "sobrenome": "Herculano", "email": "lucash.96@hotmail.com"  },
       {  "id": 2,  "nome": "Juliana",  "sobrenome": "Araújo",  "email": "ju.s.araujo@hotmail.com"}
