@@ -1,24 +1,63 @@
 <!-- 
-  Se há algum conteúdo nesta página, não há problemas, você pode apagar todo conteúdo que existe neste documento.
-  Caso você queira testar a funcionalidade deste documento, você pode adicionar um título e executar a aplicação.
-  Para isso, você precisará adicionar o script abaixo:
+  Se há algum conteúdo nesta página, não há problemas, você pode apagar todo conteúdo que existe neste documento. Caso você queira testar a funcionalidade deste documento, você pode adicionar um título e executar a aplicação. Para isso, você precisará adicionar o script abaixo:
     
     <h1 class="text-center">{{title}}</h1>
   
   Assim você conseguirá ver o Título da aplicação Angular na tela, ao utilizar o comando "ng serve" no terminal. 
 
-  Agora que testamos a nossa aplicação e ela mostrou-se ser funcional, vamos relembrar nosso objetivo. Estamos 
-  criando uma aplicação que nos ajudará a criar, ler, atualizar e deletar registros do banco de dados. O método
-  CRUD foi implementado no back-end, e nosso objetivo é criar uma aplicação front-end que consiga acessar a 
-  implementação desenvolvida no back-end.
+  Agora que testamos a nossa aplicação e ela mostrou-se ser funcional, vamos relembrar nosso objetivo. Estamos criando uma aplicação que ajudará a criar, ler, atualizar e deletar registros do banco de dados. O método CRUD foi implementado no back-end, e nosso objetivo é criar uma aplicação front-end que consiga acessar a implementação desenvolvida no back-end.
   
-  Então, o primeiro método CRUD que vamos focar é o READ. Vá até o terminal e utilize o comando "ng g class alunos"; 
-  este comando criará uma classe dentro do diretório "Src > App" com o nome "alunos.ts" e outra com o nome de 
-  "alunos.spec.ts". Crie e siga para o documento "alunos.ts" para continuarmos as nossas aulas. 
+  Então, o primeiro método CRUD que vamos focar é o READ. Vá até o terminal e utilize o comando "ng g class alunos"; este comando criará uma classe dentro do diretório "Src > App" com o nome "alunos.ts" e outra com o nome de "alunos.spec.ts". Crie e siga para o documento "alunos.ts" para continuarmos as nossas aulas. 
 
   OBS: Mais tarde retornaremos neste documento para fazer futuras implementações.
   
 -->
 
+<!-- 
+  A próxima implementação que vamos fazer é alterar o "app-lista" para "router-outlet". Dessa forma, não chamamos apenas um componente isolado, mas chamamos todos os outros componentes que vamos criar futuramente.
+
+  Além dessa mudança, vamos adicionar um Menu e um Rodapé na nossa página, para ela ficar mais atrativa.
+-->
+
+<!-- Menu -->
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+
+  <ul class="navbar-nav">
+    
+    <!-- Implementação para Listas -->
+    <li class="nav-item">
+        <a class="nav-link" routerLink="alunos" routerLinkActive="active">Lista de Alunos</a>
+    </li>
+
+    <!-- Implementação para Criar -->
+    <li class="nav-item">
+        <a class="nav-link" routerLink="registrar" routerLinkActive="active">Registrar Aluno</a>
+    </li>
+
+    <div>
+      <p style="margin: 9px 10px 9px;" class="text-light">{{title}}</p>
+    </div>
+
+  </ul>
+
+</nav>
+
+<!-- Título -->
 <h1 class="text-center">{{title}}</h1>
-<app-lista></app-lista>
+
+<!-- Corpo -->
+<div class="container">
+  <!-- <app-lista></app-lista> -->
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Rodapé -->
+<footer class="footer">
+
+  <div class="container">
+      <span>Todos os direitos reservados 2024 &#64;Euripedes Simões de Paula</span>
+  </div>
+
+  <!-- Para finalizar, vá até o documento "styles.css" para modificarmos o rodapé com estilos. -->
+
+</footer>

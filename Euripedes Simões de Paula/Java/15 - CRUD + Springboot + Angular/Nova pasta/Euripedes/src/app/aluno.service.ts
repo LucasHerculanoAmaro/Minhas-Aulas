@@ -11,7 +11,8 @@ import { Aluno } from './aluno';
 export class AlunoService {
 
   // Vamos adicionar a base URL, a API que criamos no back-end
-  private baseURL = "http://localhost:8080/api/alunos";
+  /* NOTA AO PROFESSOR: Esta implementação será revogada quando os dados do MySQL para a WEB precisarem ser a adicionados */
+  ///private baseURL = "http://localhost:8080/api/alunos";
 
   constructor(
     // Agora declararemos um parâmetro que receberá um método Http.
@@ -32,19 +33,23 @@ export class AlunoService {
       // Para este método vamos retornar o parâmetro "httpClient", criado no "constructor". 
       return this.httpClient
         //que receberá a requisição do método HTTP GET através do método "get" e que espera a resposta do objeto "Aluno".
-        .get<Aluno[]>(
+        .get<Aluno[]>( 
           
           // Vamos utilizar a crase para criar uma interpolação. Dessa forma, podemos implementar expressões de código dentro da própria String.
 
           // Template Literals - quando usamos o crifrão e um ogo de chaves para interpolação de strings (inserir valores de variáveis dentro da string).
+          /* NOTA AO PROFESSOR: Esta implementação será revogada quando os dados do MySQL para a WEB precisarem ser a adicionados 
           `
-            ${ 
+             ${ 
 
-              // Vamos passar a variável que contém o link de nossa API.
-              this.baseURL 
-            }
+               // Vamos passar a variável que contém o link de nossa API.
+               this.getAllBaseURL 
+             }
           
           `
+          */
+          
+          'http://localhost:8080/api/alunos/todos'
         );
 
       // Vamos ao documento "lista.component.ts", e no "constructor()" faremos mais algumas modificações.
