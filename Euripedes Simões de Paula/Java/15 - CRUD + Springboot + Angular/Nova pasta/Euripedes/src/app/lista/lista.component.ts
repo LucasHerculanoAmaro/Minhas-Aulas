@@ -15,6 +15,8 @@ export class ListaComponent implements OnInit {
   constructor(
     // Vamos criar um parâmetro atribuindo a classe "AlunoService" que implementamos.
     private alunoService : AlunoService
+
+    // Depois de implementar o parâmetro "AlunoService", vamos implementar o método GET logo abaixo do "ngOnInit()"; observe o método "getAlunos()".
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,11 @@ export class ListaComponent implements OnInit {
 
   // Método GET para lista
   private getAlunos() {
-    this.alunoService.getLista().subscribe( data => {
+
+    // Vamos chamar o parâmetro do método construtor "alunoService", pois será necessário aplicar alguns métodos neste parâmetro.
+    this.alunoService.
+      // O método "getLista"
+      getLista().subscribe( data => {
       this.alunos = data;
     })
   }
