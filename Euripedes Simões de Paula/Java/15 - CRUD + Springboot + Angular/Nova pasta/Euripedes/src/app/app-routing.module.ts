@@ -35,7 +35,9 @@ const routes: Routes = [
   /* 
     Agora execute a aplicação e veja se a página para criar os Alunos é carregada. No Menu, clique em "Registrar Aluno", e veja se a tela será carregada e as palavras "registrar works!" aparece na tela.
 
-    Agora que criamos o componente "registrar", vamos implementar as demais funcionalidades para o método CREATE. 
+    Agora que criamos o componente "registrar", vamos implementar as demais funcionalidades para o método CREATE. Primeiramente, vamos ao documento "registrar.component.html" e vamos configurar criar um menu. Acompanhe a implementação na linha 32.   
+    
+  
   */
 
 ];
@@ -56,6 +58,9 @@ export class AppRoutingModule { }
 
 -> pathMatch nao entendi
   https://cursos.alura.com.br/forum/topico-pathmatch-nao-entendi-205793  
+
+-> Angular + Spring Boot CRUD Full Stack App - 14 - Creating Angular Create Employee Component
+  https://www.youtube.com/watch?v=yYlMsNdAXJ4&list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f&index=15
   */
 
   

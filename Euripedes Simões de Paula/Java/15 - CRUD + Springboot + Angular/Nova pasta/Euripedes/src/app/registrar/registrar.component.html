@@ -1,1 +1,36 @@
-<p>registrar works!</p>
+<!-- 
+    Agora vamos implementar agora a página para Cadastrar um Aluno.
+ -->
+<div class="col-md-6 offset-md-3">
+
+    <!-- Implementando um título para a página -->
+    <h3> Cadastrar um Aluno</h3>
+
+    <form ngSubmit = "onSubmit()">
+
+        <div class = "form-group">
+            <label> Nome: </label>
+            <input type = "text" class = "form-control" id = "Nome" [(ngModel)]="aluno.nome"  name = "Nome">
+            <!-- [(ngModel)] = "aluno.nome" name = "Nome"> -->
+        </div>
+
+        <div class = "form-group">
+            <label> Sobrenome: </label>
+            <input type = "text" class = "form-control" id = "Sobrenome" [(ngModel)]="aluno.sobrenome" name = "Sobrenome">
+        </div>
+
+        <div class = "form-group">
+            <label> E-mail: </label>
+            <input type = "text" class = "form-control" id = "email" [(ngModel)]="aluno.email" name = "email">
+        </div>
+
+        <div class = "form-group" style = "margin-top: 10px;">
+            <button class = "btn btn-success" type = "submit"> Criar </button>
+        </div>   
+
+    </form>
+</div>
+
+<!-- Você deve ter notado que esta implementação está com erros, e ao executar a aplicação, conseguimos ver a descrição dele na página: NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'. Então vamos tratar de corrigir este erro.  
+
+Vá ao "app.module.ts", e lá vamos fazer uma importação do "FormsModule". Acompanhe na linha 21. -->
