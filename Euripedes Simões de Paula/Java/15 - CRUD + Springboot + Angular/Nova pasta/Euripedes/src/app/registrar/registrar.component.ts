@@ -66,8 +66,7 @@ export class RegistrarComponent implements OnInit {
             // Chame o método "goToLista" --> Faça isso somente após implementar o método "goToLista"
             this.goToLista();
 
-            /* Agora teste a aplicação, e veja se você consegue criar um registro.
-            Na próxima aula, implementaremos o método READ, mas dessa vez vamos trabalhar com a implementação da busca por ID. */
+            /* Agora teste a aplicação, e veja se você consegue criar um registro. Na próxima aula, implementaremos o método UPDATE; atualizaremos registro por meio da busca por ID. Para isso, crie um novo componente com o comando "ng g c atualizar", depois siga para a linha 42 do "app-routing.modules.ts". */
           },
           
           // Utilizaremos um "Arrow Function" para trabalhar com erros ao console

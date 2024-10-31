@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaComponent } from './lista/lista.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { AtualizarComponent } from './atualizar/atualizar.component';
 
 /* 
   Nesta classe vamos trabalhar com as rotas de nossa página.
@@ -31,7 +32,7 @@ const routes: Routes = [
   },
 
   // Vamos criar o caminho "registrar" para o componente
-  { path: 'registrar', component: RegistrarComponent }
+  { path: 'registrar', component: RegistrarComponent },
   /* 
     Agora execute a aplicação e veja se a página para criar os Alunos é carregada. No Menu, clique em "Registrar Aluno", e veja se a tela será carregada e as palavras "registrar works!" aparece na tela.
 
@@ -40,6 +41,9 @@ const routes: Routes = [
   
   */
 
+  /* Aqui vamos configurar o caminho para o modulo "atualizar". */
+  { path: 'atualizar', component: AtualizarComponent }
+  // Agora siga para o documento "lista.component.ts", e lá vamos confiurar o menu.
 ];
 
 @NgModule({

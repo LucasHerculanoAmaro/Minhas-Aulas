@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { ListaComponent } from './lista/lista.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
+import { AtualizarComponent } from './atualizar/atualizar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    AtualizarComponent
   ],
   imports: [
     BrowserModule,

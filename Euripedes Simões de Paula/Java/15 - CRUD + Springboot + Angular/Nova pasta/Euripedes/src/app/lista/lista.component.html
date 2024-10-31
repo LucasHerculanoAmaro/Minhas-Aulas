@@ -43,6 +43,12 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
             <td> {{ Aluno.sobrenome }} </td>
             <td> {{ Aluno.email }} </td>
 
+            <!-- Vamos implementar um botão para atualizar o registro de um Aluno -->
+            <td>
+                <button (click) = "updateAluno(alunos.id)" class = "btn btn-info"> Atualizar </button>
+                <!-- Agora vá ao "lista.component.ts", e lá vamos implementar o método para atualizar o Aluno. -->
+            </td>
+
         </tr>
     </tbody>
 

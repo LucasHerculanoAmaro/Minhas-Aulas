@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Aluno } from '../aluno';
 import { AlunoService } from '../aluno.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -14,9 +15,14 @@ export class ListaComponent implements OnInit {
 
   constructor(
     // Vamos criar um parâmetro atribuindo a classe "AlunoService" que implementamos.
-    private alunoService : AlunoService
+    private alunoService : AlunoService,
 
     // Depois de implementar o parâmetro "AlunoService", vamos implementar o método GET logo abaixo do "ngOnInit()"; observe o método "getAlunos()".
+  
+    // Importando o "Router"
+    private router: Router
+  // Agora volte ao método "updateAluno"
+  
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +74,18 @@ export class ListaComponent implements OnInit {
     * Agora abra a página WEB "http://localhost:4200/" e veja se os registro que você adicionou no banco de dados está presente na nossa planilha.
   Se os testes foram bem sucedidos, e os dados do banco de dados estão aparecendo na página, agora vamos fazer algumas implementações no documento "app-routing.modules.ts".
   */
+  }
+
+  updateAluno(
+
+    // Crie o parâmetro id
+    id: number
+  ) {
+
+    // No método "constructor", importe o "Router".
+
+    // Chamando o métoo "navigate"
+    this.router.navigate(['/atualizar', id]);
   }
 
 }
