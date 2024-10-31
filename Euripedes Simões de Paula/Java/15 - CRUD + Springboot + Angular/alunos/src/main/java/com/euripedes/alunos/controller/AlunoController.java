@@ -38,7 +38,8 @@ import com.euripedes.alunos.repository.AlunoRepository;
 *	Então, esta anotação recupera o objeto e grava dados em respostas via HTTP
 	por meio de JSON e XML.	*/
 
-@CrossOrigin(origins = "*", allowedHeaders = "*") /* O que vai nos ajudar a entender 
+//@CrossOrigin(origins = "*", allowedHeaders = "*") 
+/* O que vai nos ajudar a entender 
 	essa anotação é conhecer o que é CORS. 
  		
  *	CORS (Cross-Origin Resource Sharing) é um recurso de segurança incluído nos 
@@ -247,6 +248,8 @@ public class AlunoController {
  */
 	}
 	
+	//@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+	
 /*	Na aula de hoje, vamos implementar o próximo método CRUD, o Create. Nosso objetivo ao final
  	da implementação deste método é conseguir enviar uma requisição por meio da URL no Postman
  	a fim de conseguir criar no banco de dados um objeto.
@@ -255,30 +258,36 @@ public class AlunoController {
  	"@PostMapping" para indicar que este método utiliza um mapeamento de requisição do tipo 
  	"POST", o mesmo método que será aplicado no Postman.
  	
+ 	
  *	Na anotação vamos identificar este método como "/cadastrar", esse URL complementa o endereço
  	adicioando na anotação "@RequestMapping".		*/
 	@PostMapping("/cadastrar")
 	
 /*	Agora vamos implementar uma classe do tipo "Aluno", com o nome baseado no método que será 
  	implementado. 	 */
-	public Aluno createAluno(
+	public ResponseEntity<Aluno> createAluno(
 			/*	Será adicionado, como parâmetro, uma anotação "@RequestBody" que indicará que os 
 			próximos parâmetros (Aluno aluno) são adicionados ao corpo da solicitação.		*/
 			@RequestBody Aluno aluno) {
+		
+	/*	Vamos criar um objeto do tipo "Aluno" que utilizará os dados passados pelo método "save()" 
+		no Repositório.	Esses dados serão utilizados para passar uma resposta ao "Response Entity".	*/	
+		Aluno salvoAluno = alunoRepository.save(aluno);
 		
 	/*	Agora que definimos o nome do método e os seus parâmetros, incluindo o parâmetros 
 	 	baseados no objeto "Aluno", vamos adicionar um retorno, já que nosso método não é do 
 	 	tipo "void".
 	 	
-	 *	No retorno vamos aplicar o método "save()" no repositório. O método "save()" tem como 
-	 	parâmetro a representação do objeto "Aluno", que carrega as informações inseridas via
-	 	Http.
+	 *	No retorno vamos aplicar o método "ok()" do "Response Entity", para enviarmos uma resposta 
+	 	HTTP. O método "ok()" tem como parâmetro a representação do objeto "Aluno", que carrega as 
+	 	informações inseridas via Http.
 	 	
 	 *	Para resumir, inserimos os dados pelo JSON no Postman e esses dados passarão pelo 
 	 	end-point da API e armazenados no parâmetro do método "createAluno()". O dados armazenado 
 	 	no parâmetro serão direcionado para o parâmetro do método "save()", que será inserido 
-	 	no repositório do banco de dados.		*/	
-		return alunoRepository.save(aluno);
+	 	no repositório do banco de dados. Depois os dados do armazenamento servirá de resposta para
+	 	o método Http pelo "Response Entity".		*/	
+		return ResponseEntity.ok(salvoAluno);
 		
 	/*	Agora, vamos testar a nossa aplicação para saber se o método está sendo funcional. Você
 	 	precisará abrir o Postman para testar o end-point, e o MySQL para observar as mudanças 

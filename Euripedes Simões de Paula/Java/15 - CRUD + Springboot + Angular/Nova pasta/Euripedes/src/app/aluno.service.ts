@@ -12,7 +12,7 @@ export class AlunoService {
 
   // Vamos adicionar a base URL, a API que criamos no back-end
   /* NOTA AO PROFESSOR: Esta implementação será revogada quando os dados do MySQL para a WEB precisarem ser a adicionados */
-  ///private baseURL = "http://localhost:8080/api/alunos";
+  //private baseURL = "http://localhost:8080/api/alunos";
 
   constructor(
     // Agora declararemos um parâmetro que receberá um método Http.
@@ -32,8 +32,9 @@ export class AlunoService {
       
       // Para este método vamos retornar o parâmetro "httpClient", criado no "constructor". 
       return this.httpClient
-        //que receberá a requisição do método HTTP GET através do método "get" e que espera a resposta do objeto "Aluno".
-        .get<Aluno[]>( 
+
+        // que receberá a requisição do método HTTP GET através do método "get" e que espera a resposta do objeto "Aluno".
+        .get<Aluno[]> ( 
           
           // Vamos utilizar a crase para criar uma interpolação. Dessa forma, podemos implementar expressões de código dentro da própria String.
 
@@ -54,6 +55,39 @@ export class AlunoService {
 
       // Vamos ao documento "lista.component.ts", e no "constructor()" faremos mais algumas modificações.
     }
+
+  /* Método CREATE */
+    // Vamos implementar o método de serviço, para que possamos integrar ao método CRUD Create. Lembra-se, para sermos diretos, vamos evitar explicar algo que já explicamos antes.
+    createAluno(
+
+      // Vamos chamar o nosso objeto, atribuindo ao parâmetro
+      aluno : Aluno ) :
+
+        // Vamos chamar um "Observable" para trabalhar com operações assíncronas.
+        Observable<Aluno> 
+        
+        {
+
+          // Vamos retornar o parâmetro do método construtor
+          return this.httpClient
+          
+            // precisaremos chamar o método Http POST
+            .post<Aluno>(
+              
+              // Passando a variável da API e o parâmetro do método
+              //`${this.baseURL}`, aluno
+            
+              'http://localhost:8080/api/alunos/cadastrar', 
+              aluno, 
+              {
+                withCredentials: true
+              }
+
+            );
+      
+      // Agora vamos ao documento "registrar.component.ts", e no "constructor", vamos continuar nossas implementações na linha 15. 
+    }
+
 }
 /* REFERÊNCIAS 
 
