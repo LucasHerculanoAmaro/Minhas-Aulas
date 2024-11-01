@@ -42,7 +42,7 @@ const routes: Routes = [
   */
 
   /* Aqui vamos configurar o caminho para o modulo "atualizar". */
-  { path: 'atualizar', component: AtualizarComponent }
+  { path: 'atualizar/:id', component: AtualizarComponent }
   // Agora siga para o documento "lista.component.ts", e lá vamos confiurar o menu.
 ];
 

@@ -36,16 +36,16 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
         <!-- Vamos utilizar o script "of Alunos" que se refere ao array "Alunos", e que contém a lista de elementos onde a iteração foi realizada. -->
 
         <!-- Agora precisamos criar referências do objeto que criamos, e para isso, vamos até o documento "alunos-lista.component.ts", e lá faremos a importação dos atributos do "aluno.ts". -->
-        <tr *ngFor = "let Aluno of alunos" >
+        <tr *ngFor = "let aluno of alunos" >
 
             <!-- Quando chamamos a classe e o atributo seguido do ponto, direcionamos os dados do JSON para serem apresentados na coluna. -->
-            <td> {{ Aluno.nome }} </td>
-            <td> {{ Aluno.sobrenome }} </td>
-            <td> {{ Aluno.email }} </td>
+            <td> {{ aluno.nome }} </td>
+            <td> {{ aluno.sobrenome }} </td>
+            <td> {{ aluno.email }} </td>
 
             <!-- Vamos implementar um botão para atualizar o registro de um Aluno -->
             <td>
-                <button (click) = "updateAluno(alunos.id)" class = "btn btn-info"> Atualizar </button>
+                <button (click)="updateAluno(aluno.id)" class="btn btn-info">Atualizar</button>
                 <!-- Agora vá ao "lista.component.ts", e lá vamos implementar o método para atualizar o Aluno. -->
             </td>
 

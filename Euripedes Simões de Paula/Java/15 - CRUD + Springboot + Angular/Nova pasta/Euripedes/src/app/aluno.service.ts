@@ -12,8 +12,7 @@ export class AlunoService {
 
   // Vamos adicionar a base URL, a API que criamos no back-end
   /* NOTA AO PROFESSOR: Esta implementação será revogada quando os dados do MySQL para a WEB precisarem ser a adicionados */
-  //private baseURL = "http://localhost:8080/api/alunos";
-
+ // private baseURL = 'http://localhost:8080/api/alunos';
   constructor(
     // Agora declararemos um parâmetro que receberá um método Http.
     private httpClient : HttpClient ) { }
@@ -75,10 +74,9 @@ export class AlunoService {
             .post<Aluno>(
               
               // Passando a variável da API e o parâmetro do método
-              //`${this.baseURL}`, aluno
+              //`${this.baseURL}`, aluno,
             
-              'http://localhost:8080/api/alunos/cadastrar', 
-              aluno, 
+              'http://localhost:8080/api/alunos/cadastrar', aluno, 
               {
                 withCredentials: true
               }

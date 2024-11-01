@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ListaComponent implements OnInit {
 
   // Aqui adicionamos as informações da classe "Aluno", que está em um array, na variável "alunos".
-  alunos: Aluno[] = [];
+  alunos : Aluno[] = [];
 
   constructor(
     // Vamos criar um parâmetro atribuindo a classe "AlunoService" que implementamos.
@@ -21,7 +21,7 @@ export class ListaComponent implements OnInit {
   
     // Importando o "Router"
     private router: Router
-  // Agora volte ao método "updateAluno"
+    // Agora volte ao método "updateAluno"
   
   ) {}
 
@@ -41,7 +41,6 @@ export class ListaComponent implements OnInit {
     // Agora vamos retornar ao documento "app.component.html" para continuarmos nossa aula.
 
   // Fim da primeira definição para listas
-  
     
   } 
 
@@ -63,7 +62,7 @@ export class ListaComponent implements OnInit {
           // Definimos que "this.alunos", uma variável array, receberá os valores de "data".
           this.alunos = data;
         }
-      )
+      );
 
   /* 
   Vamos testar este método, e para isso seguiremos os seguintes passos:
@@ -71,8 +70,7 @@ export class ListaComponent implements OnInit {
     * Criar registros no banco de dados.
     * Vamos executar a aplicação no Eclipse.
     * Vamos executar a aplicação aqui no Visual Studio Code.
-    * Agora abra a página WEB "http://localhost:4200/" e veja se os registro que você adicionou no banco de dados está presente na nossa planilha.
-  Se os testes foram bem sucedidos, e os dados do banco de dados estão aparecendo na página, agora vamos fazer algumas implementações no documento "app-routing.modules.ts".
+    * Agora abra a página WEB "http://localhost:4200/" e veja se os registro que você adicionou no banco de dados está presente na nossa planilha. Se os testes foram bem sucedidos, e os dados do banco de dados estão aparecendo na página, agora vamos fazer algumas implementações no documento "app-routing.modules.ts".
   */
   }
 
@@ -84,8 +82,10 @@ export class ListaComponent implements OnInit {
 
     // No método "constructor", importe o "Router".
 
-    // Chamando o métoo "navigate"
-    this.router.navigate(['/atualizar', id]);
+    // Chamando o método "navigate"
+    this.router.navigate(['atualizar', id]);
+
+    /* Agora vamos testar o que implementamos. Se você estiver com a aplicação em funcionamento, você verá que ao clicar no botão "Atualizar", você será encaminhado para a tela de update. Na próxima aula implementaremo os demais métodos para atualiza os objetos. */
   }
 
 }
