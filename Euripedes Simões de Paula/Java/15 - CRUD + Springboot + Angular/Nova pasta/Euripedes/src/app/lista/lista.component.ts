@@ -85,7 +85,7 @@ export class ListaComponent implements OnInit {
     // Chamando o método "navigate"
     this.router.navigate(['atualizar', id]);
 
-    /* Agora vamos testar o que implementamos. Se você estiver com a aplicação em funcionamento, você verá que ao clicar no botão "Atualizar", você será encaminhado para a tela de update. Na próxima aula implementaremo os demais métodos para atualiza os objetos. */
+    /* Agora vamos testar o que implementamos. Se você estiver com a aplicação em funcionamento, você verá que ao clicar no botão "Atualizar", você será encaminhado para a tela de update. Agora siga para o documento "atualizar.component.html". */
   }
 
 }

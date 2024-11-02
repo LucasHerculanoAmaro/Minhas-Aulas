@@ -1,1 +1,33 @@
-<p>atualizar works!</p>
+<!-- Agora vamos implementar agora a página para Atualizar as informações de um Aluno, similar ao que realizamos no "registrar.component.html". -->
+ <div class="col-md-6 offset-md-3">
+
+    <!-- Implementando um título para a página -->
+    <h3> Atualizar um Aluno</h3>
+
+    <form>
+    <!-- <form (ngSubmit) = "onSubmit()"> -->
+
+        <div class = "form-group">
+            <label> Nome: </label>
+            <input type = "text" class = "form-control" id = "Nome" [(ngModel)]="aluno.nome"  name = "Nome">
+            <!-- [(ngModel)] = "aluno.nome" name = "Nome"> -->
+        </div>
+
+        <div class = "form-group">
+            <label> Sobrenome: </label>
+            <input type = "text" class = "form-control" id = "Sobrenome" [(ngModel)]="aluno.sobrenome" name = "Sobrenome">
+        </div>
+
+        <div class = "form-group">
+            <label> E-mail: </label>
+            <input type = "text" class = "form-control" id = "email" [(ngModel)]="aluno.email" name = "email">
+        </div>
+
+        <div class = "form-group" style = "margin-top: 10px;">
+            <button class = "btn btn-success" type = "submit"> Atualizar </button>
+        </div>   
+
+    </form>
+</div>
+
+<!-- Após essa implementação, provavelmente um erro no console ou na página web vai acontecer. É normal, ao terminarmos a nossa implementação, provavelmente ele desaparecerá. Agora siga para o "aluno.service.ts", e lá (na linha 89) vamos implementar outro método de serviço.  -->

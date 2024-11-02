@@ -86,6 +86,25 @@ export class AlunoService {
       // Agora vamos ao documento "registrar.component.ts", e no "constructor", vamos continuar nossas implementações na linha 15. 
     }
 
+  /* Método GET por ID */ 
+    getAlunoById(
+
+      // Vamos precisar de um parâmetro que represente o id
+      id: number ) :
+
+        // Precisamos de um "Observable" para trabalhar com operações assíncronas do objeto "Aluno"
+        Observable<Aluno> {
+
+          // Vamos chamar o método Http GET para o objeto "Aluno"
+          return this.httpClient.get<Aluno>(
+
+            // Aprendemos a simplificar o uso da API, e é o que faremos aqui
+            `http://localhost:8080/api/alunos/${id}`
+          )
+      
+      // Agora vamos ao "atualizar.component.ts", para continuarmos a nossa implementação no "constructor".
+    }
+
 }
 /* REFERÊNCIAS 
 
