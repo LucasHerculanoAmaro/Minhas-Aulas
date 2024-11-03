@@ -105,6 +105,27 @@ export class AlunoService {
       // Agora vamos ao "atualizar.component.ts", para continuarmos a nossa implementação no "constructor".
     }
 
+  /* Método UPDATE */
+  updateAluno(
+
+    // Crie p parâmetro ID
+    id: number,
+
+    // Crie o parâmetro ALUNO
+    aluno : Aluno) :
+  
+      // Crie o Observable
+      Observable<Object> {
+
+        // Vamos retornar o método Http PUT
+        return this.httpClient.put(
+
+          `http://localhost:8080/api/alunos/atualizar/${id}`, aluno
+        );
+
+        /* Agora vamos ao "atualizar.component.ts" implementar o "onSubmit". */
+      }
+
 }
 /* REFERÊNCIAS 
 

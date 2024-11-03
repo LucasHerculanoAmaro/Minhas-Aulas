@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AlunoService } from '../aluno.service';
 import { Aluno } from '../aluno';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-atualizar',
@@ -23,7 +23,10 @@ export class AtualizarComponent {
     private alunoService : AlunoService,
 
     // Vamos importar o "ActivatedRouter" para fornecer informações da rota
-    private route : ActivatedRoute
+    private route : ActivatedRoute,
+
+    // Aqui importamos o "Router". Agora retorne ao "onSubmit".
+    private router : Router
   ) {}
 
   ngOnInit() : void {
@@ -54,10 +57,46 @@ export class AtualizarComponent {
       
       Ao criar um método que buscar o objeto pelo ID, conseguimos buscar as informações de determinado aluno de maneira isolada.
       
-      Por enquanto a nossa aula para por aqui, e na próxima aula vamos implementar a atualização dos registros no MySQL. */
+      Por enquanto a nossa aula para por aqui, e na próxima aula vamos implementar a atualização dos registros no MySQL. Então siga para o documento "aluno.service.ts", para implementar o método update. */
 
     })
   }
+
+  onSubmit(){
+
+    // Aqui vamos chamar o método UPDATE
+    this.alunoService.updateAluno(
+      
+      // Vamos chamar a variável implementada mais acima
+      this.id,
+      
+      // Agora chamamos o nosso novo objeto
+      this.aluno
+    ).
+
+    // Estamos trabalhando com o "Observable", então podemos utilizar o subscribe
+    subscribe({
+
+      // Vamos criar um "Arrow Function"
+      next : data => {
+
+        // Antes de continuar, precisamos do método "goToLista"; veja abaixo sua implementação.
+        // Agora vamos chamar o método "goToLista".
+        this.goToLista();
+      }, 
+
+      // Agora vamos implementar o método "error", similar ao criado anteriormente em outras classes
+      error : error => console.log(error)
+    }) 
+
+    /* Finalizamos a implementação deste metodo, e agora teste o método na página WEB. Na próxima aula, vamos iniciar a implementação do último método CRUD: o DELETE. */
+  }
+
+  goToLista() {  
+    this.router.navigate(['/alunos']);
+    // Agora importe o "Router" no "contructor"
+  }
+
 }
 
 /*  REFERÊNCIA  
