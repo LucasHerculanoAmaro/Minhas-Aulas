@@ -89,7 +89,7 @@ export class AtualizarComponent {
       error : error => console.log(error)
     }) 
 
-    /* Finalizamos a implementação deste metodo, e agora teste o método na página WEB. Na próxima aula, vamos iniciar a implementação do último método CRUD: o DELETE. */
+    /* Finalizamos a implementação deste metodo, e agora teste o método na página WEB. Na próxima aula, vamos iniciar a implementação do último método CRUD: o DELETE. Então siga para a implementação do botão "Deletar" no "lista.component.html".  */
   }
 
   goToLista() {  
