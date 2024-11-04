@@ -429,7 +429,7 @@ public class AlunoController {
  *	Para começar, vamos utilizar a anotação "@DeleteMapping" para indicar qual é o endpoint
   	que identificará o este método. Como parâmetro da anotação, vamos utilizar o nome 
   	"/deletar{id}".		*/	
-	@DeleteMapping("/deletar{id}")
+	@DeleteMapping("/deletar/{id}")
 	
 /*	Agora vamos implementar um "Response Entity" com uma implementação conhecida como 
  	"mapa de chaves e valores booleanos".

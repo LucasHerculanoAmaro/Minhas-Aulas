@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListaComponent } from './lista/lista.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 /* 
   Nesta classe vamos trabalhar com as rotas de nossa página.
@@ -42,8 +43,12 @@ const routes: Routes = [
   */
 
   /* Aqui vamos configurar o caminho para o modulo "atualizar". */
-  { path: 'atualizar/:id', component: AtualizarComponent }
+  { path: 'atualizar/:id', component: AtualizarComponent },
   // Agora siga para o documento "lista.component.ts", e lá vamos confiurar o menu.
+
+  /* Finalizando as implementações para esta classe, vamos criar o caminho para o modulo "detalhes". */
+  { path: 'detalhes/:id', component: DetalhesComponent }
+  // Agora vá ao "lista.component.html", e lá vamos implementar o botão "Detalhes"
 ];
 
 @NgModule({

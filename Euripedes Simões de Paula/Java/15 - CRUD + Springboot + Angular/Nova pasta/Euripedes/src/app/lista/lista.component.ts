@@ -88,6 +88,47 @@ export class ListaComponent implements OnInit {
     /* Agora vamos testar o que implementamos. Se você estiver com a aplicação em funcionamento, você verá que ao clicar no botão "Atualizar", você será encaminhado para a tela de update. Agora siga para o documento "atualizar.component.html". */
   }
 
+  deleteAluno(
+
+    // Parâmetro ID
+    id: number
+  ){
+    /* Agora vamos ao "aluno.service" para criar o metodo de serviço DELETE. */
+
+    /* Agora vamos chamar o método de serviço, implementado na camada de serviço 
+    OBS: Neste método, as implementações são parecidas; se você chegou até aqui, não terá duvidas do que as seguintes implementações a seguir faz. */
+    this.alunoService.deleteAluno(id)
+
+      // Chame o Método "subscribe"  
+      .subscribe({
+
+        // Criando um "Arrow Function" para trabalhar com logs de console e chamar o método "getAlunos"
+        next : data => {
+          console.log(data),
+          this.getAlunos()
+        },
+
+        // Criando um "Arrow Function"
+        error : error => console.log(error)
+      })
+
+    /* Agora, na página web, teste o método DELETE, e veja se ele está funcionando corretamente. Testado o método, e ele está funcionando como esperado, finalizamos aqui a implementação do método CRUD. 
+    
+    Agora vamos trabalhar com a última implementação, onde vamos criar uma tela que apresentará detalhes dos alunos. 
+    Use o comando "ng g c detalhes" no terminal. Depois vamos ao "app-routing.modules.ts" configurar o caminho do componente. */
+  }
+
+  details(
+    
+    // Vamos criar o parâmetro id
+    id : number){
+
+      // Vamos carmar o método "navegate"
+    this.router.navigate(['detalhes', id]);
+
+    // Ao testar o método, clicando no botão "Detalhes", somos direcionado para a tela de detalhes.
+  }
+
 }
 
 /*  REFERÊNCIAS 

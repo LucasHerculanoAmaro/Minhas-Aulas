@@ -8,13 +8,15 @@ import { ListaComponent } from './lista/lista.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
 import { AtualizarComponent } from './atualizar/atualizar.component';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
     RegistrarComponent,
-    AtualizarComponent
+    AtualizarComponent,
+    DetalhesComponent
   ],
   imports: [
     BrowserModule,

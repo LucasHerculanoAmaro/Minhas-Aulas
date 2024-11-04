@@ -18,11 +18,11 @@
 			at Factory.DatabaseConnection.getConnection(DatabaseConnection.java:61)
 			... 2 more
 	
-	Precisamos entender o que esta mensagem nos diz, para resulver este erro.
+	Precisamos entender o que esta mensagem nos diz, para resolver este erro.
 	
 1.1 RuntimeException: Não foi possível conectar ao Banco de Dados.
 
-	Quando tratamos os prossíveis erros, fica muito mais fácil trabalhar em prol de corrigir esses erros.
+	Quando tratamos os possíveis erros, fica muito mais fácil trabalhar em prol de corrigir esses erros.
 	Este é um exemplo perfeito da importância de apresentar uma mensagem em uma tomada de decisão.
 	
 	Ao se conectar com um banco, temos apenas duas opções: conectar ou não conectar. Pensando nisso, 

@@ -45,9 +45,14 @@ tag "<table>" para criar uma tabela HTML e deixar a lista mais organizada.-->
 
             <!-- Vamos implementar um botão para atualizar o registro de um Aluno -->
             <td>
-                <button (click)="updateAluno(aluno.id)" class="btn btn-info">Atualizar</button>
+                <button (click)="updateAluno(aluno.id)" class="btn btn-primary">Atualizar</button>
                 <!-- Agora vá ao "lista.component.ts", e lá vamos implementar o método para atualizar o Aluno. -->
-                <!-- <button (click)="deleteAluno(aluno.id)" class="btn btn-danger" style="margin-left: 10px">Deletar</button> -->
+
+                <button (click)="deleteAluno(aluno.id)" class="btn btn-danger" style="margin-left: 10px">Deletar</button>
+                <!-- Agora vá para o "lista.component.ts", vamos implementar o método "deleteAluno". -->
+
+                <button (click)="details(aluno.id)" class="btn btn-info" style="margin-left: 10px;">Detalhes</button>
+                <!-- Agora siga para o "lista.component.ts" para implementar o método "detalhes". -->
             </td>
 
         </tr>

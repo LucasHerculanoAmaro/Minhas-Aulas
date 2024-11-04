@@ -106,25 +106,48 @@ export class AlunoService {
     }
 
   /* Método UPDATE */
-  updateAluno(
+    updateAluno(
 
-    // Crie p parâmetro ID
-    id: number,
+      // Crie p parâmetro ID
+      id: number,
 
-    // Crie o parâmetro ALUNO
-    aluno : Aluno) :
-  
-      // Crie o Observable
-      Observable<Object> {
+      // Crie o parâmetro ALUNO
+      aluno : Aluno) :
+    
+        // Crie o Observable
+        Observable<Object> {
 
-        // Vamos retornar o método Http PUT
-        return this.httpClient.put(
+          // Vamos retornar o método Http PUT
+          return this.httpClient.put(
 
-          `http://localhost:8080/api/alunos/atualizar/${id}`, aluno
+            // Adicione a API UPDATE
+            `http://localhost:8080/api/alunos/atualizar/${id}`, aluno
+          );
+
+          /* Agora vamos ao "atualizar.component.ts" implementar o "onSubmit". */
+        }
+
+  /* Método DELETE */
+    deleteAluno(
+
+      // Parâmetro ID
+      id: number
+    ) :
+    
+      // Chamando um Observable
+      Observable<Object>{
+
+        // Aqui vamos retornar o método Http DELETE
+        return this.httpClient.delete(
+          
+          // Adicionando a API DELETE
+          `http://localhost:8080/api/alunos/deletar/${id}`
         );
 
-        /* Agora vamos ao "atualizar.component.ts" implementar o "onSubmit". */
+        // Agora retorne para a implemetação no "lista.component.ts"
+
       }
+    
 
 }
 /* REFERÊNCIAS 
