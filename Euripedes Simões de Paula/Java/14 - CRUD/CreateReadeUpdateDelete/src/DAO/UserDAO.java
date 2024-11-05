@@ -7,37 +7,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
 
 import Factory.DatabaseConnection;
 import Model.User;
 
 public class UserDAO {
 
-/*	Na aula de hoje, iremos trabalhar com a criação do primeiro método 
+/*	Na aula de hoje, iremos trabalhar com a criaï¿½ï¿½o do primeiro mï¿½todo 
 	CRUD, o CREATE.
 
-*	Criamos o pacote 'DAO' para trabalhar com todos os métodos CRUD. 
-	Mas o que significa 'DAO', já que vamos trabalhar com 'CRUD'?
-	A palavra 'DAO' é um acrônimo em inglês para 'Data Access Object',
-	e é um padrão para aplicações que trabalham com persistência de dados.
+*	Criamos o pacote 'DAO' para trabalhar com todos os mï¿½todos CRUD. 
+	Mas o que significa 'DAO', jï¿½ que vamos trabalhar com 'CRUD'?
+	A palavra 'DAO' ï¿½ um acrï¿½nimo em inglï¿½s para 'Data Access Object',
+	e ï¿½ um padrï¿½o para aplicaï¿½ï¿½es que trabalham com persistï¿½ncia de dados.
 	
-*	No padrão DAO, existem regras de negócio que separam o acesso ao 
-	banco de dados. entra elas estão:
+*	No padrï¿½o DAO, existem regras de negï¿½cio que separam o acesso ao 
+	banco de dados. entra elas estï¿½o:
 	
 		-> Prover interface que abstrai o acesso a dados.
-		-> Lêr e gravar apartir da origem dos dados.
+		-> Lï¿½r e gravar apartir da origem dos dados.
 		-> Encapsular o acessso aos dados.
 
-*	Agora que entendemos o que é o padrão DAO, vamos aos trabalhos.
+*	Agora que entendemos o que ï¿½ o padrï¿½o DAO, vamos aos trabalhos.
 	
-*	Para com o método CREATE, precisamos criar um método e adicionar a 
-	ele um script SQL, e usar a estrutura TRY/CATCH para usar a conexão
+*	Para com o mï¿½todo CREATE, precisamos criar um mï¿½todo e adicionar a 
+	ele um script SQL, e usar a estrutura TRY/CATCH para usar a conexï¿½o
 	que criamos anteriormente para passar o script SQL.
 */
 	
 	
-//	Criando o método CREATE
+//	Criando o mï¿½todo CREATE
 	public void createUser(
 			
 //			Classe 	X	Objeto
@@ -49,34 +48,34 @@ public class UserDAO {
 		String sql = "INSERT INTO tb_users (nome, email) VALUES (?, ?)";
 
 		
-/*		OBS: O '(?)' são conhecidos como placeholders, e serão 
- 		substituídos pelos valores reais adicionados em uma execução. 
+/*		OBS: O '(?)' sï¿½o conhecidos como placeholders, e serï¿½o 
+ 		substituï¿½dos pelos valores reais adicionados em uma execuï¿½ï¿½o. 
  
 * 		Agora vamos utilizar a estrutura TRY/CATCH para estabelecer uma 
- 		conexão com o banco de dados e preparar a instrução SQL que 
+ 		conexï¿½o com o banco de dados e preparar a instruï¿½ï¿½o SQL que 
  		criamos acima.		
 */		
 		try (
 				
-//				Passando a conexão com o banco de dados
+//				Passando a conexï¿½o com o banco de dados
 				Connection conn = DatabaseConnection.getConnection();
 				
-//				Passando o Script na Conexão
+//				Passando o Script na Conexï¿½o
 				PreparedStatement stmt = conn.prepareStatement(sql)
 				
 /*				OBS: 'PreparedStatement' interpreta e compila a Consulta
  				SQL, otimiza e planeja o caminho de busca dos dados.
  				
-* 				Também é utilizado para segurança, prevenindo contra 
-				ataques de injeção SQL.
+* 				Tambï¿½m ï¿½ utilizado para seguranï¿½a, prevenindo contra 
+				ataques de injeï¿½ï¿½o SQL.
  				
-* 				É muito utilizando quando um Script será executado 
-				diversas vezes, onde as execuções são mais rápidas e têm
+* 				ï¿½ muito utilizando quando um Script serï¿½ executado 
+				diversas vezes, onde as execuï¿½ï¿½es sï¿½o mais rï¿½pidas e tï¿½m
 				menos sobrecarga no banco de dados.
 				
-*				Quando utilizamos instruções SQL que aceitam parâmetros, 
-				podemos usar a mesma instrução para fornecer valores 
-				diferentes a cada execução.
+*				Quando utilizamos instruï¿½ï¿½es SQL que aceitam parï¿½metros, 
+				podemos usar a mesma instruï¿½ï¿½o para fornecer valores 
+				diferentes a cada execuï¿½ï¿½o.
 */
 				){
 			
@@ -89,8 +88,8 @@ public class UserDAO {
 //			Coluna 'EMAIL' na tabela 'USER'
 			stmt.setString(2, user.getEmail());
 			
-/*			OBS: os números no parâmetro do método 'setString' indica a 
-			posição do placeholder na consulta:
+/*			OBS: os nï¿½meros no parï¿½metro do mï¿½todo 'setString' indica a 
+			posiï¿½ï¿½o do placeholder na consulta:
 			
 				'1' -> Se trata da primeira coluna do Script (NOME).
 				'2' -> Se trata da segunda coluna do Script (EMAIL). 
@@ -99,70 +98,70 @@ public class UserDAO {
 //			Executando a consulta
 			stmt.executeUpdate();
 			
-/*			OBS: o método 'executeUdate()' é usado para executar 
-			instruções SQL que alteram o banco de dados. 
-			Podem ser instruções como: INSERT, UPDATE e DELETE.
+/*			OBS: o mï¿½todo 'executeUdate()' ï¿½ usado para executar 
+			instruï¿½ï¿½es SQL que alteram o banco de dados. 
+			Podem ser instruï¿½ï¿½es como: INSERT, UPDATE e DELETE.
 */		
 			
 //			Mensagem em caso de sucesso
-			System.out.println("Usuário criado com sucesso!");
+			System.out.println("Usuï¿½rio criado com sucesso!");
 			
 			conn.close();
 		}
 		
-//		CATCH com uma excessão		
+//		CATCH com uma excessï¿½o		
 		catch(
 
-//				Utilizaremos uma SQLException para caso não seja possivel
+//				Utilizaremos uma SQLException para caso nï¿½o seja possivel
 //				modificar o banco de dados
 				SQLException e
 				) {
 			
 //			Criamos uma RuntimeExceptions para exibir a mensagem de erro			
-			throw new RuntimeException("Erro ao inserir usuário", e);
+			throw new RuntimeException("Erro ao inserir usuï¿½rio", e);
 			}
 		
-/*	Na próxima aula, criaremos o método READ.	*/
+/*	Na prï¿½xima aula, criaremos o mï¿½todo READ.	*/
 		
 	}
 	
-//	Criando o método READ
+//	Criando o mï¿½todo READ
 	public List<User> readUsers(){
 		
 //		Passando Script SQL para selecionar os dados no banco
 		String sql = "SELECT * FROM tb_users";
 		
-//		Passando a Lista de Usuários como uma nova lista
+//		Passando a Lista de Usuï¿½rios como uma nova lista
 		List<User> users = new ArrayList<>();
 		
 /*		Vamos novamente utilizar a estrutura TRY/CATCH, agora para passar
-		a conexão e utilizar o Script SQL para recuperar os dados no banco
+		a conexï¿½o e utilizar o Script SQL para recuperar os dados no banco
 		de dados.
 */
 		
 		try (
 	
-//				Passando a conexão com o banco de dados
+//				Passando a conexï¿½o com o banco de dados
 				Connection conn = DatabaseConnection.getConnection();
 				
-//				Passando Script na conexão
+//				Passando Script na conexï¿½o
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				
 //				Utilizando 'ResultSet' para armazenar os resultados SQL
 				ResultSet rs = stmt.executeQuery()
 						
-/*				OBS: O 'ResultSet' é uma classe que armazena os resultados 
+/*				OBS: O 'ResultSet' ï¿½ uma classe que armazena os resultados 
 				de uma query SQL executada.
 				
 *				Esta classe funciona como um conjunto 'set', e guarda uma 
-				tabela que é o resultado na consulta SQL.
+				tabela que ï¿½ o resultado na consulta SQL.
 */										
 				) {
 	
 //			Enquanto a resultSet faz a leitura
 			while (rs.next()) {
 	
-//				Criando um novo método com base na classe User
+//				Criando um novo mï¿½todo com base na classe User
 				User user = new User(0, null, null);
 				
 //				Lendo o ID
@@ -180,23 +179,23 @@ public class UserDAO {
 
 		} catch (
 				
-//				Utilizaremos uma SQLException para caso não seja possivel
+//				Utilizaremos uma SQLException para caso nï¿½o seja possivel
 //				consultar o banco de dados
 				SQLException e
 				) {
 
 //			Criamos uma RuntimeExceptions para exibir a mensagem de erro
-			throw new RuntimeException("Erro ao consultar usuários", e);
+			throw new RuntimeException("Erro ao consultar usuï¿½rios", e);
 		}
 		
 //		Retornando o ID, Nome e Email
 		return users;
 		
-/*		Na próxima aula, vamos trabalhar com o método UPDATE	*/
+/*		Na prï¿½xima aula, vamos trabalhar com o mï¿½todo UPDATE	*/
 		
 	}
 	
-//	Criando o método Update
+//	Criando o mï¿½todo Update
 	public void updateUser(
 			
 //			Classe 	x 	Objeto
@@ -207,10 +206,10 @@ public class UserDAO {
 		String sql = "UPDATE tb_users SET nome = ?, email = ?"+" WHERE id = ?";
 		
 		try (
-//				Passando a conexão com o banco de dados
+//				Passando a conexï¿½o com o banco de dados
 				Connection conn = DatabaseConnection.getConnection();
 				
-//				Passando o Script na conexão
+//				Passando o Script na conexï¿½o
 				PreparedStatement stmt = conn.prepareStatement(sql)
 				) {
 			
@@ -227,7 +226,7 @@ public class UserDAO {
 			stmt.executeUpdate();	
 			
 //			Mensagem de Sucesso
-			System.out.println("Usuário atualizado com sucesso!");
+			System.out.println("Usuï¿½rio atualizado com sucesso!");
 		}
 		
 		catch (
@@ -237,15 +236,15 @@ public class UserDAO {
 				) {
 			
 //			Exibindo o erro SQL
-			throw new RuntimeException("Erro ao atualizar usuário", e);
+			throw new RuntimeException("Erro ao atualizar usuï¿½rio", e);
 		}
 		
 	}
 
-//	Criando o método Delete
+//	Criando o mï¿½todo Delete
 	public void deleteUser(
 			
-//			Passando como parâmetro o 'ID' para deletar
+//			Passando como parï¿½metro o 'ID' para deletar
 			int id
 			) {
 		
@@ -254,10 +253,10 @@ public class UserDAO {
 		
 		try (
 				
-//				Passando a conexão com o banco de dados
+//				Passando a conexï¿½o com o banco de dados
 				Connection conn = DatabaseConnection.getConnection();
 				
-//				Passando o Script na conexão
+//				Passando o Script na conexï¿½o
 				PreparedStatement stmt = conn.prepareStatement(sql)
 				) {
 			
@@ -275,22 +274,22 @@ public class UserDAO {
 				) {
 			
 //			Exibindo o erro SQL			
-			throw new RuntimeException("Erro ao deletar usuário", e);
+			throw new RuntimeException("Erro ao deletar usuï¿½rio", e);
 		}
 		
 	}	
 
 	
-/*	CONCLUSÃO
+/*	CONCLUSï¿½O
  
-*	Agora que já trabalhamos com a criação de todos os métodos CRUD, 
-	precisamos testar para saber se algum erro acontecerá, e caso tenha 
-	algum erro, vamos atrás da solução para aprendermos a resolvê-lo.
+*	Agora que jï¿½ trabalhamos com a criaï¿½ï¿½o de todos os mï¿½todos CRUD, 
+	precisamos testar para saber se algum erro acontecerï¿½, e caso tenha 
+	algum erro, vamos atrï¿½s da soluï¿½ï¿½o para aprendermos a resolvï¿½-lo.
 	
-*	Antes de mais nada, uma aplicação não funcionará sem o método principal
-	de nossa aplicação, então, se você ainda não priou o método 'main()', 
-	faça isso, será necessário para realizarmos as nossas interações na 
-	aplicação.
+*	Antes de mais nada, uma aplicaï¿½ï¿½o nï¿½o funcionarï¿½ sem o mï¿½todo principal
+	de nossa aplicaï¿½ï¿½o, entï¿½o, se vocï¿½ ainda nï¿½o priou o mï¿½todo 'main()', 
+	faï¿½a isso, serï¿½ necessï¿½rio para realizarmos as nossas interaï¿½ï¿½es na 
+	aplicaï¿½ï¿½o.
 	
 *	Agora siga para o classe 'Main' para realizarmos os nossos testes.	
 	
@@ -299,18 +298,18 @@ public class UserDAO {
 	
 }
 
-/*	REFERÊNCIAS
+/*	REFERï¿½NCIAS
  
-*	Como funciona o Padrão DAO?
+*	Como funciona o Padrï¿½o DAO?
 	https://pt.stackoverflow.com/questions/113840/como-funciona-o-padr%C3%A3o-dao
 	
-*	O que é um DAO em Java?
+*	O que ï¿½ um DAO em Java?
 	https://pt.wikipedia.org/wiki/Objeto_de_acesso_a_dados#:~:text=Objeto%20de%20acesso%20a%20dados%20(acr%C3%B4nimo%20do%20ingl%C3%AAs%20Data%20Access,por%20exemplo%20Java)%20e%20arquitetura
 
-*	Qual a diferença entre o Statement e o PreparedStatement?
+*	Qual a diferenï¿½a entre o Statement e o PreparedStatement?
 	https://pt.stackoverflow.com/questions/99620/qual-a-diferen%C3%A7a-entre-o-statement-e-o-preparedstatement
 
-*	O que é o ResultSet?
+*	O que ï¿½ o ResultSet?
 	https://cursos.alura.com.br/forum/topico-o-que-e-o-resultset-258207
 
 */

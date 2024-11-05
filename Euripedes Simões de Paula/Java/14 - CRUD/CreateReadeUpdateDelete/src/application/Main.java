@@ -12,23 +12,23 @@ public class Main {
 //		Criando um objeto da classe 'UserDAO'		
 		UserDAO userDAO = new UserDAO();
 		
-//		Criando uma Lista da classe 'User' e atribuindo o método READ
+//		Criando uma Lista da classe 'User' e atribuindo o mï¿½todo READ
 		List<User> users = userDAO.readUsers();
 		
 /*		Agora vamos realizar os nossos testes, onde criar, consultar, editar 
 		e deletar um objeto.
 		
-*		Logo acima foi criado um objeto da classe 'UserDAO', onde será
-		aplicado métodos de criação, leitura, atualização e exclusão no 
+*		Logo acima foi criado um objeto da classe 'UserDAO', onde serï¿½
+		aplicado mï¿½todos de criaï¿½ï¿½o, leitura, atualizaï¿½ï¿½o e exclusï¿½o no 
 		objeto dessa classe.
 				
-* 		Bem, vamos colocar os dedos no teclado (tá, sei que não sou bom com 
+* 		Bem, vamos colocar os dedos no teclado (tï¿½, sei que nï¿½o sou bom com 
  		humor kkkk)...
 */		
 
 		
 		
-/* CREATE	
+/* CREATE	*/ 
 		
 		
 //		Criando um Objeto da Classe 'User'
@@ -40,9 +40,9 @@ public class Main {
 //		Adicionando um Email
 		newUser.setEmail("Bia@podre.com");
 		
-//		Passando o novo usuário no userDAO
+//		Passando o novo usuï¿½rio no userDAO
 		userDAO.createUser(newUser); 
-*/ 
+
 	
 		
 		
@@ -51,27 +51,27 @@ public class Main {
 //		Pagendo o dado da Lista
 		User existingUser = users.get(
 				
-//				Posição do dado na lista (não se trata do id)
+//				Posiï¿½ï¿½o do dado na lista (nï¿½o se trata do id)
 				0
 				);
 		
 //		Passando o novo dado a Lista
 		existingUser.setNome("Juliana");
 		
-//		Utilizando o método 'UPDATE' para inserir o novo dado
+//		Utilizando o mï¿½todo 'UPDATE' para inserir o novo dado
 		userDAO.updateUser(existingUser);
 */			
 	
 
-/* DELETE */
+/* DELETE
 		
-//		Importando o método da Classe
+//		Importando o mï¿½todo da Classe
 		userDAO.deleteUser(
 				
-//				Indique o ID do usuário
+//				Indique o ID do usuï¿½rio
 				13
 				);	
-
+ */
 		
 		
 /* READ */
@@ -80,10 +80,10 @@ public class Main {
 /* PRIMEIRO: 
 
 		
-//		Lendo com o método 'forEach()' 
+//		Lendo com o mï¿½todo 'forEach()' 
 		users.forEach(
 				
-//		Utilizando a expressão Lambda para apresentar os dados no console
+//		Utilizando a expressï¿½o Lambda para apresentar os dados no console
 				user -> System.out.println(
 						
 //						Buscando 'ID'

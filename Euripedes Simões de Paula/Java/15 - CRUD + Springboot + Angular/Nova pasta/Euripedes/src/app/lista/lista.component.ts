@@ -126,7 +126,8 @@ export class ListaComponent implements OnInit {
       // Vamos carmar o método "navegate"
     this.router.navigate(['detalhes', id]);
 
-    // Ao testar o método, clicando no botão "Detalhes", somos direcionado para a tela de detalhes.
+    /* Ao testar o método, clicando no botão "Detalhes", somos direcionado para a tela de detalhes. 
+    Agora vamos ao "detalhes.component.ts", e lá vamos começar a trabalhar com a nossa página. */
   }
 
 }
