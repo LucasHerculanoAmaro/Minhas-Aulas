@@ -1,7 +1,11 @@
-<h3> Detalhes do Aluno </h3>
+<!-- Nesta classe, vamos terminar a implementação do método Detalhes. -->
 
+<!-- Imlementando o Tema -->
+<h3> Detalhes de {{aluno.nome}} </h3>
+
+<!-- A implementaçao a seguir buscará as informações como: Nome, Sobrenome e E-mail.  -->
 <div>
-    <div> <label> <b> Nome: </b> </label> {{aluno.nome}} </div>
-    <div> <label> <b> Sobreome: </b> </label> {{aluno.sobrenome}} </div>
-    <div> <label> <b> Email: </b> </label> {{aluno.email}} </div>
+    <div> <label> <b> Nome: </b> </label> {{aluno.nome}} {{aluno.sobrenome}}</div>
+    <div> <label> <b> E-mail: </b> </label> {{aluno.email}} </div>
 </div>
+
