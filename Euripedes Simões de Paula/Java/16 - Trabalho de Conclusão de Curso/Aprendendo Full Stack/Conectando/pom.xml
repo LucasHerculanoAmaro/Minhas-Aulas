@@ -23,7 +23,7 @@
 	<artifactId>Conectando</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Conectando</name>
-	<description>Criando um projeto para cadastro e acesso,com login e senha</description>
+	<description>Criando um projeto para cadastro e acesso, com login e senha</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -76,10 +76,10 @@
 		</dependency>
 
 		<dependency>
-   	 		<groupId>org.springdoc</groupId>
-    		<artifactId>springdoc-openapi-ui</artifactId>
-    		<version>1.7.0</version>
-		</dependency>
+	      <groupId>org.springdoc</groupId>
+	      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	      <version>2.6.0</version>
+   		</dependency>
 
 	</dependencies>
 
