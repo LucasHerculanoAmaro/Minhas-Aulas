@@ -1,4 +1,0 @@
-Passo 1 - Conecte a API
-
-Em 'Authorization', insira o login padrão 'user' e o token que foi fornecido no console do Eclipse.
-
