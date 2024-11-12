@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { DiarioComponent } from './diario/diario.component';
 import { RazaoComponent } from './razao/razao.component';
 import { BalanceteComponent } from './balancete/balancete.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DiarioComponent,
     RazaoComponent,
-    BalanceteComponent
+    BalanceteComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,

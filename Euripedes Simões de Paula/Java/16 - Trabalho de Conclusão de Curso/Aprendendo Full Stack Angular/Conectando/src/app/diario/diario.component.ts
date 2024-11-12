@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DiarioService } from '../services/diario.service';
+import { Diario } from '../model/Diario';
 
 @Component({
   selector: 'app-diario',
@@ -6,5 +8,26 @@ import { Component } from '@angular/core';
   styleUrl: './diario.component.css'
 })
 export class DiarioComponent {
+
+  lancamento : Diario[] = [];
+
+  constructor( private diarioService: DiarioService ) {}
+
+  ngOnInit() : void {
+    this.getLancamentos();
+  }
+
+  // Método para buscar todos os Lançamentos 
+  getLancamentos() {
+    this.diarioService.getLancamentos().subscribe(data => {
+      this.lancamento = data;
+    })
+  }
+
+  deleteLancamento( id: number ) {
+    this.diarioService.deleteLancamento(id).subscribe(() => {
+      this.getLancamentos();
+    })
+  }
 
 }

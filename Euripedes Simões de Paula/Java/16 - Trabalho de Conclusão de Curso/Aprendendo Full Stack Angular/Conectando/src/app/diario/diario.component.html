@@ -1,1 +1,24 @@
-<p>diario works!</p>
+<h2>Diário</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <!-- <th>Débito</th> -->
+        <!-- <th>Crédito</th> -->
+        <th>Data</th>
+        <th>Histórico</th>
+        <th>Valor</th>
+        <th>Ações</th>
+    </tr>
+    <tr *ngFor="let lancamento of lancamento">
+        <td>{{ lancamento.id }}</td>
+        <!-- <td>{{ lancamento.debito }}</td> -->
+        <!-- <td>{{ lancamento.credito }}</td> -->
+        <td>{{ lancamento.data }}</td>
+        <td>{{ lancamento.historico }}</td>
+        <td>{{ lancamento.valor }}</td>
+        <td>
+        <button (click)="deleteLancamento(lancamento.id)">Excluir</button>
+        </td>
+    </tr>
+</table>
