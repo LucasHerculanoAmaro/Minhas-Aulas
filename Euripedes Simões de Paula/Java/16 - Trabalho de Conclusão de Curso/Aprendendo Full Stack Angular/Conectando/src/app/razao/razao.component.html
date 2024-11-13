@@ -17,8 +17,19 @@
         <td>{{ razao.historico }}</td>
         <td>{{ razao.valor }} Reais</td>
     </tr>
+    <!-- Total Crédito -->
+    <tr>
+      <td colspan="4" style="text-align: right;">Total Crédito:</td>
+      <td><strong> {{ totalCredito }} Reais </strong></td>
+    </tr>
+    <!-- Total Débito -->
+    <tr>
+      <td colspan="4" style="text-align: right;">Total Débito:</td>
+      <td><strong> {{ totalDebito }} Reais </strong></td>
+    </tr>
+    <!-- Total Geral -->
     <tr>
       <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
-      <td><strong> {{ totalValor }} Reais </strong></td>
+      <td><strong> {{ saldoGeral }} Reais </strong></td>
     </tr>
 </table>

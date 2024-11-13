@@ -3,6 +3,7 @@ import { Razao } from '../model/Razao';
 import { RazaoService } from '../services/razao.service';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-razao',
@@ -16,15 +17,26 @@ export class RazaoComponent {
   constructor( private diarioService: DiarioService ) {}
 
   ngOnInit() : void {
-    this.diarioService.getLancamentos().subscribe((data) => {
-      this.razao = data
-    });
-
     this.getLancamentos();
   }
 
-  get totalValor() : number {
-    return this.razao.reduce((total, item) => total + item.valor, 0);
+  // Soma do Crédito
+  get totalCredito() : number {
+    return this.razao
+      .filter((item) => item.transacao === "CRÉDITO")
+      .reduce((total, item) => total + item.valor, 0);
+  }
+
+  // Soma do Débito
+  get totalDebito() : number {
+    return this.razao
+      .filter((item) => item.transacao === "DÉBITO")
+      .reduce((total, item) => total + item.valor, 0);
+  }
+
+  // Soma Total
+  get saldoGeral() : number {
+    return this.totalCredito - this.totalDebito;
   }
 
   // Método para buscar todos os Lançamentos 
