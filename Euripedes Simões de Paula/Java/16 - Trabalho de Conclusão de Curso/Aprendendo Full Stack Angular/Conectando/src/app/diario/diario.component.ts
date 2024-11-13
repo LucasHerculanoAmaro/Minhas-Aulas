@@ -11,6 +11,8 @@ export class DiarioComponent {
 
   lancamento : Diario[] = [];
 
+  total!: string;
+
   constructor( private diarioService: DiarioService ) {}
 
   ngOnInit() : void {

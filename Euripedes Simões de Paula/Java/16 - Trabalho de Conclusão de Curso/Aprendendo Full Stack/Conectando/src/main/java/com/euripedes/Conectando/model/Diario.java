@@ -20,7 +20,7 @@ public class Diario {
     private Long id;
        
     @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Historico> hstoricos;
+    private List<Historico> historicos;
     
     @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Razao> razoes; 
@@ -37,6 +37,7 @@ public class Diario {
     @JoinColumn(name = "debito_id", nullable = false)
     private Conta debito;
 
+    private String transacao;
     private Double valor;
     private LocalDate data;
     private String historico;
@@ -98,6 +99,14 @@ public class Diario {
     public void setData(LocalDate data) {
         this.data = data;
     }
+
+	public String getTransacao() {
+		return transacao;
+	}
+
+	public void setTransacao(String transacao) {
+		this.transacao = transacao;
+	}
     
     
 }

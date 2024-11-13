@@ -1,23 +1,24 @@
-<h2>Diário</h2>
+<h2>Razão</h2>
+
 <table>
-  <tr>
-    <th>ID</th>
-    <th>Conta Débito</th>
-    <th>Conta Crédito</th>
-    <th>Data</th>
-    <th>Histórico</th>
-    <th>Valor</th>
-    <th>Ações</th>
-  </tr>
-  <tr *ngFor="let razao of razao">
-    <td>{{ razao.id }}</td>
-    <!-- <td>{{ razao.contaDebito }}</td> -->
-    <!-- <td>{{ razao.contaCredito }}</td> -->
-    <!-- <td>{{ razao.data }}</td> -->
-    <!-- <td>{{ razao.historico }}</td> -->
-    <!-- <td>{{ razao.valor }}</td> -->
-    <td>
-      <!-- <button (click)="deleteRazao(razao.id)">Excluir</button> -->
-    </td>
-  </tr>
+    <tr>
+        <th>ID</th>
+        <th>Transação</th>
+        <!-- <th>Crédito</th> -->
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <!-- <th>Ações</th> -->
+    </tr>
+    <tr *ngFor="let razao of razao">
+        <td>{{ razao.id }} </td>
+        <td>{{ razao.transacao }}</td>
+        <td>{{ razao.data }}</td>
+        <td>{{ razao.historico }}</td>
+        <td>{{ razao.valor }} Reais</td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+      <td><strong> {{ totalValor }} Reais </strong></td>
+    </tr>
 </table>

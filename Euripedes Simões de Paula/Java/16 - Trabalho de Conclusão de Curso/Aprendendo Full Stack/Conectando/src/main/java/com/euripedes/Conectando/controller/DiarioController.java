@@ -75,12 +75,6 @@ public class DiarioController {
         // Atualiza o Diário
         diarioService.createDiario(diarioRequest, usuario);
 
-        // Atualiza o Balancete para as contas de crédito e débito
-        balanceteService.atualizarBalancete(novoDiario);
-        
-        // Atualiza o Razao
-        razaoService.criarRazao(novoDiario);
-
         // Salva o lançamento
         return novoDiario;
     }

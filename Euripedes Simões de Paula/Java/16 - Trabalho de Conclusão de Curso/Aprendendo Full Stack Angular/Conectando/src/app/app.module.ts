@@ -7,6 +7,8 @@ import { DiarioComponent } from './diario/diario.component';
 import { RazaoComponent } from './razao/razao.component';
 import { BalanceteComponent } from './balancete/balancete.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { RegistrarComponent } from './registrar/registrar.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [

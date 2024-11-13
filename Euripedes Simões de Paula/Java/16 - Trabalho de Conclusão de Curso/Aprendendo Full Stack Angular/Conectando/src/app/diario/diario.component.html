@@ -3,20 +3,20 @@
 <table>
     <tr>
         <th>ID</th>
-        <!-- <th>Débito</th> -->
+        <th>Transação</th>
         <!-- <th>Crédito</th> -->
         <th>Data</th>
-        <th>Histórico</th>
+        <th>Descrição</th>
         <th>Valor</th>
         <th>Ações</th>
     </tr>
     <tr *ngFor="let lancamento of lancamento">
-        <td>{{ lancamento.id }}</td>
-        <!-- <td>{{ lancamento.debito }}</td> -->
+        <td>{{ lancamento.id }} </td>
+        <td>{{ lancamento.transacao }}</td>
         <!-- <td>{{ lancamento.credito }}</td> -->
         <td>{{ lancamento.data }}</td>
         <td>{{ lancamento.historico }}</td>
-        <td>{{ lancamento.valor }}</td>
+        <td>{{ lancamento.valor }} Reais</td>
         <td>
         <button (click)="deleteLancamento(lancamento.id)">Excluir</button>
         </td>

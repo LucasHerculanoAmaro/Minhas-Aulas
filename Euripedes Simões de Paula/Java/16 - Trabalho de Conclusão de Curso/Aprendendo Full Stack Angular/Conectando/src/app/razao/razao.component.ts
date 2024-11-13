@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Razao } from '../model/Razao';
 import { RazaoService } from '../services/razao.service';
+import { Diario } from '../model/Diario';
+import { DiarioService } from '../services/diario.service';
 
 @Component({
   selector: 'app-razao',
@@ -9,14 +11,27 @@ import { RazaoService } from '../services/razao.service';
 })
 export class RazaoComponent {
 
-  razao : Razao[] = [];
+  razao : Diario[] = [];
 
-  constructor( private razaoService : RazaoService ){}
+  constructor( private diarioService: DiarioService ) {}
 
   ngOnInit() : void {
-    this.razaoService.getRazao().subscribe(data => {
+    this.diarioService.getLancamentos().subscribe((data) => {
       this.razao = data
     });
+
+    this.getLancamentos();
+  }
+
+  get totalValor() : number {
+    return this.razao.reduce((total, item) => total + item.valor, 0);
+  }
+
+  // Método para buscar todos os Lançamentos 
+  getLancamentos() {
+    this.diarioService.getLancamentos().subscribe(data => {
+      this.razao = data;
+    })
   }
 
 }

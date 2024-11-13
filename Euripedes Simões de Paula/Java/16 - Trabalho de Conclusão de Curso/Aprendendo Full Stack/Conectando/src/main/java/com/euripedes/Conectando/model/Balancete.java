@@ -19,6 +19,7 @@ public class Balancete {
     private Conta conta;
 
     private Double saldo;
+    private String tipoConta;
     
     public Balancete(Conta conta) {
         this.conta = conta;
@@ -53,6 +54,13 @@ public class Balancete {
         this.saldo = saldo;
     }
 
+	public String getTipoConta() {
+		return tipoConta;
+	}
 
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+    
 }
 

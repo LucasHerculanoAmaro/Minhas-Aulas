@@ -1,1 +1,38 @@
-<p>registrar works!</p>
+<div class="col-md-6 offset-md-3">
+
+    <h3> Faça um novo Lançamento </h3>
+
+    <form (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="tipoTransacao">Tipo de Transação:</label>
+            <select [(ngModel)]="diario.transacao" name="tipoTransacao" required>
+
+                <option value="credito">Crédito</option>
+                <option value="debito">Débito</option>
+
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label>Data:
+                <input type="date" [(ngModel)]="diario.data" name="data" required>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Histórico:
+                <input type="text" [(ngModel)]="diario.historico" name="historico" required>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Valor:
+                <input type="number" [(ngModel)]="diario.valor" name="valor" required>
+            </label>
+        </div>
+        <div class="form-group" type="submit" style="margin-top: 10px;">
+            <button class="btn btn-success" type="submit"> Registrar </button>
+        </div>
+
+    </form>
+
+</div>
