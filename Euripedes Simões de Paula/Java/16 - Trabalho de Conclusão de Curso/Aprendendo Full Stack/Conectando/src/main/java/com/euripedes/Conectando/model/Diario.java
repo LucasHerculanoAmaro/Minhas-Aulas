@@ -21,21 +21,6 @@ public class Diario {
        
     @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Historico> historicos;
-    
-    @OneToMany(mappedBy = "diario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Razao> razoes; 
-    
-    @ManyToOne
-    @JoinColumn(name = "razao_id") // nome da coluna que faz referência ao Razao
-    private Razao razao;
-    
-    @ManyToOne
-    @JoinColumn(name = "credito_id", nullable = false)
-    private Conta credito;
-
-    @ManyToOne
-    @JoinColumn(name = "debito_id", nullable = false)
-    private Conta debito;
 
     private String transacao;
     private Double valor;
@@ -51,30 +36,6 @@ public class Diario {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Razao getRazao() {
-		return razao;
-	}
-
-	public void setRazao(Razao razao) {
-		this.razao = razao;
-	}
-
-	public Conta getCredito() {
-		return credito;
-	}
-
-	public void setCredito(Conta credito) {
-		this.credito = credito;
-	}
-
-	public Conta getDebito() {
-		return debito;
-	}
-
-	public void setDebito(Conta debito) {
-		this.debito = debito;
-	}
 
 	public Double getValor() {
         return valor;
