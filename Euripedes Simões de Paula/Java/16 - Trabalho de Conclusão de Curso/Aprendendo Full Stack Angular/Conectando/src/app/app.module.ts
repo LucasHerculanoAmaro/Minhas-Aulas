@@ -10,6 +10,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
+import { HistoricoComponent } from './historico/historico.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MenuComponent } from './menu/menu.component';
     RazaoComponent,
     BalanceteComponent,
     RegistrarComponent,
-    MenuComponent
+    MenuComponent,
+    HistoricoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
+import { empty } from 'rxjs';
+import { error } from 'console';
 
 @Component({
   selector: 'app-diario',
@@ -11,7 +13,7 @@ export class DiarioComponent {
 
   lancamento : Diario[] = [];
 
-  total!: string;
+  // total!: string;
 
   constructor( private diarioService: DiarioService ) {}
 
@@ -27,9 +29,15 @@ export class DiarioComponent {
   }
 
   deleteLancamento( id: number ) {
-    this.diarioService.deleteLancamento(id).subscribe(() => {
-      this.getLancamentos();
+    this.diarioService.deleteLancamento(id).subscribe({
+      next : response => { 
+        this.getLancamentos(), response
+      },
+      error : error => {
+        console.log("Erro ao deletar lançamento", error)
+      }
     })
   }
+
 
 }

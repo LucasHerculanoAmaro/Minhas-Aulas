@@ -27,7 +27,7 @@ export class DiarioService {
 
   // Deletar um Lancamento
   deleteLancamento( id: number ) {
-    return this.http.delete< Diario > ( 'htp://localhost:8080/api/diario/${id}' )
+    return this.http.delete< Diario > ( 'htp://localhost:8080/api/diario/deletar/${id}' )
   }
 
 }

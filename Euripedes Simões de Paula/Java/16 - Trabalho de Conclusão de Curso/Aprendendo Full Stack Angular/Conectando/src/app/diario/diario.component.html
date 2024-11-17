@@ -1,24 +1,28 @@
-<h2>Diário</h2>
+<div class="container">
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Transação</th>
-        <!-- <th>Crédito</th> -->
-        <th>Data</th>
-        <th>Descrição</th>
-        <th>Valor</th>
-        <th>Ações</th>
-    </tr>
-    <tr *ngFor="let lancamento of lancamento">
-        <td>{{ lancamento.id }} </td>
-        <td>{{ lancamento.transacao }}</td>
-        <!-- <td>{{ lancamento.credito }}</td> -->
-        <td>{{ lancamento.data }}</td>
-        <td>{{ lancamento.historico }}</td>
-        <td>{{ lancamento.valor }} Reais</td>
-        <td>
-        <button (click)="deleteLancamento(lancamento.id)">Excluir</button>
-        </td>
-    </tr>
-</table>
+    <h2 class="text-center" style="margin: 20px;">DIÁRIO</h2>
+
+    <table style="width: 100%;">
+        <tr class="text-center">
+            <th>ID</th>
+            <th>TRANSAÇÃO</th>
+            <!-- <th>Crédito</th> -->
+            <th>DATA</th>
+            <th>DESCRIÇÃO</th>
+            <th>VALOR</th>
+            <th>AÇÕES</th>
+        </tr>
+        <tr *ngFor="let lancamento of lancamento" class="text-center">
+            <td>{{ lancamento.id }} </td>
+            <td>{{ lancamento.transacao }}</td>
+            <!-- <td>{{ lancamento.credito }}</td> -->
+            <td>{{ lancamento.data }}</td>
+            <td>{{ lancamento.historico }}</td>
+            <td>{{ lancamento.valor }} Reais</td>
+            <td>
+            <button (click)="deleteLancamento(lancamento.id)">Excluir</button>
+            </td>
+        </tr>
+    </table>
+
+</div>

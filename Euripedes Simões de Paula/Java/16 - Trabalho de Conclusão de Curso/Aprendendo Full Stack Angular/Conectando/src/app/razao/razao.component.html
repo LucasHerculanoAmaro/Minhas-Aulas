@@ -1,21 +1,23 @@
-<h2>Razão</h2>
+<div class="container">
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Transação</th>
-        <!-- <th>Crédito</th> -->
-        <th>Data</th>
-        <th>Descrição</th>
-        <th>Valor</th>
-        <!-- <th>Ações</th> -->
+  <h2 class="text-center" style="margin: 20px;">Razão</h2>
+
+  <table class="text-center" style="width: 100%;">
+    <tr >
+      <th>ID</th>
+      <th>TRANSAÇÃO</th>
+      <!-- <th>Crédito</th> -->
+      <th>DATA</th>
+      <th>DESCRIÇÃO</th>
+      <th>VALOR</th>
+      <!-- <th>Ações</th> -->
     </tr>
     <tr *ngFor="let razao of razao">
-        <td>{{ razao.id }} </td>
-        <td>{{ razao.transacao }}</td>
-        <td>{{ razao.data }}</td>
-        <td>{{ razao.historico }}</td>
-        <td>{{ razao.valor }} Reais</td>
+      <td>{{ razao.id }} </td>
+      <td>{{ razao.transacao }}</td>
+      <td>{{ razao.data }}</td>
+      <td>{{ razao.historico }}</td>
+      <td>{{ razao.valor }} Reais</td>
     </tr>
     <!-- Total Crédito -->
     <tr>
@@ -32,4 +34,7 @@
       <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
       <td><strong> {{ saldoGeral }} Reais </strong></td>
     </tr>
-</table>
+  </table>
+
+
+</div>

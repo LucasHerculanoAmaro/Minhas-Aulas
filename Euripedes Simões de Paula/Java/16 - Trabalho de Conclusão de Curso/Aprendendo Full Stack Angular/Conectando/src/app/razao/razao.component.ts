@@ -4,6 +4,7 @@ import { RazaoService } from '../services/razao.service';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
 import { style } from '@angular/animations';
+import { HtmlTagDefinition } from '@angular/compiler';
 
 @Component({
   selector: 'app-razao',
