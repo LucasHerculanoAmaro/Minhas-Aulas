@@ -9,6 +9,7 @@ import { BalanceteComponent } from './balancete/balancete.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     DiarioComponent,
     RazaoComponent,
     BalanceteComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
