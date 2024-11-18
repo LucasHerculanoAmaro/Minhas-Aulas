@@ -22,12 +22,12 @@ export class DiarioService {
 
   // Atualizar um Lançamento
   updateLancamento( diario : Diario ) : Observable< Diario > {
-    return this.http.put< Diario > ('http://localhost:8080/api/diario/atuaizar', diario);
+    return this.http.put< Diario > ( 'http://localhost:8080/api/diario/atuaizar', diario);
   }
 
   // Deletar um Lancamento
-  deleteLancamento( id: number ) {
-    return this.http.delete< Diario > ( 'htp://localhost:8080/api/diario/deletar/${id}' )
+  deleteLancamento( id: number ) : Observable< Object > {
+    return this.http.delete< Diario > ( `http://localhost:8080/api/diario/deletar/${id}` )
   }
 
 }

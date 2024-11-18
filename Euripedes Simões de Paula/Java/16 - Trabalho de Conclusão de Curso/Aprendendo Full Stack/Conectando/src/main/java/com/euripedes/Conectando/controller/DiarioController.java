@@ -2,7 +2,9 @@ package com.euripedes.Conectando.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.euripedes.Conectando.model.Diario;
 import com.euripedes.Conectando.repository.DiarioRepository;
 import com.euripedes.Conectando.service.DiarioService;
+import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -68,13 +71,17 @@ public class DiarioController {
     }
 //  Método DELETE
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> deletarTransacao(@PathVariable Long id) {
-        boolean isDeleted = diarioService.deletarTransacao(id);
-        if (isDeleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Map<String, Boolean>> deletarTransacao(@PathVariable Long id) {
+        Diario diario = diarioRepository.findById(id)
+        		.orElseThrow(() -> new ResourceNotFoundException("Diário não encontrado"));
+        
+        diarioRepository.delete(diario);
+        
+        Map<String, Boolean> response = new HashMap<>();
+        
+        response.put("Deletado", Boolean.TRUE);
+        
+        return ResponseEntity.ok(response);
     }
     
 /*	Início da implementação para filtros	*/

@@ -30,11 +30,12 @@ export class DiarioComponent {
 
   deleteLancamento( id: number ) {
     this.diarioService.deleteLancamento(id).subscribe({
-      next : response => { 
-        this.getLancamentos(), response
+      next : data => { 
+        console.log(data),
+        this.getLancamentos()
       },
       error : error => {
-        console.log("Erro ao deletar lançamento", error)
+        console.log( error)
       }
     })
   }
