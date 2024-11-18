@@ -69,6 +69,7 @@ public class DiarioController {
             return ResponseEntity.notFound().build();
         }
     }
+    
 //  Método DELETE
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Map<String, Boolean>> deletarTransacao(@PathVariable Long id) {
@@ -76,6 +77,7 @@ public class DiarioController {
         		.orElseThrow(() -> new ResourceNotFoundException("Diário não encontrado"));
         
         diarioRepository.delete(diario);
+//        diarioService.deletarTransacao(id);
         
         Map<String, Boolean> response = new HashMap<>();
         

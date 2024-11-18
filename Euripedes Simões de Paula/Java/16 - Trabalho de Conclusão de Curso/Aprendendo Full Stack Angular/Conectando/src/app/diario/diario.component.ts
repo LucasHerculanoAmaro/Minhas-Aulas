@@ -3,6 +3,7 @@ import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
 import { empty } from 'rxjs';
 import { error } from 'console';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-diario',
@@ -15,7 +16,10 @@ export class DiarioComponent {
 
   // total!: string;
 
-  constructor( private diarioService: DiarioService ) {}
+  constructor( 
+    private diarioService: DiarioService,
+    private route : Router
+  ) {}
 
   ngOnInit() : void {
     this.getLancamentos();
@@ -26,6 +30,10 @@ export class DiarioComponent {
     this.diarioService.getLancamentos().subscribe(data => {
       this.lancamento = data;
     })
+  }
+
+  updateLancamento( id : number ){
+    this.route.navigate(['atualizar', id]);
   }
 
   deleteLancamento( id: number ) {

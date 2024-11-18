@@ -24,7 +24,8 @@
                 <td>{{ lancamento.historico }}</td>
                 <td>{{ lancamento.valor }} Reais</td>
                 <td>
-                    <button (click)="deleteLancamento(lancamento.id)">Excluir</button>
+                    <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id)">Excluir</button>
+                    <button class="btn btn-warning" (click)="updateLancamento(lancamento.id)" >Atualizar</button>
                 </td>
             </tr>
         </tbody>
