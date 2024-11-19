@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
 import { empty } from 'rxjs';
@@ -10,11 +10,9 @@ import { Route, Router } from '@angular/router';
   templateUrl: './diario.component.html',
   styleUrl: './diario.component.css'
 })
-export class DiarioComponent {
+export class DiarioComponent implements OnInit{
 
   lancamento : Diario[] = [];
-
-  // total!: string;
 
   constructor( 
     private diarioService: DiarioService,
@@ -47,6 +45,5 @@ export class DiarioComponent {
       }
     })
   }
-
 
 }

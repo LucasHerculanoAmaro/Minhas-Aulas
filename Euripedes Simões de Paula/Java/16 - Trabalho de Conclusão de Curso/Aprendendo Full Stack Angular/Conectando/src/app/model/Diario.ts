@@ -11,7 +11,7 @@ export class Diario {
     // public credito!: { id: number } //Conta;
     // public debito!: { id: number } //Conta;
 
-    id!: number
+    id!: number;
     credito!: { id: number; };
     debito!: { id: number; };
     data!: string;

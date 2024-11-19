@@ -17,17 +17,19 @@
 
         <tbody>
             <tr *ngFor="let lancamento of lancamento" class="text-center">
+                
                 <td>{{ lancamento.id }} </td>
                 <td>{{ lancamento.transacao }}</td>
-                <!-- <td>{{ lancamento.credito }}</td> -->
-                <td>{{ lancamento.data }}</td>
+                <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ lancamento.historico }}</td>
-                <td>{{ lancamento.valor }} Reais</td>
-                <td>
+                <td>{{ lancamento.valor | currency : 'BRL' }}</td>                    
+                <td>                    
                     <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id)">Excluir</button>
-                    <button class="btn btn-warning" (click)="updateLancamento(lancamento.id)" >Atualizar</button>
+                    <button class="btn btn-warning" (click)="updateLancamento(lancamento.id)">Atualizar</button>
                 </td>
+                
             </tr>
+            
         </tbody>
 
     </table>
