@@ -1,5 +1,47 @@
 <div class="container">
 
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Transação</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <!-- <th>Ações</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let lancamento of lancamento; let i = index">
+                <!-- Linha principal -->
+                <tr (click)="toggleRow(i)" class="text-center">
+                    <td>{{ lancamento.id }}</td>
+                    <td>{{ lancamento.transacao }}</td>
+                    <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ lancamento.historico }}</td>
+                    <td>{{ lancamento.valor | currency : 'BRL' }}</td>
+                    
+                </tr>
+                <!-- Linha expandida -->
+                <tr *ngIf="expandedRowIndex === i">
+                    <td colspan="6" class="expanded-row">
+                        <button class="btn btn-danger"
+                            (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
+                        <button class="btn btn-warning"
+                            (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+<!-- <div class="container">
+
     <h2 class="text-center" style="margin: 20px;">DIÁRIO</h2>
 
     <table class="table table-striped ">
@@ -7,7 +49,6 @@
             <tr class="text-center">
                 <th>ID</th>
                 <th>TRANSAÇÃO</th>
-                <!-- <th>Crédito</th> -->
                 <th>DATA</th>
                 <th>DESCRIÇÃO</th>
                 <th>VALOR</th>
@@ -16,22 +57,26 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let lancamento of lancamento" class="text-center">
+            
+            <tr *ngFor="let lancamento of lancamento; let i = index" (click)="onRowClick(i)"
+                [class.selected]="selectedRow === i" class="text-center clique ">
+
                 
                 <td>{{ lancamento.id }} </td>
                 <td>{{ lancamento.transacao }}</td>
                 <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ lancamento.historico }}</td>
-                <td>{{ lancamento.valor | currency : 'BRL' }}</td>                    
-                <td>                    
+                <td>{{ lancamento.valor | currency : 'BRL' }}</td>
+
+                <td *ngIf="selectedRow === i">
                     <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id)">Excluir</button>
                     <button class="btn btn-warning" (click)="updateLancamento(lancamento.id)">Atualizar</button>
                 </td>
-                
+
             </tr>
-            
+
         </tbody>
 
     </table>
 
-</div>
+</div> -->

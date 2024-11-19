@@ -14,13 +14,19 @@ export class DiarioComponent implements OnInit{
 
   lancamento : Diario[] = [];
 
+  // selectedRow : number | null = null;
+  expandedRowIndex: number | null = null;
+
   constructor( 
     private diarioService: DiarioService,
     private route : Router
   ) {}
 
   ngOnInit() : void {
-    this.getLancamentos();
+    // this.getLancamentos();
+    this.diarioService.getLancamentos().subscribe((data: Diario[]) => {
+      this.lancamento = data;
+    });
   }
 
   // Método para buscar todos os Lançamentos 
@@ -34,6 +40,7 @@ export class DiarioComponent implements OnInit{
     this.route.navigate(['atualizar', id]);
   }
 
+  // Método para deletar um Lançamento
   deleteLancamento( id: number ) {
     this.diarioService.deleteLancamento(id).subscribe({
       next : data => { 
@@ -44,6 +51,17 @@ export class DiarioComponent implements OnInit{
         console.log( error)
       }
     })
+  }
+
+
+
+  // onRowClick(index: number): void {
+  //   // Alterna a seleção da linha
+  //   this.selectedRow = this.selectedRow === index ? null : index;
+  // }
+
+  toggleRow(index: number) {
+    this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
   }
 
 }
