@@ -61,8 +61,14 @@ export class DiarioComponent implements OnInit{
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
   }
 
-  cores() {
-    
+  // Método para Débito
+  isDebito ( transacao : string ) : boolean {
+    return transacao.toLowerCase() === "débito";
+  }
+
+  // Método para Crédito
+  isCredito (transacao : string ) : boolean {
+    return transacao.toLowerCase() === "crédito";
   }
 
 

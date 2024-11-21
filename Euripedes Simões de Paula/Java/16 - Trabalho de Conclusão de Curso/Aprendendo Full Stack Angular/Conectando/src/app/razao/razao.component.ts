@@ -5,6 +5,7 @@ import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
 import { style } from '@angular/animations';
 import { HtmlTagDefinition } from '@angular/compiler';
+import { verify } from 'crypto';
 
 @Component({
   selector: 'app-razao',
@@ -23,6 +24,7 @@ export class RazaoComponent {
 
   // Soma do Crédito
   get totalCredito() : number {
+
     return this.razao
       .filter((item) => item.transacao === "CRÉDITO")
       .reduce((total, item) => total + item.valor, 0);

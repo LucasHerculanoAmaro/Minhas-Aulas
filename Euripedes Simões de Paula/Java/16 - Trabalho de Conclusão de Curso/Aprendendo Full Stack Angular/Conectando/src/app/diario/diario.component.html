@@ -5,10 +5,10 @@
         <thead>
             <tr class="text-center">
                 <th>ID</th>
-                <th>Transação</th>
-                <th>Data</th>
-                <th>Descrição</th>
-                <th>Valor</th>
+                <th>TRANSAÇÃO</th>
+                <th>DATA</th>
+                <th>DESCRIÇÃO</th>
+                <th>VALOR</th>
             </tr>
         </thead>
         <!-- Corpo -->
@@ -17,10 +17,18 @@
                 <!-- Linha principal -->
                 <tr (click)="toggleRow(i)" class="text-center">
                     <td>{{ lancamento.id }}</td>
-                    <td>{{ lancamento.transacao }}</td>
+                    <td [ngClass]="{ 
+                        'text-danger': isDebito(lancamento.transacao) ,
+                        'text-success': isCredito(lancamento.transacao) 
+                        }">{{ lancamento.transacao }}
+                    </td>
                     <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
                     <td>{{ lancamento.historico }}</td>
-                    <td>{{ lancamento.valor | currency : 'BRL' }}</td>  
+                    <td [ngClass]="{ 
+                        'text-danger': isDebito(lancamento.transacao), 
+                        'text-success': isCredito(lancamento.transacao)  
+                        }">{{ lancamento.valor | currency : 'BRL' }}
+                    </td> 
                 </tr>
                 <!-- Linha expandida -->
                 <tr *ngIf="expandedRowIndex === i">
