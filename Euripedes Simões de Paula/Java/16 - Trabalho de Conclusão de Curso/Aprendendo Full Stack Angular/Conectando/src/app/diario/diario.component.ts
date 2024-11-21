@@ -18,7 +18,7 @@ export class DiarioComponent implements OnInit{
 
   constructor( 
     private diarioService: DiarioService,
-    private route : Router
+    private router : Router
   ) {}
 
   ngOnInit() : void {
@@ -38,7 +38,7 @@ export class DiarioComponent implements OnInit{
 
   // Método PUT para o Lançamento
   updateLancamento( id : number ){
-    this.route.navigate(['atualizar', id]);
+    this.router.navigate(['atualizar', id]);
   }
 
   // Método DELETE para o Lançamento
