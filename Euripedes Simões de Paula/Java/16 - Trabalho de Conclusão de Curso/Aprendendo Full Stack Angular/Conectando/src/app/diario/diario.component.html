@@ -1,6 +1,7 @@
 <div class="container">
 
     <table class="table">
+        <!-- Cabeçalho -->
         <thead>
             <tr class="text-center">
                 <th>ID</th>
@@ -8,9 +9,9 @@
                 <th>Data</th>
                 <th>Descrição</th>
                 <th>Valor</th>
-                <!-- <th>Ações</th> -->
             </tr>
         </thead>
+        <!-- Corpo -->
         <tbody>
             <ng-container *ngFor="let lancamento of lancamento; let i = index">
                 <!-- Linha principal -->
@@ -19,16 +20,13 @@
                     <td>{{ lancamento.transacao }}</td>
                     <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
                     <td>{{ lancamento.historico }}</td>
-                    <td>{{ lancamento.valor | currency : 'BRL' }}</td>
-                    
+                    <td>{{ lancamento.valor | currency : 'BRL' }}</td>  
                 </tr>
                 <!-- Linha expandida -->
                 <tr *ngIf="expandedRowIndex === i">
-                    <td colspan="6" class="expanded-row">
-                        <button class="btn btn-danger"
-                            (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
-                        <button class="btn btn-warning"
-                            (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
+                    <td colspan="6" class="expanded-row text-center">
+                        <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
+                        <button class="btn btn-warning" (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
                     </td>
                 </tr>
             </ng-container>

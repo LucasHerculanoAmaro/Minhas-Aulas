@@ -14,3 +14,7 @@ tr.selected {
     padding: 0 0 0 15px;
     list-style-type: disc;
 }
+
+button {
+    margin: 5px;
+}

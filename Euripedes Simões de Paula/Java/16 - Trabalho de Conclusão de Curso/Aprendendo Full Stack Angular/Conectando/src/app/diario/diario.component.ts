@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
-import { empty } from 'rxjs';
-import { error } from 'console';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-diario',
@@ -12,9 +10,10 @@ import { Route, Router } from '@angular/router';
 })
 export class DiarioComponent implements OnInit{
 
+  // Objeto
   lancamento : Diario[] = [];
 
-  // selectedRow : number | null = null;
+  // Variável para expandir as linhas
   expandedRowIndex: number | null = null;
 
   constructor( 
@@ -23,24 +22,26 @@ export class DiarioComponent implements OnInit{
   ) {}
 
   ngOnInit() : void {
-    // this.getLancamentos();
+
+    // Chamando o método GET Lançamento
     this.diarioService.getLancamentos().subscribe((data: Diario[]) => {
       this.lancamento = data;
     });
   }
 
-  // Método para buscar todos os Lançamentos 
+  // Método GET para os Lançamentos 
   getLancamentos() {
     this.diarioService.getLancamentos().subscribe(data => {
       this.lancamento = data;
     })
   }
 
+  // Método PUT para o Lançamento
   updateLancamento( id : number ){
     this.route.navigate(['atualizar', id]);
   }
 
-  // Método para deletar um Lançamento
+  // Método DELETE para o Lançamento
   deleteLancamento( id: number ) {
     this.diarioService.deleteLancamento(id).subscribe({
       next : data => { 
@@ -53,15 +54,17 @@ export class DiarioComponent implements OnInit{
     })
   }
 
+  // OUTROS MÉTODOS 
 
-
-  // onRowClick(index: number): void {
-  //   // Alterna a seleção da linha
-  //   this.selectedRow = this.selectedRow === index ? null : index;
-  // }
-
+  // Definindo a expansão da linha com o ID
   toggleRow(index: number) {
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
   }
+
+  cores() {
+    
+  }
+
+
 
 }
