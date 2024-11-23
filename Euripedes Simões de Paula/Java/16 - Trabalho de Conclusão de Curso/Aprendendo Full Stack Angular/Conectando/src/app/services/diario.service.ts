@@ -15,13 +15,17 @@ export class DiarioService {
     return this.http.get< Diario[] > ( 'http://localhost:8080/api/diario/transacoes' );
   }
 
+  getLancamentoById( id: number ) : Observable < Diario > {
+    return this.http.get< Diario > ( `http://localhost:8080/api/diario/atualizar/${id}` );
+  }
+
   // Criar um Lançamento
   createLancamento( diario : Diario ) : Observable< Diario > {
     return this.http.post< Diario > ( 'http://localhost:8080/api/diario/registrar', diario );
   }
 
   // Atualizar um Lançamento
-  updateLancamento( diario : Diario ) : Observable< Diario > {
+  updateLancamento(id: number, diario: Diario) : Observable< Diario > {
     return this.http.put< Diario > ( 'http://localhost:8080/api/diario/atuaizar', diario);
   }
 

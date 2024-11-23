@@ -1,12 +1,38 @@
-<div class="container">
+<div class="container" >
 
-    <h2> Lançamento: </h2>
+    <h3> Lançamento: {{ lancamento.id }} </h3>
 
-    <thead>
-        <tr>
-            <td>ID</td>
-        </tr>
-    </thead>
+    <form>
+
+        <div>
+            <label for="tipoTransacao">TIPO DE TRANSAÇÃO: </label>
+            <select [(ngModel)]="lancamento.transacao" name="tipoTransacao" class="form-control" id="Transação" name="Transação" required>
+
+                <option value="credito">Crédito</option>
+                <option value="debito">Débito</option>
+
+            </select>
+        </div>
+        
+        <div class="form-group">
+
+            <label> DESCRIÇÃO: </label>
+            <input [(ngModel)]="lancamento.historico" type="text" class="form-control" id="Transação" name="Nome">
+
+        </div>
+
+        <div class="form-group">
+
+            <label> VALOR: </label>
+            <input [(ngModel)]="lancamento.valor" type="text" class="form-control" id="Transação" name="Nome">
+
+        </div>
+
+        <div class="form-group" style="margin-top: 10px;">
+            <button class="btn btn-success" type="submit"> Atualizar </button>
+        </div>
+
+    </form>
 
 </div>
 
