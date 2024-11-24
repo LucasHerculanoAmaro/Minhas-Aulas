@@ -16,7 +16,7 @@ export class DiarioService {
   }
 
   getLancamentoById( id: number ) : Observable < Diario > {
-    return this.http.get< Diario > ( `http://localhost:8080/api/diario/atualizar/${id}` );
+    return this.http.get< Diario > ( `http://localhost:8080/api/diario/transacoes/${id}` );
   }
 
   // Criar um Lançamento

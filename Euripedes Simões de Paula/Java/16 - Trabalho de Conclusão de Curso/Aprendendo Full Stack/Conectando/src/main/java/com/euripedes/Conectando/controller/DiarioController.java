@@ -89,9 +89,9 @@ public class DiarioController {
 /*	Início da implementação para filtros	*/
     
 //	Filtro por ID do Diário
-    @GetMapping("/{diarioId}")
-    public ResponseEntity<Diario> buscarPorId(@PathVariable Long diarioId) {
-        return diarioService.buscarPorId(diarioId)
+    @GetMapping("/transacoes/{id}")
+    public ResponseEntity<Diario> buscarPorId(@PathVariable Long id) {
+        return diarioService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
