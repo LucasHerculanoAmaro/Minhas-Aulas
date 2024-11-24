@@ -2,7 +2,7 @@
 
     <h3> Lançamento: {{ lancamento.id }} </h3>
 
-    <form>
+    <form (ngSubmit) = "onSubmit()">
 
         <div>
             <label for="tipoTransacao">TIPO DE TRANSAÇÃO: </label>
@@ -17,19 +17,19 @@
         <div class="form-group">
 
             <label> DESCRIÇÃO: </label>
-            <input [(ngModel)]="lancamento.historico" type="text" class="form-control" id="Transação" name="Nome">
+            <input [(ngModel)]="lancamento.historico" type="text" class="form-control" id="Transação" name="Descrição">
 
         </div>
 
         <div class="form-group">
 
             <label> VALOR: </label>
-            <input [(ngModel)]="lancamento.valor" type="text" class="form-control" id="Transação" name="Nome">
+            <input [(ngModel)]="lancamento.valor" type="text" class="form-control" id="Transação" name="Valor">
 
         </div>
 
         <div class="form-group" style="margin-top: 10px;">
-            <button class="btn btn-success" type="submit"> Atualizar </button>
+            <button  class="btn btn-success" type="submit"> Atualizar </button>
         </div>
 
     </form>

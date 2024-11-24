@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.euripedes.Conectando.model.Diario;
+import com.euripedes.Conectando.model.Usuario;
 import com.euripedes.Conectando.repository.DiarioRepository;
 import com.euripedes.Conectando.service.DiarioService;
 import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundException;
@@ -88,10 +89,17 @@ public class DiarioController {
     
 /*	Início da implementação para filtros	*/
     
-//	Filtro por ID do Diário
+//  Método GET por ID
     @GetMapping("/transacoes/{id}")
-    public ResponseEntity<Diario> buscarPorId(@PathVariable Long id) {
-        return diarioService.buscarPorId(id)
+	public ResponseEntity<Diario> getDiarioById(@PathVariable Long id) {
+		Diario diario = diarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Diário não encontrado"));
+		return ResponseEntity.ok(diario);
+	}
+    
+//	Filtro por ID do Diário
+    @GetMapping("/{diarioId}")
+    public ResponseEntity<Diario> buscarPorId(@PathVariable Long diarioId) {
+        return diarioService.buscarPorId(diarioId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
