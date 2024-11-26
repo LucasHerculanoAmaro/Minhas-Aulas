@@ -3,6 +3,13 @@
     <h3> Lançamento: {{ lancamento.id }} </h3>
 
     <form (ngSubmit) = "onSubmit()">
+        
+        <!-- <div class="form-group">
+
+            <label> TRANSAÇÃO: </label>
+            <input [(ngModel)]="lancamento.transacao" type="text" class="form-control" id="Transação" name="transacao">
+
+        </div> -->
 
         <div>
             <label for="tipoTransacao">TIPO DE TRANSAÇÃO: </label>
@@ -15,16 +22,22 @@
         </div>
         
         <div class="form-group">
+            <label>DATA:
+                <input type="date" [(ngModel)]="lancamento.data" name="data" required>
+            </label>
+        </div>
+
+        <div class="form-group">
 
             <label> DESCRIÇÃO: </label>
-            <input [(ngModel)]="lancamento.historico" type="text" class="form-control" id="Transação" name="Descrição">
+            <input [(ngModel)]="lancamento.historico" type="text" class="form-control" id="Descrição" name="Descrição">
 
         </div>
 
         <div class="form-group">
 
             <label> VALOR: </label>
-            <input [(ngModel)]="lancamento.valor" type="text" class="form-control" id="Transação" name="Valor">
+            <input [(ngModel)]="lancamento.valor" type="text" class="form-control" id="Valor" name="Valor">
 
         </div>
 
