@@ -18,7 +18,7 @@
                 <tr (click)="toggleRow(i)" class="text-center">
                     <td>{{ lancamento.id }}</td>
                     <td [ngClass]="{ 
-                        'text-danger': isDebito(lancamento.transacao) ,
+                        'text-danger': isDebito(lancamento.transacao),
                         'text-success': isCredito(lancamento.transacao) 
                         }">{{ lancamento.transacao }}
                     </td>

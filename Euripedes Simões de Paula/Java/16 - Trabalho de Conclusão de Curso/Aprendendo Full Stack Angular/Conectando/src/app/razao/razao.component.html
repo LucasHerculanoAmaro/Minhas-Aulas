@@ -2,39 +2,53 @@
 
   <h2 class="text-center" style="margin: 20px;">Razão</h2>
 
-  <table class="text-center" style="width: 100%;">
-    <tr >
-      <th>ID</th>
-      <th>TRANSAÇÃO</th>
-      <!-- <th>Crédito</th> -->
-      <th>DATA</th>
-      <th>DESCRIÇÃO</th>
-      <th>VALOR</th>
-      <!-- <th>Ações</th> -->
-    </tr>
-    <tr *ngFor="let razao of razao">
-      <td>{{ razao.id }} </td>
-      <td>{{ razao.transacao }}</td>
-      <td>{{ razao.data }}</td>
-      <td>{{ razao.historico }}</td>
-      <td>{{ razao.valor }} Reais</td>
-    </tr>
-    <!-- Total Crédito -->
-    <tr>
-      <td colspan="4" style="text-align: right;">Total Crédito:</td>
-      <td><strong> {{ totalCredito }} Reais </strong></td>
-    </tr>
-    <!-- Total Débito -->
-    <tr>
-      <td colspan="4" style="text-align: right;">Total Débito:</td>
-      <td><strong> {{ totalDebito }} Reais </strong></td>
-    </tr>
-    <!-- Total Geral -->
-    <tr>
-      <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
-      <td><strong> {{ saldoGeral }} Reais </strong></td>
-    </tr>
-  </table>
+  <table class="text-center table" style="width: 100%;">
+    <thead>
+      <tr class="text-center">
+        <th>ID</th>
+        <th>TRANSAÇÃO</th>
+        <th>DATA</th>
+        <th>DESCRIÇÃO</th>
+        <th>VALOR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let razao of razao">
+        <tr>
+          <td>{{ razao.id }} </td>
+          <td
+            [ngClass]="{
+              'text-danger': isDebito(razao.transacao),
+              'text-success': isCredito(razao.transacao)
+            }">{{ razao.transacao }}</td>
+          <td>{{ razao.data | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ razao.historico }}</td>
+          <td 
+            [ngClass]="{
+            'text-danger': isDebito(razao.transacao),
+            'text-success': isCredito(razao.transacao)
+            }">{{ razao.valor| currency : 'BRL' }}</td>
+        </tr>
+      </ng-container>
+      <!-- Total Crédito -->
+      <tr>
+        <td colspan="4" style="text-align: right;"  class="text-success">Total Crédito:</td>
+        <td><strong class="text-success"> {{ totalCredito | currency : 'BRL' }} </strong></td>
+      </tr>
+      <!-- Total Débito -->
+      <tr>
+        <td colspan="4" style="text-align: right;"  class="text-danger">Total Débito:</td>
+        <td><strong  class="text-danger"> {{ totalDebito | currency : 'BRL' }} </strong></td>
+      </tr>
+      <!-- Total Geral -->
+      <tr>
+        <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+        <td><strong [ngClass]="{
 
+        }"> {{ saldoGeral | currency : 'BRL' }} </strong></td>
+      </tr>
+    </tbody>
+
+  </table>
 
 </div>
