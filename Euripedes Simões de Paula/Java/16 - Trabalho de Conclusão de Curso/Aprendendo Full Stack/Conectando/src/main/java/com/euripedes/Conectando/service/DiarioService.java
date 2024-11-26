@@ -46,6 +46,7 @@ public class DiarioService {
         diarioExistente.setValor(diarioAtualizado.getValor());
         diarioExistente.setData(diarioAtualizado.getData());
         diarioExistente.setHistorico(diarioAtualizado.getHistorico());
+        diarioExistente.setTransacao(diarioAtualizado.getTransacao());
 
         // Salva o lançamento atualizado no banco de dados
         Diario diarioAtualizadoFinal = diarioRepository.save(diarioExistente);

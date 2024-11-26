@@ -11,15 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AtualizarComponent {
 
   lancamento : Diario = new Diario();
-  // lancamento: Diario = {
-  //   credito: { id: 1 },
-  //   debito: { id: 2 },
-  //   data: '',
-  //   historico: '',
-  //   valor: 0,
-  //   id: 0,
-  //   transacao: ''
-  // };
 
   id!: number;
 
@@ -31,12 +22,6 @@ export class AtualizarComponent {
 
   ngOnInit () {
 
-    if (this.lancamento.transacao === "credito") {
-      this.lancamento.transacao = "CRÉDITO"
-    } else if (this.lancamento.transacao === "debito") {
-      this.lancamento.transacao = "DÉBITO"
-    }
-
     this.id = this.route.snapshot.params['id'];
     this.diarioService.getLancamentoById(this.id).subscribe({
       next : data => {
@@ -44,15 +29,24 @@ export class AtualizarComponent {
       },
       error : error => console.log(error)
     })
+
   }
 
   onSubmit() {
+
+    if (this.lancamento.transacao === "credito") {
+      this.lancamento.transacao = "CRÉDITO"
+    } else if (this.lancamento.transacao === "debito") {
+      this.lancamento.transacao = "DÉBITO"
+    }
+
     this.diarioService.updateLancamento( this.id, this.lancamento ).subscribe({
       next : () => {
         this.goToLista();
       },
       error : error => console.log(error)
     })
+
   }
 
   goToLista() {
