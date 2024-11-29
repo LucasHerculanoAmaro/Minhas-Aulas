@@ -53,15 +53,13 @@ export class RazaoComponent implements OnInit {
   isCredito(transacao: string): boolean {
     return transacao.toLowerCase() === "crédito";
   }
-
-  // Método para Total
-  positiveNegative(status: boolean) {
-    if ( this.totalCredito > this.totalDebito ) {
-      status = true;
+  
+  getClass() {
+    if (this.saldoGeral > 0) {
+      return 'positivo'; // Classe CSS para valor positivo
     } else {
-      status = false;
+      return 'negativo'; // Classe CSS para valor negativo
     }
-     
   }
 
 }

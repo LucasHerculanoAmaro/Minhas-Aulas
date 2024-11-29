@@ -32,20 +32,19 @@
       </ng-container>
       <!-- Total Crédito -->
       <tr>
-        <td colspan="4" style="text-align: right;"  class="text-success">Total Crédito:</td>
+        <td colspan="4" style="text-align: right;"  class="text-success"> TOTAL CRÉDITO:</td>
         <td><strong class="text-success"> {{ totalCredito | currency : 'BRL' }} </strong></td>
       </tr>
       <!-- Total Débito -->
       <tr>
-        <td colspan="4" style="text-align: right;"  class="text-danger">Total Débito:</td>
+        <td colspan="4" style="text-align: right;"  class="text-danger">TOTAL DÉBITO:</td>
         <td><strong  class="text-danger"> {{ totalDebito | currency : 'BRL' }} </strong></td>
       </tr>
       <!-- Total Geral -->
       <tr>
-        <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
-        <td><strong [ngClass]="{
-
-        }"> {{ saldoGeral | currency : 'BRL' }} </strong></td>
+        <td colspan="4" style="text-align: right;"><strong>TOTAL:</strong></td>
+        <td><strong 
+          [ngClass]="getClass()" > {{ saldoGeral | currency : 'BRL' }} </strong></td>
       </tr>
     </tbody>
 
