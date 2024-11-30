@@ -1,22 +1,20 @@
 <div class="container" >
 
-    <h3> Lançamento: {{ lancamento.id }} </h3>
+    <h3> LANÇAMENTO: {{ lancamento.id }} </h3>
 
     <form (ngSubmit) = "onSubmit()">
 
-        <div>
+        <div class="form-group">
             <label for="tipoTransacao">TIPO DE TRANSAÇÃO: </label>
-                <select [(ngModel)]="lancamento.transacao" name="tipoTransacao" class="form-control" id="tipoTransacao" required>
+            <select [(ngModel)]="lancamento.transacao" name="tipoTransacao" class="form-control" id="tipoTransacao" required>
                 <option value="credito">Crédito</option>
                 <option value="debito">Débito</option>
-
             </select>
         </div>
         
         <div class="form-group">
-            <label>DATA:
-                <input type="date" [(ngModel)]="lancamento.data" name="data" required>
-            </label>
+            <label>DATA:</label>
+            <input type="date" [(ngModel)]="lancamento.data" name="data" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -33,12 +31,10 @@
 
         </div>
 
-        <div class="form-group" style="margin-top: 10px;">
+        <div class="form-group" style="margin-top: 10px; text-align: center;">
             <button  class="btn btn-success" type="submit"> Atualizar </button>
         </div>
 
     </form>
 
 </div>
-
-

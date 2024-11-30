@@ -12,7 +12,7 @@
         <th>VALOR</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="col-md-6">
       <ng-container *ngFor="let razao of razao">
         <tr>
           <td>{{ razao.id }} </td>
@@ -30,7 +30,8 @@
             }">{{ razao.valor| currency : 'BRL' }}</td>
         </tr>
       </ng-container>
-      <!-- Total Crédito -->
+      <ng-container>
+        <!-- Total Crédito -->
       <tr>
         <td colspan="4" style="text-align: right;"  class="text-success"> TOTAL CRÉDITO:</td>
         <td><strong class="text-success"> {{ totalCredito | currency : 'BRL' }} </strong></td>
@@ -46,6 +47,8 @@
         <td><strong 
           [ngClass]="getClass()" > {{ saldoGeral | currency : 'BRL' }} </strong></td>
       </tr>
+      </ng-container>
+      
     </tbody>
 
   </table>
