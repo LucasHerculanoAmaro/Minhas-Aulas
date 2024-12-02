@@ -13,7 +13,7 @@ import com.euripedes.Conectando.model.Historico;
 import com.euripedes.Conectando.repository.HistoricoRepository;
 
 @RestController
-@RequestMapping("historico")
+@RequestMapping("/historico")
 public class HistoricoController {
 
     @Autowired

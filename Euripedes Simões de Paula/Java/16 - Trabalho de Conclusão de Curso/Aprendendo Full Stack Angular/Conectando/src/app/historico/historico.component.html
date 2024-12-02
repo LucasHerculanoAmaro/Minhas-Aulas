@@ -1,1 +1,31 @@
-<p>historico works!</p>
+<div class="container">
+
+    <table class="table">
+
+        <thead>
+            <tr class="text-center">
+                <th>HISTÓRICO</th>
+                <th>DIARIO</th>
+                <th>DATA</th>
+                <th>DESCRIÇÃO</th>
+                <th>TRANSAÇÃO</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <ng-container *ngFor="let historico of historico">
+
+                <tr class="text-center">
+                    <td>{{ historico.id }}</td>
+                    <td>{{ historico.diario.id }} </td>
+                    <td>{{ historico.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ historico.usuario }}</td>
+                    <td>{{ historico.campos }}</td>
+                </tr>
+
+            </ng-container>
+        </tbody>
+
+    </table>
+
+</div>

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DiarioComponent } from './diario/diario.component';
 import { RazaoComponent } from './razao/razao.component';
-import { BalanceteComponent } from './balancete/balancete.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +17,6 @@ import { AtualizarComponent } from './atualizar/atualizar.component';
     AppComponent,
     DiarioComponent,
     RazaoComponent,
-    BalanceteComponent,
     RegistrarComponent,
     MenuComponent,
     HistoricoComponent,

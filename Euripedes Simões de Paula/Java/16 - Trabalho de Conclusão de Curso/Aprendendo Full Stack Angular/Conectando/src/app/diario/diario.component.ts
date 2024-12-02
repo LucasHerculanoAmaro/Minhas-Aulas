@@ -59,6 +59,7 @@ export class DiarioComponent implements OnInit{
   // Definindo a expansão da linha com o ID
   toggleRow(index: number) {
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
+    
   }
 
   // Método para Débito
@@ -70,7 +71,5 @@ export class DiarioComponent implements OnInit{
   isCredito (transacao : string ) : boolean {
     return transacao.toLowerCase() === "crédito";
   }
-
-
 
 }
