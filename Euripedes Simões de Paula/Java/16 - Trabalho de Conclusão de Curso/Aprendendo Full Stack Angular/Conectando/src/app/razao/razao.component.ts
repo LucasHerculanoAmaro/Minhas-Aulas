@@ -37,6 +37,10 @@ export class RazaoComponent implements OnInit {
     return this.totalCredito - this.totalDebito;
   }
 
+  getBootstrapClass() {
+    return (this.totalCredito - this.totalDebito > 0) ? 'text-success' : 'text-danger';
+  }
+
   // Método para buscar todos os Lançamentos 
   getLancamentos() {
     this.diarioService.getLancamentos().subscribe(data => {

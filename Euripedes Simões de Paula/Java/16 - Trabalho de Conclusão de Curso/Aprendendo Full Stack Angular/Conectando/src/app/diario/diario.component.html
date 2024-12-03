@@ -31,8 +31,8 @@
                     </td> 
                 </tr>
                 <!-- Linha expandida -->
-                <tr *ngIf="expandedRowIndex === i">
-                    <td colspan="6" class="expanded-row text-center">
+                <tr *ngIf="expandedRowIndex === i" class="text-center">
+                    <td colspan="6" class="expanded-row-content text-center">
                         <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
                         <button class="btn btn-warning" (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
                     </td>

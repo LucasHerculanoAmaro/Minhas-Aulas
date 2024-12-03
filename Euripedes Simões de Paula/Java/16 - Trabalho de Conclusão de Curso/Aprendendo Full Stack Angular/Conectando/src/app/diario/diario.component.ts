@@ -8,20 +8,20 @@ import { Router } from '@angular/router';
   templateUrl: './diario.component.html',
   styleUrl: './diario.component.css'
 })
-export class DiarioComponent implements OnInit{
+export class DiarioComponent implements OnInit {
 
   // Objeto
-  lancamento : Diario[] = [];
+  lancamento: Diario[] = [];
 
   // Variável para expandir as linhas
   expandedRowIndex: number | null = null;
 
-  constructor( 
+  constructor(
     private diarioService: DiarioService,
-    private router : Router
-  ) {}
+    private router: Router
+  ) { }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
 
     // Chamando o método GET Lançamento
     this.diarioService.getLancamentos().subscribe((data: Diario[]) => {
@@ -37,19 +37,19 @@ export class DiarioComponent implements OnInit{
   }
 
   // Método PUT para o Lançamento
-  updateLancamento( id : number ){
+  updateLancamento(id: number) {
     this.router.navigate(['atualizar', id]);
   }
 
   // Método DELETE para o Lançamento
-  deleteLancamento( id: number ) {
+  deleteLancamento(id: number) {
     this.diarioService.deleteLancamento(id).subscribe({
-      next : data => { 
+      next: data => {
         console.log(data),
-        this.getLancamentos()
+          this.getLancamentos()
       },
-      error : error => {
-        console.log( error)
+      error: error => {
+        console.log(error)
       }
     })
   }
@@ -59,16 +59,16 @@ export class DiarioComponent implements OnInit{
   // Definindo a expansão da linha com o ID
   toggleRow(index: number) {
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
-    
   }
 
+
   // Método para Débito
-  isDebito ( transacao : string ) : boolean {
+  isDebito(transacao: string): boolean {
     return transacao.toLowerCase() === "débito";
   }
 
   // Método para Crédito
-  isCredito (transacao : string ) : boolean {
+  isCredito(transacao: string): boolean {
     return transacao.toLowerCase() === "crédito";
   }
 
