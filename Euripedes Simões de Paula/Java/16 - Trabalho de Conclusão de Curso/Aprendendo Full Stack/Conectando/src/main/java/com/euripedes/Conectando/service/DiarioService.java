@@ -62,13 +62,16 @@ public class DiarioService {
         StringBuilder alteracoes = new StringBuilder();
 
         if (!lancamentoAntigo.getValor().equals(lancamentoNovo.getValor())) {
-            alteracoes.append("Valor alterado. ");
+            alteracoes.append("Valor alterado.");
         }
         if (!lancamentoAntigo.getData().equals(lancamentoNovo.getData())) {
-            alteracoes.append("Data alterada. ");
+            alteracoes.append("Data alterada.");
         }
         if (!lancamentoAntigo.getHistorico().equals(lancamentoNovo.getHistorico())) {
-            alteracoes.append("Histórico alterado. ");
+            alteracoes.append("Histórico alterado.");
+        }
+        if (!lancamentoAntigo.getTransacao().equals(lancamentoNovo.getTransacao())) {
+        	alteracoes.append("Transação alterado.");
         }
 
         return alteracoes.toString();
@@ -78,9 +81,12 @@ public class DiarioService {
         Optional<Diario> optionalDiario = diarioRepository.findById(id);
         if (optionalDiario.isPresent()) {
             Diario diario = optionalDiario.get();
-            
+                        
             // Excluir o histórico
-            historicoRepository.deleteByDiarioId(id);
+            // historicoRepository.deleteByDiarioId(id);
+            
+            historicoService.registrarHistorico(diario, null, "Diário deletado." );
+
             
             // Excluir o Diário
             diarioRepository.deleteById(id);

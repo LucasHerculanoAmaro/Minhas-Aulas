@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-registrar',
@@ -30,9 +31,16 @@ export class RegistrarComponent {
       this.diario.transacao = "CRÉDITO"
     } else if (this.diario.transacao === "debito") {
       this.diario.transacao = "DÉBITO"
+    } else {
+      this.diario.transacao = "Não Definido"
+    }
+
+    if (this.diario.historico === "" ) {
+      this.diario.historico = "Sem Registro"  
     }
 
     this.diarioService.createLancamento(this.diario).subscribe({
+      
       next : response => {
         console.log( 'Lançamento criado com sucesso: ', response )
       },
