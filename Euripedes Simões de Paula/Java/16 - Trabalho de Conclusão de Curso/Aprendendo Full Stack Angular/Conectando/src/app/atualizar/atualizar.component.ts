@@ -38,6 +38,12 @@ export class AtualizarComponent {
       this.lancamento.transacao = "CRÉDITO"
     } else if (this.lancamento.transacao === "debito") {
       this.lancamento.transacao = "DÉBITO"
+    } else {
+      this.lancamento.transacao = "Não Definido"
+    }
+
+    if (!this.lancamento.historico || this.lancamento.historico.trim() === "") {
+      this.lancamento.historico = "Sem Registro";
     }
 
     this.diarioService.updateLancamento( this.id, this.lancamento ).subscribe({

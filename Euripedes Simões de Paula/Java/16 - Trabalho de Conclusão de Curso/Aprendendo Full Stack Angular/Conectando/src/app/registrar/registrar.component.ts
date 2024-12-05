@@ -35,9 +35,13 @@ export class RegistrarComponent {
       this.diario.transacao = "Não Definido"
     }
 
-    if (this.diario.historico === "" ) {
-      this.diario.historico = "Sem Registro"  
+    // if (this.diario.historico === "" ) {
+    //   this.diario.historico = "Sem Registro"  
+    // }
+    if (!this.diario.historico || this.diario.historico.trim() === "") {
+      this.diario.historico = "Sem Registro";
     }
+    
 
     this.diarioService.createLancamento(this.diario).subscribe({
       
