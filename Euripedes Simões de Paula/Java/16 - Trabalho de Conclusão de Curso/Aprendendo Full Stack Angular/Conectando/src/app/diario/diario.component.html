@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" style="margin-top: 20px;">
 
     <table class="table">
         <!-- Cabeçalho -->
         <thead>
-            <tr class="text-center">
+            <tr>
                 <th>ID</th>
                 <th>TRANSAÇÃO</th>
                 <th>DATA</th>
@@ -15,7 +15,7 @@
         <tbody>
             <ng-container *ngFor="let lancamento of lancamento; let i = index">
                 <!-- Linha principal -->
-                <tr (click)="toggleRow(i)" class="text-center">
+                <tr (click)="toggleRow(i)">
                     <td>{{ lancamento.id }}</td>
                     <td [ngClass]="{ 
                         'text-danger': isDebito(lancamento.transacao),
@@ -28,18 +28,53 @@
                         'text-danger': isDebito(lancamento.transacao), 
                         'text-success': isCredito(lancamento.transacao)  
                         }">{{ lancamento.valor | currency : 'BRL' }}
-                    </td> 
+                    </td>
                 </tr>
                 <!-- Linha expandida -->
                 <tr *ngIf="expandedRowIndex === i" class="text-center">
                     <td colspan="6" class="expanded-row-content text-center">
-                        <button class="btn btn-danger" (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
-                        <button class="btn btn-warning" (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
+                        <button class="btn btn-danger"
+                            (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
+                        <button class="btn btn-warning"
+                            (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
                     </td>
                 </tr>
             </ng-container>
         </tbody>
     </table>
+
+    <div style="display: grid; justify-content: right; text-align: left;">
+        <div class="card card-body" style="width: 18rem;">
+            <table>
+                <tbody>
+                    <ng-container>
+                        <!-- Total Crédito -->
+                        <tr>
+                            <td colspan="4" style="text-align: right;" class="text-success"> TOTAL CRÉDITO:</td>
+                            <td><strong class="text-success"> {{ totalCredito | currency : 'BRL' }} </strong></td>
+                        </tr>
+    
+                        <!-- Total Débito -->
+                        <tr>
+                            <td colspan="4" style="text-align: right;" class="text-danger">TOTAL DÉBITO:</td>
+                            <td><strong class="text-danger"> {{ totalDebito | currency : 'BRL' }} </strong></td>
+                        </tr>
+    
+                        <!-- Total Geral -->
+                        <tr [ngClass]="getBootstrapClass()">
+                            <td colspan="4" style="text-align: right;"><strong>TOTAL:</strong></td>
+                            <td><strong> {{ saldoGeral | currency : 'BRL' }} </strong></td>
+                        </tr>
+                    </ng-container>
+    
+    
+                </tbody>
+    
+            </table>
+    
+        </div>
+    </div>
+    
 
 </div>
 

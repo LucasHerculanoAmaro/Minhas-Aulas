@@ -71,4 +71,28 @@ export class DiarioComponent implements OnInit {
     return transacao.toLowerCase() === "crédito";
   }
 
+  // Soma do Crédito
+  get totalCredito() : number {
+    return this.lancamento
+      .filter((item) => item.transacao === 'CRÉDITO')
+      .reduce((total, item) => total + item.valor, 0);
+  }
+
+  // Soma do Débito
+  get totalDebito() : number {
+    return this.lancamento
+      .filter((item) => item.transacao === 'DÉBITO')
+      .reduce((total, item) => total + item.valor, 0);
+  }
+
+  // Total Débito e Crédito
+  get saldoGeral() : number {
+    return this.totalCredito - this.totalDebito;
+  }
+
+  // Atribuindo valores
+  getBootstrapClass() {
+    return (this.totalCredito - this.totalDebito > 0 ) ? 'text-primary' : 'text-danger';
+  }
+
 }
