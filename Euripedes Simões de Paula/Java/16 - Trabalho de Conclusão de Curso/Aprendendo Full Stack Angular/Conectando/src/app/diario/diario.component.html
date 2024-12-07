@@ -1,47 +1,51 @@
 <div class="container" style="margin-top: 20px;">
 
-    <table class="table">
-        <!-- Cabeçalho -->
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TRANSAÇÃO</th>
-                <th>DATA</th>
-                <th>DESCRIÇÃO</th>
-                <th>VALOR</th>
-            </tr>
-        </thead>
-        <!-- Corpo -->
-        <tbody>
-            <ng-container *ngFor="let lancamento of lancamento; let i = index">
-                <!-- Linha principal -->
-                <tr (click)="toggleRow(i)">
-                    <td>{{ lancamento.id }}</td>
-                    <td [ngClass]="{ 
-                        'text-danger': isDebito(lancamento.transacao),
-                        'text-success': isCredito(lancamento.transacao) 
-                        }">{{ lancamento.transacao }}
-                    </td>
-                    <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{ lancamento.historico }}</td>
-                    <td [ngClass]="{ 
-                        'text-danger': isDebito(lancamento.transacao), 
-                        'text-success': isCredito(lancamento.transacao)  
-                        }">{{ lancamento.valor | currency : 'BRL' }}
-                    </td>
+    <div class="card card-body">
+
+        <table class="table">
+            <!-- Cabeçalho -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TRANSAÇÃO</th>
+                    <th>DATA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>VALOR</th>
                 </tr>
-                <!-- Linha expandida -->
-                <tr *ngIf="expandedRowIndex === i" class="text-center">
-                    <td colspan="6" class="expanded-row-content text-center">
-                        <button class="btn btn-danger"
-                            (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
-                        <button class="btn btn-warning"
-                            (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+            </thead>
+            <!-- Corpo -->
+            <tbody>
+                <ng-container *ngFor="let lancamento of lancamento; let i = index">
+                    <!-- Linha principal -->
+                    <tr (click)="toggleRow(i)">
+                        <td>{{ lancamento.id }}</td>
+                        <td [ngClass]="{ 
+                            'text-danger': isDebito(lancamento.transacao),
+                            'text-success': isCredito(lancamento.transacao) 
+                            }">{{ lancamento.transacao }}
+                        </td>
+                        <td>{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ lancamento.historico }}</td>
+                        <td [ngClass]="{ 
+                            'text-danger': isDebito(lancamento.transacao), 
+                            'text-success': isCredito(lancamento.transacao)  
+                            }">{{ lancamento.valor | currency : 'BRL' }}
+                        </td>
+                    </tr>
+                    <!-- Linha expandida -->
+                    <tr *ngIf="expandedRowIndex === i" class="text-center">
+                        <td colspan="6" class="expanded-row-content text-center">
+                            <button class="btn btn-danger"
+                                (click)="deleteLancamento(lancamento.id); $event.stopPropagation()">Excluir</button>
+                            <button class="btn btn-warning"
+                                (click)="updateLancamento(lancamento.id); $event.stopPropagation()">Atualizar</button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+
+    </div>    
 
     <div style="display: grid; justify-content: right; text-align: left;">
         <div class="card card-body" style="width: 18rem;">
