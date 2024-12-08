@@ -18,3 +18,20 @@ tr.selected {
 button {
     margin: 5px;
 }
+
+.elementos{
+    overflow-y: scroll;
+    padding: 15px;
+    height: 450px;
+    border: 0;
+    min-width: 570px;
+}
+
+/* Fundo que corre */
+::-webkit-scrollbar {
+    width: 0px;
+    /* height: 0px; */
+    /* background: var(--body); */
+    /* overflow-x: hidden; */
+    /* scroll-snap-type: y mandatory; */
+}
