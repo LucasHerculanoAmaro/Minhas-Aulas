@@ -25,13 +25,22 @@ button {
     height: 450px;
     border: 0;
     min-width: 570px;
+    width: 100%;
 }
 
 /* Fundo que corre */
 ::-webkit-scrollbar {
     width: 0px;
-    /* height: 0px; */
-    /* background: var(--body); */
-    /* overflow-x: hidden; */
-    /* scroll-snap-type: y mandatory; */
 }
+
+/* FILTRO */
+.filtro {
+    justify-content: normal;
+    align-items: center;
+    text-align: center;
+}
+
+ul {
+    padding: inherit;
+}
+
