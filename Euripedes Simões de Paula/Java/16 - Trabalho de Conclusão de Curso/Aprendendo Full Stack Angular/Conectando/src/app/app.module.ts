@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
+import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AtualizarComponent } from './atualizar/atualizar.component';
     RegistrarComponent,
     MenuComponent,
     HistoricoComponent,
-    AtualizarComponent
+    AtualizarComponent,
+    DiarioPeriodoComponent  
   ],
   imports: [
     BrowserModule,

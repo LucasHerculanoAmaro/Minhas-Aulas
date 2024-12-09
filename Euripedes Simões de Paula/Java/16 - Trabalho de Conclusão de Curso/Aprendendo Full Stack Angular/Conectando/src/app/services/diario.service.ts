@@ -34,4 +34,9 @@ export class DiarioService {
     return this.http.delete< Diario > ( `http://localhost:8080/api/diario/deletar/${id}` )
   }
 
+  // Listar por Período
+  getLancamentosPorPeriodo(inicio: string, fim: string): Observable<Diario[]> {
+    return this.http.get<Diario[]>(`http://localhost:8080/api/diario/datas/${inicio}&fim=${fim}`);
+  }
+
 }

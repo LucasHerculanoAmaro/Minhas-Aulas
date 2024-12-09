@@ -22,7 +22,7 @@ button {
 .elementos{
     overflow-y: scroll;
     padding: 15px;
-    height: 450px;
+    height: 350px;
     border: 0;
     min-width: 570px;
     width: 100%;
@@ -37,10 +37,23 @@ button {
 .filtro {
     justify-content: normal;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
+    display: inherit;
+    /* height: 100px; */
+    gap: 10px;
+}
+
+.filter-container input,
+.filter-container select {
+  width: 200px;
 }
 
 ul {
     padding: inherit;
+}
+
+li {
+    margin: 10px;
+    padding: 10px;
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-diario',
@@ -12,6 +13,16 @@ export class DiarioComponent implements OnInit {
 
   // Objeto
   lancamento: Diario[] = [];
+
+  // Objeto para Filtros
+  lancamentoFiltrado: Diario[] = [];
+  filtro = {
+    id: '',
+    historico: '',
+    transacao: '',
+    data: '',
+    valor: ''
+  }
 
   // Variável para expandir as linhas
   expandedRowIndex: number | null = null;
@@ -24,11 +35,16 @@ export class DiarioComponent implements OnInit {
   ngOnInit(): void {
 
     // Chamando o método GET Lançamento
-    this.diarioService.getLancamentos().subscribe((data: Diario[]) => {
-      this.lancamento = data;
+    this.diarioService.getLancamentos().subscribe({
+      next: (data) => {
+        this.lancamento = data;
+        this.lancamentoFiltrado = data;
+      },
+    error: error => console.error(error)
     });
   }
 
+/* CRUD */
   // Método GET para os Lançamentos 
   getLancamentos() {
     this.diarioService.getLancamentos().subscribe(data => {
@@ -52,6 +68,36 @@ export class DiarioComponent implements OnInit {
         console.log(error)
       }
     })
+  }
+
+  /* Filtros */
+  filtros(): void {
+    this.lancamentoFiltrado =this.lancamento.filter((lancamento => {
+
+      const matchId = this.filtro.id 
+      //? lancamento.id.toString().includes(this.filtro.id.toString())
+        ? lancamento.id === Number(this.filtro.id)
+        : true;
+
+      const matchHistorico = this.filtro.historico
+        ? lancamento.historico.toLowerCase().includes(this.filtro.historico.toLowerCase())
+        : true;
+
+      const matchTransacao = this.filtro.transacao
+        ? lancamento.transacao === this.filtro.transacao
+        : true;
+
+      const matchData = this.filtro.data
+        ? lancamento.data.includes(this.filtro.data) //=== this.filtro.data
+        : true;
+
+      const matchValor = this.filtro.valor
+        ? lancamento.valor.toString().includes(this.filtro.valor) // === Number(this.filtro.valor)
+        : true;
+
+        return matchId && matchHistorico && matchTransacao && matchData && matchValor;
+      
+      }))
   }
 
   // OUTROS MÉTODOS 
