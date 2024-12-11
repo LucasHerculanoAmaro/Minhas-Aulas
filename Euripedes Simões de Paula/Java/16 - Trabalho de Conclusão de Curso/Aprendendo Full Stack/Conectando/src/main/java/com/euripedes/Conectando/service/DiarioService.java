@@ -20,8 +20,6 @@ public class DiarioService {
     @Autowired
     private DiarioRepository diarioRepository;
     @Autowired
-    private HistoricoRepository historicoRepository;
-    @Autowired
     private HistoricoService historicoService;
 
     public Diario createDiario(Diario diario, String usuario) {

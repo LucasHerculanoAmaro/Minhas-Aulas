@@ -107,8 +107,8 @@ public class DiarioController {
 //	Filtro por Intervalo de Datas
     @GetMapping("/datas")
     public ResponseEntity<List<Diario>> buscarPorIntervaloDeDatas(
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+        @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {    	
         List<Diario> resultado = diarioService.buscarPorIntervaloDeDatas(startDate, endDate);
         return ResponseEntity.ok(resultado);
     }

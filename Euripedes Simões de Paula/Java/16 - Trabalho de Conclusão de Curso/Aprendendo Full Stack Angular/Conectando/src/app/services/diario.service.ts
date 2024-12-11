@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Diario } from '../model/Diario';
@@ -26,17 +26,21 @@ export class DiarioService {
 
   // Atualizar um Lançamento
   updateLancamento(id: number, diario: Diario) : Observable< Diario > {
-    return this.http.put< Diario > ( `http://localhost:8080/api/diario/atualizar/${id}`, diario);
+    return this.http.put< Diario > ( `http://localhost:8080/api/diario/atualizar/${id}`, diario );
   }
 
   // Deletar um Lancamento
   deleteLancamento( id: number ) : Observable< Object > {
-    return this.http.delete< Diario > ( `http://localhost:8080/api/diario/deletar/${id}` )
+    return this.http.delete< Diario > ( `http://localhost:8080/api/diario/deletar/${id}` );
   }
 
   // Listar por Período
-  getLancamentosPorPeriodo(inicio: string, fim: string): Observable<Diario[]> {
-    return this.http.get<Diario[]>(`http://localhost:8080/api/diario/datas/${inicio}&fim=${fim}`);
+  getLancamentosPorPeriodo(startDate: string, endDate: string): Observable< Diario[] > {
+
+    return this.http.get< Diario[] >( `http://localhost:8080/api/diario/datas`, { 
+      params: { startDate, endDate } 
+    });//?startDate=${startDate}&endDate=${endDate}` );
+    
   }
 
 }

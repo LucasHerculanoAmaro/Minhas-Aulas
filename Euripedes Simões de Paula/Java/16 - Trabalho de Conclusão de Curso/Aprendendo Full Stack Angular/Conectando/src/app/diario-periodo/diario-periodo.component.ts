@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
+import { start } from 'repl';
 
 @Component({
   selector: 'app-diario-periodo',
@@ -11,38 +12,73 @@ export class DiarioPeriodoComponent implements OnInit {
 
   lancamentos: Diario[] = [];
 
-  meses = [
-    { nome: 'Janeiro', valor:'01' },
-    { nome: 'Fevereiro', valor:'02' },
-    { nome: 'Março', valor:'03' },
-    { nome: 'Abril', valor:'04' },
-    { nome: 'Maio', valor:'05' },
-    { nome: 'Junho', valor:'06' },
-    { nome: 'Julho', valor:'07' },
-    { nome: 'Agosto', valor:'08' },
-    { nome: 'Setembro', valor:'09' },
-    { nome: 'Outubro', valor:'10' },
-    { nome: 'Novembro', valor:'11' },
-    { nome: 'Dezembro', valor:'12' },
-  ];
+  startDate!: string;
+  endDate!: string;
 
-  anosDisponiveis: number[] = [];
-  mesSelecionado: string = '';
-  anoSelecionado: number = new Date().getFullYear();
+  filtrados: any[] = [];
+  
   total: number = 0;
 
-  constructor( private diarioService: DiarioService ){}
+  constructor(private diarioService: DiarioService) { }
 
   ngOnInit() {
 
   }
 
   filtrarPorPeriodo() {
-    const inicio = `${this.anoSelecionado}-${this.mesSelecionado}-01`;
-    const fim = new Date(this.anoSelecionado, parseInt(this.mesSelecionado), 0).toISOString().slice(0, 10);
 
-    
+    if (!this.startDate || !this.endDate) {
+      alert('Selecione ambas as datas.');
+      return;
+    }
+
+    try {
+
+      const startDateFormatted = new Date(`${this.startDate}T00:00:00`).toISOString().split('T')[0];
+      const endDateFormatted = new Date(`${this.endDate}T23:59:59`).toISOString().split('T')[0];
+
+      this.diarioService.getLancamentosPorPeriodo(startDateFormatted, endDateFormatted).subscribe({
+        next: data => {
+          this.lancamentos = data.map(lancamento => ({
+            ...lancamento,
+            valor: lancamento.transacao.toLowerCase() === "débito" ? -Math.abs(lancamento.valor) : lancamento.valor
+          }));
+          this.saldoGeral;
+        },
+        error: error => console.error('Erro ao filtrar por período', error)
+      });
+    }
+    catch (error) {
+      console.error('Erro ao processar as datas:', error);
+    }
 
   }
 
+  // Método para somar os elementos filtrados
+  get saldoGeral() : number {
+    return this.lancamentos.reduce((acc, lancamento) => acc + lancamento.valor, 0);
+  }
+
+  // Métodos para determinar valores positivos
+  isPositive() : boolean {
+    return this.saldoGeral > 0;
+  } 
+
+  // Métodos para determinar valores positivos e negativos
+  isNegative() : boolean {
+    return this.saldoGeral < 0; 
+  }
+
+  // Método para Débito
+  isDebito(transacao: string): boolean {
+    return transacao.toLowerCase() === "débito";
+  }
+
+  // Método para Crédito
+  isCredito(transacao: string): boolean {
+    return transacao.toLowerCase() === "crédito";
+  }
+
 }
+
+

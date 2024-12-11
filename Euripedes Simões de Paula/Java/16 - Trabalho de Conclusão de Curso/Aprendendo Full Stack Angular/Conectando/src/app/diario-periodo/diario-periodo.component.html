@@ -1,3 +1,55 @@
-<div>
-    <label for="mes">Mês:</label>
+<div class="container">
+
+    <div class="filtro">
+
+        <!-- Filtro para Data Inicial -->
+        <div>
+            <label for="startDate">Data Inicial:</label>
+            <input type="date" id="startDate" [(ngModel)]="startDate">
+        </div>
+        <!-- Filtro para Data Final -->
+        <div>
+            <label for="endDate">Data Final:</label>
+            <input type="date" id="endDate" [(ngModel)]="endDate">
+        </div>
+
+        <button (click)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
+
+    </div>
+
+    <table class="table">
+        <!-- Cabeçalho -->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TRANSAÇÃO</th>
+                <th>DATA</th>
+                <th>HISTÓRICO</th>
+                <TH>VALOR</TH>
+            </tr>
+        </thead>
+        <!-- Corpo -->
+        <tbody>
+            <tr *ngFor="let lancamento of lancamentos">
+                <td> {{ lancamento.id }} </td>
+                <td [ngClass]="{ 
+                    'text-danger': isDebito(lancamento.transacao),
+                    'text-success': isCredito(lancamento.transacao) 
+                    }"> {{ lancamento.transacao }} </td>
+                <td> {{ lancamento.data | date: 'dd/MM/yyyy' }} </td>
+                <td> {{ lancamento.historico }} </td>
+                <td [ngClass]="{ 
+                    'text-danger': isDebito(lancamento.transacao),
+                    'text-success': isCredito(lancamento.transacao) 
+                    }"> {{ lancamento.valor | currency: 'BRL' }} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 [ngClass]="{
+        'text-success': isPositive(),
+        'text-danger': isNegative()
+    }">Total: {{ saldoGeral | currency: 'BRL' }} </h3>
+
+
 </div>
