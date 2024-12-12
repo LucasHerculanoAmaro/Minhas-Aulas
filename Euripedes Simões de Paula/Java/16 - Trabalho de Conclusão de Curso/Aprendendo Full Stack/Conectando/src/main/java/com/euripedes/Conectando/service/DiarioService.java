@@ -85,7 +85,6 @@ public class DiarioService {
             
             historicoService.registrarHistorico(diario, null, "Diário deletado." );
 
-            
             // Excluir o Diário
             diarioRepository.deleteById(id);
             

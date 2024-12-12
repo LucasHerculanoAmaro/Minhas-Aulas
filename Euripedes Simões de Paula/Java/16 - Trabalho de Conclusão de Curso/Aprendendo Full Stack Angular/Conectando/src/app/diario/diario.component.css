@@ -22,7 +22,7 @@ button {
 .elementos{
     overflow-y: scroll;
     padding: 15px;
-    height: 350px;
+    /* height: 350px; */
     border: 0;
     min-width: 570px;
     width: 100%;

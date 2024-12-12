@@ -1,55 +1,71 @@
-<div class="container">
+<div class="container" style="margin-top: 20px; display: flex; font-size: 12px; justify-content: center;
+    align-items: center;">
 
     <div class="filtro">
 
-        <!-- Filtro para Data Inicial -->
-        <div>
-            <label for="startDate">Data Inicial:</label>
-            <input type="date" id="startDate" [(ngModel)]="startDate">
-        </div>
-        <!-- Filtro para Data Final -->
-        <div>
-            <label for="endDate">Data Final:</label>
-            <input type="date" id="endDate" [(ngModel)]="endDate">
-        </div>
+        <ul>
+            <!-- Filtro para Data Inicial -->
+            <li>
+                <label for="startDate">DATA INICIAL:</label>
+                <input type="date" class="form-control" id="startDate" [(ngModel)]="startDate">
+            </li>
+            <!-- Filtro para Data Final -->
+            <li>
+                <label for="endDate">DATA FINAL:</label>
+                <input type="date" class="form-control" id="endDate" [(ngModel)]="endDate">
+            </li>
+            <li style="align-items: end; display: flex;">
+                <button (click)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
+            </li>
 
-        <button (click)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
+        </ul>
 
     </div>
 
-    <table class="table">
-        <!-- Cabeçalho -->
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TRANSAÇÃO</th>
-                <th>DATA</th>
-                <th>HISTÓRICO</th>
-                <TH>VALOR</TH>
-            </tr>
-        </thead>
-        <!-- Corpo -->
-        <tbody>
-            <tr *ngFor="let lancamento of lancamentos">
-                <td> {{ lancamento.id }} </td>
-                <td [ngClass]="{ 
+</div>
+
+<div class="container" style=" display: flex; font-size: 12px;">
+
+    <div class="elementos">
+
+        <table class="table">
+            <!-- Cabeçalho -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TRANSAÇÃO</th>
+                    <th>DATA</th>
+                    <th>HISTÓRICO</th>
+                    <TH>VALOR</TH>
+                </tr>
+            </thead>
+            <!-- Corpo -->
+            <tbody>
+                <tr *ngFor="let lancamento of lancamentos">
+                    <td> {{ lancamento.id }} </td>
+                    <td [ngClass]="{ 
                     'text-danger': isDebito(lancamento.transacao),
                     'text-success': isCredito(lancamento.transacao) 
                     }"> {{ lancamento.transacao }} </td>
-                <td> {{ lancamento.data | date: 'dd/MM/yyyy' }} </td>
-                <td> {{ lancamento.historico }} </td>
-                <td [ngClass]="{ 
+                    <td> {{ lancamento.data | date: 'dd/MM/yyyy' }} </td>
+                    <td> {{ lancamento.historico }} </td>
+                    <td [ngClass]="{ 
                     'text-danger': isDebito(lancamento.transacao),
                     'text-success': isCredito(lancamento.transacao) 
                     }"> {{ lancamento.valor | currency: 'BRL' }} </td>
-            </tr>
-        </tbody>
-    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <h3 [ngClass]="{
-        'text-success': isPositive(),
-        'text-danger': isNegative()
-    }">Total: {{ saldoGeral | currency: 'BRL' }} </h3>
+    <div style="display: grid; justify-content: right; text-align: left;">
+        <div class="card card-body" style="width: 15rem; border: 0; height: 100%;">
+            <h3 [ngClass]="{
+                'text-success': isPositive(),
+                'text-danger': isNegative()
+            }">Total: {{ saldoGeral | currency: 'BRL' }} </h3>
+        </div>
+    </div>
 
 
 </div>

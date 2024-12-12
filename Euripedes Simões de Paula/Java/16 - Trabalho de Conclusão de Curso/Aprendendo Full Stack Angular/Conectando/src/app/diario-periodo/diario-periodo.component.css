@@ -1,6 +1,30 @@
 .filtro{
-    display: flex;
-    justify-content: center;
+    justify-content: normal;
     align-items: center;
+    display: inherit;
     gap: 10px;
+}
+
+ul {
+    list-style: none; 
+    display: flex;
+}
+
+li {
+    margin: 10px;
+    padding: 10px;
+}
+
+.elementos{
+    overflow-y: scroll;
+    padding: 15px;
+    /* height: 350px; */
+    border: 0;
+    min-width: 570px;
+    width: 100%;
+}
+
+/* Fundo que corre */
+::-webkit-scrollbar {
+    width: 0px;
 }
