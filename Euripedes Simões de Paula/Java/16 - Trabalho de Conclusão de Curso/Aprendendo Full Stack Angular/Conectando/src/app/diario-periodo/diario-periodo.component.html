@@ -1,8 +1,5 @@
-<div class="container" style="margin-top: 20px; display: flex; font-size: 12px; justify-content: center;
-    align-items: center;">
-
+<div class="container filtros">
     <div class="filtro">
-
         <ul>
             <!-- Filtro para Data Inicial -->
             <li>
@@ -14,19 +11,17 @@
                 <label for="endDate">DATA FINAL:</label>
                 <input type="date" class="form-control" id="endDate" [(ngModel)]="endDate">
             </li>
-            <li style="align-items: end; display: flex;">
+            <!-- Botão para aplicar -->
+            <li class="filtro-botao">
                 <button (click)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
             </li>
-
         </ul>
-
     </div>
-
 </div>
 
-<div class="container" style=" display: flex; font-size: 12px;">
+<div class="container corpo-elementos">
 
-    <div class="elementos">
+    <div class="card elementos">
 
         <table class="table">
             <!-- Cabeçalho -->
@@ -35,7 +30,7 @@
                     <th>ID</th>
                     <th>TRANSAÇÃO</th>
                     <th>DATA</th>
-                    <th>HISTÓRICO</th>
+                    <th>DESCRIÇÃO</th>
                     <TH>VALOR</TH>
                 </tr>
             </thead>
@@ -58,14 +53,23 @@
         </table>
     </div>
 
-    <div style="display: grid; justify-content: right; text-align: left;">
-        <div class="card card-body" style="width: 15rem; border: 0; height: 100%;">
-            <h3 [ngClass]="{
-                'text-success': isPositive(),
-                'text-danger': isNegative()
-            }">Total: {{ saldoGeral | currency: 'BRL' }} </h3>
+    <div class="soma">
+        <div class="card card-body card-total">
+            <table>
+                <tbody>
+                    <ng-container>
+                        <!-- Total do Filtro -->
+                        <tr  [ngClass]="{
+                            'text-success': isPositive(),
+                            'text-danger': isNegative()
+                        }">
+                            <td colspan="4" style="text-align: left;"> <strong> TOTAL: </strong> </td>
+                            <td><strong> {{ saldoGeral | currency: 'BRL' }}</strong></td> 
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>  
         </div>
     </div>
-
 
 </div>

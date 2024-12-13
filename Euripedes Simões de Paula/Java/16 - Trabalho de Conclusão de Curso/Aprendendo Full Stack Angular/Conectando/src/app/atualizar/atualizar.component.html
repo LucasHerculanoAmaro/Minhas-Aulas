@@ -1,9 +1,9 @@
-<div class="container" >
-
-    <h3> LANÇAMENTO: {{ lancamento.id }} </h3>
+<div class="container col-md-6 offset-md-3" >
 
     <form (ngSubmit) = "onSubmit()">
-
+        
+        <h6>LANÇAMENTO: {{ lancamento.id }}</h6>
+        
         <div class="form-group">
             <label for="tipoTransacao">TIPO DE TRANSAÇÃO: </label>
             <select [(ngModel)]="lancamento.transacao" name="tipoTransacao" class="form-control" id="tipoTransacao" required>

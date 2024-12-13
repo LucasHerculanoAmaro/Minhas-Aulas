@@ -1,67 +1,42 @@
+<div class="container filtros">
+    <div class="filtro">
 
-<div class="container" style="margin-top: 20px; display: flex; font-size: 12px;">
-    <div class=" border-0 filtro"> <!-- Trabealhe com o filtro, e considere trocar de div -->
-        
-        <ul style="list-style: none; display: flex;">
-            <li> 
-                <label for="">ID</label> 
-                <input 
-                    type="number"
-                    class="form-control"
-                    placeholder="Filtro por ID"
-                    [(ngModel)]="filtro.id"
-                    (ngModelChange)="filtros()"
-                    >
+        <ul>
+            <li>
+                <label>ID</label>
+                <input type="number" class="form-control" placeholder="Filtro por ID" [(ngModel)]="filtro.id"
+                    (ngModelChange)="filtros()">
             </li>
             <li>
-                <label for="">TRANSAÇÃO</label>
-                <select
-                    class="form-control"
-                    [(ngModel)]="filtro.transacao"
-                    (ngModelChange)="filtros()"
-                    >
+                <label>TRANSAÇÃO</label>
+                <select class="form-control" [(ngModel)]="filtro.transacao" (ngModelChange)="filtros()">
                     <option value="">Todos</option>
                     <option value="Não Definido">Não Definido</option>
                     <option value="CRÉDITO">Crédito</option>
                     <option value="DÉBITO">Débito</option>
-                    </select>
+                </select>
             </li>
             <li>
                 <label>DATA</label>
-                <input
-                    type="date"
-                    class="form-control"
-                    [(ngModel)]="filtro.data"
-                    (ngModelChange)="filtros()"
-                    />
+                <input type="date" class="form-control" [(ngModel)]="filtro.data" 
+                    (ngModelChange)="filtros()" />
             </li>
             <li>
                 <label>DESCRIÇÃO</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Filtrar por Descrição"
-                    [(ngModel)]="filtro.historico"
-                    (ngModelChange)="filtros()"
-                    />
+                <input type="text" class="form-control" placeholder="Filtrar por Descrição"
+                    [(ngModel)]="filtro.historico" (ngModelChange)="filtros()" />
             </li>
             <li>
                 <label>VALOR</label>
-                <input 
-                    type="text"
-                    class="form-control"
-                    placeholder="Filtrar por Valor"
-                    [(ngModel)]="filtro.valor"
-                    (ngModelChange)="filtros()"
-                    >
-                    
-            </li> 
+                <input type="text" class="form-control" placeholder="Filtrar por Valor" [(ngModel)]="filtro.valor"
+                    (ngModelChange)="filtros()" />
+            </li>
         </ul>
 
     </div>
 </div>
 
-<div class="container" style=" display: flex; font-size: 12px;">
+<div class="container corpo-elementos">
 
     <div class="card elementos">
 
@@ -108,40 +83,38 @@
             </tbody>
         </table>
 
-    </div>    
+    </div>
 
-    <div style="display: grid; justify-content: right; text-align: left;">
-        <div class="card card-body" style="width: 15rem; border: 0; height: 25%;">
+    <div class="soma">
+        <div class="card card-body card-total">
             <table>
                 <tbody>
                     <ng-container>
                         <!-- Total Crédito -->
                         <tr>
-                            <td colspan="4" style="text-align: right;" class="text-success"> TOTAL CRÉDITO:</td>
+                            <td colspan="4" class="text-success tema-tr"> CRÉDITO:</td>
                             <td><strong class="text-success"> {{ totalCredito | currency : 'BRL' }} </strong></td>
                         </tr>
-    
+
                         <!-- Total Débito -->
                         <tr>
-                            <td colspan="4" style="text-align: right;" class="text-danger">TOTAL DÉBITO:</td>
+                            <td colspan="4" class="text-danger tema-tr"> DÉBITO:</td>
                             <td><strong class="text-danger"> {{ totalDebito | currency : 'BRL' }} </strong></td>
                         </tr>
-    
+
                         <!-- Total Geral -->
                         <tr [ngClass]="getBootstrapClass()">
-                            <td colspan="4" style="text-align: right;"><strong>TOTAL:</strong></td>
+                            <td colspan="4" class="tema-tr"><strong>TOTAL:</strong></td>
                             <td><strong> {{ saldoGeral | currency : 'BRL' }} </strong></td>
                         </tr>
                     </ng-container>
-    
-    
+
                 </tbody>
-    
+
             </table>
-    
+
         </div>
     </div>
-    
 
 </div>
 
