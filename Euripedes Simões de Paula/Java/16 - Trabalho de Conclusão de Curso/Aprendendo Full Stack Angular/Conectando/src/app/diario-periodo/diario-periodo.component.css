@@ -33,6 +33,11 @@ li { margin: 10px; padding: 10px; }
     width: 100%;
 }
 
+.elementos, .card, tr, th, td {
+    background-color: #fafbe4;
+    box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
+}
+
 /* TOTAL */
 .soma {
     display: grid; 
