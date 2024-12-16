@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-registrar',

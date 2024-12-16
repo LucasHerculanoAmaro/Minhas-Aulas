@@ -14,16 +14,12 @@ export class DiarioPeriodoComponent implements OnInit {
 
   startDate!: string;
   endDate!: string;
-
-  filtrados: any[] = [];
   
   total: number = 0;
 
   constructor(private diarioService: DiarioService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   filtrarPorPeriodo() {
 
@@ -57,6 +53,20 @@ export class DiarioPeriodoComponent implements OnInit {
   // Método para somar os elementos filtrados
   get saldoGeral() : number {
     return this.lancamentos.reduce((acc, lancamento) => acc + lancamento.valor, 0);
+  }
+
+  // Método para calcular o total de Débito
+  get totalDebito() : number {
+    return this.lancamentos
+      .filter(lancamento => lancamento.transacao.toLowerCase() === "débito")
+      .reduce((acc, lancamento) => acc + Math.abs(lancamento.valor), 0);
+  }
+
+  // Método para calcular o total de Crédito
+  get totalCredito() : number {
+    return this.lancamentos
+      .filter(lancamento => lancamento.transacao.toLowerCase() === "crédito")
+      .reduce((acc, lancamento) => acc + lancamento.valor, 0);
   }
 
   // Métodos para determinar valores positivos
