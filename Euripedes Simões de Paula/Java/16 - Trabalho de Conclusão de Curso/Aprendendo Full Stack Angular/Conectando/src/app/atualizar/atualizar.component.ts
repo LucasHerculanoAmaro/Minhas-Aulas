@@ -48,6 +48,7 @@ export class AtualizarComponent {
 
     this.diarioService.updateLancamento( this.id, this.lancamento ).subscribe({
       next : () => {
+        alert("Lançamento atualizado."),
         this.goToLista();
       },
       error : error => console.log(error)

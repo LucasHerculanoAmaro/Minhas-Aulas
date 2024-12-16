@@ -78,7 +78,7 @@ public class DiarioController {
         		.orElseThrow(() -> new ResourceNotFoundException("Diário não encontrado"));
         
         diarioRepository.delete(diario);
-        diarioService.deletarTransacao(id);
+//        diarioService.deletarTransacao(id);
         
         Map<String, Boolean> response = new HashMap<>();
         

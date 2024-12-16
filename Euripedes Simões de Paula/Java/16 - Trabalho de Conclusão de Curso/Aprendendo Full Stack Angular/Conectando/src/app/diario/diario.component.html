@@ -1,3 +1,7 @@
+<div *ngIf="mostrarAlerta" class="alert" [ngClass]=" 'alert-' + alertaTipo " role="alert">
+    {{ alertaMensagem }}
+</div>
+
 <div class="container filtros">
     <div class="filtro">
 
@@ -116,6 +120,7 @@
     </div>
 
 </div>
+
 
 
 

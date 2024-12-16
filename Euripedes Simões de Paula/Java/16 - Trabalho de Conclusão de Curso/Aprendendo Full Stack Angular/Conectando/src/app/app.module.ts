@@ -20,7 +20,7 @@ import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.componen
     MenuComponent,
     HistoricoComponent,
     AtualizarComponent,
-    DiarioPeriodoComponent  
+    DiarioPeriodoComponent
   ],
   imports: [
     BrowserModule,

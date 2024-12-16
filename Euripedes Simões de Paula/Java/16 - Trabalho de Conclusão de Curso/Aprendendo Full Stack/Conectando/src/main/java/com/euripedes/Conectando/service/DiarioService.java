@@ -21,6 +21,9 @@ public class DiarioService {
     private DiarioRepository diarioRepository;
     @Autowired
     private HistoricoService historicoService;
+    
+    @Autowired
+    private HistoricoRepository historicoRepository;
 
     public Diario createDiario(Diario diario, String usuario) {
 
@@ -75,24 +78,13 @@ public class DiarioService {
         return alteracoes.toString();
     }
     
-    public boolean deletarTransacao(Long id) {
-        Optional<Diario> optionalDiario = diarioRepository.findById(id);
-        if (optionalDiario.isPresent()) {
-            Diario diario = optionalDiario.get();
-                        
-            // Excluir o histórico
-            // historicoRepository.deleteByDiarioId(id);
-            
-            historicoService.registrarHistorico(diario, null, "Diário deletado." );
-
-            // Excluir o Diário
-            diarioRepository.deleteById(id);
-            
-            return true;
-            
-        } else {
-            throw new EntityNotFoundException("Diário não encontrado com o ID: " + id);
-        }
+    public void deletarTransacao(Long id) {
+//        Optional<Diario> optionalDiario = diarioRepository.findById(id);
+        Diario diario = historicoRepository.save(id);
+        
+        historicoService.registrarHistorico(diario, null, "Diário deletado.");
+        diarioRepository.deleteById(id);
+        
     }
     
     // Filtro por ID do Diário

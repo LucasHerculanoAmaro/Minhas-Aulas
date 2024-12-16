@@ -24,6 +24,11 @@ export class DiarioComponent implements OnInit {
     valor: ''
   }
 
+  // Variáveis de controle de Alertas
+  alertaMensagem : string = '';
+  alertaTipo : string = '';
+  alertaMostrar : boolean = false;
+
   // Variável para expandir as linhas
   expandedRowIndex: number | null = null;
 
@@ -44,7 +49,7 @@ export class DiarioComponent implements OnInit {
     });
   }
 
-/* CRUD */
+/* MÉTODO READ, UPDATE e DELETE */
   // Método GET para os Lançamentos 
   getLancamentos() {
     this.diarioService.getLancamentos().subscribe(data => {
@@ -62,15 +67,21 @@ export class DiarioComponent implements OnInit {
     this.diarioService.deleteLancamento(id).subscribe({
       next: data => {
         console.log(data),
-          this.getLancamentos()
+        this.getLancamentos(),
+        this.mostrarAlerta("Lançamento deletado com sucesso!", 'success')
+        setTimeout(() => {
+          location.reload();
+        }, 3000)
       },
       error: error => {
-        console.log(error)
+        console.log(error),
+        this.mostrarAlerta('Erro ao deletar o lançamento.', 'danger');
       }
     })
   }
+/* fim do READ, UPDATE e DELETE */
 
-  /* Filtros */
+  // Filtros 
   filtros(): void {
     this.lancamentoFiltrado =this.lancamento.filter((lancamento => {
 
@@ -100,12 +111,14 @@ export class DiarioComponent implements OnInit {
       }))
   }
 
-  // OUTROS MÉTODOS 
+// MÉTODOS PARA OCULTAR OPÇÕES 
 
   // Definindo a expansão da linha com o ID
   toggleRow(index: number) {
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
   }
+
+// MÉTODO PARA DEFINIR LANÇAMENTO DE "DÉBITO" E "CRÉDITO"
 
   // Método para Débito
   isDebito(transacao: string): boolean {
@@ -116,6 +129,8 @@ export class DiarioComponent implements OnInit {
   isCredito(transacao: string): boolean {
     return transacao.toLowerCase() === "crédito";
   }
+
+// MÉTODO PARA SOMAR DE "DÉBITO", "CREDITO" E "TOTAL"
 
   // Soma do Crédito
   get totalCredito() : number {
@@ -136,9 +151,25 @@ export class DiarioComponent implements OnInit {
     return this.totalCredito - this.totalDebito;
   }
 
+// DEFININDO CLASSE BOOTSTRAP PARA VALORES POSITIVOS E NEGATIVOS 
+  
   // Atribuindo valores
   getBootstrapClass() {
     return (this.totalCredito - this.totalDebito > 0 ) ? 'text-primary' : 'text-danger';
   }
+
+// ALERTAS AO DELETAR UM LANÇAMENTO
+
+  // ALERTA PARA REGiSTRO DELETADO
+  mostrarAlerta(mensagem: string, tipo: string){
+    this.alertaMensagem = mensagem;
+    this.alertaTipo = tipo;
+    this.alertaMostrar = true;
+
+    setTimeout(() => {
+      this.alertaMostrar = false;
+    }, 5000);
+  }
+
 
 }
