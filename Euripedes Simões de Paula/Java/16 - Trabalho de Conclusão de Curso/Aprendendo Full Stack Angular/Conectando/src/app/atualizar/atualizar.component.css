@@ -8,3 +8,7 @@
 form {
     width: 100%;
 }
+
+input:hover, select:hover {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}

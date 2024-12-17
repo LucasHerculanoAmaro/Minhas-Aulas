@@ -89,6 +89,10 @@ button {
     text-align: left;
 }
 
+input:hover, select:hover {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
+
 /* Fundo que corre */
 ::-webkit-scrollbar {
     width: 0px;

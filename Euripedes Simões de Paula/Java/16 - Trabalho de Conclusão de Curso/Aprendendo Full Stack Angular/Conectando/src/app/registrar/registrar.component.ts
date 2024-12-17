@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Diario } from '../model/Diario';
 import { DiarioService } from '../services/diario.service';
+import { Router } from '@angular/router';
+import { AlertasComponent } from '../alertas/alertas.component';
 
 @Component({
   selector: 'app-registrar',
@@ -9,8 +11,7 @@ import { DiarioService } from '../services/diario.service';
 })
 export class RegistrarComponent {
 
-  // lancamento : Diario = new Diario();
-  
+  // Objeto
   diario: Diario = {
     credito: { id: 1 },
     debito: { id: 2 },
@@ -19,13 +20,19 @@ export class RegistrarComponent {
     valor: 0,
     id: 0,
     transacao: ''
-  };
+  }
 
-  constructor( private diarioService : DiarioService ){}
+  @ViewChild(AlertasComponent) alertas!: AlertasComponent;
+
+  constructor(
+    private diarioService: DiarioService,
+    private router : Router
+  ) { }
 
   // Método para criar um Lançamento 
   onSubmit(): void {
 
+    // Lógica para Crédito e Débito com Caixa Alta e para Indefinido ou vazio
     if (this.diario.transacao === "credito") {
       this.diario.transacao = "CRÉDITO"
     } else if (this.diario.transacao === "debito") {
@@ -34,21 +41,31 @@ export class RegistrarComponent {
       this.diario.transacao = "Não Definido"
     }
 
-    // if (this.diario.historico === "" ) {
-    //   this.diario.historico = "Sem Registro"  
-    // }
+    // Lógica para histórico não definidos
     if (!this.diario.historico || this.diario.historico.trim() === "") {
       this.diario.historico = "Sem Registro";
     }
-    
 
+    // Método CREATE
     this.diarioService.createLancamento(this.diario).subscribe({
-      
-      next : response => {
-        console.log( 'Lançamento criado com sucesso: ', response )
+
+      next: response => {
+
+        console.log('Lançamento criado com sucesso: ', response);
+
+        this.alertas.mostrarAlerta("Lançamento criado com sucesso.", 'success');
+
+        setTimeout(() => {
+          this.goToLista();
+        }, 3000);
+
       },
-      error : error => {
-        console.error( 'Erro ao criar o lançamento', error )
+      error: error => {
+
+        console.error('Erro ao criar o lançamento', error);
+
+        this.alertas.mostrarAlerta("Erro ao registrar um Lançamento.", 'danger');
+        
       }
     })
   }
@@ -60,6 +77,11 @@ export class RegistrarComponent {
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
+  }
+
+  // Método para direcionamento de Rota
+  goToLista() {
+    this.router.navigate(['/diario']);
   }
 
 }

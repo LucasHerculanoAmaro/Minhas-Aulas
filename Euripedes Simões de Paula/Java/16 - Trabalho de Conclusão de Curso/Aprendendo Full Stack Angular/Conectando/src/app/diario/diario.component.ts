@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AlertasComponent } from '../alertas/alertas.component';
 
 @Component({
   selector: 'app-diario',
@@ -31,6 +32,8 @@ export class DiarioComponent implements OnInit {
 
   // Variável para expandir as linhas
   expandedRowIndex: number | null = null;
+
+  @ViewChild(AlertasComponent) alertas! : AlertasComponent;
 
   constructor(
     private diarioService: DiarioService,
@@ -66,20 +69,28 @@ export class DiarioComponent implements OnInit {
   deleteLancamento(id: number) {
     this.diarioService.deleteLancamento(id).subscribe({
       next: data => {
-        console.log(data),
-        this.getLancamentos(),
-        this.mostrarAlerta("Lançamento deletado com sucesso!", 'success')
+
+        console.log(data);
+        
+        this.alertas.mostrarAlerta("Lançamento deletado com sucesso!", 'success'),
+
+        // this.getLancamentos();
+
         setTimeout(() => {
           location.reload();
-        }, 3000)
+        }, 3000);
+
       },
       error: error => {
-        console.log(error),
-        this.mostrarAlerta('Erro ao deletar o lançamento.', 'danger');
+
+        console.log(error);
+
+        this.alertas.mostrarAlerta('Erro ao deletar o lançamento.', 'danger');
+
       }
     })
   }
-/* fim do READ, UPDATE e DELETE */
+/* Fim do READ, UPDATE e DELETE */
 
   // Filtros 
   filtros(): void {
@@ -157,19 +168,5 @@ export class DiarioComponent implements OnInit {
   getBootstrapClass() {
     return (this.totalCredito - this.totalDebito > 0 ) ? 'text-primary' : 'text-danger';
   }
-
-// ALERTAS AO DELETAR UM LANÇAMENTO
-
-  // ALERTA PARA REGiSTRO DELETADO
-  mostrarAlerta(mensagem: string, tipo: string){
-    this.alertaMensagem = mensagem;
-    this.alertaTipo = tipo;
-    this.alertaMostrar = true;
-
-    setTimeout(() => {
-      this.alertaMostrar = false;
-    }, 5000);
-  }
-
 
 }

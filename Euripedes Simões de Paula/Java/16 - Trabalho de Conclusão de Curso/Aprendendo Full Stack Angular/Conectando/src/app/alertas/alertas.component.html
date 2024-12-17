@@ -1,0 +1,5 @@
+<div class="alerta">
+    <div *ngIf="aparecer" [ngClass]="'alert ' + bootstrapClasse" role="alert" style="padding: 10px; position: absolute;">
+        {{ mensagem }}
+    </div>
+</div>

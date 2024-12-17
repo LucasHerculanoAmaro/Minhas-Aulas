@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
 import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.component';
+import { AlertasComponent } from './alertas/alertas.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.componen
     MenuComponent,
     HistoricoComponent,
     AtualizarComponent,
-    DiarioPeriodoComponent
+    DiarioPeriodoComponent,
+    AlertasComponent
   ],
   imports: [
     BrowserModule,
