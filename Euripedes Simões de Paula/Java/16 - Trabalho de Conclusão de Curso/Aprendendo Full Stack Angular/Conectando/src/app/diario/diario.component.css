@@ -97,3 +97,35 @@ input:hover, select:hover {
 ::-webkit-scrollbar {
     width: 0px;
 }
+
+@media screen and ( max-width : 770px ) 
+/* and ( orientation : portrait ) */
+ {
+    .corpo-elementos{
+        display: table !important;
+    }
+
+    .card-total {
+        margin-top: 5px;
+    }
+
+    ul {
+        display: grid;
+        grid: 60px / auto auto auto;
+    }
+
+    li {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .filtros {
+        justify-content: center;
+    }
+
+    .elementos {
+        min-width: 300px;
+        height: 550px;
+        font-size: 12px;
+    }
+}

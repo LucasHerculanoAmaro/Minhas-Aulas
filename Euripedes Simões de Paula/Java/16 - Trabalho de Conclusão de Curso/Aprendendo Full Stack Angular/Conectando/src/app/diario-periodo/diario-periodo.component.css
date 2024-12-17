@@ -63,3 +63,40 @@ input:hover, select:hover {
 ::-webkit-scrollbar {
     width: 0px;
 }
+
+@media screen and ( max-width : 770px ) {
+
+    .filtros {
+        justify-content: center;
+        /* margin: 10px; */
+        padding: 10px;
+    }
+
+    ul {
+        display: grid;
+        justify-content: center;
+        align-items: end;
+        margin-top: 10px;
+        grid: 70px / auto auto;
+    }
+
+    li {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .elementos {
+        min-width: 300px;
+        height: 550px;
+        font-size: 12px;
+    }
+
+    .card-total {
+        margin-top: 5px;
+    }
+
+    .corpo-elementos {
+        display: table !important;
+    }
+
+}
