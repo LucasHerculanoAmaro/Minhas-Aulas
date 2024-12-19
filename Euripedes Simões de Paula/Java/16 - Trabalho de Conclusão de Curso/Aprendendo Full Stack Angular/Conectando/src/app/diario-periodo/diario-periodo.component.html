@@ -53,8 +53,7 @@
         </table>
     </div>
 
-                            <!-- Total do Filtro -->
-
+    <!-- Total do Filtro -->
     <div class="soma">
         <div class="card card-body card-total">
             <table>
@@ -64,13 +63,13 @@
                         <!-- Total de Crédito -->
                          <tr class="text-success">
                             <td colspan="4" style="text-align: left;"> CRÉDITO:  </td>
-                            <td> {{ totalCredito | currency: 'BRL' }} </td>
+                            <td> <strong> {{ totalCredito | currency: 'BRL' }} </strong> </td>
                          </tr>
 
                         <!-- Total do Débito -->
                         <tr class="text-danger">       
                             <td colspan="4" style="text-align: left;"> DÉBITO: </td>
-                            <td> {{ totalDebito | currency: 'BRL'  }} </td>
+                            <td> <strong> {{ totalDebito | currency: 'BRL'  }} </strong> </td>
                         </tr>
 
                         <!-- Total do Filtro -->
@@ -79,7 +78,7 @@
                             'text-danger': isNegative()
                         }">
                             <td colspan="4" style="text-align: left;"> <strong> TOTAL: </strong> </td>
-                            <td><strong> {{ saldoGeral | currency: 'BRL' }}</strong></td> 
+                            <td> <strong> {{ saldoGeral | currency: 'BRL' }} </strong> </td> 
                         </tr>
                     </ng-container>
                 </tbody>
