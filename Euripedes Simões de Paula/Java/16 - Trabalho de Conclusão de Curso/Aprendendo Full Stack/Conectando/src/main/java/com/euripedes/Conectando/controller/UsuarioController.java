@@ -6,17 +6,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.euripedes.Conectando.model.Usuario;
-import com.euripedes.Conectando.model.UsuarioLogin;
 import com.euripedes.Conectando.repository.UsuarioRepository;
+import com.euripedes.Conectando.service.JwtService;
 import com.euripedes.Conectando.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 	
 	@Autowired
@@ -24,6 +25,17 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private JwtService jwtService;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UsuarioController(UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
+        this.usuarioService = usuarioService;
+        this.passwordEncoder = passwordEncoder;
+    }
     
 // 	Método GET
 	@GetMapping("/all")
@@ -46,10 +58,16 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> auth(@RequestBody Optional<UsuarioLogin> usuarioLogin) {
-		return usuarioService.loginUsuario(usuarioLogin)
-				.map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	public ResponseEntity<String> logar(@RequestBody Usuario usuario) {
+		Optional<Usuario> usuarioOpt = usuarioService.getUsuario(usuario.getUsuario());
+		
+		if (usuarioOpt.isPresent() && passwordEncoder.matches(usuario.getSenha(), usuarioOpt.get().getSenha())) {
+			String token = jwtService.generateToken(usuario.getUsuario(), "USER");
+			
+			return ResponseEntity.ok(token);
+		}
+		
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais invalidas");
 	}
 
 //	Método PUT

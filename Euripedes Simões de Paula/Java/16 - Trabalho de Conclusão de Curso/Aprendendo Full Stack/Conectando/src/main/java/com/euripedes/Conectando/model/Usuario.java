@@ -27,16 +27,16 @@ public class Usuario {
     @Column(name = "profissao")
     private String profissao;
     
-    @Column(name = "usuario")
+    @Column(name = "usuario", nullable = false)
 	private String usuario;
 	
-	@Column(name = "senha")
+	@Column(name = "senha", nullable = false)
 	private String senha;
 	
 	@Column(name = "foto")
 	private String foto;
 	
-	@Column(name = "tipo")
+	@Column(name = "tipo", nullable = false)
 	private String tipo;
     
     public void usuario(Long id, String nome, int idade, String turma, String profissao, String usuario, String senha, String tipo, String foto) {
