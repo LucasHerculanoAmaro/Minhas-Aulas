@@ -31,8 +31,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			
         http.csrf().disable()
+        	.cors().and()
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
             .requestMatchers("/usuarios/logar", "/usuarios/cadastrar").permitAll()
+            .requestMatchers("/diario/transacoes").permitAll()//.hasAnyRole("USER", "ADMIN")
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
         )
@@ -58,7 +60,7 @@ public class SecurityConfig {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedOrigins("http://localhost:4200")
-						.allowedMethods("GET", "POST", "PUT", "DELETE")
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 						.allowCredentials(true);
 			}
 		};

@@ -53,6 +53,7 @@ export class DiarioComponent implements OnInit {
   }
 
 /* MÉTODO READ, UPDATE e DELETE */
+
   // Método GET para os Lançamentos 
   getLancamentos() {
     this.diarioService.getLancamentos().subscribe(data => {
