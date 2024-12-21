@@ -3,6 +3,8 @@ package com.euripedes.Conectando.service;
 import java.util.Collections;
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,12 +13,13 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtService {
 	
-	private final String SECRET_KEY = "suaChave";
+	private final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512); // "sua Senha";
 	private final long EXPIRATION_TIME = 86400000L;
 	
 	public String generateToken(String username, String tipo) {
@@ -41,7 +44,7 @@ public class JwtService {
 
 	public boolean isTokenValid(String token) {
 		try {
-			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
 			return true;
 		} catch (JwtException e) {
 			return false;
@@ -57,7 +60,7 @@ public class JwtService {
 	}
 	
 	private String getUsernameFromToken(String token) {
-		return "decoded-username";
+		return Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody().getSubject();
 	}
 	
 }
