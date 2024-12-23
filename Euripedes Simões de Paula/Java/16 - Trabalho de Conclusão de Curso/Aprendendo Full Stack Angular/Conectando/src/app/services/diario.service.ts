@@ -63,20 +63,5 @@ export class DiarioService {
     return this.http.delete< Diario > ( `http://localhost:8080/api/diario/deletar/${id}`, this.getHttpOptions() );
   }
 
-  // Listar por Período
-  getLancamentosPorPeriodo(startDate: string, endDate: string): Observable<Diario[]> {
-    const httpOptions = {
-        headers: this.getHttpOptions().headers,
-        params: { startDate, endDate }
-    };
-
-    return this.http.get<Diario[]>(`http://localhost:8080/api/diario/datas`, httpOptions)
-        .pipe(
-            catchError(error => {
-                console.error("Erro ao buscar lançamentos por período:", error);
-                return throwError(error);
-            })
-        );
-  }
-
+ 
 }
