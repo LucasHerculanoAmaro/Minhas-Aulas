@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundExcepti
 
 import jakarta.persistence.EntityNotFoundException;
 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "Content-type, Authorization")
 @RestController
 @RequestMapping("/diario")
 public class DiarioController {
@@ -110,6 +112,9 @@ public class DiarioController {
         @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
         @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {    	
         List<Diario> resultado = diarioService.buscarPorIntervaloDeDatas(startDate, endDate);
+        
+        System.out.println("Resultados encontrados: " + resultado.size());
+        
         return ResponseEntity.ok(resultado);
     }
 

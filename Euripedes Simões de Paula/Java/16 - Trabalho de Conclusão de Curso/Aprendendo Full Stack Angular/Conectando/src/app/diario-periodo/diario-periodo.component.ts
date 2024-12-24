@@ -22,7 +22,7 @@ export class DiarioPeriodoComponent implements OnInit {
   ngOnInit() {}
 
   filtrarPorPeriodo() {
-
+    console.log('Método filtrarPeriodo chamado') // Chat sugestão
     if (!this.startDate || !this.endDate) {
       alert('Selecione ambas as datas.');
       return;
@@ -33,8 +33,14 @@ export class DiarioPeriodoComponent implements OnInit {
       const startDateFormatted = new Date(`${this.startDate}T00:00:00`).toISOString().split('T')[0];
       const endDateFormatted = new Date(`${this.endDate}T23:59:59`).toISOString().split('T')[0];
 
-      this.diarioService.getLancamentosPorPeriodo(startDateFormatted, endDateFormatted).subscribe({
+      console.log(`Datas formatadas: startDate=${startDateFormatted}, endDate=${endDateFormatted}`); // Chat sugestão
+
+      this.diarioService.getLancamentosPorPeriodo(
+        startDateFormatted, endDateFormatted
+        // '2024-12-01', '2024-12-23'
+      ).subscribe({
         next: data => {
+          console.log('Lançamentos recebidos:', data)// Chat sugestão
           this.lancamentos = data.map(lancamento => ({
             ...lancamento,
             valor: lancamento.transacao.toLowerCase() === "débito" ? -Math.abs(lancamento.valor) : lancamento.valor

@@ -5,13 +5,13 @@
 
         <ul>
             <li>
-                <label>ID</label>
-                <input type="number" class="form-control" placeholder="Filtro por ID" [(ngModel)]="filtro.id"
+                <label for="id">ID</label>
+                <input type="number" id="id" name="id" class="form-control" placeholder="Filtro por ID" [(ngModel)]="filtro.id"
                     (ngModelChange)="filtros()">
             </li>
             <li>
-                <label>TRANSAÇÃO</label>
-                <select class="form-control" [(ngModel)]="filtro.transacao" (ngModelChange)="filtros()">
+                <label for="transacao">TRANSAÇÃO</label>
+                <select id="transacao" name="transacao" class="form-control" [(ngModel)]="filtro.transacao" (ngModelChange)="filtros()">
                     <option value="">Todos</option>
                     <option value="Não Definido">Não Definido</option>
                     <option value="CRÉDITO">Crédito</option>
@@ -19,19 +19,20 @@
                 </select>
             </li>
             <li>
-                <label>DATA</label>
-                <input type="date" class="form-control" [(ngModel)]="filtro.data" 
+                <label for="data">DATA</label>
+                <input type="date" id="data" name="data" class="form-control" [(ngModel)]="filtro.data" 
                     (ngModelChange)="filtros()" />
             </li>
             <li>
-                <label>DESCRIÇÃO</label>
-                <input type="text" class="form-control" placeholder="Filtrar por Descrição"
+                <label for="descricao">DESCRIÇÃO</label>
+                <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Filtrar por Descrição"
                     [(ngModel)]="filtro.historico" (ngModelChange)="filtros()" />
             </li>
             <li>
-                <label>VALOR</label>
-                <input type="text" class="form-control" placeholder="Filtrar por Valor" [(ngModel)]="filtro.valor"
-                    (ngModelChange)="filtros()" />
+                <label for="valor">VALOR</label>
+                <input type="text" id="valor" name="valor" class="form-control" placeholder="Filtrar por Valor" [(ngModel)]="filtro.valor"
+                    
+                 />
             </li>
         </ul>
 

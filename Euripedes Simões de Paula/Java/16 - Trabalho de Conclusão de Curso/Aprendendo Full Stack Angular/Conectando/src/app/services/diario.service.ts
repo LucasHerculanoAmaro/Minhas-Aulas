@@ -64,19 +64,25 @@ export class DiarioService {
   }
 
   // Listar por Período
-  getLancamentosPorPeriodo(startDate: string, endDate: string): Observable<Diario[]> {
-    const httpOptions = {
-        headers: this.getHttpOptions().headers,
-        params: { startDate, endDate }
-    };
+  // getLancamentosPorPeriodo(startDate: string, endDate: string): Observable<Diario[]> {
 
-    return this.http.get<Diario[]>(`http://localhost:8080/api/diario/datas`, httpOptions)
-        .pipe(
-            catchError(error => {
-                console.error("Erro ao buscar lançamentos por período:", error);
-                return throwError(error);
-            })
-        );
+  //   const httpOptions = {
+  //       headers: this.getHttpOptions().headers,
+  //       params: { startDate, endDate }
+        
+  //   };
+
+  //   return this.http.get<Diario[]>( `http://localhost:8080/api/diario/datas`, httpOptions )
+  //       .pipe(
+  //           catchError(error => {
+  //               console.error("Erro ao buscar lançamentos por período:", error);
+  //               return throwError(error);
+  //           })
+  //       );
+  // }
+
+  getLancamentosPorPeriodo(startDate: string, endDate: string): Observable<Diario[]> {
+    return this.http.get<Diario[]>( `http://localhost:8080/diario/datas?startDate=${startDate}&endDate=${endDate}`);
   }
 
 }

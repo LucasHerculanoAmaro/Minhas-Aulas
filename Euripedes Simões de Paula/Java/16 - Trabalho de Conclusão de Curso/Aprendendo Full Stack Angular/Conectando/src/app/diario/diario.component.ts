@@ -127,6 +127,7 @@ export class DiarioComponent implements OnInit {
 
   // Definindo a expansão da linha com o ID
   toggleRow(index: number) {
+    console.log("Linha clicada:", index);
     this.expandedRowIndex = this.expandedRowIndex === index ? null : index;
   }
 
