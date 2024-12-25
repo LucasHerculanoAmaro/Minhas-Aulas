@@ -8,6 +8,7 @@ import { start } from 'repl';
   templateUrl: './diario-periodo.component.html',
   styleUrl: './diario-periodo.component.css'
 })
+
 export class DiarioPeriodoComponent implements OnInit {
 
   lancamentos: Diario[] = [];
@@ -19,10 +20,12 @@ export class DiarioPeriodoComponent implements OnInit {
 
   constructor(private diarioService: DiarioService) { }
 
-  ngOnInit() {}
+  ngOnInit() { 
+
+  }
 
   filtrarPorPeriodo() {
-    console.log('Método filtrarPeriodo chamado') // Chat sugestão
+
     if (!this.startDate || !this.endDate) {
       alert('Selecione ambas as datas.');
       return;
@@ -33,18 +36,16 @@ export class DiarioPeriodoComponent implements OnInit {
       const startDateFormatted = new Date(`${this.startDate}T00:00:00`).toISOString().split('T')[0];
       const endDateFormatted = new Date(`${this.endDate}T23:59:59`).toISOString().split('T')[0];
 
-      console.log(`Datas formatadas: startDate=${startDateFormatted}, endDate=${endDateFormatted}`); // Chat sugestão
+      console.log('Data inicial: ', startDateFormatted );
+      console.log('Data final: ', endDateFormatted);
 
-      this.diarioService.getLancamentosPorPeriodo(
-        startDateFormatted, endDateFormatted
-        // '2024-12-01', '2024-12-23'
-      ).subscribe({
+      this.diarioService.getLancamentosPorPeriodo(startDateFormatted, endDateFormatted).subscribe({
         next: data => {
-          console.log('Lançamentos recebidos:', data)// Chat sugestão
           this.lancamentos = data.map(lancamento => ({
             ...lancamento,
             valor: lancamento.transacao.toLowerCase() === "débito" ? -Math.abs(lancamento.valor) : lancamento.valor
           }));
+          console.log('Lançamentos filtrados:', this.lancamentos);
           this.saldoGeral;
         },
         error: error => console.error('Erro ao filtrar por período', error)

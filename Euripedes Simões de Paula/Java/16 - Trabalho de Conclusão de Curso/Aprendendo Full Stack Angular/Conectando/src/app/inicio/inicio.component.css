@@ -1,0 +1,22 @@
+.container {
+    /* min-height: 10em;
+    display: table-cell;
+    vertical-align: middle  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 430px;
+}
+
+h1 {
+    font-size: 100px;
+}
+
+h2 {
+    font-family: "Playwrite GB S Guides", serif;
+    font-style: italic;
+    margin: -10% 0px 0px 30%;
+    transform: rotate(-10deg);
+}
+
+  

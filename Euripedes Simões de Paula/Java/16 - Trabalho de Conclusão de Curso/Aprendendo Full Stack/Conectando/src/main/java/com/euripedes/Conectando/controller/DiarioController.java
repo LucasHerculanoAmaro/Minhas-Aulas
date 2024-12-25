@@ -29,9 +29,10 @@ import com.euripedesConectando.ResourceNotFoundException.ResourceNotFoundExcepti
 
 import jakarta.persistence.EntityNotFoundException;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "Content-type, Authorization")
+
 @RestController
 @RequestMapping("/diario")
+@CrossOrigin(origins = "http://localhost:4200")
 public class DiarioController {
     
     @Autowired

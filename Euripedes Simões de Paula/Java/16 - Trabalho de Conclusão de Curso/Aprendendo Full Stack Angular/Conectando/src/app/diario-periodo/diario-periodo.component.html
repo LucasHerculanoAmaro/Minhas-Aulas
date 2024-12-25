@@ -1,3 +1,4 @@
+
 <div class="container filtros">
     <div class="filtro">
         <ul>
@@ -13,7 +14,7 @@
             </li>
             <!-- Botão para aplicar -->
             <li class="filtro-botao">
-                <button (ngSubmit)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
+                <button (click)="filtrarPorPeriodo()" class="btn btn-success">Filtrar</button>
             </li>
             
         </ul>
@@ -23,7 +24,7 @@
 
 <div class="container corpo-elementos">
 
-    <div class="card elementos">
+    <div *ngIf="lancamentos.length > 0; else semResultados" class="card elementos">
 
         <table class="table">
             <!-- Cabeçalho -->
@@ -54,6 +55,9 @@
             </tbody>
         </table>
     </div>
+    <ng-template #semResultados>
+        <p class="text-danger text-center" ><strong>Nenhum lançamento encontrado no intervalo especificado.</strong></p>
+    </ng-template>
 
     <!-- Total do Filtro -->
     <div class="soma">
@@ -90,36 +94,3 @@
 
 </div>
 
-<!-- <mat-form-field>
-    <mat-label>Data Inicial</mat-label>
-    <input matInput [matDatepicker]="picker1" [(ngModel)]="startDate">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
-
-<mat-form-field>
-    <mat-label>Data Final</mat-label>
-    <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate">
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-</mat-form-field>
-
-<button (click)="buscarPorDatas()">Buscar</button>
-<div *ngIf="transacoes.length > 0; else semResultados">
-    <table>
-        <tr>
-            <th>Data</th>
-            <th>Histórico</th>
-            <th>Valor</th>
-        </tr>
-        <tr *ngFor="let transacao of transacoes">
-            <td>{{ transacao.data | date }}</td>
-            <td>{{ transacao.historico }}</td>
-            <td>{{ transacao.valor | currency }}</td>
-        </tr>
-    </table>
-</div>
-<ng-template #semResultados>
-    <p>Nenhuma transação encontrada no intervalo especificado.</p>
-</ng-template>
- -->
