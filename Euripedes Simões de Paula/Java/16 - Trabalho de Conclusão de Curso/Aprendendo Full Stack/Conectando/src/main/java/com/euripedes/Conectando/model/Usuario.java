@@ -27,7 +27,7 @@ public class Usuario {
     @Column(name = "profissao")
     private String profissao;
     
-    @Column(name = "usuario", nullable = false)
+    @Column(name = "usuario", nullable = false, unique = true)
 	private String usuario;
 	
 	@Column(name = "senha", nullable = false)

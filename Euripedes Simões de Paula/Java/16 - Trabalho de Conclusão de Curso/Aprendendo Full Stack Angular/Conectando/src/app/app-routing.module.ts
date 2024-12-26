@@ -6,6 +6,7 @@ import { HistoricoComponent } from './historico/historico.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
 import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.component';
 import { LoginComponent } from './login/login.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/diario', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'registrar', component: RegistrarComponent },
   { path: 'historico', component:HistoricoComponent },
   { path: 'atualizar/:id', component: AtualizarComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'inicio', component:InicioComponent }
 ];
 
 @NgModule({

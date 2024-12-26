@@ -8,12 +8,14 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.euripedes.Conectando.model.Usuario;
+import com.euripedes.Conectando.model.UsuarioLogin;
 import com.euripedes.Conectando.repository.UsuarioRepository;
 
 import io.jsonwebtoken.Jwts;
@@ -40,16 +42,40 @@ public class UsuarioService {
 	}
 	
 //	CREATE - entrar
-	public String loginUsuario(String username, String password) {
+	public Optional<Usuario> loginUsuario(String usuario, String senha) {
 
-		Usuario usuario = usuarioRepository.findByUsuario(username).orElseThrow(
-				() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+		Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuario(usuario);
+
+	    if (usuarioOptional.isPresent()) {
+	        if (passwordEncoder.matches(senha, usuarioOptional.get().getSenha())) {
+	            return usuarioOptional;
+	        } else {
+	            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida.");
+	        }
+	    } else {
+	        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário inválido.");
+	    }
+	
 		
-		if (!passwordEncoder.matches(password, usuario.getSenha())) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha invalida");
-		}
+//		if (usuario.isEmpty()) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
+//		}
+//		
+//		Usuario user = usuario.get();
+//		if (!passwordEncoder.matches(senha,  user.getSenha())) {
+//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida.");
+//		}
+//		
+//		return usuario;
 		
-		return jwtService.generateToken(usuario.getUsuario(), usuario.getTipo());
+//		Usuario username = usuarioRepository.findByUsuario(usuario)
+//		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+		
+//		if (!passwordEncoder.matches(senha, username.getSenha())) {
+//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha invalida");
+//		}
+		
+//		return jwtService.generateToken(username.getUsuario(), username.getTipo());
 	}
 	
 //	UPDATE
@@ -71,7 +97,7 @@ public class UsuarioService {
 		return usuarioRepository.findByUsuario(usuario);
 	}
 	
-public String generatorBasicToken(String usuario, String senha) {
+	public String generatorBasicToken(String usuario, String senha) {
 	    String auth = usuario + ":" + senha;
 	    byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 	    return "Basic " + new String(encodedAuth);

@@ -42,11 +42,12 @@ public class SecurityConfig {
         	.csrf().disable()
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
             	.requestMatchers("/usuarios/logar", "/usuarios/cadastrar").permitAll()
-            	.requestMatchers("/historico/transacoes", "/diario/**").permitAll()//.hasAnyRole("USER", "ADMIN")
+            	.requestMatchers("/api/diario/**").authenticated()
+            	.requestMatchers("/historico/transacoes").permitAll()//.hasAnyRole("USER", "ADMIN")
             	.requestMatchers("/admin/**").hasRole("ADMIN")
             	.anyRequest().authenticated()
-            );
-//            .addFilterBefore(new JwtAuthorizationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+            )
+            .addFilterBefore(new JwtAuthorizationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
             
         return http.build();
 	}

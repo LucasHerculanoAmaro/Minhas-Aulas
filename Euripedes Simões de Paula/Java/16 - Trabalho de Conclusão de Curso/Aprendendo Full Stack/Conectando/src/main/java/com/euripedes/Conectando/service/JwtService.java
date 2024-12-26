@@ -33,10 +33,11 @@ public class JwtService {
 	}
 	
 	public String extractToken(HttpServletRequest request) {
-		String header = request.getHeader("Authorization");
 		
-		if (header != null && header.startsWith("Bearer ")) {
-			return header.substring(7);
+		String token = request.getHeader("Authorization");
+		
+		if (token != null && token.startsWith("Bearer ")) {
+			return token.substring(7);
 		}
 		
 		return null;
