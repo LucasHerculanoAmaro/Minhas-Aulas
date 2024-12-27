@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,12 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import com.euripedes.Conectando.service.JwtService;
-
-import io.swagger.v3.oas.models.PathItem.HttpMethod;
 
 @Configuration
 @EnableMethodSecurity
@@ -41,12 +38,14 @@ public class SecurityConfig {
         	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
         	.csrf().disable()
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-            	.requestMatchers("/usuarios/logar", "/usuarios/cadastrar").permitAll()
-            	.requestMatchers("/api/diario/**").authenticated()
-            	.requestMatchers("/historico/transacoes").permitAll()//.hasAnyRole("USER", "ADMIN")
-            	.requestMatchers("/admin/**").hasRole("ADMIN")
+//            	.requestMatchers("/**").permitAll()
+            	.requestMatchers("usuarios/logar").permitAll()
+            	.requestMatchers("/diario/**").hasRole("USER")
+            	.requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
             	.anyRequest().authenticated()
             )
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
             .addFilterBefore(new JwtAuthorizationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
             
         return http.build();
@@ -74,18 +73,5 @@ public class SecurityConfig {
 	    source.registerCorsConfiguration("/**", configuration);
 	    return source;
 	}
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/**")
-//						.allowedOrigins("http://localhost:4200")
-//						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-//						.allowedHeaders("*")
-//						.allowCredentials(true);
-//			}
-//		};
-//	}
 	
 }

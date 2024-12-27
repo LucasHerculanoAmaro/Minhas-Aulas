@@ -1,8 +1,10 @@
 package com.euripedes.Conectando.security;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -37,14 +39,22 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         String token = jwtService.extractToken(request);//header.substring(7); // Remove "Bearer " do início
         
-        if (token != null && jwtService.isTokenValid(token)) {
+        try {
         	
-            Authentication authentication = jwtService.getAuthentication(token);
+        	if (token != null && jwtService.isTokenValid(token)) {
+        	
+	            Authentication authentication = jwtService.getAuthentication(token);
+	            UsernamePasswordAuthenticationToken authToken =
+	            		new UsernamePasswordAuthenticationToken(authentication, null, new ArrayList<>());
+	            
+	            if (authentication != null) {
+	                SecurityContextHolder.getContext().setAuthentication(authToken);
+	            }
             
-            if (authentication != null) {
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
-            
+        	}
+        	
+        } catch (Exception e) {
+        	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
 
         chain.doFilter(request, response);

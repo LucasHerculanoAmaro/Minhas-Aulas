@@ -2,6 +2,7 @@ package com.euripedes.Conectando.service;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.crypto.SecretKey;
 
@@ -22,10 +23,11 @@ public class JwtService {
 	private final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512); // "sua Senha";
 	private final long EXPIRATION_TIME = 86400000L;
 	
-	public String generateToken(String username, String tipo) {
+	public String generateToken(String username, String role) {
 		return Jwts.builder()
 				.setSubject(username)
-				.claim("tipo", tipo)
+
+				.claim("roles", List.of(role))//.claim("tipo", tipo)
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)

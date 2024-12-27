@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DiarioComponent } from './diario/diario.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
@@ -14,6 +14,7 @@ import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.componen
 import { AlertasComponent } from './alertas/alertas.component';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,12 @@ import { InicioComponent } from './inicio/inicio.component';
   ],
   providers: [
     provideHttpClient(withFetch()),
-    provideClientHydration()
+    provideClientHydration(),
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptorService,
+      multi : true,
+    }
   ],
   bootstrap: [AppComponent]
 })

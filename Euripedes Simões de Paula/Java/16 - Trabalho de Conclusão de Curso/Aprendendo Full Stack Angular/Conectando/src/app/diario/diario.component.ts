@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DiarioService } from '../services/diario.service';
 import { Diario } from '../model/Diario';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertasComponent } from '../alertas/alertas.component';
 
 @Component({

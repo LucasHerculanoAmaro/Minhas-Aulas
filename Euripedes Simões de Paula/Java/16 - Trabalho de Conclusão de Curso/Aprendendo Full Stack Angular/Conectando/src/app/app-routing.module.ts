@@ -7,14 +7,15 @@ import { AtualizarComponent } from './atualizar/atualizar.component';
 import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.component';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { AuthGuard } from './security/authGuard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/diario', pathMatch: 'full' },
-  { path: 'diario', component: DiarioComponent },
-  { path: 'periodico', component: DiarioPeriodoComponent},
-  { path: 'registrar', component: RegistrarComponent },
-  { path: 'historico', component:HistoricoComponent },
-  { path: 'atualizar/:id', component: AtualizarComponent },
+  { path: 'diario', component: DiarioComponent, canActivate: [AuthGuard] },
+  { path: 'periodico', component: DiarioPeriodoComponent, canActivate: [AuthGuard] },
+  { path: 'registrar', component: RegistrarComponent, canActivate: [AuthGuard]  },
+  { path: 'historico', component:HistoricoComponent, canActivate: [AuthGuard]  },
+  { path: 'atualizar/:id', component: AtualizarComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
   { path: 'inicio', component:InicioComponent }
 ];

@@ -8,7 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,12 +33,12 @@ public class UsuarioController {
 	@Autowired
 	private JwtService jwtService;
 	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
+//	@Autowired
+//    private PasswordEncoder passwordEncoder;
 
-    public UsuarioController(UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
+    public UsuarioController(UsuarioService usuarioService /*, PasswordEncoder passwordEncoder*/) {
         this.usuarioService = usuarioService;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
     
 // 	Método GET
@@ -61,30 +62,34 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, String> request) {
-	    String usuario = request.get("usuario");
-	    String senha = request.get("senha");
-
-	    Map<String, String> response = new HashMap<>();
-
-	    // Verifique o usuário no banco de dados
-	    Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuario(usuario);
-
-	    if (usuarioOptional.isPresent()) {
-	        Usuario usuarioBanco = usuarioOptional.get();
-
-	        // Verifique se a senha está correta (geralmente, é feita uma comparação com a senha criptografada)
-	        if (senha.equals(usuarioBanco.getSenha())) {
-	            String token = jwtService.generateToken(usuario, usuarioBanco.getTipo());
-	            response.put("message", "Autenticação bem-sucedida!");
-	            response.put("token", token);
-	            return ResponseEntity.ok(response);
-	        }
-	    }
-
-	    response.put("message", "Login ou senha incorretos.");
-	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+	public /*ResponseEntity<UsuarioLogin>*/ ResponseEntity<Map<String, Object>> logar(@RequestBody Optional<UsuarioLogin> usuario) {
+		Map<String, Object> response = usuarioService.loginUsuario(usuario);
+			return ResponseEntity.ok(response);
 	}
+//	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, String> request) {
+//	    String usuario = request.get("usuario");
+//	    String senha = request.get("senha");
+//
+//	    Map<String, String> response = new HashMap<>();
+//
+//	    // Verifique o usuário no banco de dados
+//	    Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuario(usuario);
+//
+//	    if (usuarioOptional.isPresent()) {
+//	        Usuario usuarioBanco = usuarioOptional.get();
+//
+//	        // Verifique se a senha está correta (geralmente, é feita uma comparação com a senha criptografada)
+//	        if (senha.equals(usuarioBanco.getSenha())) {
+//	            String token = jwtService.generateToken(usuario, usuarioBanco.getTipo());
+//	            response.put("message", "Autenticação bem-sucedida!");
+//	            response.put("token", token);
+//	            return ResponseEntity.ok(response);
+//	        }
+//	    }
+//
+//	    response.put("message", "Login ou senha incorretos.");
+//	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+//	}
 
 //	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, Object> request, UsuarioLogin usuarioLogin) {
 //	    System.out.println("Corpo recebido: " + request);

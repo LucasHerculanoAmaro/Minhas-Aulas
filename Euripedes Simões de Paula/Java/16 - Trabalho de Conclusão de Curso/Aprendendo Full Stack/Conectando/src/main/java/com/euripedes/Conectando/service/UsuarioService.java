@@ -5,11 +5,14 @@ import java.util.Optional;
 
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -35,27 +38,41 @@ public class UsuarioService {
 	
 //	CREATE - cadastrar
 	public Optional<Usuario> createUsuario(Usuario usuario) {
-		if (usuarioRepository.findByUsuario(usuario.getNome()).isPresent()) 
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!");
-		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent()) 
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!", null);
+		usuario.setSenha(
+				passwordEncoder.encode(usuario.getSenha())
+				);
 		return Optional.of(usuarioRepository.save(usuario));
 	}
 	
 //	CREATE - entrar
-	public Optional<Usuario> loginUsuario(String usuario, String senha) {
+	public 
+//		Optional<UsuarioLogin>
+		Map<String, Object>
+			loginUsuario(Optional<UsuarioLogin> usuarioLogin/*String usuario, String senha*/) {
 
-		Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuario(usuario);
+		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
-	    if (usuarioOptional.isPresent()) {
-	        if (passwordEncoder.matches(senha, usuarioOptional.get().getSenha())) {
-	            return usuarioOptional;
+	    if (usuario.isPresent()) {
+	        if (passwordEncoder.matches(usuarioLogin.get().getSenha(), usuario.get().getSenha())) {
+	            usuarioLogin.get().setUsuario(usuario.get().getUsuario());
+	            
+	            String token = jwtService.generateToken(usuarioLogin.get().getUsuario(), "USER");
+	            
+	            Map<String, Object> response = new HashMap<>();
+	            response.put("usuarioLogin", usuarioLogin.get());
+	            response.put("message", "Autenticação bem-suedida!");
+	            response.put("token", token);
+
+	        	return response;//usuarioLogin;
 	        } else {
 	            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida.");
 	        }
 	    } else {
 	        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário inválido.");
 	    }
-	
+	}
 		
 //		if (usuario.isEmpty()) {
 //			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
@@ -76,7 +93,7 @@ public class UsuarioService {
 //		}
 		
 //		return jwtService.generateToken(username.getUsuario(), username.getTipo());
-	}
+//	}
 	
 //	UPDATE
 	public ResponseEntity<Usuario> updateUsuario(Usuario usuario) {
@@ -86,8 +103,8 @@ public class UsuarioService {
 				if(buscandoUsuario.get().getId() != usuario.getId())
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!", null);
 			}
-			//usuario.setSenha(criptografarSenha(usuario.getSenha()));
-			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+			usuario.setSenha(criptografarSenha(usuario.getSenha()));
+//			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 			return ResponseEntity.status(200).body(usuarioRepository.save(usuario));
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não cadastrado!", null);
@@ -111,6 +128,12 @@ public class UsuarioService {
 				.setExpiration(new Date(System.currentTimeMillis() + 86400000))
 				.signWith(SignatureAlgorithm.HS512, "secreta123")
 				.compact();
+	}
+	
+	private String criptografarSenha(String senha ) {
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		String senhaEncoder = encoder.encode(senha);
+		return senhaEncoder;
 	}
 	
 }
