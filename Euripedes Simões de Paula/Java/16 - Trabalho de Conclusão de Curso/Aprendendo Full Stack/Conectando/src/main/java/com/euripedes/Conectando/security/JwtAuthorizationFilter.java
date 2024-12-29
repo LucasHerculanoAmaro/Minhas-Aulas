@@ -2,16 +2,20 @@ package com.euripedes.Conectando.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.euripedes.Conectando.service.JwtService;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,15 +46,21 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         try {
         	
         	if (token != null && jwtService.isTokenValid(token)) {
-        	
-	            Authentication authentication = jwtService.getAuthentication(token);
-	            UsernamePasswordAuthenticationToken authToken =
-	            		new UsernamePasswordAuthenticationToken(authentication, null, new ArrayList<>());
-	            
-	            if (authentication != null) {
-	                SecurityContextHolder.getContext().setAuthentication(authToken);
-	            }
-            
+        		Claims claims = jwtService.getClaims(token);
+        		String username = claims.getSubject();
+        		String role = claims.get("role", String.class);
+        		
+//        		List<String> roles = jwtService.getRoles(token);
+//        		List<SimpleGrantedAuthority> authorities = roles.stream()
+//        				.map(SimpleGrantedAuthority::new)
+//        				.toList();
+//	            Authentication authentication = jwtService.getAuthentication(token);
+        		if (username != null && role != null) {
+        			List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
+		            UsernamePasswordAuthenticationToken auth =
+		            		new UsernamePasswordAuthenticationToken(username, null, authorities);
+		            SecurityContextHolder.getContext().setAuthentication(auth);
+        		}
         	}
         	
         } catch (Exception e) {

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.euripedes.Conectando"})
+//@ComponentScan(basePackages = {"com.euripedes.Conectando"})
 public class ConectandoApplication {
 
 	public static void main(String[] args) {

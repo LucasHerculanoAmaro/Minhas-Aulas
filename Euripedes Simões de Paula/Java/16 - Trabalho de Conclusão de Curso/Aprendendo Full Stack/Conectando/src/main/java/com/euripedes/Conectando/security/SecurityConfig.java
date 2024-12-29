@@ -38,10 +38,9 @@ public class SecurityConfig {
         	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
         	.csrf().disable()
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-//            	.requestMatchers("/**").permitAll()
             	.requestMatchers("usuarios/logar").permitAll()
-            	.requestMatchers("/diario/**").hasRole("USER")
             	.requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
+            	.requestMatchers("/diario/**").hasRole("USER")
             	.anyRequest().authenticated()
             )
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

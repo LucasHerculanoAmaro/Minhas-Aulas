@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -26,12 +27,19 @@ public class JwtService {
 	public String generateToken(String username, String role) {
 		return Jwts.builder()
 				.setSubject(username)
-
-				.claim("roles", List.of(role))//.claim("tipo", tipo)
+				.claim("role", "ROLE_" + role.toUpperCase())//List.of(role))
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
 				.compact();
+	}
+	
+	public Claims getClaims(String token) {
+	    return Jwts.parserBuilder()
+	            .setSigningKey(SECRET_KEY)
+	            .build()
+	            .parseClaimsJws(token)
+	            .getBody();
 	}
 	
 	public String extractToken(HttpServletRequest request) {
@@ -46,6 +54,7 @@ public class JwtService {
 	}
 
 	public boolean isTokenValid(String token) {
+				
 		try {
 			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
 			return true;
@@ -60,6 +69,14 @@ public class JwtService {
 		return new UsernamePasswordAuthenticationToken(
 				usuario, null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
 		);
+	}
+	
+	public List<String> getRoles(String token) {
+		Claims claims = Jwts.parser()
+				.setSigningKey(SECRET_KEY)
+				.parseClaimsJws(token)
+				.getBody();
+		return claims.get("roles", List.class);
 	}
 	
 	private String getUsernameFromToken(String token) {
