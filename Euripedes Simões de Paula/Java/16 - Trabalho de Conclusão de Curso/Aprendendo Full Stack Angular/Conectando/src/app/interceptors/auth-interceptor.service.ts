@@ -12,14 +12,15 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // O token já está implementado
 
     if (token) {
-      req = req.clone ({
+      const cloned = req.clone ({
         setHeaders : { Authorization : `Bearer ${token}` },
       });
-    } else if (!token) {
-      this.router.navigate(['/login']);
+      console.log('Token adicionado ao header:', token);
+      return next.handle(cloned); // Linha adicionada
+
     }
 
     return next.handle(req).pipe(

@@ -2,10 +2,12 @@ package com.euripedes.Conectando.security;
 
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,39 +27,40 @@ import com.euripedes.Conectando.service.JwtService;
 @EnableWebSecurity
 public class SecurityConfig {
 	
+	private final JwtAuthorizationFilter jwtAuthorizationFilter;
 	private final JwtService jwtService;
 	
-    public SecurityConfig(JwtService jwtService) {
-        this.jwtService = jwtService;
+    public SecurityConfig(JwtService jwtService, JwtAuthorizationFilter jwtAuthorizationFilter) {
+        this.jwtAuthorizationFilter = jwtAuthorizationFilter;
+		this.jwtService = jwtService;
     }
 	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			
         http
-        	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
         	.csrf().disable()
+        	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-            	.requestMatchers("usuarios/logar").permitAll()
-            	.requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
-            	.requestMatchers("/diario/**").hasRole("USER")
+            	.requestMatchers("usuarios/logar","/diario/**").permitAll()
+//            	.requestMatchers("/diario/**").hasRole("ADMIN")
+//            	.requestMatchers("/usuarios/cadastrar").hasRole("USER")
             	.anyRequest().authenticated()
             )
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .addFilterBefore(new JwtAuthorizationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
-            
+            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
         return http.build();
 	}
 	
 	@Bean
+	public AuthenticationManager authManager(/*HttpSecurity http*/AuthenticationConfiguration configuration)  throws Exception {
+		return configuration.getAuthenticationManager(); //http.getSharedObject(AuthenticationManagerBuilder.class).build();
+	}
+		
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}	
-	
-	@Bean
-	public AuthenticationManager authManager(HttpSecurity http)  throws Exception {
-		return http.getSharedObject(AuthenticationManagerBuilder.class).build();
 	}
 	
 	@Bean

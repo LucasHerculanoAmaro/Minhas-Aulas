@@ -56,9 +56,11 @@ public class JwtService {
 	public boolean isTokenValid(String token) {
 				
 		try {
-			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
+//			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
+			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
 			return true;
 		} catch (JwtException e) {
+			System.out.println("Token inválido: " + e.getMessage() );
 			return false;
 		}
 	}

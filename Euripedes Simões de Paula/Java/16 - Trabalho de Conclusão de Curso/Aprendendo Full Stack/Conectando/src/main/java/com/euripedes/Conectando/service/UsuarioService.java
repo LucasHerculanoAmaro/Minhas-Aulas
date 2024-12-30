@@ -48,8 +48,8 @@ public class UsuarioService {
 	
 //	CREATE - entrar
 	public 
-//		Optional<UsuarioLogin>
-		Map<String, Object>
+		Optional<UsuarioLogin>
+//		Map<String, Object>
 			loginUsuario(Optional<UsuarioLogin> usuarioLogin/*String usuario, String senha*/) {
 
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
@@ -59,13 +59,8 @@ public class UsuarioService {
 	            usuarioLogin.get().setUsuario(usuario.get().getUsuario());
 	            
 	            String token = jwtService.generateToken(usuarioLogin.get().getUsuario(), "USER");
-	            
-	            Map<String, Object> response = new HashMap<>();
-	            response.put("usuarioLogin", usuarioLogin.get());
-	            response.put("message", "Autenticação bem-suedida!");
-	            response.put("token", token);
 
-	        	return response;//usuarioLogin;
+	        	return usuarioLogin;
 	        } else {
 	            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida.");
 	        }
@@ -73,27 +68,6 @@ public class UsuarioService {
 	        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário inválido.");
 	    }
 	}
-		
-//		if (usuario.isEmpty()) {
-//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
-//		}
-//		
-//		Usuario user = usuario.get();
-//		if (!passwordEncoder.matches(senha,  user.getSenha())) {
-//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha inválida.");
-//		}
-//		
-//		return usuario;
-		
-//		Usuario username = usuarioRepository.findByUsuario(usuario)
-//		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
-		
-//		if (!passwordEncoder.matches(senha, username.getSenha())) {
-//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Senha invalida");
-//		}
-		
-//		return jwtService.generateToken(username.getUsuario(), username.getTipo());
-//	}
 	
 //	UPDATE
 	public ResponseEntity<Usuario> updateUsuario(Usuario usuario) {

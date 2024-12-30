@@ -62,8 +62,8 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public /*ResponseEntity<UsuarioLogin>*/ ResponseEntity<Map<String, Object>> logar(@RequestBody Optional<UsuarioLogin> usuario) {
-		Map<String, Object> response = usuarioService.loginUsuario(usuario);
+	public ResponseEntity<Optional<UsuarioLogin>> logar(@RequestBody Optional<UsuarioLogin> usuario) {
+		Optional<UsuarioLogin> response = usuarioService.loginUsuario(usuario);
 			return ResponseEntity.ok(response);
 	}
 //	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, String> request) {

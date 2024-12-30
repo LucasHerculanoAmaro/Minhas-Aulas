@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioLogin } from '../model/Login';
+import { AuthService } from '../services/authService';
+import { environment } from '../../environment';
+import { AlertasComponent } from '../alertas/alertas.component';
 
 @Component({
   selector: 'app-login',
@@ -9,48 +13,30 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  username : string = '';
-  password : string = '';
-
-  constructor( private http : HttpClient , private router : Router) {}
+  login : UsuarioLogin = new UsuarioLogin();
+  
+  constructor( 
+    private http : HttpClient , 
+    private router : Router ,
+    private auth : AuthService,
+    private alerta : AlertasComponent
+  ) {}
 
   async logar() {
 
-    try {
+    this.auth.logar(this.login).subscribe((resp : UsuarioLogin) => {
+      this.login = resp
 
-      const body = {
-        usuario: this.username,
-        senha: this.password,
-        token: null
-      };
+      environment.nome = this.login.usuario
+      environment.tipo = this.login.tipo
+      environment.token = this.login.token
 
-      this.http.post('http://localhost:8080/api/usuarios/logar', body)
-        .subscribe({
-          next: (response : any) => {
-
-            console.log('Resposta recebida:', response);
-
-            const token = response.token;
-
-            if (token) {
-              console.log('Token recebido:', token);
-              localStorage.setItem('Token', token);
-              this.router.navigate(['/diario']);
-
-            } else {
-              console.log('Nenhum token recebido.')
-            }
-            
-          },
-          error: error => console.error('Erro no login:', error)  
-        }
-        
-      );
-
-    } catch (error) {
-      console.error('Erro ao realizar login:', error);
-      alert('Erro no servidor. Tente novamente mais tarde.');
-    }
+      this.router.navigate(['/diario']);
+    }, erro => {
+      if (erro.status == 500) {
+        alert('Usuário ou senha incorretos!')
+      }
+    })
 
   }
 
@@ -59,9 +45,6 @@ export class LoginComponent {
     this.router.navigate(['/login']);
 
     console.log('Usuário desconectado.');
-
-    this.username = '';
-    this.password = '';
   }
 
 }

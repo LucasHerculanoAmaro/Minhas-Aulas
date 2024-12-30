@@ -17,11 +17,14 @@ import com.euripedes.Conectando.repository.UsuarioRepository;
 @Service
 public class UserDetailsServiceImplements implements UserDetailsService{
 	
-	@Autowired
-	private  UsuarioRepository repository;
+	private final UsuarioRepository repository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
+
+	public UserDetailsServiceImplements(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
+		this.repository = repository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String usuario) throws UsernameNotFoundException {
