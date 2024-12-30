@@ -2,13 +2,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from '../services/authService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor( private router : Router ) { }
+  constructor( private router : Router, private authService : AuthService ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -18,7 +19,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       const cloned = req.clone ({
         setHeaders : { Authorization : `Bearer ${token}` },
       });
-      console.log('Token adicionado ao header:', token);
+      // console.log('Token adicionado ao header:', token);
       return next.handle(cloned); // Linha adicionada
 
     }

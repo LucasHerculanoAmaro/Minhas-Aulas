@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/diario', pathMatch: 'full' },
   { path: 'diario', component: DiarioComponent, canActivate: [AuthGuard] },
   { path: 'periodico', component: DiarioPeriodoComponent, canActivate: [AuthGuard] },
-  { path: 'registrar', component: RegistrarComponent, canActivate: [AuthGuard]  },
-  { path: 'historico', component:HistoricoComponent, canActivate: [AuthGuard]  },
-  { path: 'atualizar/:id', component: AtualizarComponent, canActivate: [AuthGuard]  },
+  { path: 'registrar', component: RegistrarComponent, canActivate: [AuthGuard] },
+  { path: 'historico', component:HistoricoComponent, canActivate: [AuthGuard] },
+  { path: 'atualizar/:id', component: AtualizarComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'inicio', component:InicioComponent }
 ];

@@ -36,7 +36,7 @@ public class UsuarioService {
 	@Autowired
 	private JwtService jwtService;
 	
-//	CREATE - cadastrar
+//	CREATE - CADASTRAR
 	public Optional<Usuario> createUsuario(Usuario usuario) {
 		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent()) 
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado!", null);
@@ -46,11 +46,8 @@ public class UsuarioService {
 		return Optional.of(usuarioRepository.save(usuario));
 	}
 	
-//	CREATE - entrar
-	public 
-		Optional<UsuarioLogin>
-//		Map<String, Object>
-			loginUsuario(Optional<UsuarioLogin> usuarioLogin/*String usuario, String senha*/) {
+//	POST - LOGIN
+	public Optional<UsuarioLogin> loginUsuario(Optional<UsuarioLogin> usuarioLogin) {
 
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 

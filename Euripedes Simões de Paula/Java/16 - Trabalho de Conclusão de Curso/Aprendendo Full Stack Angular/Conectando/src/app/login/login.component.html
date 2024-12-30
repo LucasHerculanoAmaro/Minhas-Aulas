@@ -6,11 +6,11 @@
 
             <div class="col-md-8">
 
-                <form (ngSubmit)="logar()">
+                <form (ngSubmit)="login()">
                     <div class="form-group">
-                        <label for="username" name="username" class="form-label">Usuário</label>
+                        <label for="username" class="form-label">Usuário</label>
                         <input 
-                            [(ngModel)]="username" 
+                            [(ngModel)]="usuarioLogin.usuario" 
                             type="text" 
                             id="username"
                             name="username" 
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="password" class="form-label">Senha</label>
                         <input 
-                            [(ngModel)]="password" 
+                            [(ngModel)]="usuarioLogin.senha" 
                             type="password" 
                             id="password"
                             name="password" 
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group d-flex justify-content-center">
-                        <button (click)="logar()" type="submit" class="btn btn-success">Entrar</button>
+                        <button (click)="login()" type="submit" class="btn btn-success">Entrar</button>
                     </div>
                 </form>
 
