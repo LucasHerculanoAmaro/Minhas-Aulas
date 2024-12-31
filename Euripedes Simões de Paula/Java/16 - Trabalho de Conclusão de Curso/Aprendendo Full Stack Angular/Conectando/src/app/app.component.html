@@ -1,8 +1,2 @@
-<app-menu></app-menu>
-<!-- <app-inicio></app-inicio> -->
-<!-- <app-login></app-login> -->
+<app-menu *ngIf="authService.logado()" ></app-menu>
 <router-outlet></router-outlet>
-<!-- <app-registrar></app-registrar> -->
-<!-- <app-diario></app-diario> -->
-<!-- <app-razao></app-razao> -->
- <!-- <app-atualizar></app-atualizar> -->

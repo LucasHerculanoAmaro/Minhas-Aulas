@@ -30,6 +30,10 @@ export class AuthService {
         localStorage.removeItem('token');
     }
 
+    logado() : boolean {
+        return localStorage.getItem('token') !== null;
+    }
+
     
 
 }
