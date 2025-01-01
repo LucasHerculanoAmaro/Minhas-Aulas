@@ -8,6 +8,7 @@ import { DiarioPeriodoComponent } from './diario-periodo/diario-periodo.componen
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthGuard } from './security/authGuard';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/diario', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'historico', component:HistoricoComponent, canActivate: [AuthGuard] },
   { path: 'atualizar/:id', component: AtualizarComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'inicio', component:InicioComponent }
+  { path: 'inicio', component:InicioComponent },
+  { path: 'cadastrar', component:CadastrarComponent }
 ];
 
 @NgModule({

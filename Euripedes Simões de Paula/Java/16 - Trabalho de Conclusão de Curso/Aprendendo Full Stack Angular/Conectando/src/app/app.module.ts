@@ -15,6 +15,7 @@ import { AlertasComponent } from './alertas/alertas.component';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     DiarioPeriodoComponent,
     AlertasComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    CadastrarComponent
   ],
   imports: [
     BrowserModule,

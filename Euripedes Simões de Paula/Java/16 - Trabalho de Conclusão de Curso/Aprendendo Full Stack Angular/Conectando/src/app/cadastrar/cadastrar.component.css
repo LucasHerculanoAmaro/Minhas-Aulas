@@ -1,0 +1,25 @@
+.container {
+    display: flow;
+    justify-content: center;
+    align-items: center;
+    /* height: 450px; */
+}
+
+form {
+    width: 100%;
+    padding: 10px;
+}
+
+h3 {
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+}
+
+input:hover  {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
+
+select:hover {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
