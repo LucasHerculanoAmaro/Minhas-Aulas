@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioLogin } from '../model/Login';
 import { AuthService } from '../services/authService';
@@ -13,14 +13,18 @@ import { EventEmitter } from 'stream';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(AlertasComponent) alertas! : AlertasComponent;
 
   usuarioLogin : UsuarioLogin = new UsuarioLogin();
-  
+
   constructor( 
     private router : Router ,
     private authService : AuthService
   ) {}
+
+  ngAfterViewInit(){}
 
   ngOnInit(){}
 
@@ -28,10 +32,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.usuarioLogin.usuario, this.usuarioLogin.senha).subscribe({
       next : (response) => {
         this.authService.storeToken(response.token);
-        this.router.navigate(['/diario']);
+        this.router.navigate(['/inicio']);
       },
       error : (error) => {
-        alert('Erro de credenciais');
+        
+        if ( this.alertas ) {
+          this.alertas.mostrarAlerta("Erro de credenciais!", 'danger');
+        } else {
+          console.error('AlertaCompobebt não está inicializado.')
+        }
+
         console.error("Erro:", error)
       }
     })

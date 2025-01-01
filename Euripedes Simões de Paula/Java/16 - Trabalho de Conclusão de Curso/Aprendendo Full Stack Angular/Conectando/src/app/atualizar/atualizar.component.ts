@@ -17,11 +17,6 @@ export class AtualizarComponent {
   // ID do Lançamento
   id!: number;
 
-  // Variáveis de controle de Alertas
-  alertaMensagem : string = '';
-  alertaTipo : string = '';
-  alertaMostrar : boolean = false;
-
   @ViewChild(AlertasComponent) alertas! : AlertasComponent;
 
   constructor(

@@ -46,6 +46,10 @@ label {
     display: block;
 }
 
+.alert {
+    margin-top: -100px !important;
+}
+
 @media (max-width: 768px) {
     .col-md-8 {
         width: 100%;

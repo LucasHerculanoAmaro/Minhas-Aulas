@@ -8,6 +8,10 @@
     height: 430px;
 }
 
+.logo {
+    margin: auto;
+}
+
 h1 {
     font-size: 100px;
 }
@@ -19,4 +23,10 @@ h2 {
     transform: rotate(-10deg);
 }
 
-  
+.texto {
+    background-color: blue;
+    width: 50%;
+    margin-left: 100px;
+    padding: 20px;
+    margin: auto;
+}  
