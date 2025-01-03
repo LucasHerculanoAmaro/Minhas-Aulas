@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.authService.login(this.usuarioLogin.usuario, this.usuarioLogin.senha).subscribe({
       next : (response) => {
         this.authService.storeToken(response.token);
+        console.log('Token recebido:', response.token);
         this.router.navigate(['/inicio']);
       },
       error : (error) => {

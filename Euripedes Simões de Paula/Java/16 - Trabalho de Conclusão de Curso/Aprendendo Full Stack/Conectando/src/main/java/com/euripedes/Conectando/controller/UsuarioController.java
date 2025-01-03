@@ -54,83 +54,25 @@ public class UsuarioController {
 	}
 	
 // 	Método POST
+//	@PostMapping("/cadastrar")
+//	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
+//		return ResponseEntity.ok(usuarioService.createUsuario(usuario).orElseThrow(
+//			() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao criar usuário")
+//		));
+//	}
+	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-		return ResponseEntity.ok(usuarioService.createUsuario(usuario).orElseThrow(
-			() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao criar usuário")
-		));
+	public ResponseEntity<String> testEndpoint(@RequestHeader("Authorization") String authHeader) {
+		System.out.println("Token recebido: " + authHeader);
+		return ResponseEntity.ok("Token validado");
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<Optional<UsuarioLogin>> logar(@RequestBody Optional<UsuarioLogin> usuario) {
-		Optional<UsuarioLogin> response = usuarioService.loginUsuario(usuario);
-			return ResponseEntity.ok(response);
+	public ResponseEntity<Optional<UsuarioLogin>> logar(@RequestBody Optional<UsuarioLogin> usuarioLogin) {
+		Optional<UsuarioLogin> usuario = usuarioService.loginUsuario(usuarioLogin);
+			return ResponseEntity.ok(usuario);
 	}
-//	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, String> request) {
-//	    String usuario = request.get("usuario");
-//	    String senha = request.get("senha");
-//
-//	    Map<String, String> response = new HashMap<>();
-//
-//	    // Verifique o usuário no banco de dados
-//	    Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuario(usuario);
-//
-//	    if (usuarioOptional.isPresent()) {
-//	        Usuario usuarioBanco = usuarioOptional.get();
-//
-//	        // Verifique se a senha está correta (geralmente, é feita uma comparação com a senha criptografada)
-//	        if (senha.equals(usuarioBanco.getSenha())) {
-//	            String token = jwtService.generateToken(usuario, usuarioBanco.getTipo());
-//	            response.put("message", "Autenticação bem-sucedida!");
-//	            response.put("token", token);
-//	            return ResponseEntity.ok(response);
-//	        }
-//	    }
-//
-//	    response.put("message", "Login ou senha incorretos.");
-//	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-//	}
 
-//	public ResponseEntity<Map<String, String>> logar(@RequestBody Map<String, Object> request, UsuarioLogin usuarioLogin) {
-//	    System.out.println("Corpo recebido: " + request);
-//	    String usuario = (String) request.get("usuario");
-//	    String senha = (String) request.get("senha");
-//
-//	    System.out.println("Usuário recebido: " + usuario);
-//	    System.out.println("Senha recebida: " + senha);
-//
-//	    Map<String, String> response = new HashMap<>();
-//
-//	    if ("usuario_teste".equals(usuario) && "senha123".equals(senha)) {
-//			String token = jwtService.generateToken(usuarioLogin.getUsuario(), "USER");
-//
-//	        response.put("message", "Autenticação bem-sucedida!");
-//	        response.put("token", token);
-//	        return ResponseEntity.ok(response);
-//	    }
-//
-//	    response.put("message", "Login ou senha incorretos.");
-//	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-//	}
-//	public ResponseEntity<String> logar(@RequestBody UsuarioLogin usuarioLogin) {
-//		
-//		System.out.println("Usuário recebido:" + usuarioLogin.getUsuario());
-//		System.out.println("Senha recebida:" + usuarioLogin.getSenha());
-//		
-//		Optional<UsuarioLogin> usuarioLoginOpt = Optional.of(usuarioLogin);
-//		
-//		Optional<Usuario> usuario = usuarioService.loginUsuario(usuarioLogin.getUsuario(), usuarioLogin.getSenha());
-//		
-//		if (usuario.isPresent()) {
-//			String token = jwtService.generateToken(usuarioLogin.getUsuario(), "USER");
-//			ResponseEntity.ok().body("Autenticação bem-sucedida");
-//			return ResponseEntity.ok(token);
-//		}
-//		
-//		return ResponseEntity
-////				.ok().body("Autenticação bem-sucedida!");
-//				.status(HttpStatus.UNAUTHORIZED).body("Credenciais invalidas.");
-//	}
 
 //	Método PUT
 	@PutMapping("/atualizar/{id}")

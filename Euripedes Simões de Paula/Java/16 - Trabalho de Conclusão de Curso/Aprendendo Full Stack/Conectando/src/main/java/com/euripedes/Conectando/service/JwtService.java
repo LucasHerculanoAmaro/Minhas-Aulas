@@ -1,5 +1,6 @@
 package com.euripedes.Conectando.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import com.euripedes.Conectando.security.UserDetailsServiceImplements;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -27,7 +30,7 @@ public class JwtService {
 	public String generateToken(String username, String role) {
 		return Jwts.builder()
 				.setSubject(username)
-				.claim("role", "ROLE_" + role.toUpperCase())//List.of(role))
+				.claim("roles", Collections.singleton(role))//"ROLE_" + role.toUpperCase())//List.of(role))
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
@@ -53,10 +56,8 @@ public class JwtService {
 		return null;
 	}
 
-	public boolean isTokenValid(String token) {
-				
+	public boolean isTokenValid(String token) {				
 		try {
-//			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
 			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
 			return true;
 		} catch (JwtException e) {
@@ -74,15 +75,29 @@ public class JwtService {
 	}
 	
 	public List<String> getRoles(String token) {
-		Claims claims = Jwts.parser()
-				.setSigningKey(SECRET_KEY)
-				.parseClaimsJws(token)
-				.getBody();
-		return claims.get("roles", List.class);
+	    Claims claims = getClaims(token); // Método que extrai as claims do token
+	    List<String> roles = claims.get("roles", List.class);
+
+	    if (roles == null) {
+	        roles = new ArrayList<>(); // Retorna uma lista vazia, se não houver roles
+	    }
+
+	    return roles;
 	}
 	
-	private String getUsernameFromToken(String token) {
-		return Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody().getSubject();
+//	public List<String> getRoles(String token) {
+//		Claims claims = Jwts.parser()
+//				.setSigningKey(SECRET_KEY)
+//				.parseClaimsJws(token)
+//				.getBody();
+//		return claims.get("roles", List.class);
+//	}
+	
+	public String getUsernameFromToken(String token) {
+		return Jwts.parserBuilder()
+				.setSigningKey(SECRET_KEY).build()
+				.parseClaimsJws(token).getBody()
+				.getSubject();
 	}
 	
 }

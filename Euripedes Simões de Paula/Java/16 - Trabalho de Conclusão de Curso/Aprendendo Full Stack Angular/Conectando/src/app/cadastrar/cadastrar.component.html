@@ -6,46 +6,49 @@
     
     <div>
         
-        <form>
+        <form (ngSubmit)="onSubmit()">
         
             <div class="form-group">
                 <label>NOME:</label>
-                <input type="text" name="nome" class="form-control" required>
+                <input type="text" name="nome" id="nome" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>IDADE:</label>
-                <input type="number" name="idade" class="form-control" required>
+                <input type="number" name="idade" id="idade" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>TURMA:</label>
-                <input type="text" name="turma" class="form-control" required>
+                <input type="text" name="turma" id="turma" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>PROFISSÃO:</label>
-                <input type="text" name="profissão" class="form-control" required>
+                <input type="text" name="profissão" id="profissão" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>USUÁRIO:</label>
-                <input type="text" name="usuário" class="form-control" required>
+                <input type="text" name="usuário" id="usuário" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>SENHA:</label>
-                <input type="text" name="senha" class="form-control" required>
+                <input type="text" name="senha" id="senha" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>FOTO:</label>
-                <input type="text" name="foto" class="form-control" required>
+                <input type="text" name="foto" id="foto" class="form-control" required>
             </div>
     
             <div class="form-group">
                 <label>TIPO:</label>
-                <input type="text" name="tipo" class="form-control" required>
+                <select name="tipo" id="tipo">
+                    <option value="admin">ADMINISTRADOR</option>
+                    <option value="user">USUÁRIO</option>
+                </select>
             </div>
     
             <div class="form-group" style="margin-top: 10px; text-align: center;">

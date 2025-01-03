@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,20 +18,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import com.euripedes.Conectando.service.JwtService;
 
 @Configuration
 @EnableMethodSecurity
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	private final JwtAuthorizationFilter jwtAuthorizationFilter;
-	private final JwtService jwtService;
-	
-    public SecurityConfig(JwtService jwtService, JwtAuthorizationFilter jwtAuthorizationFilter) {
-        this.jwtAuthorizationFilter = jwtAuthorizationFilter;
-		this.jwtService = jwtService;
-    }
+	@Autowired
+	private JwtAuthorizationFilter jwtAuthorizationFilter;
 	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -42,9 +34,9 @@ public class SecurityConfig {
         	.csrf().disable()
         	.cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+//            		.requestMatchers("/**").permitAll()
             	.requestMatchers("usuarios/logar","/diario/**").permitAll()
-//            	.requestMatchers("/diario/**").hasRole("ADMIN")
-//            	.requestMatchers("/usuarios/cadastrar").hasRole("USER")
+            	.requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
             	.anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
@@ -54,8 +46,8 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public AuthenticationManager authManager(/*HttpSecurity http*/AuthenticationConfiguration configuration)  throws Exception {
-		return configuration.getAuthenticationManager(); //http.getSharedObject(AuthenticationManagerBuilder.class).build();
+	public AuthenticationManager authManager(AuthenticationConfiguration configuration)  throws Exception {
+		return configuration.getAuthenticationManager();
 	}
 		
 	@Bean
@@ -66,10 +58,10 @@ public class SecurityConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200")); // Adicione aqui as origens permitidas
-	    configuration.setAllowedMethods(Collections.singletonList("*")); // Permitir todos os métodos (GET, POST, etc.)
-	    configuration.setAllowedHeaders(Collections.singletonList("*")); // Permitir todos os cabeçalhos
-	    configuration.setAllowCredentials(true); // Permitir cookies/sessões compartilhadas
+	    configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200")); 
+	    configuration.setAllowedMethods(Collections.singletonList("*")); 
+	    configuration.setAllowedHeaders(Collections.singletonList("*"));
+	    configuration.setAllowCredentials(true);
 
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", configuration);
